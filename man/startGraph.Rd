@@ -1,6 +1,6 @@
 \name{startGraph}
 \alias{startGraph}
-\title{Connect to the graph database.}
+\title{Connecting to the Database.}
 \description{
 Supply the URL for the location of your Neo4j graph database in order to interact with the graph.
 }
