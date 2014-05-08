@@ -12,15 +12,15 @@ getIndex(graph, label = character())
   \item{label}{The label for which you want to see all indices.}
 }
 \value{
-A data frame.
+A data frame. Returns NULL if no indices are found.
 }
 \details{
-To view all indices, only supply a graph object.
+Supplying only a graph object as an argument returns all indices in the graph database.
 }
 \examples{
-# Get all uniqueness constraints on Person nodes.
+# Get all indices for the Person label.
 getIndex(graph, "Person")
 
-# Get all uniqueness constraints in the graph.
+# Get all indices in the graph.
 getIndex(graph)
 }

@@ -13,6 +13,7 @@ Compatible with Neo4j >= 2.0.
 * Retrieve Cypher query results as a data frame.
 * Labels.
 * Indexing (for nodes only).
+* Uniqueness constraints (for nodes only).
 * Load sample datasets with `populate()`.
 
 # TODO Functionality
@@ -62,19 +63,19 @@ createNode(graph, "Bar", name = "Cheer Up Charlie's", location = "Downtown")
 nicole = createNode(graph, name = "Nicole", status = "Student")
 addLabel(nicole, "Person")
 
-# Index Person nodes by name and Bar nodes by name.
-addIndex(graph, "Person", "name")
-addIndex(graph, "Bar", "name")
+# Add uniqueness constraints so that Person nodes are unique by name and Bar nodes are unique by name.
+addConstraint(graph, "Person", "name")
+addConstraint(graph, "Bar", "name")
 
-# View all indices in the graph.
-getIndex(graph)
+# View all constraints in the graph.
+getConstraint(graph)
 
-# 	property_keys  label
-# 1          name Person
-# 2          name    Bar
+# 	property_keys  label       type
+# 1          name Person UNIQUENESS
+# 2          name    Bar UNIQUENESS
 
 # Find Cheer Up Charlie's and assign it to 'charlies':
-charlies = getNodeByIndex(graph, "Bar", "name", "Cheer Up Charlie's")
+charlies = getNodeByIndex(graph, "Bar", name = "Cheer Up Charlie's")
 
 # Create relationships.
 createRel(nicole, "DRINKS_AT", mugshots, on = "Fridays")
@@ -112,14 +113,14 @@ print(nicole)
 
 # Sample Dataset
 
-If you don't have your own data, the movie database available through Neo4j's browser can be loaded through `populate()`. Using `populate()` clears the graph database of all nodes, relationships, and indices, then populates the database with the sample dataset. You will be prompted to make sure that that is what you want to do.
+If you don't have your own data, the movie database available through Neo4j's browser can be loaded through `populate()`. Using `populate()` clears the graph database of all nodes, relationships, constraints, and indices, then populates the database with the sample dataset. You will be prompted to make sure that that is what you want to do.
 
 ```
 graph = startGraph("http://localhost:7474/db/data/")
 populate(graph, data = "movies")
 ```
 
-And now you have the movie database loaded! Printing the graph object gives you a high level overview of the structure of the database, and `getIndex()` will tell you if there are any indices present:
+And now you have the movie database loaded! Printing the graph object gives you a high level overview of the structure of the database, and `getIndex()` and `getConstraint()` will tell you if there are any indices or constraints present:
 
 ```
 print(graph)
@@ -132,9 +133,11 @@ print(graph)
 # 5 Person PRODUCED  Movie
 # 6 Person    WROTE  Movie
 
-getIndex(graph)
+getConstraint(graph)
+# No constraints in the graph.
 
-# No indices.
+getIndex(graph)
+# No indices in the graph.
 ```
 
 Because an index does not exist, you can't use `getNodeByIndex()` yet. But, you can start retrieving nodes using `getNodeByCypher()`:
@@ -153,11 +156,11 @@ print(tom)
 # [1] "Tom Hanks"
 ```
 
-To search for nodes using `getNodeByIndex()`, you need to add an index first:
+To search for nodes using `getNodeByIndex()`, you need to add an index first. This can be done either with `addConstraint()` (preferred, because it also adds an index) or `addIndex()` (adds an index, but no uniqueness constraint).
 
 ```
-addIndex(graph, "Person", "name")
-clint = getNodeByIndex(graph, "Person", "name", "Clint Eastwood")
+addConstraint(graph, "Person", "name")
+clint = getNodeByIndex(graph, "Person", name = "Clint Eastwood")
 print(clint)
 
 # Labels: Person

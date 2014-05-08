@@ -19,3 +19,6 @@ A relationship object.
 \examples{
 rel = createRel(alice, "KNOWS", bob, since = 2000, through = "Work")
 }
+\seealso{
+\code{\link{getStart}}, \code{\link{getEnd}}
+}

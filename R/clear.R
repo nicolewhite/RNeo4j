@@ -5,13 +5,14 @@ clear.default = function(x) {
 }
 
 clear.graph = function(graph) {
-  print("You are about to delete all nodes, relationships, and indices from the graph database. Are you sure? Y/N")
+  message("You are about to delete all nodes, relationships, indices, and constraints from the graph database. Are you sure? Y/N")
   answer = scan(what = character(), nmax = 1, quiet = TRUE)
   
   if(answer == "Y") {
-    suppressMessages(dropIndex(graph))
+    suppressMessages(dropConstraint(graph, all = TRUE))
+    suppressMessages(dropIndex(graph, all = TRUE))
     query = "MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r"
-    cypher(graph, query)
+    suppressMessages(cypher(graph, query))
     
   } else if(answer == "N") {
     stop("Delete aborted.")

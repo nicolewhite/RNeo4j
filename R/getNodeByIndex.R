@@ -1,18 +1,22 @@
-getNodeByIndex = function(graph, label, key, value) UseMethod("getNodeByIndex")
+getNodeByIndex = function(graph, label, ...) UseMethod("getNodeByIndex")
 
 getNodeByIndex.default = function(x) {
   stop("Invalid object. Must supply graph object.")
 }
 
-getNodeByIndex.graph = function(graph, label, key, value) {
-  stopifnot(is.character(label),
-            length(label) == 1,
-            is.character(key),
-            length(key) == 1,
-            length(value) == 1,
-            key %in% getIndex(graph, label)$property_keys)
+getNodeByIndex.graph = function(graph, label, ...) {
+  stopifnot(is.character(label))
   
-  url = paste0(graph$root, "label/", label, "/nodes?", key, "=%22", gsub(" ", "+", value), "%22")
+  params = c(...)
+  
+  if(length(params) > 1) {
+    stop("Can only search by one property.")
+  }
+  
+  # Check if index exists.
+  stopifnot(names(params) %in% getIndex(graph, label)$property_keys)
+  
+  url = paste0(graph$root, "label/", label, "/nodes?", names(params), "=%22", gsub(" ", "+", params[[1]]), "%22")
   response = fromJSON(httpGET(url))
   node = response[[1]]
   

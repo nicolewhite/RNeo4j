@@ -1,6 +1,6 @@
 print.graph = function(graph) {
   query = "MATCH (a)-[r]->(b) RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That"
-  df = cypher(graph, query)
+  df = suppressMessages(cypher(graph, query))
   print(df)
 }
 

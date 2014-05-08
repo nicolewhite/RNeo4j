@@ -10,6 +10,5 @@ dropLabel.node = function(node, ...) {
   
   urls = vapply(labels, function(x) {paste0(node$labels, "/", x)}, "")
   lapply(urls, function(x) {httpDELETE(x)})
-  
   return(invisible(NULL))
 }

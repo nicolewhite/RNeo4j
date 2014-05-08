@@ -10,11 +10,11 @@ populate.graph = function(graph, data) {
   
   if(data == "movies") {
     fpath = system.file("extdata", "movies.txt", package = "Rneo4j")
-    query = readChar(fpath, file.info(fpath)$size)
-    cypher(graph, query)
     
   } else {
-    stop("Only the movie dataset is available. Set data = 'movies'.")
+    stop("As of now, only the movie dataset is available. Set data = 'movies'.")
   }
+  query = readChar(fpath, file.info(fpath)$size)
+  suppressMessages(cypher(graph, query))
 }
 

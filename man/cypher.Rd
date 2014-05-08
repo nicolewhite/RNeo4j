@@ -5,11 +5,11 @@
 Get Cypher results as a data frame. Send a query
 with or without parameters.}
 \usage{
-cypher(graph, query = character(), ...)
+cypher(graph, query, ...)
 }
 \arguments{
-  \item{graph}{The graph object you want to query.}
-  \item{query}{The Cypher query in the form of a string.}
+  \item{graph}{A graph object.}
+  \item{query}{A Cypher query in the form of a string.}
   \item{...}{Parameters to pass to the query, if applicable.}
 }
 \details{
