@@ -1,6 +1,6 @@
 addIndex = function(graph, label, key) UseMethod("addIndex")
 
-addIndex.defult = function(x) {
+addIndex.default = function(x) {
   stop("Invalid object. Must supply graph object.")
 }
 
