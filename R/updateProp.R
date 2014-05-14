@@ -16,7 +16,8 @@ updateProp.entity = function(entity, ...) {
     url = paste0(attr(entity, "properties"), "/", names(props[i]))
     field = ifelse(is.character(props[[i]]), paste0('"', props[[i]], '"'), toString(props[[i]]))
     httpPUT(url, httpheader = headers, postfields = field)
-    entity[names(props[i])] = props[[i]]
+    entity[names(props[i])] = props[names(props[i])]
   }
+  
   return(entity)
 }
