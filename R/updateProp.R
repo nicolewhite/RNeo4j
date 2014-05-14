@@ -16,10 +16,7 @@ updateProp.entity = function(entity, ...) {
     url = paste0(attr(entity, "properties"), "/", names(props[i]))
     field = ifelse(is.character(props[[i]]), paste0('"', props[[i]], '"'), toString(props[[i]]))
     httpPUT(url, httpheader = headers, postfields = field)
+    entity[names(props[i])] = props[[i]]
   }
-  
-  result = fromJSON(httpGET(attr(entity, "self")))
-  class(result) = class(entity)
-  entity = configure_result(result)
   return(entity)
 }

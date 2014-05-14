@@ -9,7 +9,7 @@ getLabel.graph = function(graph) {
   result = fromJSON(httpGET(url))
   
   if(length(result) == 0) {
-    message("No labels in this graph.")
+    message("No labels in the graph.")
     return(invisible(NULL))
   }
   
@@ -21,7 +21,7 @@ getLabel.node = function(node) {
   result = fromJSON(httpGET(url))
   
   if(length(result) == 0) {
-    message("No labels on this node.")
+    message("No labels on the node.")
     return(invisible(NULL))
   }
   

@@ -17,12 +17,13 @@ deleteProp.entity = function(entity, ..., all = FALSE) {
       urls = vapply(props, function(x) {paste0(attr(entity, "properties"), "/", x)}, "")
       lapply(urls, function(x) {httpDELETE(x)})
       
+      for (i in 1:length(props)) {
+        entity[props[i]] = NULL
+      }
+      
+      return(entity)
+      
   } else {
       stop("Must supply a property to be deleted or set all = TRUE.")
   }
-  
-  result = fromJSON(httpGET(attr(entity, "self")))
-  class(result) = class(entity)
-  entity = configure_result(result)
-  return(entity)
 }
