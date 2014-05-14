@@ -1,6 +1,6 @@
 updateProp = function(entity, ...) UseMethod("updateProp")
 
-updateProp.default = function(x) {
+updateProp.default = function(x, ...) {
   stop("Invalid object. Must supply node or relationship object.")
 }
 
@@ -13,20 +13,13 @@ updateProp.entity = function(entity, ...) {
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   
   for (i in 1:length(props)) {
-    url = paste0(entity$properties, "/", names(props[i]))
+    url = paste0(attr(entity, "properties"), "/", names(props[i]))
     field = ifelse(is.character(props[[i]]), paste0('"', props[[i]], '"'), toString(props[[i]]))
     httpPUT(url, httpheader = headers, postfields = field)
   }
   
-  result = fromJSON(httpGET(entity$self))
-  class(result) = "entity"
-  
-  if("node" %in% class(entity)) {
-    class(result) = c(class(result), "node")
-    
-  } else {
-    class(result) = c(class(result), "relationship")
-  }
-  
-  return(result)
+  result = fromJSON(httpGET(attr(entity, "self")))
+  class(result) = class(entity)
+  entity = configure_result(result)
+  return(entity)
 }

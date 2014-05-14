@@ -1,6 +1,6 @@
 \name{getLabel}
 \alias{getLabel}
-\title{Labels.}
+\title{Labels}
 \description{
 Get all labels on a graph or node object.
 }
@@ -14,9 +14,12 @@ getLabel(object)
 A character vector.
 }
 \examples{
-# Get all labels in the graph database.
+# View all labels in the graph database.
 getLabel(graph)
 
-# Get all labels on the Alice node.
+# View all labels on the Alice node.
 getLabel(alice)
+}
+\seealso{
+	\code{\link{addLabel}}, \code{\link{dropLabel}}
 }

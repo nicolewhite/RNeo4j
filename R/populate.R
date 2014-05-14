@@ -1,6 +1,6 @@
 populate = function(graph, data) UseMethod("populate")
 
-populate.default = function(x) {
+populate.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 

@@ -5,11 +5,11 @@ getLabel.default = function(x) {
 }
 
 getLabel.graph = function(graph) {
-  url = paste0(graph$root, "labels")
+  url = paste0(attr(graph, "root"), "labels")
   result = fromJSON(httpGET(url))
   
   if(length(result) == 0) {
-    cat("No labels in this graph.")
+    message("No labels in this graph.")
     return(invisible(NULL))
   }
   
@@ -17,11 +17,11 @@ getLabel.graph = function(graph) {
 }
 
 getLabel.node = function(node) {
-  url = node$labels
+  url = attr(node, "labels")
   result = fromJSON(httpGET(url))
   
   if(length(result) == 0) {
-    cat("No labels on this node.")
+    message("No labels on this node.")
     return(invisible(NULL))
   }
   

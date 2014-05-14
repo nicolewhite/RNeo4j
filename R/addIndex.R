@@ -1,6 +1,6 @@
 addIndex = function(graph, label, key) UseMethod("addIndex")
 
-addIndex.default = function(x) {
+addIndex.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
@@ -10,16 +10,17 @@ addIndex.graph = function(graph, label, key) {
             length(label) == 1,
             length(key) == 1)
   
-  constraint = suppressMessages(getConstraint(graph))
+  # Test if the index exists.
+  index = suppressMessages(getIndex(graph))
+  test = merge(data.frame(property_keys = key, label = label), index)
   
-  if(key %in% constraint$property_keys & label %in% constraint$label) {
-    stop("A uniqueness constraint already exists for this (label, key) pair. 
-          Thus, it must be true that an index already exists for this (label, key) pair.
-          See ?addIndex.")
+  if(nrow(test) > 0) {
+    stop("An index already exists for (", label, ", ", key, "). It's possible that you added a uniqueness constraint on this (label, key) pair, which necessarily adds an index as well.")
   }
   
+  # Add the index.
   fields = paste0('{\n "property_keys": [ "', key, '" ] \n}')
-  url = paste0(graph$root, "schema/index/", label)
+  url = paste0(attr(graph, "root"), "schema/index/", label)
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   httpPOST(url, httpheader = headers, postfields = fields)
   return(invisible(NULL))

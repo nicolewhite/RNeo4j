@@ -1,8 +1,8 @@
 \name{createNode}
 \alias{createNode}
-\title{Creating Nodes.}
+\title{Creating Nodes}
 \description{
-Create a node in the graph with the given properties and label.
+Create a node in the graph with the given label and properties.
 }
 \usage{
 createNode(graph, label = character(), ...)
@@ -25,4 +25,7 @@ alice = createNode(graph, name = "Alice", age = 23)
 
 # Node with label and properties.
 bob = createNode(graph, "Person", name = "Bob", age = 24)
+
+# Node with multiple labels and properties.
+charles = createNode(graph, c("Person", "Student"), name = "Charles", age = 21)
 }

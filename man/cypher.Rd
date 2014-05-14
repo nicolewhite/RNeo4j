@@ -1,6 +1,6 @@
 \name{cypher}
 \alias{cypher}
-\title{Cypher Queries.}
+\title{Cypher Queries}
 \description{
 Get Cypher results as a data frame. Send a query
 with or without parameters.}

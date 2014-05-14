@@ -1,8 +1,8 @@
 \name{getConstraint}
 \alias{getConstraint}
-\title{Uniqueness Constraints.}
+\title{Uniqueness Constraints}
 \description{
-Get all uniqueness constraints for a given label or for the entire graph database.
+View all uniqueness constraints for a given label or for the entire graph database.
 }
 \usage{
 getConstraint(graph, label = character())
@@ -19,8 +19,11 @@ Supplying only a graph object as an argument returns all uniqueness constraints 
 }
 \examples{
 # View all uniqueness constraints on Person nodes.
-getIndex(graph, "Person")
+getConstraint(graph, "Person")
 
 # View all uniqueness constraints in the graph.
-getIndex(graph)
+getConstraint(graph)
+}
+\seealso{
+	\code{\link{addConstraint}}, \code{\link{dropConstraint}}
 }

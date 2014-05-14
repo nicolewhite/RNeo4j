@@ -1,6 +1,6 @@
 \name{getStart}
 \alias{getStart}
-\title{Retrieving Nodes from a Relationship.}
+\title{Retrieving Nodes from a Relationship}
 \description{
 Retrieve the starting node of a relationship. This is the node for which the relationship is outgoing.
 }
@@ -17,6 +17,6 @@ A node object.
 rel = createRel(alice, "KNOWS", bob)
 start = getStart(rel)
 
-start$data == alice$data
+identical(start, alice)
 # TRUE
 }

@@ -1,6 +1,6 @@
 cypher = function(graph, query, ...) UseMethod("cypher")
 
-cypher.default = function(x) {
+cypher.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
@@ -18,7 +18,7 @@ cypher.graph = function(graph, query, ...) {
     fields = c(fields, params = list(params))
   
   fields = toJSON(fields)
-  response = fromJSON(httpPOST(graph$cypher, 
+  response = fromJSON(httpPOST(attr(graph, "cypher"), 
                                httpheader = headers, 
                                postfields = fields))
   

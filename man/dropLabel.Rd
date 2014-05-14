@@ -1,6 +1,6 @@
 \name{dropLabel}
 \alias{dropLabel}
-\title{Labels.}
+\title{Labels}
 \description{
 Drop a label from a node.
 }
@@ -14,4 +14,7 @@ dropLabel(node, label)
 \examples{
 dropLabel(alice, "Person", "Student")
 dropLabel(bob, "Person")
+}
+\seealso{
+	\code{\link{addLabel}}, \code{\link{getLabel}}
 }

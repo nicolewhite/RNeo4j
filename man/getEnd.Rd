@@ -1,6 +1,6 @@
 \name{getEnd}
 \alias{getEnd}
-\title{Retrieving Nodes from a Relationship.}
+\title{Retrieving Nodes from a Relationship}
 \description{
 Retrieve the ending node of a relationship. This is the node for which the relationship is incoming.
 }
@@ -17,6 +17,6 @@ A node object.
 rel = createRel(alice, "KNOWS", bob)
 end = getEnd(rel)
 
-end$data == bob$data
+identical(end, bob)
 # TRUE
 }

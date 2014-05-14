@@ -22,8 +22,7 @@ In no particular order:
 
 * Add username and password arguments to `startGraph()`.
 * Enable the handling of collections in Cypher query results (maybe).
-* Add indexing for relationships.
-* Retrieve relationship objects with a Cypher query or by label/index.
+* Add indexing for relationships (maybe).
 * Add `getIn()` and `getOut()` for getting incoming and outgoing relationships on a node.
 * Add batch operations. Tentatively to include `newBatch()`, `appendBatch()`, and `runBatch()`.
 * Add options to `getNodeByIndex()` for "get or create unique."
@@ -47,7 +46,7 @@ library(Rneo4j)
 
 graph = startGraph("http://localhost:7474/db/data/")
 
-version(graph)
+graph$version
 # [1] "2.0.0-RC1"
 
 # Clear the database.
@@ -62,6 +61,11 @@ createNode(graph, "Bar", name = "Cheer Up Charlie's", location = "Downtown")
 # Labels can be added after creating the node.
 nicole = createNode(graph, name = "Nicole", status = "Student")
 addLabel(nicole, "Person")
+
+# View node properties with node$properties.
+mugshots$location
+
+# [1] "Downtown"
 
 # Add uniqueness constraints so that Person nodes are unique by name and Bar nodes are unique by name.
 addConstraint(graph, "Person", "name")
@@ -80,7 +84,12 @@ charlies = getNodeByIndex(graph, "Bar", name = "Cheer Up Charlie's")
 # Create relationships.
 createRel(nicole, "DRINKS_AT", mugshots, on = "Fridays")
 createRel(nicole, "DRINKS_AT", parlor, on = "Saturdays")
-createRel(nicole, "DRINKS_AT", charlies, on = "Everyday")
+rel = createRel(nicole, "DRINKS_AT", charlies, on = "Everyday")
+
+# View relationship properties with relationship$property.
+rel$on
+
+# [1] "Everyday"
 
 # Get Cypher query results as a data frame.
 query  = "MATCH (p:Person {name:'Nicole'})-[d:DRINKS_AT]->(b:Bar)
@@ -103,8 +112,14 @@ print(nicole)
 
 # Labels: Person
 # 
-#     name     hair     eyes 
-# "Nicole" "blonde"  "green" 
+# $name
+# [1] "Nicole"
+# 
+# $hair
+# [1] "blonde"
+# 
+# $eyes
+# [1] "green"
 ```
 
 ## Neo4j Browser View
@@ -120,10 +135,10 @@ graph = startGraph("http://localhost:7474/db/data/")
 populate(graph, data = "movies")
 ```
 
-And now you have the movie database loaded! Printing the graph object gives you a high level overview of the structure of the database, and `getIndex()` and `getConstraint()` will tell you if there are any indices or constraints present:
+And now you have the movie database loaded! Executing `summary()` on the graph object gives you a high level overview of the structure of the database, and `getIndex()` and `getConstraint()` will tell you if there are any indices or constraints present:
 
 ```
-print(graph)
+summary(graph)
 
 #     This       To   That
 # 1 Person  FOLLOWS Person

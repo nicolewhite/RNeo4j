@@ -1,6 +1,6 @@
 \name{updateProp}
 \alias{updateProp}
-\title{Updating Node and Relationship Properties.}
+\title{Updating Node and Relationship Properties}
 \description{
 For an already-created node or relationship object, update its properties. You can override existing properties and add new properties.
 }
@@ -17,4 +17,7 @@ Node or relationship object.
 \examples{
 alice = updateProp(alice, age = 24, eyes = "green")
 rel = updateProp(rel, since = 2001, through = "School")
+}
+\seealso{
+	\code{\link{deleteProp}}
 }

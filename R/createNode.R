@@ -1,6 +1,6 @@
 createNode = function(graph, label = character(), ...) UseMethod("createNode")
 
-createNode.default = function(x) {
+createNode.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
@@ -12,17 +12,18 @@ createNode.graph = function(graph, label = character(), ...) {
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   
   if(length(props) == 0) {
-    node = fromJSON(httpPOST(graph$node, 
-                             httpheader = headers))
+    result = fromJSON(httpPOST(attr(graph, "node"), 
+                               httpheader = headers))
   } else {
     fields = toJSON(props)
-    node = fromJSON(httpPOST(graph$node, 
-                             httpheader = headers, 
-                             postfields = fields))
+    result = fromJSON(httpPOST(attr(graph, "node"), 
+                               httpheader = headers, 
+                               postfields = fields))
   }
   
-  class(node) = c("entity", "node")
-  
+  class(result) = c("node", "entity")
+  node = configure_result(result)
+
   if(length(label) > 0)
     addLabel(node, label)
 

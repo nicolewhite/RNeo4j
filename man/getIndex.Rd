@@ -1,26 +1,29 @@
 \name{getIndex}
 \alias{getIndex}
-\title{Indexing.}
+\title{Indexing}
 \description{
-Get all indices for a given label or for the entire graph database.
+View all indexes for a given label or for the entire graph database.
 }
 \usage{
 getIndex(graph, label = character())
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{The label for which you want to see all indices.}
+  \item{label}{The label for which you want to see all indexes.}
 }
 \value{
-A data frame. Returns NULL if no indices are found.
+A data frame. Returns NULL if no indexes are found.
 }
 \details{
-Supplying only a graph object as an argument returns all indices in the graph database.
+Supplying only a graph object as an argument returns all indexes in the graph database.
 }
 \examples{
-# Get all indices for the Person label.
+# Get all indexes for the Person label.
 getIndex(graph, "Person")
 
-# Get all indices in the graph.
+# Get all indexes in the graph.
 getIndex(graph)
+}
+\seealso{
+	\code{\link{addIndex}}, \code{\link{dropIndex}}
 }

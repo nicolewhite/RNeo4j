@@ -1,6 +1,6 @@
 \name{populate}
 \alias{populate}
-\title{Populating the Database.}
+\title{Populating the Database}
 \description{
 Populate the graph database with example data supplied with this package.
 }

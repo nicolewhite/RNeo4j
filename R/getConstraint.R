@@ -1,6 +1,6 @@
 getConstraint = function(graph, label = character()) UseMethod("getConstraint")
 
-getConstraint.default = function(x) {
+getConstraint.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
@@ -8,7 +8,7 @@ getConstraint.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
-  url = paste0(graph$root, "schema/constraint")
+  url = paste0(attr(graph, "root"), "schema/constraint")
   
   # If label is not given, get constraints for entire graph.
   if(length(label) == 0) {

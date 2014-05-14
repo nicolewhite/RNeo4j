@@ -1,6 +1,6 @@
 getIndex = function(graph, label = character()) UseMethod("getIndex")
 
-getIndex.default = function(x) {
+getIndex.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
@@ -11,7 +11,7 @@ getIndex.graph = function(graph, label = character()) {
   
   # If label not provided, get indices for the entire graph.
   if(length(label) == 0) {
-    labels = fromJSON(httpGET(paste0(graph$root, "labels")))
+    labels = fromJSON(httpGET(paste0(attr(graph, "root"), "labels")))
     
     # If there are no labels in the graph, there can't be indices.
     if(length(labels) == 0) {
@@ -19,7 +19,7 @@ getIndex.graph = function(graph, label = character()) {
       return(invisible(NULL))
     }
     
-    urls = vapply(labels, function(x) {paste0(graph$root, "schema/index/", x)}, "")
+    urls = vapply(labels, function(x) {paste0(attr(graph, "root"), "schema/index/", x)}, "")
     get = function(x) {fromJSON(httpGET(x, httpheader = headers))}
     response = lapply(urls, get)
     
@@ -40,7 +40,7 @@ getIndex.graph = function(graph, label = character()) {
     # Check if label exists.
     stopifnot(label %in% getLabel(graph))
     
-    url = paste0(graph$root, "schema/index/", label)
+    url = paste0(attr(graph, "root"), "schema/index/", label)
     response = fromJSON(httpGET(url, httpheader = headers))
     
     if(length(response) == 0) {

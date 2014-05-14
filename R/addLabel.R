@@ -1,6 +1,6 @@
 addLabel = function(node, ...) UseMethod("addLabel")
 
-addLabel.default = function(x) {
+addLabel.default = function(x, ...) {
   stop("Invalid object. Must supply node object.")
 }
 
@@ -15,6 +15,6 @@ addLabel.node = function(node, ...) {
   }
 
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json') 
-  httpPOST(node$labels, httpheader = headers, postfields = fields)
+  httpPOST(attr(node, "labels"), httpheader = headers, postfields = fields)
   return(invisible(NULL))
 }

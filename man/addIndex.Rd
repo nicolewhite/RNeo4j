@@ -1,6 +1,6 @@
 \name{addIndex}
 \alias{addIndex}
-\title{Indexing.}
+\title{Indexing}
 \description{
 Add an index by label and property key.
 }
@@ -17,4 +17,7 @@ An index already exists for any (label, key) pair that has a uniqueness constrai
 }
 \examples{
 addIndex(graph, "Person", "name")
+}
+\seealso{
+	\code{\link{getIndex}}, \code{\link{dropIndex}}
 }
