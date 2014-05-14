@@ -4,34 +4,13 @@ An R package that allows you to easily populate a Neo4j graph database from your
 
 Compatible with Neo4j >= 2.0.
 
-# Current Functionality
-
-* Create nodes with properties.
-* Create relationships (with properties) between nodes.
-* Update and delete properties on already-created nodes and relationships.
-* Delete nodes and relationships.
-* Retrieve Cypher query results as a data frame.
-* Labels.
-* Indexing (for nodes only).
-* Uniqueness constraints (for nodes only).
-* Load sample datasets with `populate()`.
-
-# TODO Functionality
-
-In no particular order:
-
-* Add username and password arguments to `startGraph()`.
-* Enable the handling of collections in Cypher query results (maybe).
-* Add indexing for relationships (maybe).
-* Add `getIn()` and `getOut()` for getting incoming and outgoing relationships on a node.
-* Add batch operations. Tentatively to include `newBatch()`, `appendBatch()`, and `runBatch()`.
-* Add options to `getNodeByIndex()` for "get or create unique."
-
 # Installation
 
 ## Install Neo4j
 
-http://www.neo4j.org/download/other_versions
+* [Windows](http://docs.neo4j.org/chunked/stable/server-installation.html#windows-install)
+* [Mac OSX](http://docs.neo4j.org/chunked/stable/server-installation.html#osx-install)
+* [Linux](http://docs.neo4j.org/chunked/stable/server-installation.html#linux-install)
 
 ## Install Rneo4j
 
