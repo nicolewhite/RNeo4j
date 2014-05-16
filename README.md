@@ -41,7 +41,7 @@ createNode(graph, "Bar", name = "Cheer Up Charlie's", location = "Downtown")
 nicole = createNode(graph, name = "Nicole", status = "Student")
 addLabel(nicole, "Person")
 
-# View node properties with node$properties.
+# View node properties with node$property.
 mugshots$location
 
 # [1] "Downtown"

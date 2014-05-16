@@ -8,7 +8,7 @@ Supply the URL for the location of your Neo4j graph database in order to interac
 startGraph(url)
 }
 \arguments{
-  \item{url}{The URL for the location of your graph database.}
+  \item{url}{The URL of the graph database. Accepts a string.}
 }
 \value{
 A graph object.

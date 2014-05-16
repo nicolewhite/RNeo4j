@@ -22,6 +22,7 @@ cypher.graph = function(graph, query, ...) {
                                httpheader = headers, 
                                postfields = fields))
   
+  options(stringsAsFactors = FALSE)
   df = do.call(rbind.data.frame, response$data)
 
   if (is.empty(df)) {

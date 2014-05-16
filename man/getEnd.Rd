@@ -1,6 +1,6 @@
 \name{getEnd}
 \alias{getEnd}
-\title{Retrieving Nodes from a Relationship}
+\title{Retrieving Nodes from Relationships}
 \description{
 Retrieve the ending node of a relationship. This is the node for which the relationship is incoming.
 }
