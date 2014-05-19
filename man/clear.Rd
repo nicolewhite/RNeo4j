@@ -2,13 +2,13 @@
 \alias{clear}
 \title{Deleting Nodes and Relationships}
 \description{
-Delete all nodes, relationships, and indices from the graph database. Requires answering a prompt.
+Delete all nodes, relationships, constraints, and indexes from the graph database. Requires answering a prompt.
 }
 \usage{
 clear(graph)
 }
 \arguments{
-  \item{graph}{A graph object.}
+  \item{graph}{The graph object to be cleared.}
 }
 \examples{
 clear(graph)

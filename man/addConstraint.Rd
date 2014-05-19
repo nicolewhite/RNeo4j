@@ -2,7 +2,7 @@
 \alias{addConstraint}
 \title{Uniqueness Constraints}
 \description{
-Add a uniqueness constraint by label and property key.
+Add a uniqueness constraint to a label and property key.
 }
 \usage{
 addConstraint(graph, label, key)

@@ -2,7 +2,7 @@
 \alias{addIndex}
 \title{Indexing}
 \description{
-Add an index by label and property key.
+Add an index to a label and property key.
 }
 \usage{
 addIndex(graph, label, key)
