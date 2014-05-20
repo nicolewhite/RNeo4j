@@ -1,6 +1,6 @@
 \name{clear}
 \alias{clear}
-\title{Deleting Nodes and Relationships}
+\title{Delete Nodes and Relationships}
 \description{
 Delete all nodes, relationships, constraints, and indexes from the graph database. Requires answering a prompt.
 }

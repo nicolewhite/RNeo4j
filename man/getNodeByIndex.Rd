@@ -1,6 +1,6 @@
 \name{getNodeByIndex}
 \alias{getNodeByIndex}
-\title{Retrieving Nodes from the Graph}
+\title{Retrieve Nodes from the Graph}
 \description{
 Retrieve a node object from the graph by specifying its label and indexed (key = value) pair.
 }

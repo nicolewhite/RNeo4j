@@ -1,6 +1,6 @@
 \name{getStart}
 \alias{getStart}
-\title{Retrieving Nodes from Relationships}
+\title{Retrieve Nodes from Relationships}
 \description{
 Retrieve the starting node of a relationship. This is the node for which the relationship is outgoing.
 }

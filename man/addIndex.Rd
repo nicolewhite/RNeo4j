@@ -1,6 +1,6 @@
 \name{addIndex}
 \alias{addIndex}
-\title{Indexing}
+\title{Indexes}
 \description{
 Add an index to a label and property key.
 }

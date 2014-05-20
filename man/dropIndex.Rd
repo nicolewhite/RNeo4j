@@ -1,6 +1,6 @@
 \name{dropIndex}
 \alias{dropIndex}
-\title{Indexing}
+\title{Indexes}
 \description{
 Drop an index for a given label and property key or for the entire graph database.
 }

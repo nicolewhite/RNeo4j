@@ -1,6 +1,6 @@
 \name{createNode}
 \alias{createNode}
-\title{Creating Nodes}
+\title{Create Nodes}
 \description{
 Create a node in the graph with the given label and properties.
 }

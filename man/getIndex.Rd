@@ -1,6 +1,6 @@
 \name{getIndex}
 \alias{getIndex}
-\title{Indexing}
+\title{Indexes}
 \description{
 View all indexes for a given label or for the entire graph database.
 }

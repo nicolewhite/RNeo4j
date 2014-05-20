@@ -1,6 +1,6 @@
 \name{delete}
 \alias{delete}
-\title{Deleting Nodes and Relationships}
+\title{Delete Nodes and Relationships}
 \description{
 Delete an already-existing node or relationship.
 }

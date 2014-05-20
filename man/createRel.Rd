@@ -1,6 +1,6 @@
 \name{createRel}
 \alias{createRel}
-\title{Creating Relationships}
+\title{Create Relationships}
 \description{
 Create a relationship between two nodes while simultaneously setting properties on the relationship.
 }

@@ -1,6 +1,6 @@
 \name{getRelByCypher}
 \alias{getRelByCypher}
-\title{Retrieving Relationships from the Graph}
+\title{Retrieve Relationships from the Graph}
 \description{
 Retrieve a relationship object from the graph with a Cypher query.
 }

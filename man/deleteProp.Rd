@@ -1,6 +1,6 @@
 \name{deleteProp}
 \alias{deleteProp}
-\title{Deleting Node and Relationship Properties}
+\title{Delete Node and Relationship Properties}
 \description{
 For a node or relationship object, delete the named properties or delete all properties.
 }

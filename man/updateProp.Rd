@@ -1,6 +1,6 @@
 \name{updateProp}
 \alias{updateProp}
-\title{Updating Node and Relationship Properties}
+\title{Update Node and Relationship Properties}
 \description{
 For an already-created node or relationship object, update its properties. You can override existing properties and add new properties.
 }
