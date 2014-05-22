@@ -5,7 +5,7 @@ clear.default = function(x) {
 }
 
 clear.graph = function(graph) {
-  message("You are about to delete all nodes, relationships, indices, and constraints from the graph database. Are you sure? Y/N")
+  message("You are about to delete all nodes, relationships, indexes, and constraints from the graph database. Are you sure? Y/N")
   answer = scan(what = character(), nmax = 1, quiet = TRUE)
   
   if(answer == "Y") {
