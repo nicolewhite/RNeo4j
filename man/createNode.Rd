@@ -10,7 +10,7 @@ createNode(graph, label = character(), ...)
 \arguments{
   \item{graph}{A graph object.}
   \item{label}{An optional node label. Accepts a string or vector of strings.}
-  \item{...}{Optional node properties.}
+  \item{...}{Optional node properties in the form key = value.}
   
 }
 \value{

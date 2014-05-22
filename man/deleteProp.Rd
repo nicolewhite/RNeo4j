@@ -10,13 +10,13 @@ deleteProp(object, ..., all = FALSE)
 \arguments{
   \item{object}{The node or relationship object for which the named properties will be deleted.}
   \item{...}{The properties to be deleted. Accepts a single string or strings separated by commas.}
-  \item{all}{Set this to TRUE if you want to delete all properties on the node or relationship.}
+  \item{all}{Set to TRUE to delete all properties on the node or relationship object.}
 }
 \value{
 A node or relationship object.
 }
 \examples{
-# Delete the "age" property from the Alice node.
+# Delete the "age" property from the alice node.
 alice = deleteProp(alice, "age")
 
 # Delete the "name" and "age" properties from the Bob node.

@@ -2,23 +2,26 @@
 \alias{getLabel}
 \title{Node Labels}
 \description{
-Get all labels on a graph or node object.
+View all node labels for a given node object or for the entire graph database.
 }
 \usage{
 getLabel(object)
 }
 \arguments{
-  \item{object}{The object for which to view all labels. Supplying a graph object returns all labels in the database. Supplying a node object returns all labels for the given node.}
+  \item{object}{The object for which to view all node labels. Accepts a node object or a graph object (see details).}
 }
 \value{
 A character vector.
 }
+\details{
+Supplying a graph object returns all node labels in the graph database. Supplying a node object returns all node labels for the given node.
+}
 \examples{
-# View all labels in the graph database.
-getLabel(graph)
-
-# View all labels on the Alice node.
+# View all labels on the alice node.
 getLabel(alice)
+
+# View all node labels in the graph database.
+getLabel(graph)
 }
 \seealso{
 	\code{\link{addLabel}}, \code{\link{dropLabel}}

@@ -9,7 +9,7 @@ getConstraint(graph, label = character())
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{The label for which you want to see all uniqueness constraints.}
+  \item{label}{The label for which to view all uniqueness constraints.}
 }
 \value{
 A data frame. Returns NULL if no constraints are found.
@@ -18,10 +18,10 @@ A data frame. Returns NULL if no constraints are found.
 Supplying only a graph object as an argument returns all uniqueness constraints in the graph database.
 }
 \examples{
-# View all uniqueness constraints on Person nodes.
+# View all uniqueness constraints on the Person node label.
 getConstraint(graph, "Person")
 
-# View all uniqueness constraints in the graph.
+# View all uniqueness constraints in the graph database.
 getConstraint(graph)
 }
 \seealso{

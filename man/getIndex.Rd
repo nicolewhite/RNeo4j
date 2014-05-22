@@ -9,7 +9,7 @@ getIndex(graph, label = character())
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{The label for which you want to see all indexes.}
+  \item{label}{The label for which to view all indexes.}
 }
 \value{
 A data frame. Returns NULL if no indexes are found.
@@ -18,10 +18,10 @@ A data frame. Returns NULL if no indexes are found.
 Supplying only a graph object as an argument returns all indexes in the graph database.
 }
 \examples{
-# Get all indexes for the Person label.
+# View all indexes on the Person node label.
 getIndex(graph, "Person")
 
-# Get all indexes in the graph.
+# View all indexes in the graph database.
 getIndex(graph)
 }
 \seealso{

@@ -12,6 +12,10 @@ addLabel(node, ...)
   \item{...}{The label(s) to add to the node. Accepts a string or strings separated by commas.}
 }
 \examples{
+# Add a single label.
+addLabel(bob, "Student")
+
+# Add multiple labels.
 addLabel(alice, "Person", "Student")
 }
 \seealso{

@@ -2,7 +2,7 @@
 \alias{createRel}
 \title{Create Relationships}
 \description{
-Create a relationship between two nodes while simultaneously setting properties on the relationship.
+Create a relationship between two nodes with the given type and properties.
 }
 \usage{
 createRel(fromNode, type, toNode, ...)
@@ -11,7 +11,7 @@ createRel(fromNode, type, toNode, ...)
   \item{fromNode}{The node object from which the relationship will be outgoing.}
   \item{type}{The type of relationship. Accepts a string (see details).}
   \item{toNode}{The node object to which the relationship will be incoming.}
-  \item{...}{Optional relationship properties.}
+  \item{...}{Optional relationship properties in the form key = value.}
 }
 \value{
 A relationship object.
@@ -26,6 +26,10 @@ is equivalent to
 \code{createRel(alice, "WORKS_WITH", bob)}.
 }
 \examples{
+# Relationship without properties.
+rel = createRel(alice, "works with", bob)
+
+# Relationship with properties.
 rel = createRel(alice, "KNOWS", bob, since = 2000, through = "Work")
 }
 \seealso{

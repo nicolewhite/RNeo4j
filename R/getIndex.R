@@ -13,9 +13,9 @@ getIndex.graph = function(graph, label = character()) {
   if(length(label) == 0) {
     labels = fromJSON(httpGET(paste0(attr(graph, "root"), "labels")))
     
-    # If there are no labels in the graph, there can't be indices.
+    # If there are no labels in the graph, there can't be indexes.
     if(length(labels) == 0) {
-      message("No indices in the graph.")
+      message("No indexes in the graph.")
       return(invisible(NULL))
     }
     
@@ -27,7 +27,7 @@ getIndex.graph = function(graph, label = character()) {
     df = do.call(rbind.data.frame, df)
     
     if(is.empty(df)) {
-      message("No indices in the graph.")
+      message("No indexes in the graph.")
       return(invisible(NULL))
     }
     
