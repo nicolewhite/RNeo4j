@@ -29,9 +29,7 @@ df = cypher(graph,
 	        age = 24)
 
 # Query that doesn't return anything.
-current_year = as.numeric(format(Sys.Date(), "%Y"))
-
 cypher(graph, 
 	   "MATCH n SET n.born = {year} - n.age REMOVE n.age",
-	   year = current_year)
+	   year = 2014)
 }
