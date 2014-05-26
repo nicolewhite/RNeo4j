@@ -15,6 +15,9 @@ addLabel.node = function(node, ...) {
   }
 
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json') 
-  httpPOST(attr(node, "labels"), httpheader = headers, postfields = fields)
+  test = try(httpPOST(attr(node, "labels"), httpheader = headers, postfields = fields), TRUE)
+  if(class(test) == "try-error") {
+    stop("Uniqueness constraint violated.")
+  }
   return(invisible(NULL))
 }
