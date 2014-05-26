@@ -26,7 +26,7 @@ createNode.graph = function(graph, label = character(), ...) {
 
   if(length(label) > 0) {
     test = try(addLabel(node, label), TRUE)
-    if(class(test) == "try-error") {
+    if("try-error" %in% class(test)) {
       delete(node)
       stop("Uniqueness constraint violated.")
     }
