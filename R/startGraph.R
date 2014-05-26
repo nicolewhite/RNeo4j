@@ -12,6 +12,12 @@ startGraph.default = function(url) {
   attr(graph, "relationship_types") = result$relationship_types
   attr(graph, "batch") = result$batch
   attr(graph, "cypher") = result$cypher
+  attr(graph, "indexes") = result$indexes
+  attr(graph, "constraints") = result$constraints
+  attr(graph, "node_labels") = result$node_labels
+  
+  # Remove trailing forward slash.
+  substr(url, nchar(url), nchar(url)) = ""
   attr(graph, "root") = url
     
   class(graph) = "graph"

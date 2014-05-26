@@ -17,13 +17,13 @@ print.node = function(node) {
 
 print.relationship = function(rel) {
   cat("Start node:\n")
-  print(getStart(rel))
+  print(startNode(rel))
   cat("\n")
   cat("Relationship type:\n")
   print(attr(rel, "type"))
   cat("\n")
   cat("End node:\n")
-  print(getEnd(rel))
+  print(endNode(rel))
   cat("\n")
   cat("Relationship properties:\n")
   invisible(lapply(names(rel), function(x) {print(rel[x])}))

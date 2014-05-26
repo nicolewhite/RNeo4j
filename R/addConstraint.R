@@ -30,7 +30,7 @@ addConstraint.graph = function(graph, label, key) {
   # Add the constraint.
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   fields = paste0('{\n "property_keys": [ "', key, '" ] \n}')
-  url = paste0(attr(graph, "root"), "schema/constraint/", label, "/uniqueness")
+  url = paste(attr(graph, "constraints"), label, "uniqueness", sep = "/")
   httpPOST(url, httpheader = headers, postfields = fields)
   return(invisible(NULL))
 }

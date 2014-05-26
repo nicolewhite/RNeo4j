@@ -15,12 +15,12 @@ addIndex.graph = function(graph, label, key) {
   test = merge(data.frame(property_keys = key, label = label), index)
   
   if(nrow(test) > 0) {
-    stop("An index already exists for (", label, ", ", key, "). It's possible that you added a uniqueness constraint on this (label, key) pair, which necessarily adds an index as well.")
+    stop(paste0("An index already exists for (", label, ", ", key, "). It's possible that you added a uniqueness constraint on this (label, key) pair, which necessarily adds an index as well."))
   }
   
   # Add the index.
   fields = paste0('{\n "property_keys": [ "', key, '" ] \n}')
-  url = paste0(attr(graph, "root"), "schema/index/", label)
+  url = paste0(attr(graph, "indexes"), "/", label)
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   httpPOST(url, httpheader = headers, postfields = fields)
   return(invisible(NULL))

@@ -9,14 +9,14 @@ dropConstraint.graph = function(graph, label = character(), key = character(), a
   
   # If user sets all=TRUE, drop all uniqueness constraints from the graph.
   if(all) {
-    df = suppressMessages(getConstraint(graph))
+    constraint = suppressMessages(getConstraint(graph))
     
-    if(is.null(df)) {
+    if(is.null(constraint)) {
       message("No constraints to drop.")
       return(invisible(NULL))
     }
     
-    urls = apply(df, 1, function(x) {paste0(attr(graph, "root"), "schema/constraint/", x[2], "/uniqueness/", x[1])})
+    urls = apply(constraint, 1, function(x) {paste(attr(graph, "constraints"), x[2], "uniqueness", x[1], sep = "/")})
     lapply(urls, function(x) {httpDELETE(x)})
     return(invisible(NULL))
     
@@ -25,7 +25,7 @@ dropConstraint.graph = function(graph, label = character(), key = character(), a
     # Check if the constraint exists.
     stopifnot(key %in% getConstraint(graph, label)$property_keys)
     
-    url = paste0(attr(graph, "root"), "schema/constraint/", label, "/uniqueness/", key)
+    url = paste(attr(graph, "constraints"), label, "uniqueness", key, sep = "/")
     httpDELETE(url)
     return(invisible(NULL))
   

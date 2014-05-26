@@ -8,7 +8,7 @@ dropLabel.node = function(node, ...) {
   labels = c(...)
   stopifnot(is.character(labels))
   
-  urls = vapply(labels, function(x) {paste0(attr(node, "labels"), "/", x)}, "")
+  urls = vapply(labels, function(x) {paste(attr(node, "labels"), x, sep = "/")}, "")
   lapply(urls, function(x) {httpDELETE(x)})
   return(invisible(NULL))
 }

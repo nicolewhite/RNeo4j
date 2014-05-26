@@ -11,10 +11,12 @@ deleteProp.entity = function(entity, ..., all = FALSE) {
   
   if(all) {
     httpDELETE(attr(entity, "properties"))
+    names(entity) = NULL
+    return(entity)
     
   } else if(length(props) > 0) {
       stopifnot(is.character(props))
-      urls = vapply(props, function(x) {paste0(attr(entity, "properties"), "/", x)}, "")
+      urls = vapply(props, function(x) {paste(attr(entity, "properties"), x, sep = "/")}, "")
       lapply(urls, function(x) {httpDELETE(x)})
       
       for (i in 1:length(props)) {

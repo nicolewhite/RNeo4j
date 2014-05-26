@@ -2,26 +2,50 @@
 \alias{dropIndex}
 \title{Indexes}
 \description{
-Drop index(es) for a given label and property key or for the entire graph database.
+Drop the index(es) for a given node label and property key or for the entire graph database.
 }
 \usage{
 dropIndex(graph, label = character(), key = character(), all = FALSE)
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{The node label for which to drop the index.}
-  \item{key}{The property key for which to drop the index.}
+  \item{label}{A node label for which to drop the index. Accepts a string.}
+  \item{key}{A property key for which to drop the index. Accepts a string.}
   \item{all}{Set to TRUE to drop all indexes from the graph.}
 }
 \details{
 Dropping a uniqueness constraint necessarily drops the index as well. It is unnecessary to use \code{dropIndex} if \code{\link{dropConstraint}} has already been applied to the same \code{(label, key)} pair.
 }
 \examples{
+createNode(graph, "Person", name = "Nicole", status = "Employed")
+createNode(graph, "Person", name = "Drew", status = "Employed")
+createNode(graph, "Person", name = "Aaron", status = "Unemployed")
+
+createNode(graph, "School", name = "University of Texas at Austin", type = "Public")
+createNode(graph, "School", name = "Louisiana State University", type = "Public")
+
+addIndex(graph, "Person", "status")
+addIndex(graph, "School", "type")
+
+getIndex(graph)
+#   property_keys  label
+# 1        status Person
+# 2          type School
+
+
 # Drop the index on Person nodes by the name property.
-dropIndex(graph, "Person", "name")
+dropIndex(graph, "Person", "status")
+
+getIndex(graph)
+#   property_keys  label
+# 1          type School
+
 
 # Drop all indexes from the graph database.
 dropIndex(graph, all = TRUE)
+
+getIndex(graph)
+# No indexes in the graph.
 }
 \seealso{
 	\code{\link{addIndex}}, \code{\link{getIndex}}

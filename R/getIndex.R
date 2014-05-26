@@ -9,9 +9,9 @@ getIndex.graph = function(graph, label = character()) {
   
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   
-  # If label not provided, get indices for the entire graph.
+  # If label not provided, get indexes for the entire graph.
   if(length(label) == 0) {
-    labels = fromJSON(httpGET(paste0(attr(graph, "root"), "labels")))
+    labels = fromJSON(httpGET(attr(graph, "node_labels")))
     
     # If there are no labels in the graph, there can't be indexes.
     if(length(labels) == 0) {
@@ -19,7 +19,7 @@ getIndex.graph = function(graph, label = character()) {
       return(invisible(NULL))
     }
     
-    urls = vapply(labels, function(x) {paste0(attr(graph, "root"), "schema/index/", x)}, "")
+    urls = vapply(labels, function(x) {paste(attr(graph, "indexes"), x, sep = "/")}, "")
     get = function(x) {fromJSON(httpGET(x, httpheader = headers))}
     response = lapply(urls, get)
     
@@ -40,7 +40,7 @@ getIndex.graph = function(graph, label = character()) {
     # Check if label exists.
     stopifnot(label %in% getLabel(graph))
     
-    url = paste0(attr(graph, "root"), "schema/index/", label)
+    url = paste(attr(graph, "indexes"), label, sep = "/")
     response = fromJSON(httpGET(url, httpheader = headers))
     
     if(length(response) == 0) {

@@ -5,8 +5,7 @@ getLabel.default = function(x) {
 }
 
 getLabel.graph = function(graph) {
-  url = paste0(attr(graph, "root"), "labels")
-  result = fromJSON(httpGET(url))
+  result = fromJSON(httpGET(attr(graph, "node_labels")))
   
   if(length(result) == 0) {
     message("No labels in the graph.")
@@ -17,8 +16,7 @@ getLabel.graph = function(graph) {
 }
 
 getLabel.node = function(node) {
-  url = attr(node, "labels")
-  result = fromJSON(httpGET(url))
+  result = fromJSON(httpGET(attr(node, "labels")))
   
   if(length(result) == 0) {
     message("No labels on the node.")

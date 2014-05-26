@@ -2,21 +2,43 @@
 \alias{updateProp}
 \title{Update Node and Relationship Properties}
 \description{
-For an already-created node or relationship object, update its properties. You can override existing properties and add new properties.
+For a node or relationship object, update its properties. Existing properties can be overridden and new properties can be added.
 }
 \usage{
-updateProp(object, prop)
+updateProp(object, ...)
 }
 \arguments{
-  \item{object}{The object for which you want to update the properties. Can be either a node object or a relationship object.}
-  \item{prop}{The key = value pairs of property updates.}
+  \item{object}{A node or relationship object.}
+  \item{...}{Property updates or additions in the form key = value (separated by commas).}
 }
 \value{
-Node or relationship object.
+A node or relationship object.
 }
 \examples{
+alice = createNode(graph, "Person", name = "Alice")
+
+alice
+
+# Labels: Person
+#
+# $name
+# [1] "Alice"
+
+# Update the age property and add an eyes property to the alice node.
 alice = updateProp(alice, age = 24, eyes = "green")
-rel = updateProp(rel, since = 2001, through = "School")
+
+alice
+
+# Labels: Person
+#
+# $name
+# [1] "Alice"
+#
+# $age
+# [1] 24
+#
+# $eyes
+# [1] "green"
 }
 \seealso{
 	\code{\link{deleteProp}}

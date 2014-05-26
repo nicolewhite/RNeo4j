@@ -1,0 +1,54 @@
+\name{outgoingRels}
+\alias{outgoingRels}
+\title{Get Relationships from a Node}
+\description{
+Retreive a list of outgoing relationship objects from a node object, optionally filtering by relationship type.
+}
+\usage{
+outgoingRels(node, ..., limit = numeric())
+}
+\arguments{
+	\item{node}{A node object.}
+	\item{...}{Optional relationship type(s) by which to filter the results. Accepts a string or strings separated by commas.}
+	\item{limit}{An optional numeric value to limit how many relationships are returned.}
+}
+\value{
+A list of relationship objects.
+}
+\examples{
+alice = createNode(graph, "Person", name = "Alice")
+bob = createNode(graph, "Person", name = "Bob")
+charles = createNode(graph, "Person", name = "Charles")
+david = createNode(graph, "Person", name = "David")
+
+createRel(alice, "KNOWS", bob)
+createRel(alice, "KNOWS", charles)
+createRel(charles, "KNOWS", david)
+
+createRel(alice, "WORKS_WITH", david)
+createRel(bob, "WORKS_WITH", david)
+createRel(bob, "WORKS_WITH", charles)
+
+# Get all outgoing relationships on the bob node.
+bob_outgoing = outgoingRels(bob)
+
+# Get the end nodes of all outgoing relationships.
+ends = lapply(bob_outgoing, endNode)
+
+sapply(ends, function(e) e$name)
+
+# [1] "David" "Charles"
+
+# Get all outgoing "KNOWS" relationships on the alice node.
+alice_outgoing_knows = outgoingRels(alice, "KNOWS")
+
+# Get the end nodes of all outgoing "KNOWS" relationships.
+ends = lapply(alice_outgoing_knows, endNode)
+
+sapply(ends, function(e) e$name)
+
+# [1] "Bob" "Charles"
+}
+\seealso{
+\code{\link{incomingRels}}
+}

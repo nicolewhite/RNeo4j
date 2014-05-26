@@ -13,9 +13,12 @@ configure_result = function(result) {
   properties = result$properties
   labels = result$labels
   create_relationship = result$create_relationship
+  inc = result$incoming_relationships
+  out = result$outgoing_relationships
   start = result$start
   type = result$type
   end = result$end
+
   class = class(result)
   
   # Add properties as names.
@@ -38,6 +41,8 @@ configure_result = function(result) {
   if("node" %in% class) {
     attr(result, "labels") = labels
     attr(result, "create_relationship") = create_relationship
+    attr(result, "incoming_relationships") = inc
+    attr(result, "outgoing_relationships") = out
     
   # Add attributes specific to relationships.  
   } else if("relationship" %in% class) {

@@ -1,10 +1,10 @@
-getRelByCypher = function(graph, query, ...) UseMethod("getRelByCypher")
+getSingleRel = function(graph, query, ...) UseMethod("getSingleRel")
 
-getRelByCypher.default = function(x, ...) {
+getSingleRel.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
-getRelByCypher.graph = function(graph, query, ...) {
+getSingleRel.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)
 
@@ -17,6 +17,12 @@ getRelByCypher.graph = function(graph, query, ...) {
 
   fields = toJSON(fields)
   response = fromJSON(httpPOST(attr(graph, "cypher"), httpheader = headers, postfields = fields))
+  
+  if(length(response$data) == 0) {
+    message("Relationship not found.")
+    return(invisible(NULL))
+  }
+  
   result = response$data[[1]][[1]]
   class(result) = c("entity", "relationship")
   rel = configure_result(result)

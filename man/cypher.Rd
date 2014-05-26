@@ -20,16 +20,40 @@ You can send Cypher queries without any return values (i.e., a Cypher query with
 A data frame. Cypher queries returning no results will return NULL and a message that the query was executed.
 }
 \examples{
+createNode(graph, name = "Alice", age = 23)
+createNode(graph, name = "Bob", age = 22)
+createNode(graph, name = "Charles", age = 25)
+
 # Query without parameters.
-df = cypher(graph, "MATCH n RETURN n.name, n.age")
+cypher(graph, "MATCH n RETURN n.name, n.age")
+
+#    n.name n.age
+# 1   Alice    23
+# 2     Bob    22
+# 3 Charles    25
+
 
 # Query with parameters.
-df = cypher(graph, 
-	        "MATCH n WHERE n.age < {age} RETURN n.name, n.age", 
-	        age = 24)
+cypher(graph, 
+	   "MATCH n WHERE n.age < {age} RETURN n.name, n.age", 
+	   age = 24)
+
+#   n.name n.age
+# 1  Alice    23
+# 2    Bob    22
+
 
 # Query that doesn't return anything.
 cypher(graph, 
 	   "MATCH n SET n.born = {year} - n.age REMOVE n.age",
 	   year = 2014)
+
+# Cypher executed, but did not return any results.
+
+cypher(graph, 'MATCH n RETURN n.name, n.born')
+
+#    n.name n.born
+# 1   Alice   1991
+# 2     Bob   1992
+# 3 Charles   1989
 }

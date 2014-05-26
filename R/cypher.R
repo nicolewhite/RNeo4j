@@ -25,6 +25,11 @@ cypher.graph = function(graph, query, ...) {
   options(stringsAsFactors = FALSE)
   
   df = do.call(rbind.data.frame, response$data)
+  
+  if (class(df) == "list") {
+    message("All results returned are NULL.")
+    return(invisible(NULL))
+  }
 
   if (is.empty(df)) {
     message("Cypher executed, but did not return any results.")

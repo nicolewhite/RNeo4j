@@ -8,7 +8,7 @@ getConstraint.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
-  url = paste0(attr(graph, "root"), "schema/constraint")
+  url = attr(graph, "constraints")
   
   # If label is not given, get constraints for entire graph.
   if(length(label) == 0) {
@@ -23,7 +23,7 @@ getConstraint.graph = function(graph, label = character()) {
   } else if(length(label) == 1) {
     # Check if label exists.
     stopifnot(label %in% getLabel(graph))
-    url = paste0(url, "/", label, "/uniqueness")
+    url = paste(url, label, "uniqueness", sep = "/")
     response = fromJSON(httpGET(url, httpheader = headers))
     
     if(length(response) == 0) {

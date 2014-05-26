@@ -1,10 +1,10 @@
-getEnd = function(rel) UseMethod("getEnd")
+endNode = function(rel) UseMethod("endNode")
 
-getEnd.default = function(x) {
+endNode.default = function(x) {
   stop("Invalid object. Must supply a relationship object.")
 }
 
-getEnd.relationship = function(rel) {
+endNode.relationship = function(rel) {
   result = fromJSON(httpGET(attr(rel, "end")))
   class(result) = c("entity", "node")
   node = configure_result(result)

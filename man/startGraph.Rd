@@ -1,8 +1,8 @@
 \name{startGraph}
 \alias{startGraph}
-\title{Connect to the Database}
+\title{Connect to the Graph Database}
 \description{
-Connect to the graph database.
+Establish a connection to the graph database.
 }
 \usage{
 startGraph(url)

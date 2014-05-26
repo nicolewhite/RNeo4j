@@ -1,0 +1,50 @@
+\name{getRels}
+\alias{getRels}
+\title{Retrieve Relationships from the Graph Database with Cypher Queries}
+\description{
+Retrieve relationships from the graph with a Cypher query.
+}
+\usage{
+getRels(graph, query, ...)
+}
+\arguments{
+  \item{graph}{A graph object.}
+  \item{query}{A Cypher query in the form of a string.}
+  \item{...}{Optional parameters to pass to the query in the form key = value, if applicable.}
+}
+\value{
+A list of relationship objects. Returns NULL if no relationships are found.
+}
+\examples{
+alice = createNode(graph, "Person", name = "Alice")
+bob = createNode(graph, "Person", name = "Bob")
+charles = createNode(graph, "Person", name = "Charles")
+david = createNode(graph, "Person", name = "David")
+
+createRel(alice, "KNOWS", bob)
+createRel(alice, "KNOWS", charles)
+createRel(charles, "KNOWS", david)
+
+createRel(bob, "WORKS_WITH", david)
+createRel(alice, "WORKS_WITH", david)
+
+# Query without parameters.
+all_knows = getRels(graph, "MATCH (:Person)-[k:KNOWS]->(:Person) RETURN k")
+
+# Get the start nodes of all "KNOWS" relationships.
+starts = lapply(all_knows, startNode)
+
+sapply(starts, function(s) s$name)
+
+# [1] "Alice"   "Alice"   "Charles"
+
+# Query with parameters.
+alice_outgoing = getRels(graph, "MATCH (:Person {name:{name}})-[r]->(:Person) RETURN r", name = "Alice")
+
+sapply(alice_outgoing, getType)
+
+# [1] "WORKS_WITH" "KNOWS" "KNOWS"  
+}
+\seealso{
+\code{\link{getSingleRel}}
+}

@@ -1,10 +1,10 @@
-getNodeByCypher = function(graph, query, ...) UseMethod("getNodeByCypher")
+getSingleNode = function(graph, query, ...) UseMethod("getSingleNode")
 
-getNodeByCypher.default = function(x, ...) {
+getSingleNode.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
-getNodeByCypher.graph = function(graph, query, ...) {
+getSingleNode.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)
 
@@ -17,6 +17,12 @@ getNodeByCypher.graph = function(graph, query, ...) {
 
   fields = toJSON(fields)
   response = fromJSON(httpPOST(attr(graph, "cypher"), httpheader = headers, postfields = fields))
+  
+  if(length(response$data) == 0) {
+    message("Node not found.")
+    return(invisible(NULL))
+  }
+  
   result = response$data[[1]][[1]]
   class(result) = c("entity", "node")
   node = configure_result(result)

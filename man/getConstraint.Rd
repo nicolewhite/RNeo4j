@@ -2,14 +2,14 @@
 \alias{getConstraint}
 \title{Uniqueness Constraints}
 \description{
-View all uniqueness constraints for a given label or for the entire graph database.
+Get all uniqueness constraints for a given label or for the entire graph database.
 }
 \usage{
 getConstraint(graph, label = character())
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{The label for which to view all uniqueness constraints.}
+  \item{label}{A node label for which to view all uniqueness constraints. Accepts a string.}
 }
 \value{
 A data frame. Returns NULL if no constraints are found.
@@ -18,11 +18,27 @@ A data frame. Returns NULL if no constraints are found.
 Supplying only a graph object as an argument returns all uniqueness constraints in the graph database.
 }
 \examples{
-# View all uniqueness constraints on the Person node label.
+alice = createNode(graph, "Person", name = "Alice")
+bob = createNode(graph, "Person", name = "Bob")
+
+san_fran = createNode(graph, "City", name = "San Francisco")
+austin = createNode(graph, "City", name = "Austin")
+
+addConstraint(graph, "Person", "name")
+addConstraint(graph, "City", "name")
+
+# View all uniqueness constraints on Person nodes.
 getConstraint(graph, "Person")
+
+#   property_keys  label       type
+# 1          name Person UNIQUENESS
 
 # View all uniqueness constraints in the graph database.
 getConstraint(graph)
+
+#   property_keys  label       type
+# 1          name   City UNIQUENESS
+# 2          name Person UNIQUENESS
 }
 \seealso{
 	\code{\link{addConstraint}}, \code{\link{dropConstraint}}

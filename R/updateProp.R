@@ -13,11 +13,25 @@ updateProp.entity = function(entity, ...) {
   headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   
   for (i in 1:length(props)) {
-    url = paste0(attr(entity, "properties"), "/", names(props[i]))
-    field = ifelse(is.character(props[[i]]), paste0('"', props[[i]], '"'), toString(props[[i]]))
+    url = paste(attr(entity, "properties"), names(props[i]), sep = "/")
+    
+    if(is.character(props[[i]])) {
+      field = paste0('"', props[[i]], '"')
+    } else if(is.numeric(props[[i]])) {
+      field = toString(props[[i]])
+    } else if(is.logical(props[[i]])) {
+      if(props[[i]]) {
+        field = "true"
+      } else {
+        field = "false"
+      }
+    } else {
+      stop("Must supply character, numeric, or logical property values.")
+    }
     httpPUT(url, httpheader = headers, postfields = field)
     entity[names(props[i])] = props[names(props[i])]
   }
-  
   return(entity)
 }
+
+

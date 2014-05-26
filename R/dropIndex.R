@@ -15,7 +15,7 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     index = suppressMessages(getIndex(graph))
         
     if(is.null(index)) {
-      message("No indices to drop.")
+      message("No indexes to drop.")
       return(invisible(NULL))
     }
     
@@ -23,10 +23,10 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     test = merge(index, constraint)
     
     if(nrow(test) > 0) {
-      stop(paste0("There is a uniqueness constraint on one of the indexes you are trying to drop. Drop the constraint(s) before attempting to drop the index(es). See ?getConstraint, ?dropConstraint."))
+      stop("There is a uniqueness constraint on one of the indexes. Drop the constraint(s) instead (which necessarily drops the index as well) with dropConstraint().")
     }
     
-    urls = apply(df, 1, function(x) {paste0(attr(graph, "root"), "schema/index/", x[2], "/", x[1])})
+    urls = apply(index, 1, function(x) {paste(attr(graph, "indexes"), x[2], x[1], sep = "/")})
     lapply(urls, function(x) {httpDELETE(x)})
     return(invisible(NULL))
     
@@ -42,10 +42,10 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     test = merge(index, constraint)
     
     if(nrow(test) > 0) {
-      stop(paste0("There is a uniqueness constraint on the (", label, ", ", key, ") index. Drop the constraint before attempting to drop the index. See ?getConstraint, ?dropConstraint."))
+      stop(paste0("There is a uniqueness constraint on (", label, ", ", key, "). Drop the constraint instead (which necessarily drops the index as well) using dropConstraint()."))
     }
     
-    url = paste0(attr(graph, "root"), "schema/index/", label, "/", key)
+    url = paste(attr(graph, "indexes"), label, key, sep = "/")
     httpDELETE(url)
     return(invisible(NULL))
     
