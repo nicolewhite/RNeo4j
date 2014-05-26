@@ -24,8 +24,13 @@ createNode.graph = function(graph, label = character(), ...) {
   class(result) = c("node", "entity")
   node = configure_result(result)
 
-  if(length(label) > 0)
-    addLabel(node, label)
-
+  if(length(label) > 0) {
+    test = try(addLabel(node, label), TRUE)
+    if(class(test) == "try-error") {
+      delete(node)
+      stop("Uniqueness constraint violated.")
+    }
+    return(node)
+  }
   return(node)
 }
