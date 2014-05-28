@@ -15,9 +15,25 @@ getLabeledNodes.graph = function(graph, label, ..., limit = numeric()) {
   if(length(param) > 1)
     stop("Can only search by one property.")
 
-  if(length(param) == 1)
-    url = paste0(url, "?", names(param), "=%22", gsub(" ", "+", param[[1]]), "%22")
-  
+  if(length(param) == 1) {
+    url = paste0(url, "?", names(param), "=")
+    
+    if(is.character(param[[1]])) {
+      param[[1]] = URLencode(param[[1]])
+      url = paste0(url, "%22", param[[1]], "%22")
+    } else if(is.numeric(param[[1]])) {
+      url = paste0(url, param[[1]])
+    } else if(is.logical(param[[1]])) {
+      if(param[[1]]) {
+        url = paste0(url, "true")
+      } else {
+        url = paste0(url, "false")
+      }
+    } else {
+      stop("Property value must be character, numeric, or logical.")
+    }
+  }
+
   if(length(limit) > 0) {
     stopifnot(limit > 0)
     nodes = fromJSON(httpGET(url, httpheader = headers))[1:limit]
