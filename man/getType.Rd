@@ -2,7 +2,7 @@
 \alias{getType}
 \title{Relationship Types}
 \description{
-Get the type of a relationship object.
+Get the type of a relationship object or all relationship types in the graph.
 }
 \usage{
 getType(object)
@@ -24,12 +24,10 @@ charles = createNode(graph, "Person", name = "Charles")
 createRel(bob, "WORKS_WITH", charles)
 rel = createRel(alice, "KNOWS", bob)
 
-# Get the type of a relationship object.
 getType(rel)
 
 # [1] "KNOWS"
 
-# Get all relationship types in the graph.
 getType(graph)
 
 # [1] "KNOWS" "WORKS_WITH"

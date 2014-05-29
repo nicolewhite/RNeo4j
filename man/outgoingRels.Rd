@@ -1,6 +1,6 @@
 \name{outgoingRels}
 \alias{outgoingRels}
-\title{Get Relationships from a Node}
+\title{Retrieve Relationships from Nodes}
 \description{
 Retreive a list of outgoing relationship objects from a node object, optionally filtering by relationship type.
 }
