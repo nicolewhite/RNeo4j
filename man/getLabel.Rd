@@ -8,7 +8,7 @@ Get all node labels for a given node object or for the entire graph database.
 getLabel(object)
 }
 \arguments{
-  \item{object}{An object for which to view all node labels. Accepts a node or graph object (see details).}
+  \item{object}{An object for which to get all node labels. Accepts a node or graph object (see details).}
 }
 \value{
 A character vector.

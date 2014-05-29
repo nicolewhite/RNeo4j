@@ -27,13 +27,13 @@ austin = createNode(graph, "City", name = "Austin")
 addConstraint(graph, "Person", "name")
 addConstraint(graph, "City", "name")
 
-# View all uniqueness constraints on Person nodes.
+# Get all uniqueness constraints on Person nodes.
 getConstraint(graph, "Person")
 
 #   property_keys  label       type
 # 1          name Person UNIQUENESS
 
-# View all uniqueness constraints in the graph database.
+# Get all uniqueness constraints in the graph database.
 getConstraint(graph)
 
 #   property_keys  label       type

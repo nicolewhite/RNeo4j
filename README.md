@@ -46,6 +46,14 @@ parlor = createNode(graph, "Bar", name = "The Parlor", location = "Hyde Park")
 createNode(graph, "Bar", name = "Cheer Up Charlie's", location = "Downtown")
 ```
 
+View node properties with `node$property`.
+
+```r
+mugshots$location
+
+# [1] "Downtown"
+```
+
 Labels can be added after creating the node.
 
 ```r
@@ -53,12 +61,27 @@ nicole = createNode(graph, name = "Nicole", status = "Student")
 addLabel(nicole, "Person")
 ```
 
-View node properties with `node$property`.
+Add `eyes` and `hair` properties to the `nicole` node, convert the `status` property to a label, then remove the `status` property.
 
 ```r
-mugshots$location
+nicole = updateProp(nicole, eyes = "green", hair = "blonde")
 
-# [1] "Downtown"
+addLabel(nicole, nicole$status)
+
+nicole = deleteProp(nicole, "status")
+
+nicole
+
+# Labels: Person Student
+# 
+# $name
+# [1] "Nicole"
+# 
+# $hair
+# [1] "blonde"
+# 
+# $eyes
+# [1] "green"
 ```
 
 Add uniqueness constraints so that `Person` nodes are unique by `name` and `Bar` nodes are unique by `name`.
@@ -128,30 +151,3 @@ cypher(graph, query)
 # 2 Nicole Saturdays         The Parlor  Hyde Park
 # 3 Nicole  Everyday Cheer Up Charlie's   Downtown
 ```
-
-Add `eyes` and `hair` properties to the `nicole` node, convert the `status` property to a label, then remove the `status` property.
-
-```r
-nicole = updateProp(nicole, eyes = "green", hair = "blonde")
-
-addLabel(nicole, nicole$status)
-
-nicole = deleteProp(nicole, "status")
-
-nicole
-
-# Labels: Person Student
-# 
-# $name
-# [1] "Nicole"
-# 
-# $hair
-# [1] "blonde"
-# 
-# $eyes
-# [1] "green"
-```
-
-## Neo4j Browser View
-
-![Neo4j Browser](http://i.imgur.com/P49bwa4.png)

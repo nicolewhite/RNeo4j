@@ -8,7 +8,7 @@ For a node or relationship object, delete the named properties or delete all pro
 deleteProp(object, ..., all = FALSE)
 }
 \arguments{
-  \item{object}{The node or relationship object for which the named properties will be deleted.}
+  \item{object}{A node or relationship object for which the named properties will be deleted.}
   \item{...}{The properties to be deleted. Accepts a single string or strings separated by commas.}
   \item{all}{Set to TRUE to delete all properties on the node or relationship object.}
 }

@@ -28,13 +28,13 @@ createNode(graph, "School", name = "Louisiana State University", type = "Public"
 addIndex(graph, "Person", "status")
 addIndex(graph, "School", "type")
 
-# View all indexes on the Person node label.
+# Get all indexes on the Person node label.
 getIndex(graph, "Person")
 
 #   property_keys  label
 # 1        status Person
 
-# View all indexes in the graph database.
+# Get all indexes in the graph database.
 getIndex(graph)
 
 #   property_keys  label

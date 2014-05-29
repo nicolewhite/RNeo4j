@@ -32,7 +32,6 @@ cypher(graph, "MATCH n RETURN n.name, n.age")
 # 2     Bob    22
 # 3 Charles    25
 
-
 # Query with parameters.
 cypher(graph, 
 	   "MATCH n WHERE n.age < {age} RETURN n.name, n.age", 

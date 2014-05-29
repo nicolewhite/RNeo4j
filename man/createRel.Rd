@@ -37,5 +37,5 @@ createRel(alice, "works with", bob)
 createRel(bob, "KNOWS", charles, since = 2000, through = "Work")
 }
 \seealso{
-\code{\link{getStart}}, \code{\link{getEnd}}
+\code{\link{startNode}}, \code{\link{endNode}}
 }

@@ -27,5 +27,8 @@ alice = createNode(graph, name = "Alice", age = 23)
 bob = createNode(graph, "Person", name = "Bob", age = 24)
 
 # Node with multiple labels and properties.
-charles = createNode(graph, c("Person", "Student"), name = "Charles", age = 21)
+charles = createNode(graph, 
+					 c("Person", "Student"), 
+					 name = "Charles", 
+					 age = 21)
 }
