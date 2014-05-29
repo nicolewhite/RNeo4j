@@ -22,9 +22,18 @@ cypher.graph = function(graph, query, ...) {
                                httpheader = headers, 
                                postfields = fields))
   
+  data = response$data
+  
+  replaceNULL = function(row) {
+    new = lapply(row, function(r) ifelse(is.null(r), NA, r))
+    return(new)
+  }
+  
+  data = lapply(data, replaceNULL)
+  
   options(stringsAsFactors = FALSE)
   
-  df = do.call(rbind.data.frame, response$data)
+  df = do.call(rbind.data.frame, data)
   
   if (class(df) == "list") {
     message("All results returned are NULL.")
