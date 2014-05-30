@@ -23,7 +23,7 @@ alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 charles = createNode(graph, "Person", name = "Charles")
 
-createRel(alice, "works with", bob)
+createRel(alice, "WORKS_WITH", bob)
 createRel(bob, "KNOWS", charles, since = 2000, through = "Work")
 
 # Query without parameters.

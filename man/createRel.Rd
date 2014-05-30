@@ -16,22 +16,13 @@ createRel(fromNode, type, toNode, ...)
 \value{
 A relationship object.
 }
-\details{
-The string supplied for the \code{type} argument will be converted to uppercase and all spaces will be replaced with underscores. That is,
-
-\code{createRel(alice, "works with", bob)}
-
-is equivalent to
-
-\code{createRel(alice, "WORKS_WITH", bob)}.
-}
 \examples{
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 charles = createNode(graph, "Person", name = "Charles")
 
 # Relationship without properties.
-createRel(alice, "works with", bob)
+createRel(alice, "WORKS_WITH", bob)
 
 # Relationship with properties.
 createRel(bob, "KNOWS", charles, since = 2000, through = "Work")

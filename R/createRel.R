@@ -8,9 +8,9 @@ createRel.node = function(fromNode, type, toNode, ...) {
   stopifnot(is.character(type), 
             "node" %in% class(toNode))
   
-  # Convert type to uppercase and replace spaces with underscores.
-  type = toupper(type)
-  type = gsub(" ", "_", type)
+  if(length(grep(" ", type)) > 0) {
+    stop("Cannot have spaces in relationship types. Use underscores instead.")
+  }
   
   props = list(...)
   

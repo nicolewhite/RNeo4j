@@ -17,7 +17,7 @@ A node object.
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 
-rel = createRel(alice, "works with", bob)
+rel = createRel(alice, "WORKS_WITH", bob)
 
 startNode(rel)
 

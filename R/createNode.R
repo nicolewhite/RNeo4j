@@ -25,6 +25,9 @@ createNode.graph = function(graph, label = character(), ...) {
   node = configure_result(result)
 
   if(length(label) > 0) {
+    if(length(grep(" ", label)) > 0) {
+      stop("Cannot have spaces in labels. Use CamelCase instead.")
+    }
     test = try(addLabel(node, label), TRUE)
     if("try-error" %in% class(test)) {
       delete(node)

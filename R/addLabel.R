@@ -7,6 +7,9 @@ addLabel.default = function(x, ...) {
 addLabel.node = function(node, ...) {
   labels = c(...)
   stopifnot(is.character(labels), length(labels) > 0)
+  if(length(grep(" ", labels)) > 0) {
+    stop("Cannot have spaces in labels. Use CamelCase instead.")
+  }
   
     if(length(labels) == 1) {
     fields = paste0(' "', labels, '" ')
