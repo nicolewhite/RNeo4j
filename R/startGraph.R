@@ -17,7 +17,7 @@ startGraph.default = function(url) {
   attr(graph, "node_labels") = result$node_labels
   
   # Remove trailing forward slash.
-  substr(url, nchar(url), nchar(url)) = ""
+  url = substr(url, 1, nchar(url) - 1)
   attr(graph, "root") = url
     
   class(graph) = "graph"
