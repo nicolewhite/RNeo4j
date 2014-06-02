@@ -20,6 +20,7 @@ getLabeledNodes.graph = function(graph, label, ..., limit = numeric()) {
     
     if(is.character(param[[1]])) {
       param[[1]] = URLencode(param[[1]])
+      param[[1]] = sub("&", "%26", param[[1]])
       url = paste0(url, "%22", param[[1]], "%22")
     } else if(is.numeric(param[[1]])) {
       url = paste0(url, param[[1]])

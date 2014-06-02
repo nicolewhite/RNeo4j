@@ -23,6 +23,7 @@ getUniqueNode.graph = function(graph, label, ...) {
   
   if(is.character(param[[1]])) {
     param[[1]] = URLencode(param[[1]])
+    param[[1]] = sub("&", "%26", param[[1]])
     url = paste0(url, "%22", param[[1]], "%22")
   } else if(is.numeric(param[[1]])) {
     url = paste0(url, param[[1]])
@@ -36,7 +37,8 @@ getUniqueNode.graph = function(graph, label, ...) {
     stop("Property value must be character, numeric, or logical.")
   }
   
-  response = fromJSON(httpGET(url))
+  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  response = fromJSON(httpGET(url, httpheader = headers))
   
   if(length(response) == 0) {
     message("No node found.")
