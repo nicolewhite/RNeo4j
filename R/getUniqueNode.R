@@ -19,12 +19,6 @@ getUniqueNode.graph = function(graph, label, ...) {
   stopifnot(names(param) %in% getConstraint(graph, label)$property_keys,
             !is.null(names(param)))
   
-  replacements = list(c("#", "%23"), c("%2F"))
-  
-  if(is.character(param[[1]])) {
-    
-  }
-  
   url = paste0(attr(graph, "root"), "/label/", label, "/nodes?", names(param), "=")
   
   if(is.character(param[[1]])) {
