@@ -1,4 +1,4 @@
-Package: Rneo4j
+Package: RNeo4j
 Title: Interact with a Neo4j database through R.
 LazyData: true
 Version: 1.0
