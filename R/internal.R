@@ -57,3 +57,23 @@ configure_result = function(result) {
   class(result) = class
   return(result)
 }
+
+configure_vars = function(label, key, type, direction = character()) {
+  label = paste0(":", label)
+  type = paste0(":", type)
+
+  inc = ")-["
+  out = "]-("
+  
+  if (length(direction) == 1) {
+    if (direction == "incoming") {
+      inc = ")<-["
+    }
+    
+    if (direction == "outgoing") {
+      out = "]->("
+    }
+  }
+  
+  return(list(label, key, type, inc, out))
+}
