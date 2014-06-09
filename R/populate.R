@@ -9,7 +9,7 @@ populate.graph = function(graph, data) {
   clear(graph)
   
   if(data == "movies") {
-    fpath = system.file("extdata", "movies.txt", package = "Rneo4j")
+    fpath = system.file("extdata", "movies.txt", package = "RNeo4j")
     
   } else {
     stop("As of now, only the movie dataset is available. Set data = 'movies'.")
