@@ -75,7 +75,6 @@ out_deg = degreeMatrix(graph,
 # Forrest    0   0       0     0      0       0
 
 # Get a direction-agnostic degree matrix.
-
 deg = degreeMatrix(graph,
                    label = "Person",
                    key = "name",
