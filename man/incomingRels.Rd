@@ -5,12 +5,11 @@
 Retreive a list of incoming relationship objects from a node object, optionally filtering by relationship type.
 }
 \usage{
-incomingRels(node, ..., limit = numeric())
+incomingRels(node, ...)
 }
 \arguments{
 	\item{node}{A node object.}
 	\item{...}{Optional relationship type(s) by which to filter the results. Accepts a string or strings separated by commas.}
-	\item{limit}{An optional numeric value to limit how many relationships are returned.}
 }
 \value{
 A list of relationship objects.

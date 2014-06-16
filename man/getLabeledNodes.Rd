@@ -5,13 +5,12 @@
 Retrieve nodes from the graph with the specified label and optional key = value pair.
 }
 \usage{
-getLabeledNodes(graph, label, ..., limit = numeric())
+getLabeledNodes(graph, label, ...)
 }
 \arguments{
   \item{graph}{A graph object.}
   \item{label}{A node label. Accepts a string.}
   \item{...}{An optional key = value pair by which to filter the results. Only accepts one key = value pair.}
-  \item{limit}{An optional numeric value to limit how many nodes are returned.}
 }
 \value{
 A list of node objects. Returns NULL if no nodes are found.
