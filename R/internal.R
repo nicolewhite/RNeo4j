@@ -77,3 +77,40 @@ configure_vars = function(label, key, type, direction = character()) {
   
   return(list(label, key, type, inc, out))
 }
+
+.onLoad = function(...) {
+  packageStartupMessage("Disclaimer: This package is in pre-alpha phase. It is not optimized and it has not been thoroughly tested. Make a copy of your database before connecting with this package.")
+}
+
+setHeaders = function() {
+  list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+}
+
+http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL) {
+  t = basicTextGatherer()
+  h = basicHeaderGatherer()
+  
+  opts = list(customrequest = request_type,
+              writefunction = t$update,
+              headerfunction = h$update)
+  
+  if(!is.null(postfields)) {
+    opts = c(opts, list(postfields = postfields))
+  }
+  if(!is.null(httpheader)) {
+    opts = c(opts, list(httpheader = httpheader))
+  }
+
+  curlPerform(url = url, .opts = opts) 
+  text = t$value()
+  headers = h$value()
+  status_message = headers['statusMessage']
+  
+  if(status_message != wanted_status) {
+    status = headers['status']
+    stop(status, " ", status_message, "\n\n",
+         text)
+  } else {
+    return(text)
+  }
+}

@@ -5,3 +5,5 @@ An R package that allows you to easily populate a Neo4j graph database from your
 Compatible with Neo4j >= 2.0.
 
 [Installation, examples, and documentation.](http://nicolewhite.github.io/RNeo4j/)
+
+*Disclaimer:* This package is in pre-alpha phase. It is not optimized and it has not been thoroughly tested. Make a copy of your database before connecting with this package.
