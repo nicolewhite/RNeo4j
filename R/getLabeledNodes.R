@@ -1,14 +1,13 @@
-getLabeledNodes = function(graph, label, ..., limit = numeric()) UseMethod("getLabeledNodes")
+getLabeledNodes = function(graph, label, ...) UseMethod("getLabeledNodes")
 
 getLabeledNodes.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
-getLabeledNodes.graph = function(graph, label, ..., limit = numeric()) {
-  stopifnot(is.character(label),
-            is.numeric(limit))
+getLabeledNodes.graph = function(graph, label, ...) {
+  stopifnot(is.character(label))
 
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  header = setHeaders()
   url = paste(attr(graph, "root"), "label", label, "nodes", sep = "/")
   param = c(...)
   
@@ -34,24 +33,20 @@ getLabeledNodes.graph = function(graph, label, ..., limit = numeric()) {
     }
   }
 
-  if(length(limit) > 0) {
-    stopifnot(limit > 0)
-    nodes = fromJSON(httpGET(url, httpheader = headers))[1:limit]
-  } else {
-    nodes = fromJSON(httpGET(url, httpheader = headers))
-  }
+  response = http_request(url, "GET", "OK", httpheader = header)
+  result = fromJSON(response)
 
-  if(length(nodes) == 0) {
-    message(paste0("No nodes with label ", label, "."))
+  if(length(result) == 0) {
+    message(paste0("No nodes with label '", label, "'."))
     return(invisible(NULL))
   }
   
-  FUN = function(i) {
-    class(nodes[[i]]) = c("entity", "node")
-    return(nodes[[i]])
+  set_class = function(i) {
+    class(result[[i]]) = c("entity", "node")
+    return(result[[i]])
   }
   
-  nodes = lapply(1:length(nodes), FUN)
-  nodes = lapply(nodes, configure_result)
+  result = lapply(1:length(result), set_class)
+  nodes = lapply(result, configure_result)
   return(nodes)
 }
