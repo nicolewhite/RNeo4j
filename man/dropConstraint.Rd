@@ -15,7 +15,7 @@ dropConstraint(graph, label = character(), key = character(), all = FALSE)
 }
 \examples{
 createNode(graph, "Person", name = "Alice")
-reateNode(graph, "Person", name = "Bob")
+createNode(graph, "Person", name = "Bob")
 
 createNode(graph, "City", name = "San Francisco")
 createNode(graph, "City", name = "Austin")
