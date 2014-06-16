@@ -41,6 +41,15 @@ cypher(graph,
 # 1  Alice    23
 # 2    Bob    22
 
+# Query with array parameter.
+names = c("Alice", "Charles")
+cypher(graph,
+	   "MATCH n WHERE n.name IN {names} RETURN n.name, n.age",
+	   names = names)
+
+#    n.name n.age
+# 1 Charles    25
+# 2   Alice    23
 
 # Query that doesn't return anything.
 cypher(graph, 
