@@ -10,27 +10,15 @@ addConstraint.graph = function(graph, label, key) {
             length(label) == 1,
             length(key) == 1)
     
-  # Check if constraint for given (label, key) pair already exists.
-  constraint = suppressMessages(getConstraint(graph))
-  test = merge(data.frame(property_keys = key, label = label), constraint)
-  
-  if(nrow(test) > 0) {
-    stop(paste0("A uniqueness constraint already exists for (", label, ", ", key, ")."))
-  }
-  
-  # Check if index for given (label, key) pair already exists.
-  # Can't add uniqueness constraints to (label, key) pairs that have already been indexed.
-  index = suppressMessages(getIndex(graph))
-  test = merge(data.frame(property_keys = key, label = label), index)
-
-  if(nrow(test) > 0) {
-    stop(paste0("An index already exists for (", label, ", ", key, "). Drop the index before attempting to add a uniqueness constraint. See ?dropIndex."))
-  }
-
-  # Add the constraint.
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  header = setHeaders()
   fields = paste0('{\n "property_keys": [ "', key, '" ] \n}')
   url = paste(attr(graph, "constraints"), label, "uniqueness", sep = "/")
-  httpPOST(url, httpheader = headers, postfields = fields)
+  
+  http_request(url,
+               "POST",
+               "OK",
+               postfields = fields,
+               httpheader = header)
+  
   return(invisible(NULL))
 }

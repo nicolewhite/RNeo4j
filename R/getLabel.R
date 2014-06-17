@@ -5,23 +5,23 @@ getLabel.default = function(x) {
 }
 
 getLabel.graph = function(graph) {
-  result = fromJSON(httpGET(attr(graph, "node_labels")))
-  
+  url = attr(graph, "node_labels")
+  response = http_request(url, "GET", "OK")
+  result = fromJSON(response)
   if(length(result) == 0) {
     message("No labels in the graph.")
     return(invisible(NULL))
   }
-  
   return(result)
 }
 
 getLabel.node = function(node) {
-  result = fromJSON(httpGET(attr(node, "labels")))
-  
+  url = attr(node, "labels")
+  response = http_request(url, "GET", "OK")
+  result = fromJSON(response)
   if(length(result) == 0) {
     message("No labels on the node.")
     return(invisible(NULL))
   }
-  
   return(result)
 }

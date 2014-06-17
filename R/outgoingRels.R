@@ -1,13 +1,11 @@
-outgoingRels = function(node, ..., limit = numeric()) UseMethod("outgoingRels")
+outgoingRels = function(node, ...) UseMethod("outgoingRels")
 
 outgoingRels.default = function(x, ...) {
   stop("Invalid object. Must supply node object.")
 }
 
-outgoingRels.node = function(node, ..., limit = numeric()) {
-  stopifnot(is.numeric(limit))
-  
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+outgoingRels.node = function(node, ...) {  
+  header = setHeaders()
   url = attr(node, "outgoing_relationships")
   type = c(...)
   
@@ -16,23 +14,23 @@ outgoingRels.node = function(node, ..., limit = numeric()) {
     url = paste(url, paste(type, collapse = "%26"), sep = "/")
   }
     
-  if(length(limit) > 0) {
-    outgoing_rels = fromJSON(httpGET(url, httpheader = headers))[1:limit]
-  } else {
-    outgoing_rels = fromJSON(httpGET(url, httpheader = headers))
-  }
-  
-  if(length(outgoing_rels) == 0) {
+  response = http_request(url,
+                          "GET",
+                          "OK",
+                          httpheader = header)
+  result = fromJSON(response)
+
+  if(length(result) == 0) {
     message("No outgoing relationships.")
     return(invisible(NULL))
   }
   
-  FUN = function(i) {
-    class(outgoing_rels[[i]]) = c("entity", "relationship")
-    return(outgoing_rels[[i]])
+  set_class = function(i) {
+    class(result[[i]]) = c("entity", "relationship")
+    return(result[[i]])
   }
   
-  outgoing_rels = lapply(1:length(outgoing_rels), FUN)
-  outgoing_rels = lapply(outgoing_rels, configure_result)
+  result = lapply(1:length(result), set_class)
+  outgoing_rels = lapply(result, configure_result)
   return(outgoing_rels)
 }

@@ -16,8 +16,9 @@ getUniqueNode.graph = function(graph, label, ...) {
     stop("Must supply a key = value pair.")
   
   # Check if uniqueness constraint exists.
-  stopifnot(names(param) %in% getConstraint(graph, label)$property_keys,
-            !is.null(names(param)))
+  if(!(names(param) %in% getConstraint(graph, label)$property_keys)) {
+    stop("The key = value pair given must have a uniqueness constraint applied.")
+  }
   
   url = paste0(attr(graph, "root"), "/label/", label, "/nodes?", names(param), "=")
   
@@ -36,15 +37,20 @@ getUniqueNode.graph = function(graph, label, ...) {
     stop("Property value must be character, numeric, or logical.")
   }
   
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
-  response = fromJSON(httpGET(url, httpheader = headers))
+  header = setHeaders()
+  response = http_request(url,
+                          "GET",
+                          "OK",
+                          httpheader = header)
   
-  if(length(response) == 0) {
+  result = fromJSON(response)
+  
+  if(length(result) == 0) {
     message("No node found.")
     return(invisible(NULL))
   }
   
-  result = response[[1]]
+  result = result[[1]]
   class(result) = c("entity", "node")
   node = configure_result(result)
   return(node)

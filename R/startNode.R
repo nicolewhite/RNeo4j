@@ -5,7 +5,9 @@ startNode.default = function(x, ...) {
 }
 
 startNode.relationship = function(rel) {
-  result = fromJSON(httpGET(attr(rel, "start")))
+  url = attr(rel, "start")
+  response = http_request(url, "GET", "OK")
+  result = fromJSON(response)
   class(result) = c("entity", "node")
   node = configure_result(result)
   return(node)

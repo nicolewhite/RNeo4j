@@ -5,7 +5,9 @@ endNode.default = function(x) {
 }
 
 endNode.relationship = function(rel) {
-  result = fromJSON(httpGET(attr(rel, "end")))
+  url = attr(rel, "end")
+  response = http_request(url, "GET", "OK")
+  result = fromJSON(response)
   class(result) = c("entity", "node")
   node = configure_result(result)
   return(node)

@@ -1,8 +1,12 @@
 startGraph = function(url) UseMethod("startGraph")
 
 startGraph.default = function(url) {
-  stopifnot(is.character(url), length(url) == 1)
-  result = fromJSON(httpGET(url))
+  stopifnot(is.character(url), 
+            length(url) == 1)
+  response = http_request(url,
+                          "GET",
+                          "OK")
+  result = fromJSON(response)
   
   graph = list()
   graph$version = result$neo4j_version

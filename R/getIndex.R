@@ -7,53 +7,41 @@ getIndex.default = function(x, ...) {
 getIndex.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  url = attr(graph, "indexes")
   
   # If label not provided, get indexes for the entire graph.
   if(length(label) == 0) {
-    labels = fromJSON(httpGET(attr(graph, "node_labels")))
+    response = http_request(url, "GET", "OK")
+    result = fromJSON(response)
     
-    # If there are no labels in the graph, there can't be indexes.
-    if(length(labels) == 0) {
+    if(length(result) == 0) {
       message("No indexes in the graph.")
       return(invisible(NULL))
     }
-    
-    urls = vapply(labels, function(x) {paste(attr(graph, "indexes"), x, sep = "/")}, "")
-    get = function(x) {fromJSON(httpGET(x, httpheader = headers))}
-    response = lapply(urls, get)
-    
-    df = lapply(response, function(x) {do.call(rbind.data.frame, x)})
-    df = do.call(rbind.data.frame, df)
-    
-    if(is.empty(df)) {
-      message("No indexes in the graph.")
-      return(invisible(NULL))
-    }
-    
-    row.names(df) = NULL
-    return(df)
   }
   
   # Else, get index for the specified label.
   else if(length(label) == 1) {
-    # Check if label exists.
-    stopifnot(label %in% getLabel(graph))
-    
-    url = paste(attr(graph, "indexes"), label, sep = "/")
-    response = fromJSON(httpGET(url, httpheader = headers))
-    
-    if(length(response) == 0) {
-      message(paste0("No index for label ", label, "."))
+    if(!(label %in% getLabel(graph))) {
+      message("Label '", label, "' does not exist.")
       return(invisible(NULL))
     }
     
-    keys = do.call(rbind.data.frame, response)
-    rownames(keys) = NULL
-    return(keys)
+    url = paste(url, label, sep = "/")
+    response = http_request(url, "GET", "OK")
+    result = fromJSON(response)
+    
+    if(length(result) == 0) {
+      message(paste0("No index for label '", label, "'."))
+      return(invisible(NULL))
+    }
     
     # Else, user supplied an invalid combination of arguments.  
   } else {
     stop("Arguments supplied are invalid.")
   }
+  
+  df = do.call(rbind.data.frame, result)
+  rownames(df) = NULL
+  return(df)
 }

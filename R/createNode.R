@@ -8,19 +8,20 @@ createNode.graph = function(graph, label = character(), ...) {
   stopifnot(is.character(label))
   
   props = list(...)
+  header = setHeaders()
+  fields = NULL
   
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
-  
-  if(length(props) == 0) {
-    result = fromJSON(httpPOST(attr(graph, "node"), 
-                               httpheader = headers))
-  } else {
+  if(length(props) > 0)
     fields = toJSON(props)
-    result = fromJSON(httpPOST(attr(graph, "node"), 
-                               httpheader = headers, 
-                               postfields = fields))
-  }
   
+  url = attr(graph, "node")
+  response = http_request(url,
+                          "POST",
+                          "Created",
+                          postfields = fields,
+                          httpheader = header)
+  
+  result = fromJSON(response)
   class(result) = c("node", "entity")
   node = configure_result(result)
 
@@ -31,9 +32,8 @@ createNode.graph = function(graph, label = character(), ...) {
     test = try(addLabel(node, label), TRUE)
     if("try-error" %in% class(test)) {
       delete(node)
-      stop("Uniqueness constraint violated.")
+      stop(test)
     }
-    return(node)
   }
   return(node)
 }

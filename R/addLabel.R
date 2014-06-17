@@ -7,6 +7,7 @@ addLabel.default = function(x, ...) {
 addLabel.node = function(node, ...) {
   labels = c(...)
   stopifnot(is.character(labels), length(labels) > 0)
+  
   if(length(grep(" ", labels)) > 0) {
     stop("Cannot have spaces in labels. Use CamelCase instead.")
   }
@@ -16,11 +17,17 @@ addLabel.node = function(node, ...) {
   } else {
     fields = toJSON(labels)
   }
-
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json') 
-  test = try(httpPOST(attr(node, "labels"), httpheader = headers, postfields = fields), TRUE)
-  if("try-error" %in% class(test)) {
-    stop("Uniqueness constraint violated.")
+  
+  header = setHeaders()
+  url = attr(node, "labels")
+  
+  for (i in 1:length(labels)) {
+    field = paste0(' "', labels[i], '" ')
+    http_request(url,
+                 "POST",
+                 "No Content",
+                 postfields = field,
+                 httpheader = header)
   }
   return(invisible(NULL))
 }

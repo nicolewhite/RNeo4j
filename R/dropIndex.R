@@ -5,48 +5,57 @@ dropIndex.default = function(x, ...) {
 }
 
 dropIndex.graph = function(graph, label = character(), key = character(), all = FALSE) {
-  stopifnot(is.character(label), is.character(key), is.logical(all))
+  stopifnot(is.character(label), 
+            is.character(key), 
+            is.logical(all))
   
-  constraint = suppressMessages(getConstraint(graph))
+  url = attr(graph, "indexes")
+  constraints = suppressMessages(getConstraint(graph))
   
-  # If user sets all=TRUE, drop all indices from the graph.
+  # If user sets all=TRUE, drop all indexes from the graph.
   if(all) {
-    
-    index = suppressMessages(getIndex(graph))
+    indexes = suppressMessages(getIndex(graph))
         
-    if(is.null(index)) {
+    if(is.null(indexes)) {
       message("No indexes to drop.")
       return(invisible(NULL))
     }
     
-    # Check if uniqueness constraint exists on any of the indices.
-    test = merge(index, constraint)
+    overlap = merge(indexes, constraints)
     
-    if(nrow(test) > 0) {
-      stop("There is a uniqueness constraint on one of the indexes. Drop the constraint(s) instead (which necessarily drops the index as well) with dropConstraint().")
+    if(nrow(overlap) > 0) {
+      errors = c()
+      for(i in 1:nrow(overlap)) {
+        errors = c(errors, 
+                   "There is a uniqueness constraint for label '", overlap[i,2], "' on property '", overlap[i,1], "'.\n")
+      }
+      stop(errors,
+           "Remove the uniqueness constraint(s) instead using dropConstraint(). This drops the index(es) as well.")
+      return(invisible(NULL))
     }
     
-    urls = apply(index, 1, function(x) {paste(attr(graph, "indexes"), x[2], x[1], sep = "/")})
-    lapply(urls, function(x) {httpDELETE(x)})
+    urls = apply(indexes, 1, function(x) paste(url, x[2], x[1], sep = "/"))
+    
+    for(i in 1:length(urls)) {
+      http_request(urls[i],
+                   "DELETE",
+                   "No Content")
+    }
+    
     return(invisible(NULL))
     
   # Else, drop the index for the label and key given.
   } else if (length(label) == 1 & length(key) == 1) {
-    
     index = suppressMessages(getIndex(graph, label))
+    overlap = merge(index, constraints)
     
-    # Check if the index exists.
-    stopifnot(key %in% index$property_keys)
-    
-    # Check if uniqueness constraint exists on the index.
-    test = merge(index, constraint)
-    
-    if(nrow(test) > 0) {
-      stop(paste0("There is a uniqueness constraint on (", label, ", ", key, "). Drop the constraint instead (which necessarily drops the index as well) using dropConstraint()."))
+    if(nrow(overlap) > 0) {
+      stop("There is a uniqueness constraint on label '", label, "' with property '", key, "'. ",
+           "Remove the uniqueness constraint instead using dropConstraint(). This drops the index as well.")
     }
     
-    url = paste(attr(graph, "indexes"), label, key, sep = "/")
-    httpDELETE(url)
+    url = paste(url, label, key, sep = "/")
+    http_request(url, "DELETE", "No Content")
     return(invisible(NULL))
     
   # Else, user supplied an invalid combination of arguments.  

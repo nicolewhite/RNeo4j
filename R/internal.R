@@ -109,7 +109,8 @@ http_request = function(url, request_type, wanted_status, postfields = NULL, htt
   if(status_message != wanted_status) {
     status = headers['status']
     stop(status, " ", status_message, "\n\n",
-         text)
+         text,
+         call. = FALSE)
   } else {
     return(text)
   }

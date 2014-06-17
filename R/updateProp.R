@@ -10,7 +10,7 @@ updateProp.entity = function(entity, ...) {
   if(length(props) == 0)
     stop("Must supply properties to update.")
   
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  header = setHeaders()
   
   for (i in 1:length(props)) {
     url = paste(attr(entity, "properties"), names(props[i]), sep = "/")
@@ -28,7 +28,11 @@ updateProp.entity = function(entity, ...) {
     } else {
       stop("Must supply character, numeric, or logical property values.")
     }
-    httpPUT(url, httpheader = headers, postfields = field)
+    http_request(url,
+                 "PUT",
+                 "No Content",
+                 field,
+                 header)
     entity[names(props[i])] = props[names(props[i])]
   }
   return(entity)

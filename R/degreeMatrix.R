@@ -11,8 +11,11 @@ degreeMatrix.graph = function(graph, label, key, type, direction = character()) 
             length(key) == 1,
             is.character(type),
             length(type) == 1,
-            is.character(direction),
-            key %in% getConstraint(graph, label)$property_keys)
+            is.character(direction))
+  
+  if(!(key %in% getConstraint(graph, label)$property_keys)) {
+    stop("A uniqueness constraint needs to be applied to label '", label, "' with key '", key, "'.")
+  }
   
   vars = configure_vars(label, key, type, direction)
   

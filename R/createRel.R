@@ -9,12 +9,12 @@ createRel.node = function(fromNode, type, toNode, ...) {
             "node" %in% class(toNode))
   
   if(length(grep(" ", type)) > 0) {
-    stop("Cannot have spaces in relationship types. Use underscores instead.")
+    stop("Cannot have spaces in relationship types. Use UNDER_SCORES instead.")
   }
   
   props = list(...)
+  header = setHeaders()
   
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
   fields = list(to = attr(toNode, "self"), type = type)
   
   # If user supplied properties, append them to request.
@@ -22,10 +22,14 @@ createRel.node = function(fromNode, type, toNode, ...) {
     fields = c(fields, data = list(props))
   
   fields = toJSON(fields)
-  result = fromJSON(httpPOST(attr(fromNode, "create_relationship"), 
-                                   httpheader = headers, 
-                                   postfields = fields))
-  
+  url = attr(fromNode, "create_relationship")
+  response = http_request(url,
+                          "POST",
+                          "Created",
+                          postfields = fields,
+                          httpheader = header)
+
+  result = fromJSON(response)
   class(result) = c("entity", "relationship")
   rel = configure_result(result)
   return(rel)

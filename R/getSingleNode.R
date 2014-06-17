@@ -8,7 +8,7 @@ getSingleNode.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)
 
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  header = setHeaders()
   params = list(...)  
   fields = list(query = query)
 
@@ -16,14 +16,24 @@ getSingleNode.graph = function(graph, query, ...) {
     fields = c(fields, params = list(params))
 
   fields = toJSON(fields)
-  response = fromJSON(httpPOST(attr(graph, "cypher"), httpheader = headers, postfields = fields))
+  url = attr(graph, "cypher")
+  response = http_request(url,
+                          "POST",
+                          "OK",
+                          fields,
+                          header)
   
-  if(length(response$data) == 0) {
+  result = fromJSON(response)
+  
+  if(length(result$data) == 0) {
     message("Node not found.")
     return(invisible(NULL))
   }
   
-  result = response$data[[1]][[1]]
+  result = result$data[[1]][[1]]
+  if(unlist(strsplit(result$self, "/"))[6] != "node") {
+    stop("The entity returned is not a node. Check that your query is returning a node.")
+  }
   class(result) = c("entity", "node")
   node = configure_result(result)
   return(node)

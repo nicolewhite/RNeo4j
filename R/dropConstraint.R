@@ -5,28 +5,29 @@ dropConstraint.default = function(x, ...) {
 }
 
 dropConstraint.graph = function(graph, label = character(), key = character(), all = FALSE) {
-  stopifnot(is.character(label), is.character(key), is.logical(all))
+  stopifnot(is.character(label), 
+            is.character(key),
+            is.logical(all))
+  
+  url = attr(graph, "constraints")
   
   # If user sets all=TRUE, drop all uniqueness constraints from the graph.
   if(all) {
-    constraint = suppressMessages(getConstraint(graph))
+    constraints = suppressMessages(getConstraint(graph))
     
-    if(is.null(constraint)) {
+    if(is.null(constraints)) {
       message("No constraints to drop.")
       return(invisible(NULL))
     }
     
-    urls = apply(constraint, 1, function(x) {paste(attr(graph, "constraints"), x[2], "uniqueness", x[1], sep = "/")})
-    lapply(urls, function(x) {httpDELETE(x)})
+    urls = apply(constraints, 1, function(c) paste(url, c[2], "uniqueness", c[1], sep = "/"))
+    lapply(urls, function(u) http_request(u, "DELETE", "No Content"))
     return(invisible(NULL))
     
   # Else, drop the uniqueness constraint for the label and key given.
-  } else if (length(label) == 1 & length(key) == 1) {
-    # Check if the constraint exists.
-    stopifnot(key %in% getConstraint(graph, label)$property_keys)
-    
-    url = paste(attr(graph, "constraints"), label, "uniqueness", key, sep = "/")
-    httpDELETE(url)
+  } else if (length(label) == 1 & length(key) == 1) {    
+    url = paste(url, label, "uniqueness", key, sep = "/")
+    http_request(url, "DELETE", "No Content")
     return(invisible(NULL))
   
   # Else, user supplied an invalid combination of arguments.

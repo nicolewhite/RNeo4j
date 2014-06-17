@@ -7,7 +7,7 @@ getRels.default = function(x, ...) {
 getRels.graph = function(graph, query, ...) {
   stopifnot(is.character(query))
   
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  header = setHeaders()
   params = list(...)  
   fields = list(query = query)
   
@@ -15,20 +15,30 @@ getRels.graph = function(graph, query, ...) {
     fields = c(fields, params = list(params))
   
   fields = toJSON(fields)
-  response = fromJSON(httpPOST(attr(graph, "cypher"), httpheader = headers, postfields = fields))
-  rels = response$data
+  url = attr(graph, "cypher")
+  response = http_request(url,
+                          "POST",
+                          "OK",
+                          fields,
+                          header)
+  result = fromJSON(response)
+  result = result$data
   
-  if(length(rels) == 0) {
+  if(length(result) == 0) {
     message("No relationships found.")
     return(invisible(NULL))
   }
   
-  FUN = function(i) {
-    class(rels[[i]][[1]]) = c("entity", "relationship")
-    return(rels[[i]][[1]])
+  set_class = function(i) {
+    current = result[[i]][[1]]
+    if(unlist(strsplit(current$self, "/"))[6] != "relationship") {
+      stop("At least one entity returned is not a relationship. Check that your query is returning relationships.")
+    }
+    class(current) = c("entity", "relationship")
+    return(current)
   }
   
-  rels = lapply(1:length(rels), FUN)
-  rels = lapply(rels, configure_result)
+  result = lapply(1:length(result), set_class)
+  rels = lapply(result, configure_result)
   return(rels)
 }

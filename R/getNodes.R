@@ -7,7 +7,7 @@ getNodes.default = function(x, ...) {
 getNodes.graph = function(graph, query, ...) {
   stopifnot(is.character(query))
   
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  header = setHeaders()
   params = list(...)  
   fields = list(query = query)
   
@@ -15,20 +15,30 @@ getNodes.graph = function(graph, query, ...) {
     fields = c(fields, params = list(params))
   
   fields = toJSON(fields)
-  response = fromJSON(httpPOST(attr(graph, "cypher"), httpheader = headers, postfields = fields))
-  nodes = response$data
+  url = attr(graph, "cypher")
+  response = http_request(url,
+                          "POST",
+                          "OK",
+                          postfields = fields,
+                          httpheader = header)
+  result = fromJSON(response)
+  result = result$data
   
-  if(length(nodes) == 0) {
+  if(length(result) == 0) {
     message("No nodes found.")
     return(invisible(NULL))
   }
   
-  FUN = function(i) {
-    class(nodes[[i]][[1]]) = c("entity", "node")
-    return(nodes[[i]][[1]])
+  set_class = function(i) {
+    current = result[[i]][[1]]
+    if(unlist(strsplit(current$self, "/"))[6] != "node") {
+      stop("At least one entity returned is not a node. Check that your query is returning nodes.")
+    }
+    class(current) = c("entity", "node")
+    return(current)
   }
   
-  nodes = lapply(1:length(nodes), FUN)
-  nodes = lapply(nodes, configure_result)
+  result = lapply(1:length(result), set_class)
+  nodes = lapply(result, configure_result)
   return(nodes)
 }

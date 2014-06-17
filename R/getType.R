@@ -6,7 +6,8 @@ getType.default = function(x) {
 
 getType.graph = function(graph) {
   url = attr(graph, "relationship_types")
-  result = fromJSON(httpGET(url))
+  response = http_request(url, "GET", "OK")
+  result = fromJSON(response)
   return(result)
 }
 

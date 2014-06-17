@@ -9,8 +9,7 @@ cypher.graph = function(graph, query, ...) {
             length(query) == 1)
   
   params = list(...)
-  
-  headers = list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  header = setHeaders()
   fields = list(query = query)
   
   # If parameters are supplied, add them to http request.
@@ -18,11 +17,15 @@ cypher.graph = function(graph, query, ...) {
     fields = c(fields, params = list(params))
   
   fields = toJSON(fields)
-  response = fromJSON(httpPOST(attr(graph, "cypher"), 
-                               httpheader = headers, 
-                               postfields = fields))
+  url = attr(graph, "cypher")
+  response = http_request(url,
+                          "POST",
+                          "OK",
+                          postfields = fields,
+                          httpheader = header)
   
-  data = response$data
+  result = fromJSON(response)
+  data = result$data
   
   replaceNULL = function(row) {
     new = lapply(row, function(r) ifelse(is.null(r), NA, r))
@@ -30,9 +33,7 @@ cypher.graph = function(graph, query, ...) {
   }
   
   data = lapply(data, replaceNULL)
-  
   options(stringsAsFactors = FALSE)
-  
   df = do.call(rbind.data.frame, data)
   
   if (is.empty(df)) {
@@ -40,7 +41,7 @@ cypher.graph = function(graph, query, ...) {
     return(invisible(NULL))
   } 
   
-  names(df) = response$columns
+  names(df) = result$columns
   row.names(df) = NULL
   return(df)
 }
