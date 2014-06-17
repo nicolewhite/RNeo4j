@@ -5,11 +5,12 @@
 Drop label(s) from a node.
 }
 \usage{
-dropLabel(node, ...)
+dropLabel(node, ..., all = FALSE)
 }
 \arguments{
   \item{node}{A node object from which to drop the given label(s).}
   \item{...}{The label(s) to drop from the node. Accepts a single string or strings separated by commas.}
+  \item{all}{Set to TRUE to drop all labels from the node.}
 }
 \examples{
 alice = createNode(graph, "Person", name = "Alice")
@@ -26,8 +27,8 @@ alice
 # $name
 # [1] "Alice"
 
-# Drop the Person and Student labels from the bob node.
-dropLabel(bob, "Person", "Student")
+# Drop all labels from the bob node.
+dropLabel(bob, all = TRUE)
 
 bob
 
