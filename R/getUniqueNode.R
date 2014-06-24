@@ -16,7 +16,8 @@ getUniqueNode.graph = function(graph, label, ...) {
     stop("Must supply a key = value pair.")
   
   # Check if uniqueness constraint exists.
-  if(!(names(param) %in% getConstraint(graph, label)$property_keys)) {
+  keys = invisible(getConstraint(graph, label))$property_keys
+  if(!(names(param) %in% keys)) {
     stop("The key = value pair given must have a uniqueness constraint applied.")
   }
   
