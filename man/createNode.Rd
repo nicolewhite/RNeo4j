@@ -23,8 +23,8 @@ mystery = createNode(graph)
 # Node with properties.
 alice = createNode(graph, name = "Alice", age = 23)
 
-# Node with label and properties.
-bob = createNode(graph, "Person", name = "Bob", age = 24)
+# Node with label and properties. Arrays can be added as properties as well.
+bob = createNode(graph, "Person", name = "Bob", age = 24, kids = c("Jenny", "Larry"))
 
 # Node with multiple labels and properties.
 charles = createNode(graph, 
