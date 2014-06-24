@@ -37,7 +37,6 @@ cypher.graph = function(graph, query, ...) {
   df = do.call(rbind.data.frame, data)
   
   if (is.empty(df)) {
-    message("Cypher executed, but did not return any results.")
     return(invisible(NULL))
   } 
   
