@@ -38,7 +38,7 @@ adjacencyMatrix.graph = function(graph, label, key, type, direction = character(
   
   query = paste0(query, 
                  " RETURN n1.", key, " AS node1, n2.", key, " AS node2,",
-                 " CASE WHEN p IS NOT NULL THEN 1 ELSE 0 END AS adj ORDER BY node1, node2")
+                 " CASE WHEN p IS NOT NULL THEN 1 ELSE 0 END AS adj")
   
   mat = cypher(graph, query)
   
