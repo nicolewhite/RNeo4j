@@ -31,7 +31,7 @@ getRels.graph = function(graph, query, ...) {
   
   set_class = function(i) {
     current = result[[i]][[1]]
-    if(unlist(strsplit(current$self, "/"))[6] != "relationship") {
+    if(!is.null(current$labels)) {
       stop("At least one entity returned is not a relationship. Check that your query is returning relationships.")
     }
     class(current) = c("entity", "relationship")
@@ -39,6 +39,6 @@ getRels.graph = function(graph, query, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  rels = lapply(result, configure_result)
+  rels = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password")))
   return(rels)
 }

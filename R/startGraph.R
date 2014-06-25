@@ -10,12 +10,9 @@ startGraph.default = function(url, username = character(), password = character(
     userpwd = paste0(username, ":", password)
     url = gsub("http://", paste0("http://", userpwd, "@"), url)
     response = http_request(url,"GET","OK")
+    
   } else {
     response = http_request(url,"GET","OK")
-  }
-  
-  if(class(response) == "try-error") {
-    stop("Connection failed. Check your URL and don't forget the trailing forward-slash.")
   }
   
   result = fromJSON(response)
@@ -34,7 +31,12 @@ startGraph.default = function(url, username = character(), password = character(
   # Remove trailing forward slash.
   url = substr(url, 1, nchar(url) - 1)
   attr(graph, "root") = url
-    
+  
+  if(length(username) == 1 && length(password) == 1) {
+    attr(graph, "username") = username
+    attr(graph, "password") = password
+  }
+  
   class(graph) = "graph"
   return(graph)
 }

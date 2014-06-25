@@ -31,6 +31,6 @@ outgoingRels.node = function(node, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  outgoing_rels = lapply(result, configure_result)
+  outgoing_rels = lapply(result, function(r) configure_result(r, attr(node, "username"), attr(node, "password")))
   return(outgoing_rels)
 }

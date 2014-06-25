@@ -30,10 +30,10 @@ getSingleRel.graph = function(graph, query, ...) {
   }
   
   result = result$data[[1]][[1]]
-  if(unlist(strsplit(result$self, "/"))[6] != "relationship") {
-    stop("The entity returned is not a relationship. Check that your query is returning a relationship.")
+  if(!is.null(result$labels)) {
+    stop("At least one entity returned is not a relationship. Check that your query is returning relationships.")
   }
   class(result) = c("entity", "relationship")
-  rel = configure_result(result)
+  rel = configure_result(result, attr(graph, "username"), attr(graph, "password"))
   return(rel)
 }

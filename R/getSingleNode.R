@@ -31,10 +31,10 @@ getSingleNode.graph = function(graph, query, ...) {
   }
   
   result = result$data[[1]][[1]]
-  if(unlist(strsplit(result$self, "/"))[6] != "node") {
-    stop("The entity returned is not a node. Check that your query is returning a node.")
+  if(!is.null(result$start)) {
+    stop("At least one entity returned is not a node. Check that your query is returning nodes.")
   }
   class(result) = c("entity", "node")
-  node = configure_result(result)
+  node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
   return(node)
 }

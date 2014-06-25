@@ -47,6 +47,6 @@ getLabeledNodes.graph = function(graph, label, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  nodes = lapply(result, configure_result)
+  nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password")))
   return(nodes)
 }

@@ -53,6 +53,6 @@ getUniqueNode.graph = function(graph, label, ...) {
   
   result = result[[1]]
   class(result) = c("entity", "node")
-  node = configure_result(result)
+  node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
   return(node)
 }

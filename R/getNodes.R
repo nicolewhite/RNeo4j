@@ -31,7 +31,7 @@ getNodes.graph = function(graph, query, ...) {
   
   set_class = function(i) {
     current = result[[i]][[1]]
-    if(unlist(strsplit(current$self, "/"))[6] != "node") {
+    if(!is.null(current$start)) {
       stop("At least one entity returned is not a node. Check that your query is returning nodes.")
     }
     class(current) = c("entity", "node")
@@ -39,6 +39,6 @@ getNodes.graph = function(graph, query, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  nodes = lapply(result, configure_result)
+  nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password")))
   return(nodes)
 }
