@@ -20,18 +20,24 @@ configure_result = function(result, username = NULL, password = NULL) {
   end = result$end
   
   if(!is.null(username) && !is.null(password)) {
-    userpwd = paste0("http://", username, ":", password, "@")
+    if (substr(self, 1, 5) == "https") {
+      front = "https://"
+    } else {
+      front = "http://"
+    }
     
-    self = gsub("http://", userpwd, self)
-    property = gsub("http://", userpwd, property)
-    properties = gsub("http://", userpwd, properties)
-    labels = gsub("http://", userpwd, labels)
-    create_rel = gsub("http://", userpwd, create_rel)
-    inc = gsub("http://", userpwd, inc)
-    out = gsub("http://", userpwd, out)
-    start = gsub("http://", userpwd, start)
-    type = gsub("http://", userpwd, type)
-    end = gsub("http://", userpwd, end)
+    userpwd = paste0(front, username, ":", password, "@")
+    
+    self = gsub(front, userpwd, self)
+    property = gsub(front, userpwd, property)
+    properties = gsub(front, userpwd, properties)
+    labels = gsub(front, userpwd, labels)
+    create_rel = gsub(front, userpwd, create_rel)
+    inc = gsub(front, userpwd, inc)
+    out = gsub(front, userpwd, out)
+    start = gsub(front, userpwd, start)
+    type = gsub(front, userpwd, type)
+    end = gsub(front, userpwd, end)
   }
   
   class = class(result)
