@@ -101,10 +101,6 @@ configure_vars = function(label, key, type, direction = character()) {
   return(list(label, key, type, inc, out))
 }
 
-.onLoad = function(...) {
-  packageStartupMessage("Disclaimer: This package is in pre-alpha phase. It is not optimized and it has not been thoroughly tested. Make a copy of your database before connecting with this package.")
-}
-
 setHeaders = function() {
   list('Accept' = 'application/json', 'Content-Type' = 'application/json')
 }
