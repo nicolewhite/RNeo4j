@@ -14,17 +14,15 @@ startNode(rel)
 A node object.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 
 rel = createRel(alice, "WORKS_WITH", bob)
 
 startNode(rel)
-
-# Labels: Person
-#
-# $name
-# [1] "Alice"
 }
 \seealso{
 	\code{\link{endNode}}

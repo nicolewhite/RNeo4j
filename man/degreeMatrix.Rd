@@ -26,6 +26,9 @@ A square, diagonal degree matrix.
 \code{\link{adjacencyMatrix}}
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 addConstraint(graph, "Person", "name")
 
 alice = createNode(graph, "Person", name = "Alex")
@@ -51,13 +54,7 @@ in_deg = degreeMatrix(graph,
                       type = "KNOWS",
                       direction = "incoming")
                       
-#         Alex Bob Charles Debby Elaine Forrest
-# Alex       1   0       0     0      0       0
-# Bob        0   1       0     0      0       0
-# Charles    0   0       1     0      0       0
-# Debby      0   0       0     2      0       0
-# Elaine     0   0       0     0      2       0
-# Forrest    0   0       0     0      0       1
+in_deg
 
 # Get an out-degree matrix.
 out_deg = degreeMatrix(graph,
@@ -66,13 +63,7 @@ out_deg = degreeMatrix(graph,
                        type = "KNOWS",
                        direction = "outgoing")
                        
-#         Alex Bob Charles Debby Elaine Forrest
-# Alex       2   0       0     0      0       0
-# Bob        0   2       0     0      0       0
-# Charles    0   0       1     0      0       0
-# Debby      0   0       0     2      0       0
-# Elaine     0   0       0     0      1       0
-# Forrest    0   0       0     0      0       0
+out_deg
 
 # Get a direction-agnostic degree matrix.
 deg = degreeMatrix(graph,
@@ -80,12 +71,6 @@ deg = degreeMatrix(graph,
                    key = "name",
                    type = "KNOWS")
                    
-#         Alex Bob Charles Debby Elaine Forrest
-# Alex       3   0       0     0      0       0
-# Bob        0   3       0     0      0       0
-# Charles    0   0       2     0      0       0
-# Debby      0   0       0     4      0       0
-# Elaine     0   0       0     0      3       0
-# Forrest    0   0       0     0      0       1                       
+deg                    
 }
 

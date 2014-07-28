@@ -1,6 +1,6 @@
 \name{getRels}
 \alias{getRels}
-\title{Retrieve Relationships from the Graph Database with Cypher Queries}
+\title{Retrieve Relationships with Cypher Queries}
 \description{
 Retrieve relationships from the graph with a Cypher query.
 }
@@ -16,6 +16,9 @@ getRels(graph, query, ...)
 A list of relationship objects. Returns NULL if no relationships are found.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 charles = createNode(graph, "Person", name = "Charles")
@@ -36,14 +39,10 @@ starts = lapply(all_knows, startNode)
 
 sapply(starts, function(s) s$name)
 
-# [1] "Alice"   "Alice"   "Charles"
-
 # Query with parameters.
 alice_outgoing = getRels(graph, "MATCH (:Person {name:{name}})-[r]->(:Person) RETURN r", name = "Alice")
 
 sapply(alice_outgoing, getType)
-
-# [1] "WORKS_WITH" "KNOWS" "KNOWS"  
 }
 \seealso{
 \code{\link{getSingleRel}}

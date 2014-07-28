@@ -2,7 +2,7 @@
 \alias{RNeo4j}
 \title{Interact with a Neo4j database in R.}
 \description{
-This R package allows you to easily populate and interact with a Neo4j database. It is intended for prototyping smaller datasets. It is also helpful if you are looking to frequently pull data from a Neo4j database into R data frames for analysis or plotting.
+This R package allows you to easily interact with a Neo4j database.
 }
 \details{
   \tabular{ll}{
@@ -14,6 +14,6 @@ This R package allows you to easily populate and interact with a Neo4j database.
 \author{
 Nicole White
 
-<nicole.m.white@outlook.com>
+<nicole@neotechnology.com>
 }
 

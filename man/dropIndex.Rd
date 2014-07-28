@@ -17,6 +17,9 @@ dropIndex(graph, label = character(), key = character(), all = FALSE)
 Dropping a uniqueness constraint necessarily drops the index as well. It is unnecessary to use \code{dropIndex} if \code{\link{dropConstraint}} has already been applied to the same \code{(label, key)} pair.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 createNode(graph, "Person", name = "Nicole", status = "Employed")
 createNode(graph, "Person", name = "Drew", status = "Employed")
 createNode(graph, "Person", name = "Aaron", status = "Unemployed")
@@ -28,24 +31,16 @@ addIndex(graph, "Person", "status")
 addIndex(graph, "School", "type")
 
 getIndex(graph)
-#   property_keys  label
-# 1        status Person
-# 2          type School
-
 
 # Drop the index on Person nodes by the name property.
 dropIndex(graph, "Person", "status")
 
 getIndex(graph)
-#   property_keys  label
-# 1          type School
-
 
 # Drop all indexes from the graph database.
 dropIndex(graph, all = TRUE)
 
 getIndex(graph)
-# No indexes in the graph.
 }
 \seealso{
 	\code{\link{addIndex}}, \code{\link{getIndex}}

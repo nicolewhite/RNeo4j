@@ -15,30 +15,13 @@ updateProp(object, ...)
 A node or relationship object.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
-
-alice
-
-# Labels: Person
-#
-# $name
-# [1] "Alice"
 
 # Update the age property and add an eyes property to the alice node.
 alice = updateProp(alice, age = 24, eyes = "green")
-
-alice
-
-# Labels: Person
-#
-# $name
-# [1] "Alice"
-#
-# $age
-# [1] 24
-#
-# $eyes
-# [1] "green"
 }
 \seealso{
 	\code{\link{deleteProp}}

@@ -1,6 +1,6 @@
 \name{getSingleRel}
 \alias{getSingleRel}
-\title{Retrieve Relationships from the Graph Database with Cypher Queries}
+\title{Retrieve Relationships with Cypher Queries}
 \description{
 Retrieve a single relationship from the graph with a Cypher query.
 }
@@ -19,6 +19,9 @@ If your Cypher query returns more than one relationship, you will just arbitrari
 A relationship object. Returns NULL if a relationship is not found.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 charles = createNode(graph, "Person", name = "Charles")
@@ -34,17 +37,7 @@ rel = getSingleRel(graph, query)
 
 startNode(rel)
 
-# Labels: Person
-#
-# $name
-# [1] "Alice"
-
 endNode(rel)
-
-# Labels: Person
-# 
-# $name
-# [1] "Bob"
 
 # Query with parameters.
 query = "MATCH (:Person {name:{start}})-[r:KNOWS]->(:Person {name:{end}})
@@ -54,17 +47,7 @@ rel = getSingleRel(graph, query, start = "Bob", end = "Charles")
 
 startNode(rel)
 
-# Labels: Person
-# 
-# $name
-# [1] "Bob"
-
 endNode(rel)
-
-# Labels: Person
-#
-# $name
-# [1] "Charles"
 }
 \seealso{
 \code{\link{getRels}}

@@ -14,6 +14,9 @@ delete(...)
 Nodes with incoming or outgoing relationships cannot be deleted. All incoming and outgoing relationships need to be deleted before the node can be deleted.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, name = "Alice")
 bob = createNode(graph, name = "Bob")
 

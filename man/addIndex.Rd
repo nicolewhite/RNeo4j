@@ -16,6 +16,9 @@ addIndex(graph, label, key)
 An index already exists for any (label, key) pair that has a uniqueness constraint applied. Attempting to add an index where a uniqueness constraint already exists results in an error. Use \code{\link{getConstraint}} to view any pre-existing uniqueness constraints. If a uniqueness constraint already exists for the (label, key) pair, then it must be true that the index exists as well; adding an index is unnecessary.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 createNode(graph, "Person", name = "Nicole", status = "Employed")
 createNode(graph, "Person", name = "Drew", status = "Employed")
 createNode(graph, "Person", name = "Aaron", status = "Unemployed")

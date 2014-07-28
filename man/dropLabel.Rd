@@ -13,30 +13,17 @@ dropLabel(node, ..., all = FALSE)
   \item{all}{Set to TRUE to drop all labels from the node.}
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, c("Person", "Student"), name = "Bob")
 
 # Drop the Person label from the alice node.
 dropLabel(alice, "Person")
 
-alice
-
-# Labels: 
-# No labels on the node.
-#
-# $name
-# [1] "Alice"
-
 # Drop all labels from the bob node.
 dropLabel(bob, all = TRUE)
-
-bob
-
-# Labels: 
-# No labels on the node.
-#
-# $name
-# [1] "Bob"
 }
 \seealso{
 	\code{\link{addLabel}}, \code{\link{getLabel}}

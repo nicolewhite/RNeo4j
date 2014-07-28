@@ -18,6 +18,9 @@ A data frame. Returns NULL if no constraints are found.
 Supplying only a graph object as an argument returns all uniqueness constraints in the graph database.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 
@@ -30,15 +33,8 @@ addConstraint(graph, "City", "name")
 # Get all uniqueness constraints on Person nodes.
 getConstraint(graph, "Person")
 
-#   property_keys  label       type
-# 1          name Person UNIQUENESS
-
 # Get all uniqueness constraints in the graph database.
 getConstraint(graph)
-
-#   property_keys  label       type
-# 1          name   City UNIQUENESS
-# 2          name Person UNIQUENESS
 }
 \seealso{
 	\code{\link{addConstraint}}, \code{\link{dropConstraint}}

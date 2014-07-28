@@ -11,5 +11,6 @@ clear(graph)
   \item{graph}{The graph object to be cleared.}
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
 clear(graph)
 }

@@ -15,5 +15,8 @@ importSample(graph, data)
 As of now, the only example dataset available is the movie dataset. This can be accessed by setting data = "movies".
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 importSample(graph, "movies")
 }

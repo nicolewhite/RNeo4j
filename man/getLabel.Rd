@@ -17,6 +17,9 @@ A character vector.
 Supplying a node object returns all node labels for the given node. Supplying a graph object returns all node labels in the graph. 
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, name = "Alice")
 bob = createNode(graph, name = "Bob")
 
@@ -26,12 +29,8 @@ addLabel(bob, "Person", "Student")
 # View all labels on the alice node.
 getLabel(alice)
 
-# [1] "Student"
-
 # View all node labels in the graph database.
 getLabel(graph)
-
-# [1] "Student" "Person"
 }
 \seealso{
 	\code{\link{addLabel}}, \code{\link{dropLabel}}

@@ -1,6 +1,6 @@
 \name{getNodes}
 \alias{getNodes}
-\title{Retrieve Nodes from the Graph Database with Cypher Queries}
+\title{Retrieve Nodes with Cypher Queries}
 \description{
 Retrieve nodes from the graph with a Cypher query.
 }
@@ -16,6 +16,9 @@ getNodes(graph, query, ...)
 A list of node objects. Returns NULL if no nodes are found.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 createNode(graph, "Person", name = "Alice", age = 23)
 createNode(graph, "Person", name = "Bob", age = 22)
 createNode(graph, "Person", name = "Charles", age = 25)
@@ -29,8 +32,6 @@ younger_than_25 = getNodes(graph, query)
 
 sapply(younger_than_25, function(p) p$name)
 
-# [1] "Alice" "Bob"  
-
 # Query with parameters.
 query = "MATCH (p:Person) 
          WHERE p.age > {age} 
@@ -39,8 +40,6 @@ query = "MATCH (p:Person)
 older_than_22 = getNodes(graph, query, age = 22)
 
 sapply(older_than_22, function(p) p$name)
-
-# [1] "Alice"   "Charles"
 }
 \seealso{
 \code{\link{getSingleNode}}

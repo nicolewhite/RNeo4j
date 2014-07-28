@@ -15,6 +15,9 @@ outgoingRels(node, ...)
 A list of relationship objects.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 charles = createNode(graph, "Person", name = "Charles")
@@ -36,8 +39,6 @@ ends = lapply(bob_outgoing, endNode)
 
 sapply(ends, function(e) e$name)
 
-# [1] "David" "Charles"
-
 # Get all outgoing "KNOWS" relationships on the alice node.
 alice_outgoing_knows = outgoingRels(alice, "KNOWS")
 
@@ -45,8 +46,6 @@ alice_outgoing_knows = outgoingRels(alice, "KNOWS")
 ends = lapply(alice_outgoing_knows, endNode)
 
 sapply(ends, function(e) e$name)
-
-# [1] "Bob" "Charles"
 }
 \seealso{
 \code{\link{incomingRels}}

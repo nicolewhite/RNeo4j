@@ -11,12 +11,15 @@ getType(object)
 	\item{object}{The object for which to view the relationship type(s). Accepts a relationship or graph object (see details).}
 }
 \value{
-A string or character vector.
+A character vector.
 }
 \details{
 Supplying a relationship object returns the type of the relationship as a string. Supplying a graph object returns all relationship types in the graph as a character vector. 
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, "Person", name = "Alice")
 bob = createNode(graph, "Person", name = "Bob")
 charles = createNode(graph, "Person", name = "Charles")
@@ -26,9 +29,5 @@ rel = createRel(alice, "KNOWS", bob)
 
 getType(rel)
 
-# [1] "KNOWS"
-
 getType(graph)
-
-# [1] "KNOWS" "WORKS_WITH"
 }

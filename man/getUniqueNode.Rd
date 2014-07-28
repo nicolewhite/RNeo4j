@@ -1,6 +1,6 @@
 \name{getUniqueNode}
 \alias{getUniqueNode}
-\title{Retrieve Nodes from the Graph Database by Label and Property}
+\title{Retrieve Nodes by Label and Property}
 \description{
 Retrieve a single node from the graph by specifying its label and unique key = value pair.
 }
@@ -19,19 +19,15 @@ A node object. Returns NULL if a node is not found.
 A uniqueness constraint must exist on the (label, key) pair in order to use this function. Specify a uniqueness constraint first with \code{\link{addConstraint}}.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 createNode(graph, "Person", name = "Alice")
 createNode(graph, "Person", name = "Bob")
 
 addConstraint(graph, "Person", "name")
 
 alice = getUniqueNode(graph, "Person", name = "Alice")
-
-alice
-
-# Labels: Person
-#
-# $name
-# [1] "Alice"
 }
 \seealso{
 \code{\link{getLabeledNodes}}

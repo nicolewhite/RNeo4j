@@ -17,6 +17,9 @@ createNode(graph, label = character(), ...)
 A node object.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 # Node without properties.
 mystery = createNode(graph)
 

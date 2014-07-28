@@ -14,6 +14,9 @@ dropConstraint(graph, label = character(), key = character(), all = FALSE)
   \item{all}{Set to TRUE to drop all uniqueness constraints from the graph.}
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 createNode(graph, "Person", name = "Alice")
 createNode(graph, "Person", name = "Bob")
 
@@ -25,24 +28,15 @@ addConstraint(graph, "City", "name")
 
 getConstraint(graph)
 
-#   property_keys  label       type
-# 1          name   City UNIQUENESS
-# 2          name Person UNIQUENESS
-
 # Drop the uniqueness constraint on Person nodes by the name property.
 dropConstraint(graph, "Person", "name")
 
 getConstraint(graph)
 
-#   property_keys label       type
-# 1          name  City UNIQUENESS
-
 # Drop all uniqueness constraints from the graph database.
 dropConstraint(graph, all = TRUE)
 
 getConstraint(graph)
-
-# No constraints in the graph.
 }
 \seealso{
 	\code{\link{addConstraint}}, \code{\link{getConstraint}}

@@ -26,6 +26,9 @@ A square adjacency matrix. If a direction is not supplied, the matrix will be sy
 \code{\link{degreeMatrix}}
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 addConstraint(graph, "Person", "name")
 
 alice = createNode(graph, "Person", name = "Alice")
@@ -53,14 +56,6 @@ out_adj = adjacencyMatrix(graph,
                           
 out_adj
 
-#        Alice Bob Charles Debby Elaine Forrest
-# Alice      0   1       0     0      1       0
-# Bob        0   0       1     0      1       0
-# Charles    0   0       0     1      0       0
-# Debby      1   0       0     0      0       1
-# Elaine     0   0       0     1      0       0
-# Forrest    0   0       0     0      0       0
-
 # Get a directed adjacency matrix of incoming "KNOWS" relationships.
 in_adj = adjacencyMatrix(graph, 
                          label = "Person",
@@ -70,23 +65,11 @@ in_adj = adjacencyMatrix(graph,
                          
 in_adj
 
-#        Alice Bob Charles Debby Elaine Forrest
-# Alice      0   0       0     1      0       0
-# Bob        1   0       0     0      0       0
-# Charles    0   1       0     0      0       0
-# Debby      0   0       1     0      1       0
-# Elaine     1   1       0     0      0       0
-# Forrest    0   0       0     1      0       0
-
 # The incoming relationship matrix is equal to the transpose of the 
 # outgoing adjacency matrix and vice versa.
 identical(in_adj, t(out_adj))
 
-# [1] TRUE
-
 identical(out_adj, t(in_adj))
-
-# [1] TRUE
 
 # Get a direction-agnostic adjacency matrix of "KNOWS" relationships.
 adj = adjacencyMatrix(graph, 
@@ -95,12 +78,4 @@ adj = adjacencyMatrix(graph,
                       type = "KNOWS")
                       
 adj
-
-#        Alice Bob Charles Debby Elaine Forrest
-# Alice      0   1       0     1      1       0
-# Bob        1   0       1     0      1       0
-# Charles    0   1       0     1      0       0
-# Debby      1   0       1     0      1       1
-# Elaine     1   1       0     1      0       0
-# Forrest    0   0       0     1      0       0
 }

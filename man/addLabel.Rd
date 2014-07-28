@@ -12,6 +12,9 @@ addLabel(node, ...)
   \item{...}{The label(s) to add to the node. Accepts a string or strings separated by commas.}
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 alice = createNode(graph, name = "Alice")
 bob = createNode(graph, name = "Bob")
 

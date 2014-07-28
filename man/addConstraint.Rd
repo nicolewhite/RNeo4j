@@ -20,6 +20,9 @@ Adding a uniqueness constraint will necessarily create an index.
 Attempting to add a uniqueness constraint to data that violates the uniqueness constraint results in an error.
 }
 \examples{
+graph = startGraph("http://localhost:7474/db/data/")
+clear(graph)
+
 createNode(graph, "Person", name = "Alice")
 createNode(graph, "Person", name = "Bob")
 
