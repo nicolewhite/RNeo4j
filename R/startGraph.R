@@ -31,6 +31,7 @@ startGraph.default = function(url, username = character(), password = character(
   attr(graph, "indexes") = paste0(url, "schema/index")
   attr(graph, "constraints") = paste0(url, "schema/constraint")
   attr(graph, "node_labels") = paste0(url, "labels")
+  attr(graph, "transaction") = paste0(url, "transaction")
   
   # Remove trailing forward slash.
   url = substr(url, 1, nchar(url) - 1)
