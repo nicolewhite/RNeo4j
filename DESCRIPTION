@@ -5,9 +5,8 @@ Version: 1.0
 Date: 2014-05-02
 Author: Nicole White
 License: GPL-3
-LazyData: true
 Imports: RCurl, RJSONIO
-Maintainer: <nicole.m.white@outlook.com>
-Description: Easily populate a Neo4j graph database from your R environment. Ideal for prototyping smaller datasets. It is also helpful if you are looking to frequently pull data from a Neo4j database into an R data frame for analysis or plotting.
+Maintainer: <nicole@neotechnology.com>
+Description: Easily interact with a Neo4j graph database from your R environment.
 URL: nicolewhite.github.io/RNeo4j
 
