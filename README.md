@@ -10,4 +10,4 @@ library(RNeo4j)
 
 Compatible with Neo4j >= 2.0.
 
-[Documentation.](http://nicolewhite.github.io/RNeo4j/)
+[Documentation.](http://nicolewhite.github.io/RNeo4j/docs/)
