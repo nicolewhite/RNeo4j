@@ -102,7 +102,9 @@ configure_vars = function(label, key, type, direction = character()) {
 }
 
 setHeaders = function() {
-  list('Accept' = 'application/json', 'Content-Type' = 'application/json')
+  list('Accept' = 'application/json', 
+       'Content-Type' = 'application/json',
+       'X-Stream' = TRUE)
 }
 
 http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL) {
