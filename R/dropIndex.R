@@ -27,14 +27,14 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
       errors = c()
       for(i in 1:nrow(overlap)) {
         errors = c(errors, 
-                   "There is a uniqueness constraint for label '", overlap[i,2], "' on property '", overlap[i,1], "'.\n")
+                   "There is a uniqueness constraint for label '", overlap[i,'label'], "' on property '", overlap[i,'property_keys'], "'.\n")
       }
       stop(errors,
            "Remove the uniqueness constraint(s) instead using dropConstraint(). This drops the index(es) as well.")
       return(invisible(NULL))
     }
     
-    urls = apply(indexes, 1, function(x) paste(url, x[2], x[1], sep = "/"))
+    urls = apply(indexes, 1, function(x) paste(url, x['label'], x['property_keys'], sep = "/"))
     
     for(i in 1:length(urls)) {
       http_request(urls[i],

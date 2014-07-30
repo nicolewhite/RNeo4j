@@ -20,7 +20,7 @@ dropConstraint.graph = function(graph, label = character(), key = character(), a
       return(invisible(NULL))
     }
     
-    urls = apply(constraints, 1, function(c) paste(url, c[2], "uniqueness", c[1], sep = "/"))
+    urls = apply(constraints, 1, function(c) paste(url, c['label'], "uniqueness", c['property_keys'], sep = "/"))
     lapply(urls, function(u) http_request(u, "DELETE", "No Content"))
     return(invisible(NULL))
     
