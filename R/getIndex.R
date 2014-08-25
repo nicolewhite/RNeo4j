@@ -11,8 +11,21 @@ getIndex.graph = function(graph, label = character()) {
   
   # If label not provided, get indexes for the entire graph.
   if(length(label) == 0) {
-    response = http_request(url, "GET", "OK")
-    result = fromJSON(response)
+    labels = suppressMessages(getLabel(graph))
+    result = list()
+    if(length(labels) == 0) {
+      message("No indexes in the graph.")
+      return(invisible(NULL))
+    }
+    urls = lapply(labels, function(l) paste(url, l, sep = "/"))
+    for(i in 1:length(urls)) {
+      response = http_request(urls[[i]], "GET", "OK")
+      response = fromJSON(response)
+      if(length(response) == 0) {
+        next
+      }
+      result = c(result, response)
+    }
     
     if(length(result) == 0) {
       message("No indexes in the graph.")

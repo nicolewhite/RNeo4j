@@ -7,12 +7,13 @@ createNode.default = function(x, ...) {
 createNode.graph = function(graph, label = character(), ...) {
   stopifnot(is.character(label))
   
-  props = list(...)
   header = setHeaders()
   fields = NULL
   
-  if(length(props) > 0)
-    fields = toJSON(props)
+  params = list(...)
+  
+  if(length(params) > 0)
+    fields = toJSON(params)
   
   url = attr(graph, "node")
   response = http_request(url,

@@ -12,14 +12,14 @@ createRel.node = function(fromNode, type, toNode, ...) {
     stop("Cannot have spaces in relationship types. Use UNDER_SCORES instead.")
   }
   
-  props = list(...)
   header = setHeaders()
   
   fields = list(to = attr(toNode, "self"), type = type)
   
+  params = list(...)
   # If user supplied properties, append them to request.
-  if(length(props) > 0)
-    fields = c(fields, data = list(props))
+  if(length(params) > 0)
+    fields = c(fields, data = list(params))
   
   fields = toJSON(fields)
   url = attr(fromNode, "create_relationship")
