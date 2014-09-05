@@ -2,7 +2,7 @@ createRel = function(.fromNode, .relType, .toNode, ...) {
   UseMethod("createRel")
 }
 
-createRel.default = function(a, ...) {
+createRel.default = function(x, ...) {
   stop("Invalid object. Must supply node object.")
 }
 
