@@ -9,4 +9,3 @@ Imports: RCurl, RJSONIO
 Maintainer: <nicole@neotechnology.com>
 Description: Easily interact with a Neo4j graph database from your R environment.
 URL: nicolewhite.github.io/RNeo4j
-
