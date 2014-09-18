@@ -1,11 +1,11 @@
-getUniqueNode = function(graph, label, ...) UseMethod("getUniqueNode")
+getUniqueNode = function(graph, .label, ...) UseMethod("getUniqueNode")
 
 getUniqueNode.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
-getUniqueNode.graph = function(graph, label, ...) {
-  stopifnot(is.character(label))
+getUniqueNode.graph = function(graph, .label, ...) {
+  stopifnot(is.character(.label))
   
   param = c(...)
   
@@ -16,12 +16,12 @@ getUniqueNode.graph = function(graph, label, ...) {
     stop("Must supply a key = value pair.")
   
   # Check if uniqueness constraint exists.
-  keys = invisible(getConstraint(graph, label))$property_keys
+  keys = invisible(getConstraint(graph, .label))$property_keys
   if(!(names(param) %in% keys)) {
     stop("The key = value pair given must have a uniqueness constraint applied.")
   }
   
-  url = paste0(attr(graph, "root"), "/label/", label, "/nodes?", names(param), "=")
+  url = paste0(attr(graph, "root"), "/label/", .label, "/nodes?", names(param), "=")
   
   if(is.character(param[[1]])) {
     param[[1]] = URLencode(param[[1]], reserved = TRUE)
