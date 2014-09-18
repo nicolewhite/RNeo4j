@@ -141,9 +141,18 @@ find_max_dig = function(params) {
   max_digits = 0
   for(i in 1:length(params)) {
     if(is.numeric(params[[i]])) {
-      dig = nchar(params[[i]])
-      if(dig > max_digits) {
-        max_digits = dig
+      if(length(params[[i]]) > 1) {
+        for(j in 1:length(params[[i]])) {
+          dig = nchar(params[[i]][j])
+          if(dig > max_digits) {
+            max_digits = dig
+          }
+        }
+      } else {
+        dig = nchar(params[[i]])
+        if(dig > max_digits) {
+          max_digits = dig
+        }
       }
     }
   }
