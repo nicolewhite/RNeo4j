@@ -136,3 +136,16 @@ http_request = function(url, request_type, wanted_status, postfields = NULL, htt
     return(text)
   }
 }
+
+find_max_dig = function(params) {
+  max_digits = 0
+  for(i in 1:length(params)) {
+    if(is.numeric(params[[i]])) {
+      dig = nchar(params[[i]])
+      if(dig > max_digits) {
+        max_digits = dig
+      }
+    }
+  }
+  return(max_digits)
+}
