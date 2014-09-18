@@ -32,7 +32,8 @@ getSingleRel.graph = function(graph, query, ...) {
   }
   
   result = result$data[[1]][[1]]
-  if(!is.null(result$labels)) {
+  is.rel = try(result$labels, silent = T)
+  if(!is.null(is.rel) | class(is.rel) == "try-error") {
     stop("At least one entity returned is not a relationship. Check that your query is returning relationships.")
   }
   class(result) = c("entity", "relationship")

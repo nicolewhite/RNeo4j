@@ -33,7 +33,8 @@ getRels.graph = function(graph, query, ...) {
   
   set_class = function(i) {
     current = result[[i]][[1]]
-    if(!is.null(current$labels)) {
+    is.rel = try(current$labels, silent = T)
+    if(!is.null(is.rel) | class(is.rel) == "try-error") {
       stop("At least one entity returned is not a relationship. Check that your query is returning relationships.")
     }
     class(current) = c("entity", "relationship")

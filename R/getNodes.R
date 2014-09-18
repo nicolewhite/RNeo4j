@@ -33,7 +33,8 @@ getNodes.graph = function(graph, query, ...) {
   
   set_class = function(i) {
     current = result[[i]][[1]]
-    if(!is.null(current$start)) {
+    is.node = try(current$start, silent = T)
+    if(!is.null(is.node) | class(is.node) == "try-error") {
       stop("At least one entity returned is not a node. Check that your query is returning nodes.")
     }
     class(current) = c("entity", "node")

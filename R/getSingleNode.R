@@ -33,7 +33,8 @@ getSingleNode.graph = function(graph, query, ...) {
   }
   
   result = result$data[[1]][[1]]
-  if(!is.null(result$start)) {
+  is.node = try(result$start, silent = T)
+  if(!is.null(is.node) | class(is.node) == "try-error") {
     stop("At least one entity returned is not a node. Check that your query is returning nodes.")
   }
   class(result) = c("entity", "node")
