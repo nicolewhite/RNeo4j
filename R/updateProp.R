@@ -37,5 +37,3 @@ updateProp.entity = function(entity, ...) {
   }
   return(entity)
 }
-
-
