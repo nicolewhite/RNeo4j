@@ -5,12 +5,12 @@
 Create a relationship between two nodes with the given type and properties.
 }
 \usage{
-createRel(fromNode, type, toNode, ...)
+createRel(.fromNode, .relType, .toNode, ...)
 }
 \arguments{
-  \item{fromNode}{A node object from which the relationship will be outgoing.}
-  \item{type}{A relationship type in the form of a string (see details).}
-  \item{toNode}{A node object to which the relationship will be incoming.}
+  \item{.fromNode}{A node object from which the relationship will be outgoing.}
+  \item{.relType}{A relationship type in the form of a string.}
+  \item{.toNode}{A node object to which the relationship will be incoming.}
   \item{...}{Optional relationship properties in the form key = value (separated by commas).}
 }
 \value{

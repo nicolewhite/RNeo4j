@@ -5,11 +5,11 @@
 Retrieve a single node from the graph by specifying its label and unique key = value pair.
 }
 \usage{
-getUniqueNode(graph, label, ...)
+getUniqueNode(graph, .label, ...)
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{A node label. Accepts a string.}
+  \item{.label}{A node label. Accepts a string.}
   \item{...}{A key = value pair by which the node label is uniquely constrained. Only accepts one key = value pair.}
 }
 \value{

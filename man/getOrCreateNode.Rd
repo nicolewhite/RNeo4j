@@ -5,11 +5,11 @@
 Create a unique node or retrieve it if it already exists.
 }
 \usage{
-getOrCreateNode(graph, label, ...)
+getOrCreateNode(graph, .label, ...)
 }
 \arguments{
 	\item{graph}{A graph object.}
-	\item{label}{A node label. Accepts a string.}
+	\item{.label}{A node label. Accepts a string.}
 	\item{...}{Node properties in the form key = value, separated by commas. The first key = value pair listed must be the uniquely constrained key = value pair for the given node label.}
 }
 \value{

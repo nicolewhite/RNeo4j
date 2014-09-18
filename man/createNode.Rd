@@ -5,11 +5,11 @@
 Create a node in the graph with the given label and properties.
 }
 \usage{
-createNode(graph, label = character(), ...)
+createNode(graph, .label = character(), ...)
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{Optional node label(s). Accepts a string or vector of strings.}
+  \item{.label}{Optional node label(s). Accepts a string or vector of strings.}
   \item{...}{Optional node properties in the form key = value (separated by commas).}
   
 }
