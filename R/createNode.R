@@ -11,9 +11,11 @@ createNode.graph = function(graph, .label = character(), ...) {
   fields = NULL
   
   params = list(...)
-  if(length(params) > 0)
-    fields = toJSON(params)
-  
+  if(length(params) > 0) {
+    max_digits = find_max_dig(params)
+    fields = toJSON(params, digits = max_digits)
+  }
+
   url = attr(graph, "node")
   response = http_request(url,
                           "POST",

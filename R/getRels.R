@@ -11,10 +11,12 @@ getRels.graph = function(graph, query, ...) {
   params = list(...)  
   fields = list(query = query)
   
-  if(length(params) > 0)
+  if(length(params) > 0) {
     fields = c(fields, params = list(params))
+    max_digits = find_max_dig(params)
+  }
   
-  fields = toJSON(fields)
+  fields = toJSON(fields, digits = max_digits)
   url = attr(graph, "cypher")
   response = http_request(url,
                           "POST",

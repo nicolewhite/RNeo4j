@@ -15,9 +15,10 @@ appendCypher.transaction = function(transaction, query, ...) {
   
   if(length(params) > 0) {
     fields = c(fields, parameters = list(params))
+    max_digits = find_max_dig(params)
   }
   
-  postfields = paste0("{\"statements\":[", toJSON(fields), "]}")
+  postfields = paste0("{\"statements\":[", toJSON(fields, digits = max_digits), "]}")
   
   http_request(url,
                "POST",

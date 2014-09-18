@@ -21,10 +21,14 @@ createRel.node = function(.fromNode, .relType, .toNode, ...) {
   params = list(...)
   
   # If user supplied properties, append them to request.
-  if(length(params) > 0)
+  if(length(params) > 0) {
     fields = c(fields, data = list(params))
-  
-  fields = toJSON(fields)
+    # Make sure larger numbers aren't rounded.
+    max_digits = find_max_dig(params)
+  }
+    
+
+  fields = toJSON(fields, digits = max_digits)
   url = attr(.fromNode, "create_relationship")
   response = http_request(url,
                           "POST",

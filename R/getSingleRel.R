@@ -12,10 +12,12 @@ getSingleRel.graph = function(graph, query, ...) {
   params = list(...)  
   fields = list(query = query)
 
-  if(length(params) > 0)
+  if(length(params) > 0) {
+    max_digits = find_max_dig(params)
     fields = c(fields, params = list(params))
-
-  fields = toJSON(fields)
+  }
+    
+  fields = toJSON(fields, digits = max_digits)
   url = attr(graph, "cypher")
   response = http_request(url,
                           "POST",

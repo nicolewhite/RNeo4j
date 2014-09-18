@@ -13,10 +13,13 @@ cypher.graph = function(graph, query, ...) {
   fields = list(query = query)
   
   # If parameters are supplied, add them to http request.
-  if(length(params) > 0)
+  if(length(params) > 0) {
     fields = c(fields, params = list(params))
+    # Make sure larger numbers aren't rounded.
+    max_digits = find_max_dig(params)
+  }
   
-  fields = toJSON(fields)
+  fields = toJSON(fields, digits = max_digits)
   url = attr(graph, "cypher")
   response = http_request(url,
                           "POST",
@@ -36,7 +39,7 @@ cypher.graph = function(graph, query, ...) {
   options(stringsAsFactors = FALSE)
   df = do.call(rbind.data.frame, data)
   
-  if (is.empty(df)) {
+  if(is.empty(df)) {
     return(invisible(NULL))
   } 
   
