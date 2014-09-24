@@ -38,6 +38,6 @@ createRel.node = function(.fromNode, .relType, .toNode, ...) {
 
   result = fromJSON(response)
   class(result) = c("entity", "relationship")
-  rel = configure_result(result, attr(graph, "username"), attr(graph, "password"))
+  rel = configure_result(result, attr(.fromNode, "username"), attr(.fromNode, "password"))
   return(rel)
 }
