@@ -1,6 +1,6 @@
 \name{clear}
 \alias{clear}
-\title{Clear the Graph Database}
+\title{Clear the Database}
 \description{
 Delete all nodes, relationships, constraints, and indexes from the graph database.
 }

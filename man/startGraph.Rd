@@ -1,6 +1,6 @@
 \name{startGraph}
 \alias{startGraph}
-\title{Connect to the Graph Database}
+\title{Connect to the Database}
 \description{
 Establish a connection to the graph database.
 }
