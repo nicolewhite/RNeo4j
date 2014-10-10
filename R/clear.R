@@ -1,13 +1,19 @@
-clear = function(graph) UseMethod("clear")
+clear = function(graph, input = TRUE) UseMethod("clear")
 
-clear.default = function(x) {
+clear.default = function(x, ...) {
   stop("Invalid object. Must supply a graph object.")
 }
 
-clear.graph = function(graph) {
-  message("You are about to delete all nodes, relationships, indexes, and constraints from the graph database. Are you sure? Y/N")
-  answer = scan(what = character(), nmax = 1, quiet = TRUE)
+clear.graph = function(graph, input = TRUE) {
+  stopifnot(is.logical(input))
   
+  if(input == FALSE) {
+    answer = "Y"
+  } else{
+    message("You are about to delete all nodes, relationships, indexes, and constraints from the graph database. Are you sure? Y/N")
+    answer = scan(what = character(), nmax = 1, quiet = TRUE)
+  }
+
   if(answer == "Y") {
     suppressMessages(dropConstraint(graph, all = TRUE))
     suppressMessages(dropIndex(graph, all = TRUE))
