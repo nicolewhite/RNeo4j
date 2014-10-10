@@ -5,11 +5,11 @@
 Retrieve nodes from the graph with the specified label and optional key = value pair.
 }
 \usage{
-getLabeledNodes(graph, label, ...)
+getLabeledNodes(graph, .label, ...)
 }
 \arguments{
   \item{graph}{A graph object.}
-  \item{label}{A node label. Accepts a string.}
+  \item{.label}{A node label. Accepts a string.}
   \item{...}{An optional key = value pair by which to filter the results. Only accepts one key = value pair.}
 }
 \value{

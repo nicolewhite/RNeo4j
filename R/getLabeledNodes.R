@@ -1,14 +1,14 @@
-getLabeledNodes = function(graph, label, ...) UseMethod("getLabeledNodes")
+getLabeledNodes = function(graph, .label, ...) UseMethod("getLabeledNodes")
 
 getLabeledNodes.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
-getLabeledNodes.graph = function(graph, label, ...) {
-  stopifnot(is.character(label))
+getLabeledNodes.graph = function(graph, .label, ...) {
+  stopifnot(is.character(.label))
 
   header = setHeaders()
-  url = paste(attr(graph, "root"), "label", label, "nodes", sep = "/")
+  url = paste(attr(graph, "root"), "label", .label, "nodes", sep = "/")
   param = c(...)
   
   if(length(param) > 1)
@@ -37,7 +37,7 @@ getLabeledNodes.graph = function(graph, label, ...) {
   result = fromJSON(response)
 
   if(length(result) == 0) {
-    message(paste0("No nodes with label '", label, "'."))
+    message(paste0("No nodes with label '", .label, "'."))
     return(invisible(NULL))
   }
   
