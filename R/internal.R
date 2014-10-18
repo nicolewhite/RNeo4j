@@ -118,23 +118,9 @@ http_request = function(url, request_type, wanted_status, postfields = NULL, htt
 }
 
 find_max_dig = function(params) {
-  max_digits = 0
-  for(i in 1:length(params)) {
-    if(is.numeric(params[[i]])) {
-      if(length(params[[i]]) > 1) {
-        for(j in 1:length(params[[i]])) {
-          dig = nchar(params[[i]][j])
-          if(dig > max_digits) {
-            max_digits = dig
-          }
-        }
-      } else {
-        dig = nchar(params[[i]])
-        if(dig > max_digits) {
-          max_digits = dig
-        }
-      }
-    }
+  max_dig = 0
+  if(any(sapply(params, class) == "numeric")) {
+    max_dig = max(unlist(sapply(params[sapply(params, class) == "numeric"], nchar)))
   }
-  return(max_digits)
+  return(max_dig)
 }
