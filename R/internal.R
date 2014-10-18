@@ -1,10 +1,3 @@
-is.empty = function(data) {
-  stopifnot(is.data.frame(data))
-  row = dim(data)[1]
-  col = dim(data)[2]
-  return(row == 0 & col == 0)
-}
-
 configure_result = function(result, username = NULL, password = NULL) {
   # Only keep things I need for later REST API calls.
   data = result$data
