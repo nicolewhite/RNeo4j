@@ -12,7 +12,7 @@ cypher(graph, query, ...)
   \item{...}{Optional parameters to pass to the query in the form key = value, if applicable.}
 }
 \details{
-If returning data, you can only query for tabular results. That is, this method has no current functionality for Cypher results containing array properties, collections, nodes, or relationships.
+If returning data, you can only query for tabular results. That is, you can't return node or relationship entities. See \code{\link{getNodes}} and \code{\link{getRels}} for returning entities.
 
 You can send Cypher queries without any return values (i.e., a Cypher query without the word \code{RETURN} in it).
 }
@@ -23,9 +23,14 @@ A data frame. Cypher queries returning no results will return NULL.
 graph = startGraph("http://localhost:7474/db/data/")
 clear(graph)
 
-createNode(graph, name = "Alice", age = 23)
-createNode(graph, name = "Bob", age = 22)
-createNode(graph, name = "Charles", age = 25)
+alice = createNode(graph, "Person", name = "Alice", age = 23)
+bob = createNode(graph, "Person", name = "Bob", age = 22)
+charles = createNode(graph, "Person", name = "Charles", age = 25)
+david = createNode(graph, "Person", name = "David", age = 20)
+
+createRel(alice, "KNOWS", bob)
+createRel(alice, "KNOWS", charles)
+createRel(charles, "KNOWS", david)
 
 # Query without parameters.
 cypher(graph, "MATCH n RETURN n.name, n.age")
@@ -40,11 +45,17 @@ names = c("Alice", "Charles")
 cypher(graph,
 	   "MATCH n WHERE n.name IN {names} RETURN n.name, n.age",
 	   names = names)
+     
+# Query that returns a collection.
+# The 'friends' column will have lists as values.
+df = cypher(graph, "MATCH (n)-[:KNOWS]-(m) RETURN n.name, COLLECT(m.name) AS friends, COUNT(m) AS num_friends")
+sapply(df, class)
+df$friends
 
 # Query that doesn't return anything.
 cypher(graph, 
-	   "MATCH n SET n.born = {year} - n.age REMOVE n.age",
-	   year = 2014)
+	     "MATCH n SET n.born = {year} - n.age REMOVE n.age",
+	     year = 2014)
 
 cypher(graph, 'MATCH n RETURN n.name, n.born')
 }
