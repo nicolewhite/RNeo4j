@@ -34,7 +34,7 @@ getSingleRel.graph = function(graph, query, ...) {
   result = result$data[[1]][[1]]
   is.rel = try(result$labels, silent = T)
   if(!is.null(is.rel) | class(is.rel) == "try-error") {
-    stop("At least one entity returned is not a relationship. Check that your query is returning relationships.")
+    stop("The entity returned is not a relationship. Check that your query is returning a relationship.")
   }
   class(result) = c("entity", "relationship")
   rel = configure_result(result, attr(graph, "username"), attr(graph, "password"))
