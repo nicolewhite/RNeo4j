@@ -11,7 +11,11 @@ configure_result = function(result, username = NULL, password = NULL) {
   start = result$start
   type = result$type
   end = result$end
+  nodes = result$nodes
+  len = result$length
+  rels = result$relationships
   
+  # There's probably a better way to do this.
   if(!is.null(username) && !is.null(password)) {
     if (substr(self, 1, 5) == "https") {
       front = "https://"
@@ -31,23 +35,39 @@ configure_result = function(result, username = NULL, password = NULL) {
     start = gsub(front, userpwd, start)
     type = gsub(front, userpwd, type)
     end = gsub(front, userpwd, end)
+    nodes = gsub(front, userpwd, nodes)
+    len = gsub(front, userpwd, len)
+    rels = gsub(front, userpwd, rels)
   }
   
   class = class(result)
   
   # Add properties as names.
-  length(result) = length(data)
-  names(result) = names(data)
-  
-  for (i in 1:length(data)) {
-    name = names(data[i])
-    result[name] = data[name]
+  if("node" %in% class | "relationship" %in% class) {
+    length(result) = length(data)
+    names(result) = names(data)
+    
+    for (i in 1:length(data)) {
+      name = names(data[i])
+      result[name] = data[name]
+    }
+    
+    attr(result, "self") = self
+    attr(result, "property") = property
+    attr(result, "properties") = properties
+  }
+
+  # Remove names and add attributes.
+  if("path" %in% class) {
+    length(result) = 0
+    attr(result, "start") = start
+    attr(result, "end") = end
+    attr(result, "nodes") = nodes
+    attr(result, "relationships") = rels
+    attr(result, "length") = len
   }
   
-  attr(result, "self") = self
-  attr(result, "property") = property
-  attr(result, "properties") = properties
-  
+  # Add username and password as attributes.
   if(!is.null(username) && !is.null(password)) {
     attr(result, "username") = username
     attr(result, "password") = password
@@ -61,13 +81,13 @@ configure_result = function(result, username = NULL, password = NULL) {
     attr(result, "outgoing_relationships") = out
     
   # Add attributes specific to relationships.  
-  } else if("relationship" %in% class) {
+  } 
+  
+  if("relationship" %in% class) {
     attr(result, "start") = start
     attr(result, "type") = type
     attr(result, "end") = end
     
-  } else {
-    stop("Invalid object.")
   }
   
   class(result) = class
