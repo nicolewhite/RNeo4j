@@ -1,14 +1,14 @@
 \name{endNode}
 \alias{endNode}
-\title{Retrieve Nodes from Relationships}
+\title{Retrieve Nodes from Relationships or Paths}
 \description{
-Retrieve the end node from a relationship. This is the node for which the relationship is incoming.
+Retrieve the end node from a relationship or path object.
 }
 \usage{
-endNode(rel)
+endNode(object)
 }
 \arguments{
-  \item{rel}{A relationship object.}
+  \item{object}{A relationship or path object.}
 }
 \value{
 A node object.
@@ -23,6 +23,10 @@ bob = createNode(graph, "Person", name = "Bob")
 rel = createRel(alice, "WORKS_WITH", bob)
 
 endNode(rel)
+
+path = getSinglePath(graph, "MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH]->(:Person {name:'Bob'}) RETURN p")
+
+endNode(path)
 }
 \seealso{
 	\code{\link{startNode}}

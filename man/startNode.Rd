@@ -1,14 +1,14 @@
 \name{startNode}
 \alias{startNode}
-\title{Retrieve Nodes from Relationships}
+\title{Retrieve Nodes from Relationships or Paths}
 \description{
-Retrieve the start node from a relationship. This is the node for which the relationship is outgoing.
+Retrieve the start node from a relationship or path object.
 }
 \usage{
-startNode(rel)
+startNode(object)
 }
 \arguments{
-  \item{rel}{A relationship object.}
+  \item{object}{A relationship or path object.}
 }
 \value{
 A node object.
@@ -23,6 +23,10 @@ bob = createNode(graph, "Person", name = "Bob")
 rel = createRel(alice, "WORKS_WITH", bob)
 
 startNode(rel)
+
+path = getSinglePath(graph, "MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH]->(:Person {name:'Bob'}) RETURN p")
+
+startNode(path)
 }
 \seealso{
 	\code{\link{endNode}}
