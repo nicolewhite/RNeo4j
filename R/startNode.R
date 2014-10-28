@@ -1,7 +1,7 @@
 startNode = function(object) UseMethod("startNode")
 
-startNode.default = function(x, ...) {
-  stop("Invalid object. Must supply a relationship object.")
+startNode.default = function(x) {
+  stop("Invalid object. Must supply a relationship or path object.")
 }
 
 startNode.relationship = function(rel) {

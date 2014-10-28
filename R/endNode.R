@@ -1,7 +1,7 @@
 endNode = function(object) UseMethod("endNode")
 
 endNode.default = function(x) {
-  stop("Invalid object. Must supply a relationship object.")
+  stop("Invalid object. Must supply a relationship or path object.")
 }
 
 endNode.relationship = function(rel) {
