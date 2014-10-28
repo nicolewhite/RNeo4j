@@ -28,3 +28,7 @@ print.relationship = function(rel) {
 #   cat("Relationship properties:\n")
   invisible(lapply(names(rel), function(x) {print(rel[x])}))
 }
+
+print.path = function(path) {
+  print(path["length"])
+}
