@@ -59,12 +59,13 @@ configure_result = function(result, username = NULL, password = NULL) {
 
   # Remove names and add attributes.
   if("path" %in% class) {
-    length(result) = 0
+    length(result) = 1
+    names(result) = "length"
+    result["length"] = len
     attr(result, "start") = start
     attr(result, "end") = end
     attr(result, "nodes") = nodes
     attr(result, "relationships") = rels
-    attr(result, "length") = len
   }
   
   # Add username and password as attributes.
