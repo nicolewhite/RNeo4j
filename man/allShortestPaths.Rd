@@ -2,7 +2,7 @@
 \alias{allShortestPaths}
 \title{Retrieve Shortest Paths}
 \description{
-Retrieve all the shortest path between two nodes.
+Retrieve all the shortest paths between two nodes.
 }
 \usage{
 allShortestPaths(fromNode, 
