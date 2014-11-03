@@ -35,8 +35,7 @@ importSample.graph = function(graph, data) {
     addConstraint(graph, "Tweet", "id")
     addConstraint(graph, "User", "screen_name")
     fpath = system.file("extdata", "tweets.txt", package = "RNeo4j")
-  }
-    else {
+  } else {
     stop("Invalid dataset.")
   }
   query = readChar(fpath, file.info(fpath)$size)
