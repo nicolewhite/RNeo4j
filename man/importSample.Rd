@@ -2,7 +2,7 @@
 \alias{importSample}
 \title{Import Sample Datasets}
 \description{
-Populate the graph database with sample datasets supplied with this package.
+Populate the graph database with one of the sample datasets supplied with this package.
 }
 \usage{
 importSample(graph, data)
@@ -12,11 +12,12 @@ importSample(graph, data)
   \item{data}{The dataset to be imported. Accepts a string.}
 }
 \details{
-As of now, the only example dataset available is the movie dataset. This can be accessed by setting data = "movies".
+Datasets available include \code{tweets}, \code{dfw}, \code{caltrain} and \code{movies}. For more information on these datasets, see here: http://nicolewhite.github.io/RNeo4j/samples/
 }
 \examples{
 graph = startGraph("http://localhost:7474/db/data/")
-clear(graph)
 
-importSample(graph, "movies")
+importSample(graph, "tweets")
+summary(graph)
+getConstraint(graph)
 }

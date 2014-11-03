@@ -1,0 +1,27 @@
+CREATE CONSTRAINT ON (s:Stop) ASSERT s.name IS UNIQUE;
+CREATE CONSTRAINT ON (z:Zone) ASSERT z.id IS UNIQUE;
+CREATE CONSTRAINT ON (t:Train) ASSERT t.id IS UNIQUE;
+
+// All stops and their zones, mile markers.
+LOAD CSV WITH HEADERS FROM 'file:///Users/nicole/Documents/GitHub/caltrain_graph/distances.csv' AS csv
+
+MERGE (zone:Zone {id:TOINT(csv.Zone)})
+MERGE (stop:Stop {name:UPPER(csv.Stop)})
+SET stop.mile = csv.Mile
+MERGE (stop)-[:IN]->(zone)
+;
+
+// Trains and their stops.
+LOAD CSV WITH HEADERS FROM 'file:///Users/nicole/Documents/GitHub/caltrain_graph/trains.csv' AS csv
+
+MERGE (train:Train {id:TOINT(csv.Train)})
+SET train.direction = csv.Direction,
+    train.type = csv.Type
+MERGE (stop:Stop {name:UPPER(csv.Stop)})
+MERGE (train)-[s:STOPS_AT]->(stop)
+
+SET s.hour = TOINT(csv.Hour),
+    s.minute = TOINT(csv.Minute),
+    s.hour_s = csv.HourS,
+    s.minute_s = csv.MinuteS
+;

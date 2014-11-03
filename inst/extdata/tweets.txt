@@ -1,0 +1,1224 @@
+create (_0:`Tweet` {`created_at`:"Thu Oct 16 06:40:53 +0000 2014", `favorites`:0, `id`:522638290915446785, `text`:"RT @neonige: #Neo4j are looking for an Eclipse dev to help us release the next version of Neoclipse. If you are or know someone who is, get…"})
+create (_1:`User` {`followers`:11022, `following`:538, `location`:"Graphs are Everywhere", `name`:"Neo4j", `profile_image_url`:"http://pbs.twimg.com/profile_images/195275920/square-logo-no-text-2_normal.png", `screen_name`:"neo4j"})
+create (_2:`Tweet` {`created_at`:"Thu Oct 16 06:51:32 +0000 2014", `favorites`:0, `id`:522640972338176001, `text`:"RT @neonige: #Neo4j are looking for an Eclipse dev to help us release the next version of Neoclipse. If you are or know someone who is, get…"})
+create (_3:`User` {`followers`:3361, `following`:411, `location`:"Malmö, Sweden", `name`:"Peter Neubauer", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000529267759/41cc29f7f7848ef5f452a43c7bd503b0_normal.png", `screen_name`:"peterneubauer"})
+create (_4:`Tweet` {`created_at`:"Thu Oct 16 06:58:03 +0000 2014", `favorites`:2, `id`:522642612340002816, `text`:"If you're following me on twitter and not going to GraphConnect SF, you're doing it wrong. http://t.co/vVMvY9CTPy https://t.co/4wJ6v8sZAW"})
+create (_5:`User` {`followers`:5133, `following`:875, `location`:"Menlo Park, CA, USA", `name`:"Emil Eifrem", `profile_image_url`:"http://pbs.twimg.com/profile_images/53878772/emil-profile-arlanda-2007-08-18-cropped_normal.jpg", `screen_name`:"emileifrem"})
+create (_6:`Tweet` {`created_at`:"Thu Oct 16 07:22:03 +0000 2014", `favorites`:0, `id`:522648650531368961, `text`:"RT @neonige: #Neo4j are looking for an Eclipse dev to help us release the next version of Neoclipse. If you are or know someone who is, get…"})
+create (_7:`User` {`followers`:330, `following`:193, `location`:"Bombay", `name`:"Luanne Misquitta", `profile_image_url`:"http://pbs.twimg.com/profile_images/417703339581644801/-Q5zpkJ2_normal.jpeg", `screen_name`:"luannem"})
+create (_8:`Tweet` {`created_at`:"Thu Oct 16 07:32:11 +0000 2014", `favorites`:2, `id`:522651201092206592, `text`:"Yesterday presentation @Atos by \"Matching\" team - results of our #neo4j #git #gradle #neo4j-spatial #angular #websockets #poi #java project."})
+create (_9:`User` {`followers`:115, `following`:109, `location`:"Netherlands", `name`:"Mylene Reiners", `profile_image_url`:"http://pbs.twimg.com/profile_images/254128692/mylene-big_normal.jpg", `screen_name`:"mylenereiners"})
+create (_10:`Tweet` {`created_at`:"Thu Oct 16 07:42:50 +0000 2014", `favorites`:0, `id`:522653880572993536, `text`:"@mylenereiners Any chance to see the slides/presentation, or was that internal @Atos ? Thanks! Perhaps you could write a blog post about it?"})
+create (_11:`Tweet` {`created_at`:"Thu Oct 16 07:44:52 +0000 2014", `favorites`:0, `id`:522654391644737536, `text`:"@neo4j Atos internal. Blogpost as soon as I find some time :) Code is going to be public BTW but tests have to be depersonalized."})
+create (_12:`Tweet` {`created_at`:"Thu Oct 16 07:46:55 +0000 2014", `favorites`:0, `id`:522654910878588928, `text`:"@mylenereiners Amazing thanks a lot! Have a great day."})
+create (_13:`Tweet` {`created_at`:"Thu Oct 16 08:52:33 +0000 2014", `favorites`:0, `id`:522671427351105537, `text`:"We compared #neo4j vs #networkx - see results: http://t.co/ZNwVDGZDpL"})
+create (_14:`User` {`followers`:308, `following`:6, `location`:"Comparing Every Tech!", `name`:"TechWars", `profile_image_url`:"http://pbs.twimg.com/profile_images/496979329880825857/7wW65fja_normal.png", `screen_name`:"TechWars_io"})
+create (_15:`Tweet` {`created_at`:"Thu Oct 16 09:15:57 +0000 2014", `favorites`:2, `id`:522677314745024512, `text`:"Yesterday in our @neo4j Graph Data Modelling Class we upgraded a Mac Book Pro #graphpower /cc @42talents http://t.co/qXKYxp3JAX"})
+create (_16:`User` {`followers`:913, `following`:872, `location`:"Zurich", `name`:"Patrick Baumgartner", `profile_image_url`:"http://pbs.twimg.com/profile_images/1315132591/Patrick_Baumgartner_2_normal.jpg", `screen_name`:"patbaumgartner"})
+create (_17:`Tweet` {`created_at`:"Thu Oct 16 09:21:35 +0000 2014", `favorites`:0, `id`:522678732814045184, `text`:"RT @patbaumgartner: Yesterday in our @neo4j Graph Data Modelling Class we upgraded a Mac Book Pro #graphpower /cc @42talents http://t.co/qX…"})
+create (_18:`User` {`followers`:26, `following`:69, `location`:"Zürich, Switzerland", `name`:"42talents", `profile_image_url`:"http://pbs.twimg.com/profile_images/505980597785739264/YhtXGX04_normal.png", `screen_name`:"42talents"})
+create (_19:`Tweet` {`created_at`:"Thu Oct 16 09:50:23 +0000 2014", `favorites`:2, `id`:522685978621009920, `text`:"Graphs and access management by @rvanbruggen http://t.co/zrUJRqPLyB #neo4j"})
+create (_20:`User` {`followers`:1288, `following`:2002, `location`:"Paris", `name`:"linkurious", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000275058180/f9e540f64a5ebae1c939c76f409ce416_normal.png", `screen_name`:"Linkurious"})
+create (_21:`Tweet` {`created_at`:"Thu Oct 16 09:54:34 +0000 2014", `favorites`:6, `id`:522687033794625536, `text`:"Creating a #nodejs application that uses the @Heroku @Neo4j add-on - http://t.co/oFlBmNDHb6 #JavaScript"})
+create (_22:`User` {`followers`:780, `following`:611, `location`:"Manchester, UK", `name`:"Brian Barnett", `profile_image_url`:"http://pbs.twimg.com/profile_images/506457669859680256/PE1zdXUZ_normal.jpeg", `screen_name`:"brian3kb"})
+create (_23:`Tweet` {`created_at`:"Thu Oct 16 09:54:36 +0000 2014", `favorites`:0, `id`:522687039805067264, `text`:"RT @brian3kb: Creating a #nodejs application that uses the @Heroku @Neo4j add-on - http://t.co/oFlBmNDHb6 #JavaScript"})
+create (_24:`User` {`followers`:722, `following`:1, `location`:"", `name`:"Mean Magazine Bot", `profile_image_url`:"http://pbs.twimg.com/profile_images/481334978161029120/iu3zZFEk_normal.png", `screen_name`:"ameanmbot"})
+create (_25:`Tweet` {`created_at`:"Thu Oct 16 09:57:25 +0000 2014", `favorites`:0, `id`:522687749741363201, `text`:"RT @Linkurious: Graphs and access management by @rvanbruggen http://t.co/zrUJRqPLyB #neo4j"})
+create (_26:`User` {`followers`:287, `following`:694, `location`:"World - Bruges - Belgium", `name`:"Christophe Willemsen", `profile_image_url`:"http://pbs.twimg.com/profile_images/460046428354519040/niLSeWW0_normal.jpeg", `screen_name`:"ikwattro"})
+create (_27:`Tweet` {`created_at`:"Thu Oct 16 10:00:10 +0000 2014", `favorites`:0, `id`:522688444665839616, `text`:"RT @brian3kb: Creating a #nodejs application that uses the @Heroku @Neo4j add-on - http://t.co/oFlBmNDHb6 #JavaScript"})
+create (_28:`User` {`followers`:1127, `following`:5, `location`:"", `name`:"Javascript Digest", `profile_image_url`:"http://pbs.twimg.com/profile_images/495992701750239232/gKyvlH6q_normal.png", `screen_name`:"javascriptd"})
+create (_29:`Tweet` {`created_at`:"Thu Oct 16 10:00:54 +0000 2014", `favorites`:0, `id`:522688625654636544, `text`:"RT @brian3kb: Creating a #nodejs application that uses the @Heroku @Neo4j add-on - http://t.co/oFlBmNDHb6 #JavaScript"})
+create (_30:`User` {`followers`:5477, `following`:4306, `location`:"Atlanta, Ga", `name`:"JavaScript Digest", `profile_image_url`:"http://pbs.twimg.com/profile_images/473662378869936129/2MgVAmMR_normal.png", `screen_name`:"js_digest"})
+create (_31:`Tweet` {`created_at`:"Thu Oct 16 10:02:17 +0000 2014", `favorites`:1, `id`:522688976696934401, `text`:"My initial Setup to code things together for my card and web based #seriousgame is there: #neo4j #html5 #css3 #processing and #atomeditor"})
+create (_32:`User` {`followers`:50, `following`:69, `location`:"Region Karlsruhe", `name`:"Hans Beck", `profile_image_url`:"http://pbs.twimg.com/profile_images/1869296287/shutterstock_69020677_small_normal.jpg", `screen_name`:"EnrichedGamesHB"})
+create (_33:`Tweet` {`created_at`:"Thu Oct 16 10:09:48 +0000 2014", `favorites`:0, `id`:522690865106403328, `text`:"Cypher vs Sparql - Side by side comparison | TechWars http://t.co/7gWX2yOV23 via @scoopit #SPARQL #Neo4J #Cypher #graphdb"})
+create (_34:`User` {`followers`:68, `following`:128, `location`:"Tellus", `name`:"heimohanninen", `profile_image_url`:"http://pbs.twimg.com/profile_images/198968738/twee1_normal.jpg", `screen_name`:"heimohanninen"})
+create (_35:`Tweet` {`created_at`:"Thu Oct 16 10:13:35 +0000 2014", `favorites`:0, `id`:522691818127761408, `text`:"Great read: Switching From MongoDB to Neo4j http://t.co/qZxk7P3Hxu"})
+create (_36:`User` {`followers`:335, `following`:108, `location`:"Stockholm, Sweden", `name`:"David Montag", `profile_image_url`:"http://pbs.twimg.com/profile_images/490566731094441984/QPI2uEHd_normal.jpeg", `screen_name`:"dmontag"})
+create (_37:`Tweet` {`created_at`:"Thu Oct 16 10:14:29 +0000 2014", `favorites`:0, `id`:522692047082233856, `text`:"Great intro into graph databases http://t.co/YQqYzxYV6G"})
+create (_38:`User` {`followers`:1539, `following`:991, `location`:"Jakarta Selatan", `name`:"Batista Harahap", `profile_image_url`:"http://pbs.twimg.com/profile_images/513370952399220736/1upyZM8m_normal.jpeg", `screen_name`:"tista"})
+create (_39:`Tweet` {`created_at`:"Thu Oct 16 10:19:58 +0000 2014", `favorites`:0, `id`:522693427511951360, `text`:"RT @dmontag: Great read: Switching From MongoDB to Neo4j http://t.co/8FSv5FuYe6"})
+create (_40:`User` {`followers`:570, `following`:1397, `location`:"Netherlands", `name`:"Edzo Botjes", `profile_image_url`:"http://pbs.twimg.com/profile_images/456911151842865152/ZgHFxD-u_normal.jpeg", `screen_name`:"edzob"})
+create (_41:`Tweet` {`created_at`:"Thu Oct 16 10:24:29 +0000 2014", `favorites`:0, `id`:522694563396587520, `text`:"RT @kennybastani: A great opportunity to learn about practical recommendation engines from #Neo4j data scientist @_nicolemargaret -&gt; http:/…"})
+create (_42:`User` {`followers`:56, `following`:326, `location`:"Kansas City USA", `name`:"Dave Bonnell", `profile_image_url`:"http://pbs.twimg.com/profile_images/457245933785190400/_uZ3LL37_normal.png", `screen_name`:"CompWizDave"})
+create (_43:`Tweet` {`created_at`:"Thu Oct 16 10:31:22 +0000 2014", `favorites`:7, `id`:522696293089828864, `text`:"Just wrote up my thinking behind the \"Graphs revolutionise #Identitymanagement\" in this post: http://t.co/uTOPo3QQ6X #neo4j /cc @iglazer"})
+create (_44:`User` {`followers`:666, `following`:610, `location`:"Antwerp", `name`:"Rik Van Bruggen", `profile_image_url`:"http://pbs.twimg.com/profile_images/68070910/2007-09-14_16-33-01-41-large_normal.jpg", `screen_name`:"rvanbruggen"})
+create (_45:`Tweet` {`created_at`:"Thu Oct 16 10:34:10 +0000 2014", `favorites`:0, `id`:522696997174657024, `text`:"RT @dmontag: Great read: Switching From MongoDB to Neo4j http://t.co/qZxk7P3Hxu"})
+create (_46:`User` {`followers`:1348, `following`:11, `location`:"", `name`:"NoSQL", `profile_image_url`:"http://pbs.twimg.com/profile_images/499257180009529344/CSWhr7LZ_normal.jpeg", `screen_name`:"NoSQLDigest"})
+create (_47:`Tweet` {`created_at`:"Thu Oct 16 10:35:23 +0000 2014", `favorites`:0, `id`:522697305615376384, `text`:"RT @tista: Great intro into graph databases http://t.co/YQqYzxYV6G"})
+create (_48:`Tweet` {`created_at`:"Thu Oct 16 10:35:36 +0000 2014", `favorites`:0, `id`:522697357767737344, `text`:"RT @GraphConnect: .@FiftyThree is coming to #GraphConnect! #Mix notes by @NataliaLaFey, presentation by @aseemk http://t.co/15IwDKxAp4 http…"})
+create (_49:`User` {`followers`:171, `following`:211, `location`:"", `name`:"Dirk Möller", `profile_image_url`:"http://pbs.twimg.com/profile_images/434276957660786688/K203V38c_normal.jpeg", `screen_name`:"Dirk_1564"})
+create (_50:`Tweet` {`created_at`:"Thu Oct 16 10:37:57 +0000 2014", `favorites`:0, `id`:522697953094672385, `text`:"RT @rvanbruggen: Just wrote up my thinking behind the \"Graphs revolutionise #Identitymanagement\" in this post: http://t.co/uTOPo3QQ6X #neo4…"})
+create (_51:`Tweet` {`created_at`:"Thu Oct 16 10:44:47 +0000 2014", `favorites`:2, `id`:522699669257089024, `text`:"Hey Belgian Graphistas, don't forget to fill in the BelgianGraphDatabase Meetup Survey ;-) http://t.co/atZ3viWqrK #neo4j #graph #Belgium"})
+create (_52:`Tweet` {`created_at`:"Thu Oct 16 10:45:02 +0000 2014", `favorites`:0, `id`:522699735652913152, `text`:"RT @ikwattro: Hey Belgian Graphistas, don't forget to fill in the BelgianGraphDatabase Meetup Survey ;-) http://t.co/atZ3viWqrK #neo4j #gra…"})
+create (_53:`User` {`followers`:41, `following`:61, `location`:"World", `name`:"Neoxygen", `profile_image_url`:"http://pbs.twimg.com/profile_images/514150186646392832/NeAsqO36_normal.png", `screen_name`:"neoxygenIO"})
+create (_54:`Tweet` {`created_at`:"Thu Oct 16 10:45:06 +0000 2014", `favorites`:0, `id`:522699750559469568, `text`:"RT @rvanbruggen: Just wrote up my thinking behind the \"Graphs revolutionise #Identitymanagement\" in this post: http://t.co/uTOPo3QQ6X #neo4…"})
+create (_55:`Tweet` {`created_at`:"Thu Oct 16 10:45:22 +0000 2014", `favorites`:0, `id`:522699816699457536, `text`:"RT @ikwattro: Hey Belgian Graphistas, don't forget to fill in the BelgianGraphDatabase Meetup Survey ;-) http://t.co/atZ3viWqrK #neo4j #gra…"})
+create (_56:`User` {`followers`:3546, `following`:145, `location`:"Belgium", `name`:"Wonderful Belgium", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000415124385/ae0f8949edacd7b7917e09e53fc1cb3e_normal.png", `screen_name`:"Belgium_I_Love"})
+create (_57:`Tweet` {`created_at`:"Thu Oct 16 10:52:04 +0000 2014", `favorites`:0, `id`:522701502230437890, `text`:"RT @edzob: RT @dmontag: Great read: Switching From MongoDB to Neo4j http://t.co/8FSv5FuYe6"})
+create (_58:`Tweet` {`created_at`:"Thu Oct 16 11:00:40 +0000 2014", `favorites`:0, `id`:522703667267264512, `text`:"RT @lgarulli: #GraphDB benchmarking on cloud environments between AllegroGraph, Fuseki, Neo4j, OrientDB, and Titan https://t.co/CycDjQV3vQ …"})
+create (_59:`User` {`followers`:739, `following`:1996, `location`:"東京都", `name`:"Hokuto Takai", `profile_image_url`:"http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png", `screen_name`:"tsubame959"})
+create (_60:`Tweet` {`created_at`:"Thu Oct 16 11:00:55 +0000 2014", `favorites`:0, `id`:522703728915521536, `text`:"@ewolff I hear Gremlin. I think Cypher. #Neo4j (Sorry, couldn't resist...)"})
+create (_61:`User` {`followers`:107, `following`:139, `location`:"Dresden", `name`:"Dirk Mahler", `profile_image_url`:"http://pbs.twimg.com/profile_images/3346879215/2241df0e99a3d685584e0fe58773d909_normal.jpeg", `screen_name`:"dirkmahler"})
+create (_62:`Tweet` {`created_at`:"Thu Oct 16 11:04:05 +0000 2014", `favorites`:1, `id`:522704529213898752, `text`:"\"Graph Everything! @GameDuell #TechTalk with Emil Eifrem\"!  Berlin, Nov 6th -  http://t.co/KZirkWqelX - #neo4j @Neo4jDE @emileifrem"})
+create (_63:`User` {`followers`:24, `following`:100, `location`:"Berlin", `name`:"Carsten Krebs", `profile_image_url`:"http://pbs.twimg.com/profile_images/507275205807316992/9rY9ApFr_normal.jpeg", `screen_name`:"cwcrab"})
+create (_64:`Tweet` {`created_at`:"Thu Oct 16 11:24:18 +0000 2014", `favorites`:0, `id`:522709613527851009, `text`:"RT @lgarulli: #GraphDB benchmarking on cloud environments between AllegroGraph, Fuseki, Neo4j, OrientDB, and Titan https://t.co/CycDjQV3vQ …"})
+create (_65:`Tweet` {`created_at`:"Thu Oct 16 11:39:11 +0000 2014", `favorites`:0, `id`:522713359964446720, `text`:"RT @kennybastani: A great opportunity to learn about practical recommendation engines from #Neo4j data scientist @_nicolemargaret -&gt; http:/…"})
+create (_66:`User` {`followers`:48, `following`:72, `location`:"", `name`:"Vince Frisina", `profile_image_url`:"http://pbs.twimg.com/profile_images/1246823434/y_combinator_normal.jpg", `screen_name`:"digthenerdy"})
+create (_67:`Tweet` {`created_at`:"Thu Oct 16 11:39:59 +0000 2014", `favorites`:0, `id`:522713563245584384, `text`:"RT @cwcrab: \"Graph Everything! @GameDuell #TechTalk with Emil Eifrem\"!  Berlin, Nov 6th -  http://t.co/KZirkWqelX - #neo4j @Neo4jDE @emilei…"})
+create (_68:`User` {`followers`:170, `following`:228, `location`:"Europe", `name`:"Patrick Wright", `profile_image_url`:"http://pbs.twimg.com/profile_images/3404007263/60ad27c9ccc83a164ff4ee68e1f59fde_normal.png", `screen_name`:"pholdings"})
+create (_69:`Tweet` {`created_at`:"Thu Oct 16 11:44:43 +0000 2014", `favorites`:1, `id`:522714754037858304, `text`:"We'll be learning about graph-driven recommendation engines with #Neo4j today at noon EDT http://t.co/OPS5gOElN4"})
+create (_70:`User` {`followers`:4, `following`:8, `location`:"Rochester, NY", `name`:"Bouncy Bear Software", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000259798150/dec7c8d60cab78b3a7364c5e8749af39_normal.png", `screen_name`:"BouncyBearSW"})
+create (_71:`Tweet` {`created_at`:"Thu Oct 16 11:46:33 +0000 2014", `favorites`:0, `id`:522715217029910528, `text`:"RT @kennybastani: Looking forward to implementing #Neo4j as a data source to @ApacheSpark's GraphX for super fast PageRank. https://t.co/dp…"})
+create (_72:`User` {`followers`:30, `following`:316, `location`:"St. Louis, MO", `name`:"Jason Clark", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000643728001/6d28b3b774888a17d5694fc50157359d_normal.jpeg", `screen_name`:"jclark1985"})
+create (_73:`Tweet` {`created_at`:"Thu Oct 16 11:48:12 +0000 2014", `favorites`:2, `id`:522715629040975872, `text`:"@ricardoz17 @neo4j absolutely. I had graph theory at uni as well. The new thing is a dedicated system for it. Hate doing \"glue\" tables in db"})
+create (_74:`User` {`followers`:136, `following`:225, `location`:"Denmark", `name`:"Mikkel Staunsholm", `profile_image_url`:"http://pbs.twimg.com/profile_images/143141582/13012009_normal.jpg", `screen_name`:"staunsholm"})
+create (_75:`Tweet` {`created_at`:"Thu Oct 16 11:54:00 +0000 2014", `favorites`:0, `id`:522717090722381824, `text`:"RT @Tsartsaris: Crawling with #python the Greek web #graph with @Neo4j, #snapshotnow. Stay tuned. http://t.co/LQPyLMqrLA"})
+create (_76:`Tweet` {`created_at`:"Thu Oct 16 12:09:22 +0000 2014", `favorites`:0, `id`:522720956457185282, `text`:"RT @BouncyBearSW: We'll be learning about graph-driven recommendation engines with #Neo4j today at noon EDT http://t.co/OPS5gOElN4"})
+create (_77:`Tweet` {`created_at`:"Thu Oct 16 12:54:01 +0000 2014", `favorites`:2, `id`:522732195543146496, `text`:"I just registered for Building Recommendation Engines with #Neo4j with @_nicoleMargaret via @Neo4j http://t.co/JG4cP1wLgV #neo4j #graphdb"})
+create (_78:`User` {`followers`:758, `following`:606, `location`:"Gatineau, QC - Canada", `name`:"Stéphane Fréchette", `profile_image_url`:"http://pbs.twimg.com/profile_images/476804983833108481/yDv6omZL_normal.jpeg", `screen_name`:"sfrechette"})
+create (_79:`Tweet` {`created_at`:"Thu Oct 16 13:07:35 +0000 2014", `favorites`:7, `id`:522735609711181824, `text`:"HR analytics and graphs : job recommendations on @slideshare http://t.co/XHIcScrZS3 #neo4j #bigdata #hr #analytics"})
+create (_80:`Tweet` {`created_at`:"Thu Oct 16 13:11:30 +0000 2014", `favorites`:0, `id`:522736591307960321, `text`:"Ian Robinson on Neo4j's History, Data Structure and Use Cases - http://t.co/96qGnREFYP http://t.co/tAp1Az0wxe"})
+create (_81:`User` {`followers`:1622, `following`:875, `location`:"Global", `name`:"Epricity", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000132477618/5fb644d1d0e60400cb3c40e09afcc66e_normal.jpeg", `screen_name`:"Epricity"})
+create (_82:`Tweet` {`created_at`:"Thu Oct 16 13:21:12 +0000 2014", `favorites`:0, `id`:522739035132141569, `text`:"The Dominik Alarie Daily is out! http://t.co/JxDBce28LI Stories via @DHenschen @business901 @neo4j"})
+create (_83:`User` {`followers`:79, `following`:181, `location`:"Montreal, Canada", `name`:"Dominik Alarie", `profile_image_url`:"http://pbs.twimg.com/profile_images/2228951024/Dominik_linkedin_normal.jpg", `screen_name`:"dominikalarie"})
+create (_84:`Tweet` {`created_at`:"Thu Oct 16 13:24:40 +0000 2014", `favorites`:3, `id`:522739907748716544, `text`:"Extra faker type on #Graphgen : progLanguage http://t.co/yCEQAgec2B handy with Skill labeled nodes ;-) #neo4j #neoxygen"})
+create (_85:`Tweet` {`created_at`:"Thu Oct 16 13:24:51 +0000 2014", `favorites`:0, `id`:522739951814070272, `text`:"RT @neoxygenIO: Extra faker type on #Graphgen : progLanguage http://t.co/yCEQAgec2B handy with Skill labeled nodes ;-) #neo4j #neoxygen"})
+create (_86:`Tweet` {`created_at`:"Thu Oct 16 13:27:39 +0000 2014", `favorites`:4, `id`:522740658952736768, `text`:"A twist on how to do login &amp; registration form on #Neo4J's website. #ux #ui http://t.co/CmDIfkSDT3 http://t.co/fjtSik59Qa"})
+create (_87:`User` {`followers`:22, `following`:42, `location`:"", `name`:"Theodore Surjo", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000236499555/e4e05256772c8eb02c5825e7b2c8f523_normal.png", `screen_name`:"println_ts"})
+create (_88:`Tweet` {`created_at`:"Thu Oct 16 13:40:12 +0000 2014", `favorites`:0, `id`:522743816902569984, `text`:"RT @Linkurious: HR analytics and graphs : job recommendations on @slideshare http://t.co/XHIcScrZS3 #neo4j #bigdata #hr #analytics"})
+create (_89:`Tweet` {`created_at`:"Thu Oct 16 14:21:28 +0000 2014", `favorites`:0, `id`:522754201517297664, `text`:"RT @println_ts: A twist on how to do login &amp; registration form on #Neo4J's website. #ux #ui http://t.co/CmDIfkSDT3 http://t.co/fjtSik59Qa"})
+create (_90:`User` {`followers`:1694, `following`:181, `location`:"Dresden", `name`:"Michael Hunger", `profile_image_url`:"http://pbs.twimg.com/profile_images/886989110/portrait_michael_small_normal.jpg", `screen_name`:"mesirii"})
+create (_91:`Tweet` {`created_at`:"Thu Oct 16 14:21:30 +0000 2014", `favorites`:0, `id`:522754209566183424, `text`:"RT @println_ts: A twist on how to do login &amp; registration form on #Neo4J's website. #ux #ui http://t.co/CmDIfkSDT3 http://t.co/fjtSik59Qa"})
+create (_92:`Tweet` {`created_at`:"Thu Oct 16 14:21:53 +0000 2014", `favorites`:0, `id`:522754306190372864, `text`:"RT @sfrechette: I just registered for Building Recommendation Engines with #Neo4j with @_nicoleMargaret via @Neo4j http://t.co/JG4cP1wLgV #…"})
+create (_93:`Tweet` {`created_at`:"Thu Oct 16 14:23:18 +0000 2014", `favorites`:0, `id`:522754662983020545, `text`:"RT @ikwattro: Hey Belgian Graphistas, don't forget to fill in the BelgianGraphDatabase Meetup Survey ;-) http://t.co/atZ3viWqrK #neo4j #gra…"})
+create (_94:`Tweet` {`created_at`:"Thu Oct 16 14:23:24 +0000 2014", `favorites`:0, `id`:522754686294974464, `text`:"RT @rvanbruggen: Just wrote up my thinking behind the \"Graphs revolutionise #Identitymanagement\" in this post: http://t.co/uTOPo3QQ6X #neo4…"})
+create (_95:`Tweet` {`created_at`:"Thu Oct 16 14:23:44 +0000 2014", `favorites`:0, `id`:522754770722111489, `text`:"RT @Linkurious: HR analytics and graphs : job recommendations on @slideshare http://t.co/XHIcScrZS3 #neo4j #bigdata #hr #analytics"})
+create (_96:`Tweet` {`created_at`:"Thu Oct 16 14:39:15 +0000 2014", `favorites`:0, `id`:522758676088500224, `text`:"RT @println_ts: A twist on how to do login &amp; registration form on #Neo4J's website. #ux #ui http://t.co/CmDIfkSDT3 http://t.co/fjtSik59Qa"})
+create (_97:`User` {`followers`:157, `following`:567, `location`:"Hyderabad", `name`:"Senthil", `profile_image_url`:"http://pbs.twimg.com/profile_images/487190405306277888/DgiIdP5H_normal.jpeg", `screen_name`:"senthil245"})
+create (_98:`Tweet` {`created_at`:"Thu Oct 16 14:42:33 +0000 2014", `favorites`:0, `id`:522759505449218048, `text`:"RT @neo4j: Join @_nicolemargaret tomorrow night for a dive into the #neo4j query language, #cypher! http://t.co/Ed2MCvR8uN http://t.co/zuSM…"})
+create (_99:`User` {`followers`:38, `following`:68, `location`:"Silicon Valley", `name`:"Utpal Bhatt", `profile_image_url`:"http://pbs.twimg.com/profile_images/3279570712/3a5a1056d39ef6c8e640f7d7597bed2c_normal.jpeg", `screen_name`:"Bhatt_Utpal"})
+create (_100:`Tweet` {`created_at`:"Thu Oct 16 14:47:54 +0000 2014", `favorites`:0, `id`:522760851586289664, `text`:"RT @sfrechette: I just registered for Building Recommendation Engines with #Neo4j with @_nicoleMargaret via @Neo4j http://t.co/JG4cP1wLgV #…"})
+create (_101:`Tweet` {`created_at`:"Thu Oct 16 14:48:38 +0000 2014", `favorites`:0, `id`:522761035665924096, `text`:"RT @Linkurious: HR analytics and graphs : job recommendations on @slideshare http://t.co/XHIcScrZS3 #neo4j #bigdata #hr #analytics"})
+create (_102:`Tweet` {`created_at`:"Thu Oct 16 15:11:34 +0000 2014", `favorites`:1, `id`:522766809955827712, `text`:"Watching a sneak peak of some pretty awesome stuff in the Neo4j browser. Very exciting."})
+create (_103:`User` {`followers`:1504, `following`:450, `location`:"", `name`:"Amanda Laucher", `profile_image_url`:"http://pbs.twimg.com/profile_images/440181811818160128/8Hn4LXMv_normal.png", `screen_name`:"pandamonial"})
+create (_104:`Tweet` {`created_at`:"Thu Oct 16 15:17:11 +0000 2014", `favorites`:1, `id`:522768223566323712, `text`:"Honoured that @jvilledieu , co-founder of @Linkurious used #graphgen in his graphgist about HR Analytics http://t.co/p8fdoEGp10 #neo4j"})
+create (_105:`Tweet` {`created_at`:"Thu Oct 16 15:17:31 +0000 2014", `favorites`:0, `id`:522768305585938432, `text`:"RT @neoxygenIO: Honoured that @jvilledieu , co-founder of @Linkurious used #graphgen in his graphgist about HR Analytics http://t.co/p8fdoE…"})
+create (_106:`Tweet` {`created_at`:"Thu Oct 16 15:21:15 +0000 2014", `favorites`:0, `id`:522769244707373056, `text`:"RT @_nicolemargaret: Recommendation engines with parameterized Cypher queries and user inputs. Watch tmrow: http://t.co/uAC9yGa5S3 #neo4j h…"})
+create (_107:`User` {`followers`:11, `following`:18, `location`:"Hagenberg Austria", `name`:"Wolfgang Beer", `profile_image_url`:"http://pbs.twimg.com/profile_images/514315968143577088/BgxFnFFJ_normal.jpeg", `screen_name`:"wolfgangscch"})
+create (_108:`Tweet` {`created_at`:"Thu Oct 16 15:57:07 +0000 2014", `favorites`:0, `id`:522778270417571841, `text`:"RT @pandamonial: Watching a sneak peak of some pretty awesome stuff in the Neo4j browser. Very exciting."})
+create (_109:`User` {`followers`:400, `following`:154, `location`:"Copenhagen, DK", `name`:"Chris Vest", `profile_image_url`:"http://pbs.twimg.com/profile_images/542170431/MyPicture_normal.jpg", `screen_name`:"chvest"})
+create (_110:`Tweet` {`created_at`:"Thu Oct 16 15:59:24 +0000 2014", `favorites`:0, `id`:522778846484250625, `text`:"RT @Sergio_Gijon: Graphs as usual. #neo4j #nba http://t.co/xIMIUMZj9U"})
+create (_111:`User` {`followers`:103, `following`:108, `location`:"Asturias", `name`:"Manuel Casas Toscano", `profile_image_url`:"http://pbs.twimg.com/profile_images/459144560501731328/P9UDvA1s_normal.jpeg", `screen_name`:"Oh_Manu"})
+create (_112:`Tweet` {`created_at`:"Thu Oct 16 16:00:16 +0000 2014", `favorites`:1, `id`:522779063925358592, `text`:"Conceptual Model vs Graph Model by @markhneedham http://t.co/rKhf5jfcg4 #neo4j"})
+create (_113:`User` {`followers`:1486, `following`:0, `location`:"", `name`:"NoSQL Weekly", `profile_image_url`:"http://pbs.twimg.com/profile_images/1609431328/nosql-2_normal.jpg", `screen_name`:"nosqlweekly"})
+create (_114:`Tweet` {`created_at`:"Thu Oct 16 16:32:02 +0000 2014", `favorites`:2, `id`:522787060998873088, `text`:"Amped my talk \"Swift kick in the Graph\" was chosen for #techcampmemphis To learn about #swift + #neo4j, register at http://t.co/wJUhX9nGo1"})
+create (_115:`User` {`followers`:207, `following`:148, `location`:"Memphis, TN", `name`:"Greg Jordan", `profile_image_url`:"http://pbs.twimg.com/profile_images/3659720638/ab565703e01361c776ed8bedc2c6f869_normal.jpeg", `screen_name`:"gmjordan"})
+create (_116:`Tweet` {`created_at`:"Thu Oct 16 16:33:49 +0000 2014", `favorites`:0, `id`:522787508216942592, `text`:"@neo4j Is yesterdays presentation about Access Control going to be made available?"})
+create (_117:`User` {`followers`:361, `following`:416, `location`:"Belfast", `name`:"Disgruntled Mage", `profile_image_url`:"http://pbs.twimg.com/profile_images/347504464/blackmage_normal.png", `screen_name`:"tyndyll"})
+create (_118:`Tweet` {`created_at`:"Thu Oct 16 16:34:42 +0000 2014", `favorites`:0, `id`:522787728841121792, `text`:"RT @rvanbruggen: Just wrote up my thinking behind the \"Graphs revolutionise #Identitymanagement\" in this post: http://t.co/uTOPo3QQ6X #neo4…"})
+create (_119:`User` {`followers`:3661, `following`:1207, `location`:"Washington, DC", `name`:"Ian Glazer", `profile_image_url`:"http://pbs.twimg.com/profile_images/493547549387530240/MudMqURw_normal.jpeg", `screen_name`:"iglazer"})
+create (_120:`Tweet` {`created_at`:"Thu Oct 16 16:40:53 +0000 2014", `favorites`:2, `id`:522789286089748480, `text`:"Spotted in this week’s @airpair update: Getting started with #Neo4j and #Cypher by @wefreema! Read it here: http://t.co/0NKorcToo6"})
+create (_121:`Tweet` {`created_at`:"Thu Oct 16 16:52:21 +0000 2014", `favorites`:2, `id`:522792171653844992, `text`:"Just attend. a very interesting webinar on building recommend. engines with @neo4j. Sample code (R, RShiny, Cypher): https://t.co/BAh70mHSYR"})
+create (_122:`User` {`followers`:412, `following`:1302, `location`:"Saarland / Germany", `name`:"Thomas Darimont", `profile_image_url`:"http://pbs.twimg.com/profile_images/458910600538505216/eoiBQZj5_normal.jpeg", `screen_name`:"thomasdarimont"})
+create (_123:`Tweet` {`created_at`:"Thu Oct 16 17:03:10 +0000 2014", `favorites`:0, `id`:522794894306590720, `text`:"RT @rvanbruggen: Just shared my webinar slides on \"how graphs revolutionize access management\" http://t.co/6P9klS4dxT #neo4j"})
+create (_124:`User` {`followers`:221, `following`:516, `location`:"Dublin, Ireland", `name`:"Pushstartr", `profile_image_url`:"http://pbs.twimg.com/profile_images/456034071382982656/ADl1CSwc_normal.png", `screen_name`:"Pushstartr"})
+create (_125:`Tweet` {`created_at`:"Thu Oct 16 17:04:18 +0000 2014", `favorites`:1, `id`:522795179242422272, `text`:"RP Flexible Neo4j Batch Import with Groovy #Neo4j #Groovy #Import http://t.co/bOLWhAIIW0"})
+create (_126:`User` {`followers`:950, `following`:225, `location`:"Covington, GA", `name`:"Patrick Durusau", `profile_image_url`:"http://pbs.twimg.com/profile_images/961579480/patrick_normal.jpeg", `screen_name`:"patrickDurusau"})
+create (_127:`Tweet` {`created_at`:"Thu Oct 16 17:20:11 +0000 2014", `favorites`:1, `id`:522799175181037568, `text`:"Getting started with Neo4j and Cypher http://t.co/oF7rwelMmU"})
+create (_128:`User` {`followers`:2287, `following`:1764, `location`:"São Paulo, Brasil", `name`:"Christiano Anderson", `profile_image_url`:"http://pbs.twimg.com/profile_images/1603318086/avatar_twitter2_transp_normal.png", `screen_name`:"dump"})
+create (_129:`Tweet` {`created_at`:"Thu Oct 16 17:32:06 +0000 2014", `favorites`:0, `id`:522802175274389504, `text`:"NoSQL Weekly - Issue 203 http://t.co/13XpPzHylG #NoSQL #FoundationDB #Neo4j #Redis #Cassandra #CortexDB #RavenDB #Couchbase #CDAP #Hunk"})
+create (_130:`Tweet` {`created_at`:"Thu Oct 16 17:41:03 +0000 2014", `favorites`:0, `id`:522804429033324544, `text`:"RT @nosqlweekly: NoSQL Weekly - Issue 203 http://t.co/13XpPzHylG #NoSQL #FoundationDB #Neo4j #Redis #Cassandra #CortexDB #RavenDB #Couchbas…"})
+create (_131:`User` {`followers`:782, `following`:156, `location`:"New York", `name`:"Rahul Chaudhary", `profile_image_url`:"http://pbs.twimg.com/profile_images/1816885964/image1328857964_normal.png", `screen_name`:"rahulgchaudhary"})
+create (_132:`Tweet` {`created_at`:"Thu Oct 16 17:48:29 +0000 2014", `favorites`:0, `id`:522806300392972288, `text`:"RT @nosqlweekly: NoSQL Weekly - Issue 203 http://t.co/13XpPzHylG #NoSQL #FoundationDB #Neo4j #Redis #Cassandra #CortexDB #RavenDB #Couchbas…"})
+create (_133:`Tweet` {`created_at`:"Thu Oct 16 18:00:11 +0000 2014", `favorites`:1, `id`:522809241237999616, `text`:"Play Neo4JPlugin - Neo4J Plugin for Play 2.3 http://t.co/CTZcCyhS92 #Neo4J"})
+create (_134:`Tweet` {`created_at`:"Thu Oct 16 18:04:03 +0000 2014", `favorites`:1, `id`:522810214962446336, `text`:"A good @Neo4j consulting/pair-programming day today :-)"})
+create (_135:`User` {`followers`:440, `following`:183, `location`:"Paris", `name`:"Florent Biville", `profile_image_url`:"http://pbs.twimg.com/profile_images/444603878508490753/FAn4c1pj_normal.jpeg", `screen_name`:"fbiville"})
+create (_136:`Tweet` {`created_at`:"Thu Oct 16 18:11:29 +0000 2014", `favorites`:0, `id`:522812088075309056, `text`:"\"Professionals from the recruiting industry deal with highly interconnected data every day.\" by @luannem #Neo4j http://t.co/0Dm1rOjnG9"})
+create (_137:`User` {`followers`:1461, `following`:1023, `location`:"San Francisco Bay Area", `name`:"Kenny Bastani", `profile_image_url`:"http://pbs.twimg.com/profile_images/2383270260/l1uqen457uefzv774iud_normal.jpeg", `screen_name`:"kennybastani"})
+create (_138:`Tweet` {`created_at`:"Thu Oct 16 18:23:06 +0000 2014", `favorites`:1, `id`:522815011861704704, `text`:"We compared #mysql vs #neo4j - see results: http://t.co/eygvxWzCx1"})
+create (_139:`Tweet` {`created_at`:"Thu Oct 16 18:32:34 +0000 2014", `favorites`:2, `id`:522817391567187968, `text`:"Apple is just awesome. I can't wait to do some #Neo4j graph data modeling on a Retina 5k iMac. Can you imagine!? http://t.co/v2ZZ4K8Yrf"})
+create (_140:`Tweet` {`created_at`:"Thu Oct 16 18:35:13 +0000 2014", `favorites`:2, `id`:522818057866334208, `text`:"Switching off the lights in Venice after a colourful @neo4j full day training with @inserpio. http://t.co/XYiCdZPHh0"})
+create (_141:`User` {`followers`:21, `following`:37, `location`:"Venice, Italy", `name`:"LARUS", `profile_image_url`:"http://pbs.twimg.com/profile_images/378800000496946169/df3959cf498467f1ca57234178b7d3d6_normal.jpeg", `screen_name`:"AgileLARUS"})
+create (_142:`Tweet` {`created_at`:"Thu Oct 16 18:45:57 +0000 2014", `favorites`:0, `id`:522820762202550272, `text`:"RT @AgileLARUS: Switching off the lights in Venice after a colourful @neo4j full day training with @inserpio. http://t.co/XYiCdZPHh0"})
+create (_143:`User` {`followers`:72, `following`:288, `location`:"Venice IT - Schlitz,Bottrop DE", `name`:"Lorenzo Speranzoni", `profile_image_url`:"http://pbs.twimg.com/profile_images/428239983045279744/yd2I5FQY_normal.jpeg", `screen_name`:"inserpio"})
+create (_144:`Tweet` {`created_at`:"Thu Oct 16 19:12:36 +0000 2014", `favorites`:0, `id`:522827468634591232, `text`:"We just scheduled tons of #neo4j trainings in November and December! Find the one closest to you here: http://t.co/k6nGk0Q5iV"})
+create (_145:`User` {`followers`:37, `following`:7, `location`:"", `name`:"GraphAcademy", `profile_image_url`:"http://pbs.twimg.com/profile_images/456555087188357121/mlecULve_normal.jpeg", `screen_name`:"Graph_Academy"})
+create (_146:`Tweet` {`created_at`:"Thu Oct 16 19:22:55 +0000 2014", `favorites`:8, `id`:522830062614106112, `text`:"A simple ACL structure graph in 3 lines of #Cypher . http://t.co/ZpahRKFiNj #neo4j #graph http://t.co/amo0SrjFHa"})
+create (_147:`Tweet` {`created_at`:"Thu Oct 16 19:26:00 +0000 2014", `favorites`:0, `id`:522830837994106880, `text`:"RT @ikwattro: A simple ACL structure graph in 3 lines of #Cypher . http://t.co/ZpahRKFiNj #neo4j #graph http://t.co/amo0SrjFHa"})
+create (_148:`Tweet` {`created_at`:"Thu Oct 16 19:32:06 +0000 2014", `favorites`:0, `id`:522832374262808576, `text`:"RT @ikwattro: A simple ACL structure graph in 3 lines of #Cypher . http://t.co/ZpahRKFiNj #neo4j #graph http://t.co/amo0SrjFHa"})
+create (_149:`User` {`followers`:5481, `following`:1037, `location`:"Houston, TX", `name`:"fredtrotter", `profile_image_url`:"http://pbs.twimg.com/profile_images/2486409181/e3yme64d0os9tp0v02na_normal.jpeg", `screen_name`:"fredtrotter"})
+create (_150:`Tweet` {`created_at`:"Thu Oct 16 19:40:01 +0000 2014", `favorites`:0, `id`:522834368843116544, `text`:"Why I love graphs! #neo4j #vandydh 
+
+ http://t.co/kLZLwgSXHN"})
+create (_151:`User` {`followers`:35, `following`:40, `location`:"Nashville", `name`:"Suellen Stringer-Hye", `profile_image_url`:"http://pbs.twimg.com/profile_images/483987538936201216/oJ1Sc-Lg_normal.jpeg", `screen_name`:"suellenshye"})
+create (_152:`Tweet` {`created_at`:"Thu Oct 16 19:46:18 +0000 2014", `favorites`:0, `id`:522835948438966273, `text`:"DC area training session for @neo4j on Nov 21: http://t.co/fGgQ88kH3N"})
+create (_153:`User` {`followers`:784, `following`:1969, `location`:"Arlington, VA", `name`:"Daniel Abernathy", `profile_image_url`:"http://pbs.twimg.com/profile_images/461321727134281728/FBxaBxH2_normal.jpeg", `screen_name`:"dabernathy89"})
+create (_154:`Tweet` {`created_at`:"Thu Oct 16 19:55:41 +0000 2014", `favorites`:0, `id`:522838307865374720, `text`:"RT @nosqlweekly: Conceptual Model vs Graph Model by @markhneedham http://t.co/rKhf5jfcg4 #neo4j"})
+create (_155:`User` {`followers`:90, `following`:136, `location`:"Roma", `name`:"Francesco", `profile_image_url`:"http://pbs.twimg.com/profile_images/1280919709/snoopy_normal.png", `screen_name`:"ilfurio"})
+create (_156:`Tweet` {`created_at`:"Thu Oct 16 20:01:44 +0000 2014", `favorites`:0, `id`:522839830489608194, `text`:"RT @kennybastani: \"Professionals from the recruiting industry deal with highly interconnected data every day.\" by @luannem #Neo4j http://t.…"})
+create (_157:`Tweet` {`created_at`:"Thu Oct 16 20:02:05 +0000 2014", `favorites`:0, `id`:522839918994022400, `text`:"RT @AgileLARUS: Switching off the lights in Venice after a colourful @neo4j full day training with @inserpio. http://t.co/XYiCdZPHh0"})
+create (_158:`Tweet` {`created_at`:"Thu Oct 16 20:02:24 +0000 2014", `favorites`:0, `id`:522839998882938880, `text`:"RT @Graph_Academy: We just scheduled tons of #neo4j trainings in November and December! Find the one closest to you here: http://t.co/k6nGk…"})
+create (_159:`Tweet` {`created_at`:"Thu Oct 16 20:02:29 +0000 2014", `favorites`:0, `id`:522840020244115456, `text`:"RT @ikwattro: A simple ACL structure graph in 3 lines of #Cypher . http://t.co/ZpahRKFiNj #neo4j #graph http://t.co/amo0SrjFHa"})
+create (_160:`Tweet` {`created_at`:"Thu Oct 16 20:02:38 +0000 2014", `favorites`:0, `id`:522840059607658497, `text`:"RT @dabernathy89: DC area training session for @neo4j on Nov 21: http://t.co/fGgQ88kH3N"})
+create (_161:`Tweet` {`created_at`:"Thu Oct 16 20:07:12 +0000 2014", `favorites`:1, `id`:522841205840019456, `text`:". @Sergio_Gijon: \"Graphs as usual.\" #neo4j #nba http://t.co/yEgGSLZDbg"})
+create (_162:`User` {`followers`:1051, `following`:1995, `location`:"Graphs are everywhere!", `name`:"GrapheneDB", `profile_image_url`:"http://pbs.twimg.com/profile_images/2552953133/twitter_avatar_normal.png", `screen_name`:"GrapheneDB"})
+create (_163:`Source` {`name`:"<a href=\"http://tapbots.com/software/tweetbot/mac\" rel=\"nofollow\">Tweetbot for Mac</a>"})
+create (_164:`Source` {`name`:"<a href=\"https://about.twitter.com/products/tweetdeck\" rel=\"nofollow\">TweetDeck</a>"})
+create (_165:`Source` {`name`:"<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>"})
+create (_166:`Source` {`name`:"<a href=\"http://www.techwars.io\" rel=\"nofollow\">TechWars</a>"})
+create (_167:`Source` {`name`:"<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>"})
+create (_168:`Source` {`name`:"<a href=\"http://www.hootsuite.com\" rel=\"nofollow\">Hootsuite</a>"})
+create (_169:`Source` {`name`:"<a href=\"http://ameanmagazine.blogspot.com\" rel=\"nofollow\">A Mean Magazine Bot</a>"})
+create (_170:`Source` {`name`:"<a href=\"http://simbasystems.com\" rel=\"nofollow\">javascriptdigest</a>"})
+create (_171:`Source` {`name`:"<a href=\"http://www.blaccspot.com\" rel=\"nofollow\">JavaScript Digest</a>"})
+create (_172:`Source` {`name`:"<a href=\"http://tapbots.com/tweetbot\" rel=\"nofollow\">Tweetbot for iΟS</a>"})
+create (_173:`Source` {`name`:"<a href=\"https://dev.twitter.com/docs/tfw\" rel=\"nofollow\">Twitter for Websites</a>"})
+create (_174:`Source` {`name`:"<a href=\"http://itunes.apple.com/us/app/twitter/id409789998?mt=12\" rel=\"nofollow\">Twitter for Mac</a>"})
+create (_175:`Source` {`name`:"<a href=\"http://twicca.r246.jp/\" rel=\"nofollow\">twicca</a>"})
+create (_176:`Source` {`name`:"<a href=\"http://www.simbasystems.com\" rel=\"nofollow\">NoSQLDigest</a>"})
+create (_177:`Source` {`name`:"<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>"})
+create (_178:`Source` {`name`:"<a href=\"http://www.google.com\" rel=\"nofollow\">WonderFul Belgium backend</a>"})
+create (_179:`Source` {`name`:"<a href=\"http://bufferapp.com\" rel=\"nofollow\">Buffer</a>"})
+create (_180:`Source` {`name`:"<a href=\"http://twitter.com/#!/download/ipad\" rel=\"nofollow\">Twitter for iPad</a>"})
+create (_181:`Source` {`name`:"<a href=\"http://www.customwebsiteprogramming.com\" rel=\"nofollow\">Kansas City Website Design</a>"})
+create (_182:`Source` {`name`:"<a href=\"http://paper.li\" rel=\"nofollow\">Paper.li</a>"})
+create (_183:`Source` {`name`:"<a href=\"http://twitterrific.com\" rel=\"nofollow\">Twitterrific</a>"})
+create (_184:`Source` {`name`:"<a href=\"https://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android Tablets</a>"})
+create (_185:`Hashtag` {`name`:"neo4j"})
+create (_186:`Hashtag` {`name`:"git"})
+create (_187:`Hashtag` {`name`:"gradle"})
+create (_188:`Hashtag` {`name`:"angular"})
+create (_189:`Hashtag` {`name`:"websockets"})
+create (_190:`Hashtag` {`name`:"poi"})
+create (_191:`Hashtag` {`name`:"java"})
+create (_192:`Hashtag` {`name`:"networkx"})
+create (_193:`Hashtag` {`name`:"graphpower"})
+create (_194:`Hashtag` {`name`:"nodejs"})
+create (_195:`Hashtag` {`name`:"javascript"})
+create (_196:`Hashtag` {`name`:"seriousgame"})
+create (_197:`Hashtag` {`name`:"html5"})
+create (_198:`Hashtag` {`name`:"css3"})
+create (_199:`Hashtag` {`name`:"processing"})
+create (_200:`Hashtag` {`name`:"atomeditor"})
+create (_201:`Hashtag` {`name`:"sparql"})
+create (_202:`Hashtag` {`name`:"cypher"})
+create (_203:`Hashtag` {`name`:"graphdb"})
+create (_204:`Hashtag` {`name`:"identitymanagement"})
+create (_205:`Hashtag` {`name`:"graphconnect"})
+create (_206:`Hashtag` {`name`:"mix"})
+create (_207:`Hashtag` {`name`:"graph"})
+create (_208:`Hashtag` {`name`:"belgium"})
+create (_209:`Hashtag` {`name`:"nosql"})
+create (_210:`Hashtag` {`name`:"techtalk"})
+create (_211:`Hashtag` {`name`:"python"})
+create (_212:`Hashtag` {`name`:"snapshotnow"})
+create (_213:`Hashtag` {`name`:"bigdata"})
+create (_214:`Hashtag` {`name`:"hr"})
+create (_215:`Hashtag` {`name`:"analytics"})
+create (_216:`Hashtag` {`name`:"graphgen"})
+create (_217:`Hashtag` {`name`:"neoxygen"})
+create (_218:`Hashtag` {`name`:"ux"})
+create (_219:`Hashtag` {`name`:"ui"})
+create (_220:`Hashtag` {`name`:"nba"})
+create (_221:`Hashtag` {`name`:"techcampmemphis"})
+create (_222:`Hashtag` {`name`:"swift"})
+create (_223:`Hashtag` {`name`:"groovy"})
+create (_224:`Hashtag` {`name`:"import"})
+create (_225:`Hashtag` {`name`:"foundationdb"})
+create (_226:`Hashtag` {`name`:"redis"})
+create (_227:`Hashtag` {`name`:"cassandra"})
+create (_228:`Hashtag` {`name`:"cortexdb"})
+create (_229:`Hashtag` {`name`:"ravendb"})
+create (_230:`Hashtag` {`name`:"couchbase"})
+create (_231:`Hashtag` {`name`:"cdap"})
+create (_232:`Hashtag` {`name`:"hunk"})
+create (_233:`Hashtag` {`name`:"mysql"})
+create (_234:`Hashtag` {`name`:"vandydh"})
+create (_235:`Link` {`url`:"http://neo4j.com/blog/5-things-see-graphconnect/"})
+create (_236:`Link` {`url`:"https://graphconnect2014sf.eventbrite.com/?discount=KOMPIS"})
+create (_237:`Link` {`url`:"http://www.techwars.io/fight/neo4j/networkx/"})
+create (_238:`Link` {`url`:"http://ow.ly/CQ7Ha"})
+create (_239:`Link` {`url`:"http://youtu.be/S_dJaxOeccU"})
+create (_240:`Link` {`url`:"http://sco.lt/6ZG6z3"})
+create (_241:`Link` {`url`:"http://www.seenickcode.com/switching-from-mongodb-to-neo4j/"})
+create (_242:`Link` {`url`:"http://www.infoq.com/articles/graph-nosql-neo4j"})
+create (_243:`Link` {`url`:"http://info.neo4j.com/1016-register.html"})
+create (_244:`Link` {`url`:"http://blog.bruggen.com/2014/10/how-graphs-revolutionize-identity-and.html"})
+create (_245:`Link` {`url`:"http://neo4j.com/blog/mix-graphconnect/"})
+create (_246:`Link` {`url`:"http://bit.ly/belgiangraphdatabasemeetupsurvey"})
+create (_247:`Link` {`url`:"https://www.scribd.com/doc/243007227/Graph-database-benchmarking-on-cloud-environments-pdf"})
+create (_248:`Link` {`url`:"http://bit.ly/1txlLsD"})
+create (_249:`Link` {`url`:"https://spark.apache.org/graphx/"})
+create (_250:`Link` {`url`:"http://ow.ly/CQoK5"})
+create (_251:`Link` {`url`:"http://InfoQ.com"})
+create (_252:`Link` {`url`:"http://tinyurl.com/lgz6onu"})
+create (_253:`Link` {`url`:"http://paper.li/dominikalarie/1349442935"})
+create (_254:`Link` {`url`:"http://graphgen.neoxygen.io/documentation#fakertypes-progLanguage"})
+create (_255:`Link` {`url`:"http://www.neo4j.org/learn/online_course"})
+create (_256:`Link` {`url`:"http://www.meetup.com/graphdb-sf/events/195338852/"})
+create (_257:`Link` {`url`:"http://gist.neo4j.org/?94e1a2e66a34bd2a5ee0"})
+create (_258:`Link` {`url`:"http://buff.ly/1rpGcjy"})
+create (_259:`Link` {`url`:"http://ow.ly/CRYuv"})
+create (_260:`Link` {`url`:"http://www.airpair.com/neo4j/posts/getting-started-with-neo4j-and-cypher"})
+create (_261:`Link` {`url`:"https://github.com/nicolewhite/dfw_graph"})
+create (_262:`Link` {`url`:"http://www.slideshare.net/rikvanbruggen/20141015-how-graphs-revolutionize-access-management"})
+create (_263:`Link` {`url`:"http://ow.ly/CHPsr"})
+create (_264:`Link` {`url`:"http://bit.ly/1wcQyd9"})
+create (_265:`Link` {`url`:"http://buff.ly/1rfTZt2"})
+create (_266:`Link` {`url`:"http://buff.ly/1sv8H4A"})
+create (_267:`Link` {`url`:"http://gist.neo4j.org/?0278fc6cbba43c4bf964"})
+create (_268:`Link` {`url`:"http://www.techwars.io/fight/mysql/neo4j/"})
+create (_269:`Link` {`url`:"http://neo4j.com/events/#/events?area=World&type=Training&time=Next90days"})
+create (_270:`Link` {`url`:"http://graphgen.neoxygen.io/?graph=ZWE8XOEsQRAg5g"})
+create (_271:`Link` {`url`:"http://www.linkedin.com/pulse/article/20141016165640-73685339-why-we-need-mozart-and-microchips-for-digital-innovation"})
+create (_272:`Link` {`url`:"http://www.eventbrite.com/e/neo4j-fundamentals-reston-va-tickets-13713578683?aff=estw"})
+create (_273:`Link` {`url`:"http://buff.ly/11vPupq"})
+create (_274:`User` {`name`:"Nigel Small", `screen_name`:"neonige"})
+create (_275:`User` {`name`:"Atos", `screen_name`:"Atos"})
+create (_276:`User` {`name`:"Heroku", `screen_name`:"heroku"})
+create (_277:`User` {`name`:"Scoop.it", `screen_name`:"scoopit"})
+create (_278:`User` {`name`:"Nicole White", `screen_name`:"_nicolemargaret"})
+create (_279:`User` {`name`:"GraphConnect", `screen_name`:"GraphConnect"})
+create (_280:`User` {`name`:"FiftyThree", `screen_name`:"FiftyThree"})
+create (_281:`User` {`name`:"natalia la fey", `screen_name`:"NataliaLaFey"})
+create (_282:`User` {`name`:"Aseem Kishore", `screen_name`:"aseemk"})
+create (_283:`User` {`name`:"Luca Garulli", `screen_name`:"lgarulli"})
+create (_284:`User` {`name`:"Eberhard Wolff", `screen_name`:"ewolff"})
+create (_285:`User` {`name`:"GameDuell", `screen_name`:"GameDuell"})
+create (_286:`User` {`name`:"Neo4j Germany", `screen_name`:"Neo4jDE"})
+create (_287:`User` {`name`:"Apache Spark", `screen_name`:"ApacheSpark"})
+create (_288:`User` {`name`:"ricardoz17", `screen_name`:"ricardoz17"})
+create (_289:`User` {`name`:"Sotiris", `screen_name`:"Tsartsaris"})
+create (_290:`User` {`name`:"SlideShare", `screen_name`:"SlideShare"})
+create (_291:`User` {`name`:"Doug Henschen", `screen_name`:"DHenschen"})
+create (_292:`User` {`name`:"Joe Dager", `screen_name`:"business901"})
+create (_293:`User` {`name`:"Jean Villedieu", `screen_name`:"jvilledieu"})
+create (_294:`User` {`name`:" Sergio Gijón ", `screen_name`:"Sergio_Gijon"})
+create (_295:`User` {`name`:"Mark Needham", `screen_name`:"markhneedham"})
+create (_296:`User` {`name`:"AirPair", `screen_name`:"airpair"})
+create (_297:`User` {`name`:"Wes Freeman", `screen_name`:"wefreema"})
+create (_298:`Tweet` {`id`:522697769581309952})
+create (_299:`Tweet` {`id`:522497573559349248})
+create (_300:`Tweet` {`id`:522635824463376385})
+create (_301:`Tweet` {`id`:522575171094192129})
+create (_302:`Tweet` {`id`:522446647729467392})
+create (_303:`Tweet` {`id`:522367110170025985})
+create (_304:`Tweet` {`id`:520684547663753216})
+create (_305:`Tweet` {`id`:522133359808765953})
+create (_306:`Tweet` {`id`:521741644849098752})
+create (_307:`Tweet` {`id`:522482575114133504})
+create (_308:`Tweet` {`id`:521402654191525888})
+create (_309:`Tweet` {`id`:522415242731458560})
+create (_310:`Tweet` {`created_at`:"Thu Oct 16 20:14:16 +0000 2014", `favorites`:0, `id`:522842985357012992, `text`:"RT @GrapheneDB: . @Sergio_Gijon: \"Graphs as usual.\" #neo4j #nba http://t.co/yEgGSLZDbg"})
+create (_311:`Tweet` {`created_at`:"Thu Oct 16 20:22:06 +0000 2014", `favorites`:0, `id`:522844957166419968, `text`:"RT @dump: Getting started with Neo4j and Cypher http://t.co/oF7rwelMmU"})
+create (_312:`User` {`followers`:903, `following`:846, `location`:"cd ~", `name`:"Helio Loureiro", `profile_image_url`:"http://pbs.twimg.com/profile_images/507089163112284160/8v8zP5pS_normal.jpeg", `screen_name`:"helioloureiro"})
+create (_313:`Source` {`name`:"<a href=\"http://www.myplume.com/\" rel=\"nofollow\">Plume for Android</a>"})
+create (_314:`Tweet` {`created_at`:"Thu Oct 16 20:24:29 +0000 2014", `favorites`:0, `id`:522845558307057664, `text`:"caminte 0.0.22 https://t.co/IKLROLLxCa ORM for every database: redis, mysql, neo4j, mongodb, rethinkdb, postgres, sqlite, tingodb"})
+create (_315:`User` {`followers`:269, `following`:0, `location`:"", `name`:"npm_tweets", `profile_image_url`:"http://pbs.twimg.com/profile_images/3271965971/d6a4510e888422699f1f5720552b68b5_normal.png", `screen_name`:"npm_tweets"})
+create (_316:`Source` {`name`:"<a href=\"https://npmjs.org/\" rel=\"nofollow\">npm_tweets</a>"})
+create (_317:`Link` {`url`:"https://npmjs.org/package/caminte"})
+create (_318:`Tweet` {`created_at`:"Thu Oct 16 20:36:28 +0000 2014", `favorites`:5, `id`:522848574069944320, `text`:"Just released a tiny PHP lib to create @neo4j console setups https://t.co/jGbqTmPcfn #neo4j #php #graph"})
+create (_319:`Tweet` {`created_at`:"Thu Oct 16 20:36:46 +0000 2014", `favorites`:0, `id`:522848646623031297, `text`:"RT @ikwattro: Just released a tiny PHP lib to create @neo4j console setups https://t.co/jGbqTmPcfn #neo4j #php #graph"})
+create (_320:`Hashtag` {`name`:"php"})
+create (_321:`Link` {`url`:"https://github.com/neoxygen/neo4j-console-client"})
+create (_322:`Tweet` {`created_at`:"Thu Oct 16 20:50:42 +0000 2014", `favorites`:0, `id`:522852155690991616, `text`:"RT @npm_tweets: caminte 0.0.22 https://t.co/IKLROLLxCa ORM for every database: redis, mysql, neo4j, mongodb, rethinkdb, postgres, sqlite, t…"})
+create (_323:`Tweet` {`created_at`:"Thu Oct 16 21:08:08 +0000 2014", `favorites`:0, `id`:522856542207746048, `text`:"RT @ikwattro: A simple ACL structure graph in 3 lines of #Cypher . http://t.co/ZpahRKFiNj #neo4j #graph http://t.co/amo0SrjFHa"})
+create (_324:`User` {`followers`:288, `following`:125, `location`:"Cork- Ireland", `name`:"Diarmuid O'Keeffe", `profile_image_url`:"http://pbs.twimg.com/profile_images/488419251527491586/ScLZjpWO_normal.jpeg", `screen_name`:"FuzzieLabs"})
+create (_325:`Tweet` {`created_at`:"Thu Oct 16 21:09:17 +0000 2014", `favorites`:0, `id`:522856832574820353, `text`:"RT @AgileLARUS: Switching off the lights in Venice after a colourful @neo4j full day training with @inserpio. http://t.co/XYiCdZPHh0"})
+create (_326:`User` {`followers`:5, `following`:13, `location`:"Venice IT - Schlitz,Bottrop DE", `name`:"Olly Spera", `profile_image_url`:"http://pbs.twimg.com/profile_images/452757403050598400/OFKH8Vuq_normal.png", `screen_name`:"OllySpera1"})
+create (_327:`Source` {`name`:"<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Mobile Web (M5)</a>"})
+create (_328:`Tweet` {`created_at`:"Thu Oct 16 21:10:04 +0000 2014", `favorites`:0, `id`:522857030457888771, `text`:"[New]neoxygen/neo4j-console-client PHP Client for the Neo4j Console API https://t.co/YDbk3I9Udu"})
+create (_329:`User` {`followers`:26, `following`:1, `location`:"", `name`:"function(){exit;}", `profile_image_url`:"http://pbs.twimg.com/profile_images/453113955255193600/BMVSw7sC_normal.png", `screen_name`:"call_user_func"})
+create (_330:`Source` {`name`:"<a href=\"http://twitter.com/call_user_func\" rel=\"nofollow\">composer_release</a>"})
+create (_331:`Link` {`url`:"https://packagist.org/packages/neoxygen/neo4j-console-client"})
+create (_332:`Tweet` {`created_at`:"Thu Oct 16 21:35:33 +0000 2014", `favorites`:0, `id`:522863440676024320, `text`:"RT @println_ts: A twist on how to do login &amp; registration form on #Neo4J's website. #ux #ui http://t.co/CmDIfkSDT3 http://t.co/fjtSik59Qa"})
+create (_333:`User` {`followers`:133, `following`:42, `location`:"Paris, France", `name`:"Cedric Fauvet", `profile_image_url`:"http://pbs.twimg.com/profile_images/491524882455212032/pzgeJ9Te_normal.jpeg", `screen_name`:"CedricFauvet"})
+create (_334:`Tweet` {`created_at`:"Thu Oct 16 21:46:42 +0000 2014", `favorites`:0, `id`:522866245947777025, `text`:"Assistez au #GraphConnect !
+(We)-[:LOVE]-&gt;(Graphs)
+http://t.co/e46wvGV197
+#neo4j #graphdatabase @toulouse @lyon @paris @bordeaux"})
+create (_335:`User` {`followers`:31, `following`:94, `location`:"", `name`:"Nicolas ROUYER", `profile_image_url`:"http://pbs.twimg.com/profile_images/435815627039592448/lMr2vqCB_normal.jpeg", `screen_name`:"rrrouyer"})
+create (_336:`Source` {`name`:"<a href=\"http://www.linkedin.com/\" rel=\"nofollow\">LinkedIn</a>"})
+create (_337:`Hashtag` {`name`:"graphdatabase"})
+create (_338:`Link` {`url`:"http://lnkd.in/ddMTGnv"})
+create (_339:`User` {`name`:"Toulouse", `screen_name`:"Toulouse"})
+create (_340:`User` {`name`:"Lyon", `screen_name`:"Lyon"})
+create (_341:`User` {`name`:"Paris", `screen_name`:"Paris"})
+create (_342:`User` {`name`:"Bordeaux", `screen_name`:"Bordeaux"})
+create (_343:`Tweet` {`created_at`:"Thu Oct 16 21:47:42 +0000 2014", `favorites`:0, `id`:522866497593430017, `text`:"Attend #GraphConnect !
+(We)-[:LOVE]-&gt;(Graphs)
+http://t.co/e46wvGV197
+#neo4j #graphdatabase #toulouse #lyon #paris #bordeaux"})
+create (_344:`Hashtag` {`name`:"toulouse"})
+create (_345:`Hashtag` {`name`:"lyon"})
+create (_346:`Hashtag` {`name`:"paris"})
+create (_347:`Hashtag` {`name`:"bordeaux"})
+create (_348:`Tweet` {`created_at`:"Thu Oct 16 22:21:52 +0000 2014", `favorites`:0, `id`:522875099482185728, `text`:"RT @GraphAlchemist: Shout out to ikwattro for the amazing work with #Graphgen http://t.co/j4it7yPPUP ! #neo4j #a... http://t.co/OZBgc3XtAq"})
+create (_349:`Tweet` {`created_at`:"Thu Oct 16 22:21:54 +0000 2014", `favorites`:0, `id`:522875107362873345, `text`:"RT @patbaumgartner: Yesterday in our neo4j Graph Data Modelling Class we upgraded a Mac Book Pro #graphpower /cc... http://t.co/XBFAAFbhGg"})
+create (_350:`Tweet` {`created_at`:"Thu Oct 16 22:21:55 +0000 2014", `favorites`:2, `id`:522875110857134081, `text`:"RT @Tsartsaris: Crawling with #python the Greek web #graph with Neo4j, #snapshotnow. Stay tuned. http://t.co/aGO34dwyAI"})
+create (_351:`Source` {`name`:"<a href=\"http://ifttt.com\" rel=\"nofollow\">IFTTT</a>"})
+create (_352:`Hashtag` {`name`:"a"})
+create (_353:`Link` {`url`:"http://bit.ly/1w2NZJF"})
+create (_354:`Link` {`url`:"http://ift.tt/1Csn4bd"})
+create (_355:`Link` {`url`:"http://ift.tt/1F6JiU2"})
+create (_356:`Link` {`url`:"http://ift.tt/1Csn4rD"})
+create (_357:`User` {`name`:"graphAlchemist ", `screen_name`:"GraphAlchemist"})
+create (_358:`Tweet` {`created_at`:"Thu Oct 16 22:31:00 +0000 2014", `favorites`:0, `id`:522877394864979968, `text`:"\"neo4j rest api cypher appears to return cartesian product of nodes\" #neo4jquestions http://t.co/AHhndJGzJ2"})
+create (_359:`User` {`followers`:201, `following`:0, `location`:"", `name`:"Neo Questions", `profile_image_url`:"http://pbs.twimg.com/profile_images/2741457908/3400440ef574e61c4d812422d23e42dc_normal.png", `screen_name`:"NeoQuestions"})
+create (_360:`Source` {`name`:"<a href=\"https://github.com/wfreeman/neoquestions\" rel=\"nofollow\">neoquestions</a>"})
+create (_361:`Hashtag` {`name`:"neo4jquestions"})
+create (_362:`Link` {`url`:"http://stackoverflow.com/questions/26414507/neo4j-rest-api-cypher-appears-to-return-cartesian-product-of-nodes"})
+create (_363:`Tweet` {`created_at`:"Thu Oct 16 22:59:03 +0000 2014", `favorites`:0, `id`:522884456043266048, `text`:"Building recommendation engines with @neo4j. Sample code (R, RShiny, Cypher) =&gt; http://t.co/HqD4ZY22w2 #graphdb #recommendations"})
+create (_364:`Tweet` {`created_at`:"Thu Oct 16 23:37:53 +0000 2014", `favorites`:0, `id`:522894226494087168, `text`:"RT @println_ts: A twist on how to do login &amp; registration form on #Neo4J's website. #ux #ui http://t.co/CmDIfkSDT3 http://t.co/fjtSik59Qa"})
+create (_365:`User` {`followers`:160, `following`:199, `location`:"Dallas, Texas, USA", `name`:"Joshua A. Norrid", `profile_image_url`:"http://pbs.twimg.com/profile_images/507938231996801024/I5etekJT_normal.jpeg", `screen_name`:"JoshuaNorrid"})
+create (_366:`Hashtag` {`name`:"recommendations"})
+create (_367:`Link` {`url`:"http://buff.ly/1ty4tLY"})
+create (_368:`Tweet` {`created_at`:"Thu Oct 16 23:41:16 +0000 2014", `favorites`:0, `id`:522895078558547968, `text`:"RT @Sve_Sic: Magic Quadrnt for Operationl DBMSs by @Brazingo, @merv &amp; @nheudecker is out: http://t.co/GZW8jSarvY
+@mapr, @cloudera, @NeoTech…"})
+create (_369:`Link` {`url`:"http://www.gartner.com/document/2877117?toggle=1"})
+create (_370:`User` {`name`:"Svetlana Sicular", `screen_name`:"Sve_Sic"})
+create (_371:`User` {`name`:"Donald Feinberg", `screen_name`:"Brazingo"})
+create (_372:`User` {`name`:"Merv Adrian", `screen_name`:"merv"})
+create (_373:`User` {`name`:"Nick Heudecker", `screen_name`:"nheudecker"})
+create (_374:`User` {`name`:"MapR Technologies", `screen_name`:"mapr"})
+create (_375:`User` {`name`:"Cloudera", `screen_name`:"cloudera"})
+create (_376:`User` {`name`:"Neo Technology", `screen_name`:"NeoTechnology"})
+create (_377:`Tweet` {`id`:522892479184793600})
+create (_378:`Tweet` {`created_at`:"Thu Oct 16 23:58:12 +0000 2014", `favorites`:0, `id`:522899340646313984, `text`:"We compared #neo4j vs #titan - see results: http://t.co/sFHlkwvpyk"})
+create (_379:`Hashtag` {`name`:"titan"})
+create (_380:`Link` {`url`:"http://www.techwars.io/fight/neo4j/titan/"})
+create (_381:`Tweet` {`created_at`:"Fri Oct 17 00:10:16 +0000 2014", `favorites`:0, `id`:522902377469575169, `text`:"Fraud Detection in Real-Time with Neo4j - http://t.co/dI6Czs3zQO http://t.co/9pt5GbusCF"})
+create (_382:`User` {`followers`:14, `following`:144, `location`:"Leeds", `name`:"Lost Event (Leeds)", `profile_image_url`:"http://pbs.twimg.com/profile_images/520619354132455424/uU3toi1__normal.jpeg", `screen_name`:"LostEvent_LBA"})
+create (_383:`Source` {`name`:"<a href=\"http://lostevent.com/\" rel=\"nofollow\">Leeds II</a>"})
+create (_384:`Link` {`url`:"http://lostevent.com/events/2014_12_03?city_id=28"})
+create (_385:`Tweet` {`created_at`:"Fri Oct 17 00:20:31 +0000 2014", `favorites`:0, `id`:522904956068970499, `text`:"RT @LostEvent_LBA: Fraud Detection in Real-Time with Neo4j - http://t.co/dI6Czs3zQO http://t.co/9pt5GbusCF"})
+create (_386:`Tweet` {`created_at`:"Fri Oct 17 00:20:45 +0000 2014", `favorites`:0, `id`:522905015246397440, `text`:"RT @GrapheneDB: Building recommendation engines with @neo4j. Sample code (R, RShiny, Cypher) =&gt; http://t.co/HqD4ZY22w2 #graphdb #recommenda…"})
+create (_387:`Tweet` {`created_at`:"Fri Oct 17 00:24:21 +0000 2014", `favorites`:0, `id`:522905919462854656, `text`:"RT @GrapheneDB: Building recommendation engines with @neo4j. Sample code (R, RShiny, Cypher) =&gt; http://t.co/HqD4ZY22w2 #graphdb #recommenda…"})
+create (_388:`Tweet` {`created_at`:"Fri Oct 17 00:39:48 +0000 2014", `favorites`:0, `id`:522909808207626240, `text`:"RT @LostEvent_LBA: Fraud Detection in Real-Time with Neo4j - http://t.co/dI6Czs3zQO http://t.co/9pt5GbusCF"})
+create (_389:`User` {`followers`:206, `following`:479, `location`:"", `name`:"Job Maina", `profile_image_url`:"http://pbs.twimg.com/profile_images/515476132318412800/Gwz5PihO_normal.jpeg", `screen_name`:"jobmaina"})
+create _0-[:`USING`]->_163
+create _0-[:`MENTIONS`]->_274
+create _0-[:`RETWEETS`]->_300
+create _1-[:`POSTS`]->_386
+create _1-[:`POSTS`]->_385
+create _1-[:`POSTS`]->_368
+create _1-[:`POSTS`]->_160
+create _1-[:`POSTS`]->_159
+create _1-[:`POSTS`]->_158
+create _1-[:`POSTS`]->_157
+create _1-[:`POSTS`]->_156
+create _1-[:`POSTS`]->_120
+create _1-[:`POSTS`]->_95
+create _1-[:`POSTS`]->_94
+create _1-[:`POSTS`]->_93
+create _1-[:`POSTS`]->_92
+create _1-[:`POSTS`]->_91
+create _1-[:`POSTS`]->_12
+create _1-[:`POSTS`]->_10
+create _1-[:`POSTS`]->_0
+create _2-[:`USING`]->_164
+create _2-[:`MENTIONS`]->_274
+create _2-[:`RETWEETS`]->_300
+create _3-[:`POSTS`]->_2
+create _4-[:`USING`]->_165
+create _4-[:`CONTAINS`]->_236
+create _4-[:`CONTAINS`]->_235
+create _5-[:`POSTS`]->_4
+create _6-[:`USING`]->_164
+create _6-[:`MENTIONS`]->_274
+create _6-[:`RETWEETS`]->_300
+create _7-[:`POSTS`]->_6
+create _8-[:`USING`]->_164
+create _8-[:`MENTIONS`]->_275
+create _9-[:`POSTS`]->_11
+create _9-[:`POSTS`]->_8
+create _10-[:`USING`]->_163
+create _10-[:`MENTIONS`]->_275
+create _10-[:`MENTIONS`]->_9
+create _10-[:`REPLY_TO`]->_8
+create _11-[:`USING`]->_164
+create _11-[:`MENTIONS`]->_1
+create _11-[:`REPLY_TO`]->_10
+create _12-[:`USING`]->_163
+create _12-[:`MENTIONS`]->_9
+create _12-[:`REPLY_TO`]->_11
+create _13-[:`USING`]->_166
+create _13-[:`CONTAINS`]->_237
+create _14-[:`POSTS`]->_378
+create _14-[:`POSTS`]->_138
+create _14-[:`POSTS`]->_13
+create _15-[:`USING`]->_167
+create _15-[:`MENTIONS`]->_18
+create _15-[:`MENTIONS`]->_1
+create _16-[:`POSTS`]->_350
+create _16-[:`POSTS`]->_349
+create _16-[:`POSTS`]->_348
+create _16-[:`POSTS`]->_15
+create _17-[:`USING`]->_165
+create _17-[:`MENTIONS`]->_18
+create _17-[:`MENTIONS`]->_1
+create _17-[:`MENTIONS`]->_16
+create _17-[:`RETWEETS`]->_15
+create _18-[:`POSTS`]->_75
+create _18-[:`POSTS`]->_17
+create _19-[:`USING`]->_168
+create _19-[:`CONTAINS`]->_238
+create _19-[:`MENTIONS`]->_44
+create _20-[:`POSTS`]->_79
+create _20-[:`POSTS`]->_19
+create _21-[:`USING`]->_165
+create _21-[:`CONTAINS`]->_239
+create _21-[:`MENTIONS`]->_1
+create _21-[:`MENTIONS`]->_276
+create _22-[:`POSTS`]->_21
+create _23-[:`USING`]->_169
+create _23-[:`CONTAINS`]->_239
+create _23-[:`MENTIONS`]->_1
+create _23-[:`MENTIONS`]->_276
+create _23-[:`MENTIONS`]->_22
+create _23-[:`RETWEETS`]->_21
+create _24-[:`POSTS`]->_23
+create _25-[:`USING`]->_167
+create _25-[:`CONTAINS`]->_238
+create _25-[:`MENTIONS`]->_44
+create _25-[:`MENTIONS`]->_20
+create _25-[:`RETWEETS`]->_19
+create _26-[:`POSTS`]->_318
+create _26-[:`POSTS`]->_146
+create _26-[:`POSTS`]->_105
+create _26-[:`POSTS`]->_85
+create _26-[:`POSTS`]->_51
+create _26-[:`POSTS`]->_50
+create _26-[:`POSTS`]->_25
+create _27-[:`USING`]->_170
+create _27-[:`CONTAINS`]->_239
+create _27-[:`MENTIONS`]->_1
+create _27-[:`MENTIONS`]->_276
+create _27-[:`MENTIONS`]->_22
+create _27-[:`RETWEETS`]->_21
+create _28-[:`POSTS`]->_27
+create _29-[:`USING`]->_171
+create _29-[:`CONTAINS`]->_239
+create _29-[:`MENTIONS`]->_1
+create _29-[:`MENTIONS`]->_276
+create _29-[:`MENTIONS`]->_22
+create _29-[:`RETWEETS`]->_21
+create _30-[:`POSTS`]->_132
+create _30-[:`POSTS`]->_64
+create _30-[:`POSTS`]->_29
+create _31-[:`USING`]->_172
+create _32-[:`POSTS`]->_31
+create _33-[:`USING`]->_173
+create _33-[:`CONTAINS`]->_240
+create _33-[:`MENTIONS`]->_277
+create _34-[:`POSTS`]->_33
+create _35-[:`USING`]->_173
+create _35-[:`CONTAINS`]->_241
+create _36-[:`POSTS`]->_35
+create _37-[:`USING`]->_174
+create _37-[:`CONTAINS`]->_242
+create _38-[:`POSTS`]->_37
+create _39-[:`USING`]->_175
+create _39-[:`CONTAINS`]->_241
+create _39-[:`MENTIONS`]->_36
+create _39-[:`REPLY_TO`]->_35
+create _40-[:`POSTS`]->_39
+create _41-[:`USING`]->_167
+create _41-[:`CONTAINS`]->_243
+create _41-[:`MENTIONS`]->_278
+create _41-[:`MENTIONS`]->_137
+create _41-[:`RETWEETS`]->_301
+create _42-[:`POSTS`]->_41
+create _43-[:`USING`]->_165
+create _43-[:`CONTAINS`]->_244
+create _43-[:`MENTIONS`]->_119
+create _44-[:`POSTS`]->_43
+create _45-[:`USING`]->_176
+create _45-[:`CONTAINS`]->_241
+create _45-[:`MENTIONS`]->_36
+create _45-[:`RETWEETS`]->_35
+create _46-[:`POSTS`]->_322
+create _46-[:`POSTS`]->_88
+create _46-[:`POSTS`]->_57
+create _46-[:`POSTS`]->_47
+create _46-[:`POSTS`]->_45
+create _47-[:`USING`]->_176
+create _47-[:`CONTAINS`]->_242
+create _47-[:`MENTIONS`]->_38
+create _47-[:`RETWEETS`]->_37
+create _48-[:`USING`]->_177
+create _48-[:`CONTAINS`]->_245
+create _48-[:`MENTIONS`]->_282
+create _48-[:`MENTIONS`]->_281
+create _48-[:`MENTIONS`]->_280
+create _48-[:`MENTIONS`]->_279
+create _48-[:`RETWEETS`]->_302
+create _49-[:`POSTS`]->_48
+create _50-[:`USING`]->_165
+create _50-[:`CONTAINS`]->_244
+create _50-[:`MENTIONS`]->_119
+create _50-[:`MENTIONS`]->_44
+create _50-[:`RETWEETS`]->_43
+create _51-[:`USING`]->_165
+create _51-[:`CONTAINS`]->_246
+create _52-[:`USING`]->_165
+create _52-[:`CONTAINS`]->_246
+create _52-[:`MENTIONS`]->_26
+create _52-[:`RETWEETS`]->_51
+create _53-[:`POSTS`]->_319
+create _53-[:`POSTS`]->_310
+create _53-[:`POSTS`]->_147
+create _53-[:`POSTS`]->_104
+create _53-[:`POSTS`]->_101
+create _53-[:`POSTS`]->_100
+create _53-[:`POSTS`]->_84
+create _53-[:`POSTS`]->_54
+create _53-[:`POSTS`]->_52
+create _54-[:`USING`]->_165
+create _54-[:`CONTAINS`]->_244
+create _54-[:`MENTIONS`]->_119
+create _54-[:`MENTIONS`]->_44
+create _54-[:`RETWEETS`]->_43
+create _55-[:`USING`]->_178
+create _55-[:`CONTAINS`]->_246
+create _55-[:`MENTIONS`]->_26
+create _55-[:`RETWEETS`]->_51
+create _56-[:`POSTS`]->_55
+create _57-[:`USING`]->_176
+create _57-[:`CONTAINS`]->_241
+create _57-[:`MENTIONS`]->_36
+create _57-[:`MENTIONS`]->_40
+create _57-[:`RETWEETS`]->_39
+create _58-[:`USING`]->_165
+create _58-[:`CONTAINS`]->_247
+create _58-[:`MENTIONS`]->_283
+create _58-[:`RETWEETS`]->_303
+create _59-[:`POSTS`]->_58
+create _60-[:`USING`]->_164
+create _60-[:`MENTIONS`]->_284
+create _60-[:`REPLY_TO`]->_298
+create _61-[:`POSTS`]->_60
+create _62-[:`USING`]->_165
+create _62-[:`CONTAINS`]->_248
+create _62-[:`MENTIONS`]->_5
+create _62-[:`MENTIONS`]->_286
+create _62-[:`MENTIONS`]->_285
+create _63-[:`POSTS`]->_62
+create _64-[:`USING`]->_171
+create _64-[:`CONTAINS`]->_247
+create _64-[:`MENTIONS`]->_283
+create _64-[:`RETWEETS`]->_303
+create _65-[:`USING`]->_177
+create _65-[:`CONTAINS`]->_243
+create _65-[:`MENTIONS`]->_278
+create _65-[:`MENTIONS`]->_137
+create _65-[:`RETWEETS`]->_301
+create _66-[:`POSTS`]->_387
+create _66-[:`POSTS`]->_76
+create _66-[:`POSTS`]->_65
+create _67-[:`USING`]->_165
+create _67-[:`CONTAINS`]->_248
+create _67-[:`MENTIONS`]->_5
+create _67-[:`MENTIONS`]->_286
+create _67-[:`MENTIONS`]->_285
+create _67-[:`MENTIONS`]->_63
+create _67-[:`RETWEETS`]->_62
+create _68-[:`POSTS`]->_67
+create _69-[:`USING`]->_177
+create _69-[:`CONTAINS`]->_243
+create _70-[:`POSTS`]->_69
+create _71-[:`USING`]->_167
+create _71-[:`CONTAINS`]->_249
+create _71-[:`MENTIONS`]->_287
+create _71-[:`MENTIONS`]->_137
+create _71-[:`RETWEETS`]->_304
+create _72-[:`POSTS`]->_71
+create _73-[:`USING`]->_165
+create _73-[:`MENTIONS`]->_1
+create _73-[:`MENTIONS`]->_288
+create _73-[:`REPLY_TO`]->_299
+create _74-[:`POSTS`]->_73
+create _75-[:`USING`]->_179
+create _75-[:`MENTIONS`]->_1
+create _75-[:`MENTIONS`]->_289
+create _75-[:`RETWEETS`]->_305
+create _76-[:`USING`]->_180
+create _76-[:`CONTAINS`]->_243
+create _76-[:`MENTIONS`]->_70
+create _76-[:`RETWEETS`]->_69
+create _77-[:`USING`]->_173
+create _77-[:`CONTAINS`]->_243
+create _77-[:`MENTIONS`]->_1
+create _77-[:`MENTIONS`]->_278
+create _78-[:`POSTS`]->_77
+create _79-[:`USING`]->_168
+create _79-[:`CONTAINS`]->_250
+create _79-[:`MENTIONS`]->_290
+create _80-[:`USING`]->_181
+create _80-[:`CONTAINS`]->_252
+create _80-[:`CONTAINS`]->_251
+create _81-[:`POSTS`]->_80
+create _82-[:`USING`]->_182
+create _82-[:`CONTAINS`]->_253
+create _82-[:`MENTIONS`]->_1
+create _82-[:`MENTIONS`]->_292
+create _82-[:`MENTIONS`]->_291
+create _83-[:`POSTS`]->_82
+create _84-[:`USING`]->_165
+create _84-[:`CONTAINS`]->_254
+create _85-[:`USING`]->_165
+create _85-[:`CONTAINS`]->_254
+create _85-[:`MENTIONS`]->_53
+create _85-[:`RETWEETS`]->_84
+create _86-[:`USING`]->_165
+create _86-[:`CONTAINS`]->_255
+create _87-[:`POSTS`]->_86
+create _88-[:`USING`]->_176
+create _88-[:`CONTAINS`]->_250
+create _88-[:`MENTIONS`]->_290
+create _88-[:`MENTIONS`]->_20
+create _88-[:`RETWEETS`]->_79
+create _89-[:`USING`]->_172
+create _89-[:`CONTAINS`]->_255
+create _89-[:`MENTIONS`]->_87
+create _89-[:`RETWEETS`]->_86
+create _90-[:`POSTS`]->_89
+create _91-[:`USING`]->_172
+create _91-[:`CONTAINS`]->_255
+create _91-[:`MENTIONS`]->_87
+create _91-[:`RETWEETS`]->_86
+create _92-[:`USING`]->_172
+create _92-[:`CONTAINS`]->_243
+create _92-[:`MENTIONS`]->_1
+create _92-[:`MENTIONS`]->_278
+create _92-[:`MENTIONS`]->_78
+create _92-[:`RETWEETS`]->_77
+create _93-[:`USING`]->_172
+create _93-[:`CONTAINS`]->_246
+create _93-[:`MENTIONS`]->_26
+create _93-[:`RETWEETS`]->_51
+create _94-[:`USING`]->_172
+create _94-[:`CONTAINS`]->_244
+create _94-[:`MENTIONS`]->_119
+create _94-[:`MENTIONS`]->_44
+create _94-[:`RETWEETS`]->_43
+create _95-[:`USING`]->_172
+create _95-[:`CONTAINS`]->_250
+create _95-[:`MENTIONS`]->_290
+create _95-[:`MENTIONS`]->_20
+create _95-[:`RETWEETS`]->_79
+create _96-[:`USING`]->_165
+create _96-[:`CONTAINS`]->_255
+create _96-[:`MENTIONS`]->_87
+create _96-[:`RETWEETS`]->_86
+create _97-[:`POSTS`]->_96
+create _98-[:`USING`]->_177
+create _98-[:`CONTAINS`]->_256
+create _98-[:`MENTIONS`]->_278
+create _98-[:`MENTIONS`]->_1
+create _98-[:`RETWEETS`]->_306
+create _99-[:`POSTS`]->_98
+create _100-[:`USING`]->_167
+create _100-[:`CONTAINS`]->_243
+create _100-[:`MENTIONS`]->_1
+create _100-[:`MENTIONS`]->_278
+create _100-[:`MENTIONS`]->_78
+create _100-[:`RETWEETS`]->_77
+create _101-[:`USING`]->_167
+create _101-[:`CONTAINS`]->_250
+create _101-[:`MENTIONS`]->_290
+create _101-[:`MENTIONS`]->_20
+create _101-[:`RETWEETS`]->_79
+create _102-[:`USING`]->_165
+create _103-[:`POSTS`]->_102
+create _104-[:`USING`]->_165
+create _104-[:`CONTAINS`]->_257
+create _104-[:`MENTIONS`]->_20
+create _104-[:`MENTIONS`]->_293
+create _105-[:`USING`]->_165
+create _105-[:`CONTAINS`]->_257
+create _105-[:`MENTIONS`]->_20
+create _105-[:`MENTIONS`]->_293
+create _105-[:`MENTIONS`]->_53
+create _105-[:`RETWEETS`]->_104
+create _106-[:`USING`]->_167
+create _106-[:`CONTAINS`]->_243
+create _106-[:`MENTIONS`]->_278
+create _106-[:`RETWEETS`]->_307
+create _107-[:`POSTS`]->_106
+create _108-[:`USING`]->_172
+create _108-[:`MENTIONS`]->_103
+create _108-[:`RETWEETS`]->_102
+create _109-[:`POSTS`]->_108
+create _110-[:`USING`]->_165
+create _110-[:`MENTIONS`]->_294
+create _110-[:`RETWEETS`]->_308
+create _111-[:`POSTS`]->_110
+create _112-[:`USING`]->_179
+create _112-[:`CONTAINS`]->_258
+create _112-[:`MENTIONS`]->_295
+create _113-[:`POSTS`]->_133
+create _113-[:`POSTS`]->_129
+create _113-[:`POSTS`]->_112
+create _114-[:`USING`]->_164
+create _114-[:`CONTAINS`]->_259
+create _115-[:`POSTS`]->_114
+create _116-[:`USING`]->_163
+create _116-[:`MENTIONS`]->_1
+create _117-[:`POSTS`]->_116
+create _118-[:`USING`]->_183
+create _118-[:`CONTAINS`]->_244
+create _118-[:`MENTIONS`]->_119
+create _118-[:`MENTIONS`]->_44
+create _118-[:`RETWEETS`]->_43
+create _119-[:`POSTS`]->_118
+create _120-[:`USING`]->_164
+create _120-[:`CONTAINS`]->_260
+create _120-[:`MENTIONS`]->_297
+create _120-[:`MENTIONS`]->_296
+create _121-[:`USING`]->_165
+create _121-[:`CONTAINS`]->_261
+create _121-[:`MENTIONS`]->_1
+create _122-[:`POSTS`]->_121
+create _123-[:`USING`]->_179
+create _123-[:`CONTAINS`]->_262
+create _123-[:`MENTIONS`]->_44
+create _123-[:`RETWEETS`]->_309
+create _124-[:`POSTS`]->_123
+create _125-[:`USING`]->_168
+create _125-[:`CONTAINS`]->_263
+create _126-[:`POSTS`]->_125
+create _127-[:`USING`]->_179
+create _127-[:`CONTAINS`]->_264
+create _128-[:`POSTS`]->_127
+create _129-[:`USING`]->_179
+create _129-[:`CONTAINS`]->_265
+create _130-[:`USING`]->_165
+create _130-[:`CONTAINS`]->_265
+create _130-[:`MENTIONS`]->_113
+create _130-[:`RETWEETS`]->_129
+create _131-[:`POSTS`]->_130
+create _132-[:`USING`]->_171
+create _132-[:`CONTAINS`]->_265
+create _132-[:`MENTIONS`]->_113
+create _132-[:`RETWEETS`]->_129
+create _133-[:`USING`]->_179
+create _133-[:`CONTAINS`]->_266
+create _134-[:`USING`]->_167
+create _134-[:`MENTIONS`]->_1
+create _135-[:`POSTS`]->_134
+create _136-[:`USING`]->_173
+create _136-[:`CONTAINS`]->_267
+create _136-[:`MENTIONS`]->_7
+create _137-[:`POSTS`]->_139
+create _137-[:`POSTS`]->_136
+create _138-[:`USING`]->_166
+create _138-[:`CONTAINS`]->_268
+create _139-[:`USING`]->_165
+create _140-[:`USING`]->_180
+create _140-[:`MENTIONS`]->_143
+create _140-[:`MENTIONS`]->_1
+create _141-[:`POSTS`]->_140
+create _142-[:`USING`]->_180
+create _142-[:`MENTIONS`]->_143
+create _142-[:`MENTIONS`]->_1
+create _142-[:`MENTIONS`]->_141
+create _142-[:`RETWEETS`]->_140
+create _143-[:`POSTS`]->_142
+create _144-[:`USING`]->_164
+create _144-[:`CONTAINS`]->_269
+create _145-[:`POSTS`]->_144
+create _146-[:`USING`]->_165
+create _146-[:`CONTAINS`]->_270
+create _147-[:`USING`]->_165
+create _147-[:`CONTAINS`]->_270
+create _147-[:`MENTIONS`]->_26
+create _147-[:`RETWEETS`]->_146
+create _148-[:`USING`]->_167
+create _148-[:`CONTAINS`]->_270
+create _148-[:`MENTIONS`]->_26
+create _148-[:`RETWEETS`]->_146
+create _149-[:`POSTS`]->_148
+create _150-[:`USING`]->_165
+create _150-[:`CONTAINS`]->_271
+create _151-[:`POSTS`]->_150
+create _152-[:`USING`]->_173
+create _152-[:`CONTAINS`]->_272
+create _152-[:`MENTIONS`]->_1
+create _153-[:`POSTS`]->_152
+create _154-[:`USING`]->_184
+create _154-[:`CONTAINS`]->_258
+create _154-[:`MENTIONS`]->_295
+create _154-[:`MENTIONS`]->_113
+create _154-[:`RETWEETS`]->_112
+create _155-[:`POSTS`]->_154
+create _156-[:`USING`]->_163
+create _156-[:`CONTAINS`]->_267
+create _156-[:`MENTIONS`]->_7
+create _156-[:`MENTIONS`]->_137
+create _156-[:`RETWEETS`]->_136
+create _157-[:`USING`]->_163
+create _157-[:`MENTIONS`]->_143
+create _157-[:`MENTIONS`]->_1
+create _157-[:`MENTIONS`]->_141
+create _157-[:`RETWEETS`]->_140
+create _158-[:`USING`]->_163
+create _158-[:`CONTAINS`]->_269
+create _158-[:`MENTIONS`]->_145
+create _158-[:`RETWEETS`]->_144
+create _159-[:`USING`]->_163
+create _159-[:`CONTAINS`]->_270
+create _159-[:`MENTIONS`]->_26
+create _159-[:`RETWEETS`]->_146
+create _160-[:`USING`]->_163
+create _160-[:`CONTAINS`]->_272
+create _160-[:`MENTIONS`]->_1
+create _160-[:`MENTIONS`]->_153
+create _160-[:`RETWEETS`]->_152
+create _161-[:`USING`]->_179
+create _161-[:`CONTAINS`]->_273
+create _161-[:`MENTIONS`]->_294
+create _162-[:`POSTS`]->_363
+create _162-[:`POSTS`]->_161
+create _185-[:`TAGS`]->_378
+create _185-[:`TAGS`]->_364
+create _185-[:`TAGS`]->_348
+create _185-[:`TAGS`]->_343
+create _185-[:`TAGS`]->_334
+create _185-[:`TAGS`]->_332
+create _185-[:`TAGS`]->_323
+create _185-[:`TAGS`]->_319
+create _185-[:`TAGS`]->_318
+create _185-[:`TAGS`]->_310
+create _185-[:`TAGS`]->_161
+create _185-[:`TAGS`]->_159
+create _185-[:`TAGS`]->_158
+create _185-[:`TAGS`]->_156
+create _185-[:`TAGS`]->_154
+create _185-[:`TAGS`]->_150
+create _185-[:`TAGS`]->_148
+create _185-[:`TAGS`]->_147
+create _185-[:`TAGS`]->_146
+create _185-[:`TAGS`]->_144
+create _185-[:`TAGS`]->_139
+create _185-[:`TAGS`]->_138
+create _185-[:`TAGS`]->_136
+create _185-[:`TAGS`]->_133
+create _185-[:`TAGS`]->_132
+create _185-[:`TAGS`]->_130
+create _185-[:`TAGS`]->_0
+create _185-[:`TAGS`]->_2
+create _185-[:`TAGS`]->_6
+create _185-[:`TAGS`]->_8
+create _185-[:`TAGS`]->_13
+create _185-[:`TAGS`]->_19
+create _185-[:`TAGS`]->_25
+create _185-[:`TAGS`]->_31
+create _185-[:`TAGS`]->_33
+create _185-[:`TAGS`]->_41
+create _185-[:`TAGS`]->_43
+create _185-[:`TAGS`]->_50
+create _185-[:`TAGS`]->_51
+create _185-[:`TAGS`]->_52
+create _185-[:`TAGS`]->_54
+create _185-[:`TAGS`]->_55
+create _185-[:`TAGS`]->_60
+create _185-[:`TAGS`]->_62
+create _185-[:`TAGS`]->_65
+create _185-[:`TAGS`]->_67
+create _185-[:`TAGS`]->_69
+create _185-[:`TAGS`]->_71
+create _185-[:`TAGS`]->_76
+create _185-[:`TAGS`]->_77
+create _185-[:`TAGS`]->_79
+create _185-[:`TAGS`]->_84
+create _185-[:`TAGS`]->_85
+create _185-[:`TAGS`]->_86
+create _185-[:`TAGS`]->_88
+create _185-[:`TAGS`]->_89
+create _185-[:`TAGS`]->_91
+create _185-[:`TAGS`]->_92
+create _185-[:`TAGS`]->_93
+create _185-[:`TAGS`]->_94
+create _185-[:`TAGS`]->_95
+create _185-[:`TAGS`]->_96
+create _185-[:`TAGS`]->_98
+create _185-[:`TAGS`]->_100
+create _185-[:`TAGS`]->_101
+create _185-[:`TAGS`]->_104
+create _185-[:`TAGS`]->_105
+create _185-[:`TAGS`]->_106
+create _185-[:`TAGS`]->_110
+create _185-[:`TAGS`]->_112
+create _185-[:`TAGS`]->_114
+create _185-[:`TAGS`]->_118
+create _185-[:`TAGS`]->_120
+create _185-[:`TAGS`]->_123
+create _185-[:`TAGS`]->_125
+create _185-[:`TAGS`]->_129
+create _186-[:`TAGS`]->_8
+create _187-[:`TAGS`]->_8
+create _188-[:`TAGS`]->_8
+create _189-[:`TAGS`]->_8
+create _190-[:`TAGS`]->_8
+create _191-[:`TAGS`]->_8
+create _192-[:`TAGS`]->_13
+create _193-[:`TAGS`]->_349
+create _193-[:`TAGS`]->_17
+create _193-[:`TAGS`]->_15
+create _194-[:`TAGS`]->_29
+create _194-[:`TAGS`]->_27
+create _194-[:`TAGS`]->_23
+create _194-[:`TAGS`]->_21
+create _195-[:`TAGS`]->_29
+create _195-[:`TAGS`]->_27
+create _195-[:`TAGS`]->_23
+create _195-[:`TAGS`]->_21
+create _196-[:`TAGS`]->_31
+create _197-[:`TAGS`]->_31
+create _198-[:`TAGS`]->_31
+create _199-[:`TAGS`]->_31
+create _200-[:`TAGS`]->_31
+create _201-[:`TAGS`]->_33
+create _202-[:`TAGS`]->_323
+create _202-[:`TAGS`]->_159
+create _202-[:`TAGS`]->_148
+create _202-[:`TAGS`]->_147
+create _202-[:`TAGS`]->_146
+create _202-[:`TAGS`]->_120
+create _202-[:`TAGS`]->_98
+create _202-[:`TAGS`]->_33
+create _203-[:`TAGS`]->_387
+create _203-[:`TAGS`]->_386
+create _203-[:`TAGS`]->_363
+create _203-[:`TAGS`]->_100
+create _203-[:`TAGS`]->_92
+create _203-[:`TAGS`]->_77
+create _203-[:`TAGS`]->_64
+create _203-[:`TAGS`]->_58
+create _203-[:`TAGS`]->_33
+create _204-[:`TAGS`]->_118
+create _204-[:`TAGS`]->_94
+create _204-[:`TAGS`]->_54
+create _204-[:`TAGS`]->_50
+create _204-[:`TAGS`]->_43
+create _205-[:`TAGS`]->_343
+create _205-[:`TAGS`]->_334
+create _205-[:`TAGS`]->_48
+create _206-[:`TAGS`]->_48
+create _207-[:`TAGS`]->_350
+create _207-[:`TAGS`]->_323
+create _207-[:`TAGS`]->_319
+create _207-[:`TAGS`]->_318
+create _207-[:`TAGS`]->_159
+create _207-[:`TAGS`]->_148
+create _207-[:`TAGS`]->_147
+create _207-[:`TAGS`]->_146
+create _207-[:`TAGS`]->_93
+create _207-[:`TAGS`]->_75
+create _207-[:`TAGS`]->_55
+create _207-[:`TAGS`]->_52
+create _207-[:`TAGS`]->_51
+create _208-[:`TAGS`]->_93
+create _208-[:`TAGS`]->_55
+create _208-[:`TAGS`]->_52
+create _208-[:`TAGS`]->_51
+create _209-[:`TAGS`]->_132
+create _209-[:`TAGS`]->_130
+create _209-[:`TAGS`]->_129
+create _209-[:`TAGS`]->_64
+create _209-[:`TAGS`]->_58
+create _210-[:`TAGS`]->_67
+create _210-[:`TAGS`]->_62
+create _211-[:`TAGS`]->_350
+create _211-[:`TAGS`]->_75
+create _212-[:`TAGS`]->_350
+create _212-[:`TAGS`]->_75
+create _213-[:`TAGS`]->_101
+create _213-[:`TAGS`]->_95
+create _213-[:`TAGS`]->_88
+create _213-[:`TAGS`]->_79
+create _214-[:`TAGS`]->_101
+create _214-[:`TAGS`]->_95
+create _214-[:`TAGS`]->_88
+create _214-[:`TAGS`]->_79
+create _215-[:`TAGS`]->_101
+create _215-[:`TAGS`]->_95
+create _215-[:`TAGS`]->_88
+create _215-[:`TAGS`]->_79
+create _216-[:`TAGS`]->_348
+create _216-[:`TAGS`]->_105
+create _216-[:`TAGS`]->_104
+create _216-[:`TAGS`]->_85
+create _216-[:`TAGS`]->_84
+create _217-[:`TAGS`]->_85
+create _217-[:`TAGS`]->_84
+create _218-[:`TAGS`]->_364
+create _218-[:`TAGS`]->_332
+create _218-[:`TAGS`]->_96
+create _218-[:`TAGS`]->_91
+create _218-[:`TAGS`]->_89
+create _218-[:`TAGS`]->_86
+create _219-[:`TAGS`]->_364
+create _219-[:`TAGS`]->_332
+create _219-[:`TAGS`]->_96
+create _219-[:`TAGS`]->_91
+create _219-[:`TAGS`]->_89
+create _219-[:`TAGS`]->_86
+create _220-[:`TAGS`]->_310
+create _220-[:`TAGS`]->_161
+create _220-[:`TAGS`]->_110
+create _221-[:`TAGS`]->_114
+create _222-[:`TAGS`]->_114
+create _223-[:`TAGS`]->_125
+create _224-[:`TAGS`]->_125
+create _225-[:`TAGS`]->_132
+create _225-[:`TAGS`]->_130
+create _225-[:`TAGS`]->_129
+create _226-[:`TAGS`]->_132
+create _226-[:`TAGS`]->_130
+create _226-[:`TAGS`]->_129
+create _227-[:`TAGS`]->_132
+create _227-[:`TAGS`]->_130
+create _227-[:`TAGS`]->_129
+create _228-[:`TAGS`]->_132
+create _228-[:`TAGS`]->_130
+create _228-[:`TAGS`]->_129
+create _229-[:`TAGS`]->_132
+create _229-[:`TAGS`]->_130
+create _229-[:`TAGS`]->_129
+create _230-[:`TAGS`]->_132
+create _230-[:`TAGS`]->_130
+create _230-[:`TAGS`]->_129
+create _231-[:`TAGS`]->_132
+create _231-[:`TAGS`]->_130
+create _231-[:`TAGS`]->_129
+create _232-[:`TAGS`]->_132
+create _232-[:`TAGS`]->_130
+create _232-[:`TAGS`]->_129
+create _233-[:`TAGS`]->_138
+create _234-[:`TAGS`]->_150
+create _310-[:`USING`]->_165
+create _310-[:`CONTAINS`]->_273
+create _310-[:`MENTIONS`]->_294
+create _310-[:`MENTIONS`]->_162
+create _310-[:`RETWEETS`]->_161
+create _311-[:`USING`]->_313
+create _311-[:`CONTAINS`]->_264
+create _311-[:`MENTIONS`]->_128
+create _311-[:`RETWEETS`]->_127
+create _312-[:`POSTS`]->_311
+create _314-[:`USING`]->_316
+create _314-[:`CONTAINS`]->_317
+create _315-[:`POSTS`]->_314
+create _318-[:`USING`]->_165
+create _318-[:`CONTAINS`]->_321
+create _318-[:`MENTIONS`]->_1
+create _319-[:`USING`]->_165
+create _319-[:`CONTAINS`]->_321
+create _319-[:`MENTIONS`]->_1
+create _319-[:`MENTIONS`]->_26
+create _319-[:`RETWEETS`]->_318
+create _320-[:`TAGS`]->_319
+create _320-[:`TAGS`]->_318
+create _322-[:`USING`]->_176
+create _322-[:`CONTAINS`]->_317
+create _322-[:`MENTIONS`]->_315
+create _322-[:`RETWEETS`]->_314
+create _323-[:`USING`]->_165
+create _323-[:`CONTAINS`]->_270
+create _323-[:`MENTIONS`]->_26
+create _323-[:`RETWEETS`]->_146
+create _324-[:`POSTS`]->_323
+create _325-[:`USING`]->_327
+create _325-[:`MENTIONS`]->_143
+create _325-[:`MENTIONS`]->_1
+create _325-[:`MENTIONS`]->_141
+create _325-[:`RETWEETS`]->_140
+create _326-[:`POSTS`]->_325
+create _328-[:`USING`]->_330
+create _328-[:`CONTAINS`]->_331
+create _329-[:`POSTS`]->_328
+create _332-[:`USING`]->_165
+create _332-[:`CONTAINS`]->_255
+create _332-[:`MENTIONS`]->_87
+create _332-[:`RETWEETS`]->_86
+create _333-[:`POSTS`]->_332
+create _334-[:`USING`]->_336
+create _334-[:`CONTAINS`]->_338
+create _334-[:`MENTIONS`]->_342
+create _334-[:`MENTIONS`]->_341
+create _334-[:`MENTIONS`]->_340
+create _334-[:`MENTIONS`]->_339
+create _335-[:`POSTS`]->_343
+create _335-[:`POSTS`]->_334
+create _337-[:`TAGS`]->_343
+create _337-[:`TAGS`]->_334
+create _343-[:`USING`]->_336
+create _343-[:`CONTAINS`]->_338
+create _344-[:`TAGS`]->_343
+create _345-[:`TAGS`]->_343
+create _346-[:`TAGS`]->_343
+create _347-[:`TAGS`]->_343
+create _348-[:`USING`]->_351
+create _348-[:`CONTAINS`]->_354
+create _348-[:`CONTAINS`]->_353
+create _348-[:`MENTIONS`]->_357
+create _349-[:`USING`]->_351
+create _349-[:`CONTAINS`]->_355
+create _349-[:`MENTIONS`]->_16
+create _350-[:`USING`]->_351
+create _350-[:`CONTAINS`]->_356
+create _350-[:`MENTIONS`]->_289
+create _352-[:`TAGS`]->_348
+create _358-[:`USING`]->_360
+create _358-[:`CONTAINS`]->_362
+create _359-[:`POSTS`]->_358
+create _361-[:`TAGS`]->_358
+create _363-[:`USING`]->_179
+create _363-[:`CONTAINS`]->_367
+create _363-[:`MENTIONS`]->_1
+create _364-[:`USING`]->_177
+create _364-[:`CONTAINS`]->_255
+create _364-[:`MENTIONS`]->_87
+create _364-[:`RETWEETS`]->_86
+create _365-[:`POSTS`]->_364
+create _366-[:`TAGS`]->_387
+create _366-[:`TAGS`]->_386
+create _366-[:`TAGS`]->_363
+create _368-[:`USING`]->_165
+create _368-[:`CONTAINS`]->_369
+create _368-[:`MENTIONS`]->_376
+create _368-[:`MENTIONS`]->_375
+create _368-[:`MENTIONS`]->_374
+create _368-[:`MENTIONS`]->_373
+create _368-[:`MENTIONS`]->_372
+create _368-[:`MENTIONS`]->_371
+create _368-[:`MENTIONS`]->_370
+create _368-[:`RETWEETS`]->_377
+create _378-[:`USING`]->_166
+create _378-[:`CONTAINS`]->_380
+create _379-[:`TAGS`]->_378
+create _381-[:`USING`]->_383
+create _381-[:`CONTAINS`]->_384
+create _382-[:`POSTS`]->_381
+create _385-[:`USING`]->_163
+create _385-[:`CONTAINS`]->_384
+create _385-[:`MENTIONS`]->_382
+create _385-[:`RETWEETS`]->_381
+create _386-[:`USING`]->_163
+create _386-[:`CONTAINS`]->_367
+create _386-[:`MENTIONS`]->_1
+create _386-[:`MENTIONS`]->_162
+create _386-[:`RETWEETS`]->_363
+create _387-[:`USING`]->_165
+create _387-[:`CONTAINS`]->_367
+create _387-[:`MENTIONS`]->_1
+create _387-[:`MENTIONS`]->_162
+create _387-[:`RETWEETS`]->_363
+create _388-[:`USING`]->_165
+create _388-[:`CONTAINS`]->_384
+create _388-[:`MENTIONS`]->_382
+create _388-[:`RETWEETS`]->_381
+create _389-[:`POSTS`]->_388
