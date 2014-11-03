@@ -28,6 +28,10 @@ getPaths.graph = function(graph, query, ...) {
   result = fromJSON(response)
   result = result$data
   
+  if(length(result) == 0) {
+    return(invisible(NULL))
+  }
+  
   set_class = function(i) {
     current = result[[i]][[1]]
     is.path = try(current$self, silent = T)
