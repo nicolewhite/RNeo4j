@@ -27,7 +27,6 @@ getNodes.graph = function(graph, query, ...) {
   result = result$data
   
   if(length(result) == 0) {
-    message("No nodes found.")
     return(invisible(NULL))
   }
   

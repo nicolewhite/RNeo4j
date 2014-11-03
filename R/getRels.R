@@ -27,7 +27,6 @@ getRels.graph = function(graph, query, ...) {
   result = result$data
   
   if(length(result) == 0) {
-    message("No relationships found.")
     return(invisible(NULL))
   }
   

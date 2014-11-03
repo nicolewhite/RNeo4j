@@ -28,7 +28,6 @@ getSinglePath.graph = function(graph, query, ...) {
   result = fromJSON(response)
   
   if(length(result$data) == 0) {
-    message("Path not found.")
     return(invisible(NULL))
   }
   

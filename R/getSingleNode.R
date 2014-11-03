@@ -28,7 +28,6 @@ getSingleNode.graph = function(graph, query, ...) {
   result = fromJSON(response)
   
   if(length(result$data) == 0) {
-    message("Node not found.")
     return(invisible(NULL))
   }
   

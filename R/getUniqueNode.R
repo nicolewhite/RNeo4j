@@ -47,7 +47,6 @@ getUniqueNode.graph = function(graph, .label, ...) {
   result = fromJSON(response)
   
   if(length(result) == 0) {
-    message("No node found.")
     return(invisible(NULL))
   }
   

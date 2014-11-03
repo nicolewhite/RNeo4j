@@ -27,7 +27,6 @@ getSingleRel.graph = function(graph, query, ...) {
   result = fromJSON(response)
   
   if(length(result$data) == 0) {
-    message("Relationship not found.")
     return(invisible(NULL))
   }
   

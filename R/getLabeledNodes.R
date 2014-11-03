@@ -37,7 +37,6 @@ getLabeledNodes.graph = function(graph, .label, ...) {
   result = fromJSON(response)
 
   if(length(result) == 0) {
-    message(paste0("No nodes with label '", .label, "'."))
     return(invisible(NULL))
   }
   
