@@ -19,7 +19,7 @@ shortestPath(fromNode,
   \item{max_depth}{The maximum depth of the path. Accepts an integer.}
 }
 \value{
-A path object. Returns NULL if no path is found.
+A path object. Returns NULL if a path is not found.
 }
 \examples{
 graph = startGraph("http://localhost:7474/db/data/")

@@ -24,7 +24,13 @@ rel = createRel(alice, "WORKS_WITH", bob)
 
 endNode(rel)
 
-path = getSinglePath(graph, "MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH]->(:Person {name:'Bob'}) RETURN p")
+query = "
+MATCH p = (a:Person)-[:WORKS_WITH]->(b:Person)
+WHERE a.name = 'Alice' AND b.name = 'Bob'
+RETURN p
+"
+
+path = getSinglePath(graph, query)
 
 endNode(path)
 }
