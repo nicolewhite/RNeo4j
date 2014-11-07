@@ -30,14 +30,12 @@ allShortestPaths.node = function(fromNode, relType, toNode, direction = "out", m
                  silent = T)
   
   if(class(response) == "try-error") {
-    message("No paths found.")
     return(invisible(NULL))
   }
   
   result = fromJSON(response)
   
   if(length(result) == 0) {
-    message("No paths found.")
     return(invisible(NULL))
   }
   

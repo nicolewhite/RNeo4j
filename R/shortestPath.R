@@ -30,7 +30,6 @@ shortestPath.node = function(fromNode, relType, toNode, direction = "out", max_d
                  silent = T)
   
   if(class(response) == "try-error") {
-    message("No path found.")
     return(invisible(NULL))
   }
   
