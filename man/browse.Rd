@@ -5,10 +5,11 @@
 Open the Neo4j browser in the default web browser.
 }
 \usage{
-browse(graph)
+browse(graph, viewer = FALSE)
 }
 \arguments{
   \item{graph}{A graph object.}
+  \item{viewer}{Logical, whether to view local.}
 }
 \examples{
 graph = startGraph("http://localhost:7474/db/data/")
