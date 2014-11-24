@@ -4,10 +4,11 @@ browse.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
-browse.graph = function(graph, viewer = FALSE) {
-  if (Sys.getenv("RSTUDIO") == "1" & viewer) {
-    rstudio::viewer(sub("db/data", "browser", attr(graph, "root")))
+browse.graph = function(graph, viewer = TRUE) {
+  url <- sub("db/data", "browser", attr(graph, "root"))
+  if (Sys.getenv("RSTUDIO") == "1" & viewer & grepl('localhost', url)) {
+    rstudio::viewer(url)
   } else {
-    browseURL(sub("db/data", "browser", attr(graph, "root")))
+    browseURL(url)
   }
 }
