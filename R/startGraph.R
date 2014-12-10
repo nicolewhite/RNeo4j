@@ -1,11 +1,11 @@
-startGraph = function(url, username = character(), password = character()) UseMethod("startGraph")
+startGraph = function(url, username = character(), password = character(), http_fn = http_request) UseMethod("startGraph")
 
-startGraph.default = function(url, username = character(), password = character()) {
-  stopifnot(is.character(url), 
+startGraph.default = function(url, username = character(), password = character(), http_fn = http_request) {
+  stopifnot(is.character(url),
             length(url) == 1,
             is.character(username),
             is.character(password))
-  
+
   if(length(username) == 1 && length(password) == 1) {
     userpwd = paste0(username, ":", password)
     if(substr(url, 1, 5) == "https") {
@@ -13,12 +13,13 @@ startGraph.default = function(url, username = character(), password = character(
     } else {
       url = gsub("http://", paste0("http://", userpwd, "@"), url)
     }
-    response = http_request(url,"GET","OK")
-    
+
+    response = http_fn(url,"GET","OK")
+
   } else {
-    response = http_request(url,"GET","OK")
+    response = http_fn(url,"GET","OK")
   }
-  
+
   result = fromJSON(response)
   graph = list()
   graph$version = result$neo4j_version
@@ -32,17 +33,16 @@ startGraph.default = function(url, username = character(), password = character(
   attr(graph, "constraints") = paste0(url, "schema/constraint")
   attr(graph, "node_labels") = paste0(url, "labels")
   attr(graph, "transaction") = paste0(url, "transaction")
-  
+
   # Remove trailing forward slash.
   url = substr(url, 1, nchar(url) - 1)
   attr(graph, "root") = url
-  
+
   if(length(username) == 1 && length(password) == 1) {
     attr(graph, "username") = username
     attr(graph, "password") = password
   }
-  
+
   class(graph) = "graph"
   return(graph)
 }
-
