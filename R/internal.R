@@ -101,7 +101,7 @@ setHeaders = function() {
        'X-Stream' = TRUE)
 }
 
-http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL) {
+http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL, additionalOpts = list(timeout = 3)) {
   t = basicTextGatherer()
   h = basicHeaderGatherer()
   
@@ -109,6 +109,7 @@ http_request = function(url, request_type, wanted_status, postfields = NULL, htt
               writefunction = t$update,
               headerfunction = h$update,
               useragent = "RNeo4j")
+  opts = list.merge(opts, additionalOpts)
   
   if(!is.null(postfields)) {
     opts = c(opts, list(postfields = postfields))

@@ -1,6 +1,6 @@
-startGraph = function(url, username = character(), password = character()) UseMethod("startGraph")
+startGraph = function(url, username = character(), password = character(), opts = list(timeout = 3)) UseMethod("startGraph")
 
-startGraph.default = function(url, username = character(), password = character()) {
+startGraph.default = function(url, username = character(), password = character(), opts = list(timeout = 3)) {
   stopifnot(is.character(url), 
             length(url) == 1,
             is.character(username),
@@ -13,10 +13,10 @@ startGraph.default = function(url, username = character(), password = character(
     } else {
       url = gsub("http://", paste0("http://", userpwd, "@"), url)
     }
-    response = http_request(url,"GET","OK")
+    response = http_request(url,"GET","OK", additionalOpts = opts)
     
   } else {
-    response = http_request(url,"GET","OK")
+    response = http_request(url,"GET","OK", additionalOpts = opts)
   }
   
   result = fromJSON(response)
@@ -45,4 +45,3 @@ startGraph.default = function(url, username = character(), password = character(
   class(graph) = "graph"
   return(graph)
 }
-

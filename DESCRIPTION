@@ -5,7 +5,7 @@ Version: 1.0
 Date: 2014-05-02
 Author: Nicole White
 License: GPL-3
-Imports: RCurl, RJSONIO
+Imports: RCurl, RJSONIO, rlist
 Maintainer: <nicole@neotechnology.com>
 Description: Easily interact with a Neo4j graph database from your R environment.
 URL: nicolewhite.github.io/RNeo4j
