@@ -1,12 +1,12 @@
-importSample = function(graph, data) UseMethod("importSample")
+importSample = function(graph, data, input = TRUE) UseMethod("importSample")
 
 importSample.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
-importSample.graph = function(graph, data) {
+importSample.graph = function(graph, data, input = TRUE) {
   stopifnot(is.character(data))
-  clear(graph)
+  clear(graph, input = input)
   
   if(data == "movies") {
     addConstraint(graph, "Person", "name")
