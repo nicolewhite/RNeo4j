@@ -1,4 +1,5 @@
 print.graph = function(graph) {
+  cat("< Graph Object > \n")
   invisible(lapply(names(graph), function(x) {print(graph[x])}))
 }
 
@@ -9,24 +10,17 @@ summary.graph = function(graph) {
 }
 
 print.node = function(node) {
-#   cat("Labels: ")
-#   cat(getLabel(node))
-#   cat("\n\n")
-  invisible(lapply(names(node), function(x) {print(node[x])}))
+  cat("< Node Object > \n")
+  if(any(!is.na(names(node)))) {
+    invisible(lapply(names(node), function(x) {print(node[x])}))
+  }
 }
 
 print.relationship = function(rel) {
-#   cat("Start node:\n")
-#   print(startNode(rel))
-#   cat("\n")
-#   cat("Relationship type:\n")
-#   print(attr(rel, "type"))
-#   cat("\n")
-#   cat("End node:\n")
-#   print(endNode(rel))
-#   cat("\n")
-#   cat("Relationship properties:\n")
-  invisible(lapply(names(rel), function(x) {print(rel[x])}))
+  cat("< Relationship Object > \n")
+  if(any(!is.na(names(rel)))) {
+    invisible(lapply(names(rel), function(x) {print(rel[x])}))
+  }
 }
 
 print.path = function(path) {
