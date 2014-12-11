@@ -101,21 +101,23 @@ setHeaders = function() {
        'X-Stream' = TRUE)
 }
 
-http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL, additionalOpts = list(timeout = 3)) {
+http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL, addtl_opts = list()) {
   t = basicTextGatherer()
   h = basicHeaderGatherer()
   
   opts = list(customrequest = request_type,
               writefunction = t$update,
               headerfunction = h$update,
-              useragent = "RNeo4j")
-  opts = list.merge(opts, additionalOpts)
+              useragent = "RNeo4j/1.1.0")
   
   if(!is.null(postfields)) {
     opts = c(opts, list(postfields = postfields))
   }
   if(!is.null(httpheader)) {
     opts = c(opts, list(httpheader = httpheader))
+  }
+  if(length(addtl_opts) > 0) {
+    opts = c(opts, addtl_opts)
   }
 
   curlPerform(url = url, .opts = opts) 
@@ -139,4 +141,26 @@ find_max_dig = function(params) {
     max_dig = max(unlist(sapply(params[sapply(params, class) == "numeric"], nchar)))
   }
   return(max_dig)
+}
+
+cypher_endpoint = function(graph, query, params) {
+  header = setHeaders()
+  fields = list(query = query)
+  
+  if(length(params) > 0) {
+    fields = c(fields, params = list(params))
+    max_digits = find_max_dig(params)
+  }
+  
+  fields = toJSON(fields, digits = max_digits)
+  url = attr(graph, "cypher")
+  response = http_request(url,
+                          "POST",
+                          "OK",
+                          postfields = fields,
+                          httpheader = header,
+                          addtl_opts = attr(graph, "opts"))
+  
+  result = fromJSON(response)  
+  return(result)
 }
