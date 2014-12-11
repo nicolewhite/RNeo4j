@@ -7,23 +7,8 @@ getRels.default = function(x, ...) {
 getRels.graph = function(graph, query, ...) {
   stopifnot(is.character(query))
   
-  header = setHeaders()
   params = list(...)  
-  fields = list(query = query)
-  
-  if(length(params) > 0) {
-    fields = c(fields, params = list(params))
-    max_digits = find_max_dig(params)
-  }
-  
-  fields = toJSON(fields, digits = max_digits)
-  url = attr(graph, "cypher")
-  response = http_request(url,
-                          "POST",
-                          "OK",
-                          fields,
-                          header)
-  result = fromJSON(response)
+  result = cypher_endpoint(graph, query, params)
   result = result$data
   
   if(length(result) == 0) {
