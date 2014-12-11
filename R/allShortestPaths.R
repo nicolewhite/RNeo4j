@@ -45,6 +45,6 @@ allShortestPaths.node = function(fromNode, relType, toNode, direction = "out", m
   }
   
   result = lapply(result, set_class)
-  paths = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password")))
+  paths = lapply(result, function(r) configure_result(r, attr(fromNode, "username"), attr(fromNode, "password")))
   return(paths)
 }
