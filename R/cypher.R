@@ -11,9 +11,17 @@ cypher.graph = function(graph, query, ...) {
   params = list(...)
   result = cypher_endpoint(graph, query, params)
   data = result$data
-
+  
   if(length(data) == 0) {
     return(invisible(NULL))
+  }
+  
+  if("metadata" %in% unlist(lapply(data[[1]], names))) {
+    stop("You must query for tabular results when using this function.")
+  }
+  
+  if("length" %in% unlist(lapply(data[[1]], names))) {
+    stop("You must query for tabular results when using this function.")
   }
   
   ### Stolen from: http://stackoverflow.com/questions/22870198/is-there-a-more-efficient-way-to-replace-null-with-na-in-a-list
