@@ -33,7 +33,12 @@ getLabeledNodes.graph = function(graph, .label, ...) {
     }
   }
 
-  response = http_request(url, "GET", "OK", httpheader = header)
+  response = http_request(url, 
+                          "GET", 
+                          "OK", 
+                          httpheader = header,
+                          addtl_opts = attr(graph, "opts"))
+  
   result = fromJSON(response)
 
   if(length(result) == 0) {
