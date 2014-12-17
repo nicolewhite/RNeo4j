@@ -20,11 +20,18 @@ appendCypher.transaction = function(transaction, query, ...) {
   
   postfields = paste0("{\"statements\":[", toJSON(fields, digits = max_digits), "]}")
   
-  http_request(url,
-               "POST",
-               "OK",
-               postfields = postfields,
-               httpheader = header)
+  response = http_request(url,
+                          "POST",
+                          "OK",
+                          postfields = postfields,
+                          httpheader = header)
+  
+  response = fromJSON(response)
+  
+  if(length(response$errors) > 0) {
+    error = response$errors[[1]]
+    stop(paste(error['code'], error['message']))
+  }
   
   return(invisible(NULL))
 }
