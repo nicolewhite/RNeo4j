@@ -1,27 +1,25 @@
-startGraph = function(url, username = character(), password = character(), opts = list()) UseMethod("startGraph")
+startGraph = function(url, username = character(), password = character(), auth_token = character(), opts = list()) UseMethod("startGraph")
 
-startGraph.default = function(url, username = character(), password = character(), opts = list()) {
+startGraph.default = function(url, username = character(), password = character(), auth_token=character(), opts = list()) {
   stopifnot(is.character(url), 
             length(url) == 1,
             is.character(username),
             is.character(password),
             is.list(opts))
   
+  graph = list()
+  
   if(length(username) == 1 && length(password) == 1) {
-    userpwd = paste0(username, ":", password)
-    if(substr(url, 1, 5) == "https") {
-      url = gsub("https://", paste0("https://", userpwd, "@"), url)
-    } else {
-      url = gsub("http://", paste0("http://", userpwd, "@"), url)
-    }
-    response = http_request(url,"GET","OK", addtl_opts = opts)
-    
-  } else {
-    response = http_request(url,"GET","OK", addtl_opts = opts)
+    attr(graph, "username") = username
+    attr(graph, "password") = password
+  } else if(length(auth_token == 1)) {
+    attr(graph, "auth_token") = auth_token
   }
   
+  headers = setHeaders(graph)
+  response = http_request(url,"GET","OK", httpheader = headers, addtl_opts = opts)
+
   result = fromJSON(response)
-  graph = list()
   graph$version = result$neo4j_version
   attr(graph, "node") = paste0(url, "node")
   attr(graph, "node_index") = paste0(url, "index/node")
@@ -35,14 +33,8 @@ startGraph.default = function(url, username = character(), password = character(
   attr(graph, "transaction") = paste0(url, "transaction")
   attr(graph, "opts") = opts
   
-  # Remove trailing forward slash.
-  url = substr(url, 1, nchar(url) - 1)
-  attr(graph, "root") = url
-  
-  if(length(username) == 1 && length(password) == 1) {
-    attr(graph, "username") = username
-    attr(graph, "password") = password
-  }
+  root = substr(url, 1, nchar(url) - 1)
+  attr(graph, "root") = root
   
   class(graph) = "graph"
   return(graph)
