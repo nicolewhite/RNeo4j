@@ -1,5 +1,13 @@
-configure_result = function(result, username = NULL, password = NULL) {
-  # Only keep things I need for later REST API calls.
+configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
+  if(!is.null(username) && !is.null(password)) {
+    attr(result, "username") = username
+    attr(result, "password") = password
+  }
+  
+  if(!is.null(auth_token)) {
+    attr(result, "auth_token") = auth_token
+  }
+  
   data = result$data
   self = result$self
   property = result$property
@@ -14,35 +22,8 @@ configure_result = function(result, username = NULL, password = NULL) {
   nodes = result$nodes
   len = result$length
   rels = result$relationships
-  
-  # There's probably a better way to do this.
-  if(!is.null(username) && !is.null(password)) {
-    if (substr(self, 1, 5) == "https") {
-      front = "https://"
-    } else {
-      front = "http://"
-    }
-    
-    userpwd = paste0(front, username, ":", password, "@")
-    
-    self = gsub(front, userpwd, self)
-    property = gsub(front, userpwd, property)
-    properties = gsub(front, userpwd, properties)
-    labels = gsub(front, userpwd, labels)
-    create_rel = gsub(front, userpwd, create_rel)
-    inc = gsub(front, userpwd, inc)
-    out = gsub(front, userpwd, out)
-    start = gsub(front, userpwd, start)
-    type = gsub(front, userpwd, type)
-    end = gsub(front, userpwd, end)
-    nodes = gsub(front, userpwd, nodes)
-    len = gsub(front, userpwd, len)
-    rels = gsub(front, userpwd, rels)
-  }
-  
   class = class(result)
   
-  # Add properties as names.
   if("node" %in% class | "relationship" %in% class) {
     length(result) = length(data)
     names(result) = names(data)
@@ -57,7 +38,6 @@ configure_result = function(result, username = NULL, password = NULL) {
     attr(result, "properties") = properties
   }
 
-  # Remove names and add attributes.
   if("path" %in% class) {
     length(result) = 1
     names(result) = "length"
@@ -68,37 +48,53 @@ configure_result = function(result, username = NULL, password = NULL) {
     attr(result, "relationships") = rels
   }
   
-  # Add username and password as attributes.
-  if(!is.null(username) && !is.null(password)) {
-    attr(result, "username") = username
-    attr(result, "password") = password
-  }
-  
-  # Add attributes specific to nodes.
   if("node" %in% class) {
     attr(result, "labels") = labels
     attr(result, "create_relationship") = create_rel
     attr(result, "incoming_relationships") = inc
     attr(result, "outgoing_relationships") = out
-    
-  # Add attributes specific to relationships.  
   } 
   
   if("relationship" %in% class) {
     attr(result, "start") = start
     attr(result, "type") = type
     attr(result, "end") = end
-    
   }
   
   class(result) = class
   return(result)
 }
 
-setHeaders = function() {
-  list('Accept' = 'application/json', 
-       'Content-Type' = 'application/json',
-       'X-Stream' = TRUE)
+setBasicAuthHeader = function(headers, username, password, realm=NULL) {
+  credentials = paste0(username, ":", password)
+  
+  if(!is.null(realm)) {
+    auth = paste0('Basic realm="', realm, '" ')
+  } else {
+    auth = 'Basic '
+  }
+  
+  auth = paste0(auth, base64(credentials)[1])
+  headers = c(headers, list('Authorization' = auth))
+  return(headers)
+}
+
+setHeaders = function(entity) {
+  headers = list('Accept' = 'application/json', 
+                 'Content-Type' = 'application/json',
+                 'X-Stream' = TRUE)
+  
+  username = attr(entity, "username")
+  password = attr(entity, "password")
+  auth_token = attr(entity, "auth_token")
+  
+  if(!is.null(username) && !is.null(password)) {
+    headers = setBasicAuthHeader(headers, username, password)
+  } else if(!is.null(auth_token)) {
+    headers = setBasicAuthHeader(headers, "", auth_token, realm="Neo4j")
+  }
+  
+  return(headers)
 }
 
 http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL, addtl_opts = list()) {
@@ -144,7 +140,7 @@ find_max_dig = function(params) {
 }
 
 cypher_endpoint = function(graph, query, params) {
-  header = setHeaders()
+  header = setHeaders(graph)
   fields = list(query = query)
   
   if(length(params) > 0) {
