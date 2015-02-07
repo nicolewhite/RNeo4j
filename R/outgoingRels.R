@@ -5,7 +5,7 @@ outgoingRels.default = function(x, ...) {
 }
 
 outgoingRels.node = function(node, ...) {  
-  header = setHeaders()
+  header = setHeaders(node)
   url = attr(node, "outgoing_relationships")
   type = c(...)
   
@@ -31,6 +31,6 @@ outgoingRels.node = function(node, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  outgoing_rels = lapply(result, function(r) configure_result(r, attr(node, "username"), attr(node, "password")))
+  outgoing_rels = lapply(result, function(r) configure_result(r, attr(node, "username"), attr(node, "password"), attr(node, "auth_token")))
   return(outgoing_rels)
 }

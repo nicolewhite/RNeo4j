@@ -24,6 +24,6 @@ getSingleNode.graph = function(graph, query, ...) {
   }
   
   class(result) = c("entity", "node")
-  node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
+  node = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
   return(node)
 }

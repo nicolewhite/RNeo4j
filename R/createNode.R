@@ -7,7 +7,7 @@ createNode.default = function(x, ...) {
 createNode.graph = function(graph, .label = character(), ...) {
   stopifnot(is.character(.label))
   
-  header = setHeaders()
+  header = setHeaders(graph)
   fields = NULL
   
   params = list(...)

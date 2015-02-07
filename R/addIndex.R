@@ -10,7 +10,7 @@ addIndex.graph = function(graph, label, key) {
             length(label) == 1,
             length(key) == 1)
   
-  header = setHeaders()
+  header = setHeaders(graph)
   field = paste0('{\n "property_keys": [ "', key, '" ] \n}')
   url = paste(attr(graph, "indexes"), label, sep = "/")
   http_request(url,

@@ -6,7 +6,8 @@ getType.default = function(x) {
 
 getType.graph = function(graph) {
   url = attr(graph, "relationship_types")
-  response = http_request(url, "GET", "OK")
+  headers = setHeaders(graph)
+  response = http_request(url, "GET", "OK", httpheader=headers)
   result = fromJSON(response)
   return(result)
 }

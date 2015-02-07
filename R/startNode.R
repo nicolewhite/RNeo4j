@@ -6,18 +6,20 @@ startNode.default = function(x) {
 
 startNode.relationship = function(rel) {
   url = attr(rel, "start")
-  response = http_request(url, "GET", "OK")
+  header = setHeaders(rel)
+  response = http_request(url, "GET", "OK", httpheader=header)
   result = fromJSON(response)
   class(result) = c("entity", "node")
-  node = configure_result(result, attr(rel, "username"), attr(rel, "password"))
+  node = configure_result(result, attr(rel, "username"), attr(rel, "password"), attr(rel, "auth_token"))
   return(node)
 }
 
 startNode.path = function(path) {
   url = attr(path, "start")
-  response = http_request(url, "GET", "OK")
+  header = setHeaders(path)
+  response = http_request(url, "GET", "OK", httpheader=header)
   result = fromJSON(response)
   class(result) = c("entity", "node")
-  node = configure_result(result, attr(path, "username"), attr(path, "password"))
+  node = configure_result(result, attr(path, "username"), attr(path, "password"), attr(rel, "auth_token"))
   return(node)
 }

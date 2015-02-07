@@ -9,6 +9,8 @@ dropLabel.node = function(node, ..., all = FALSE) {
   labels = c(...)
   url = attr(node, "labels")
   
+  headers = setHeaders(node)
+  
   if(all) {
     all_labels = getLabel(node)
     all_labels = vapply(all_labels, function(label) URLencode(label, reserved = TRUE), "")
@@ -16,7 +18,8 @@ dropLabel.node = function(node, ..., all = FALSE) {
     for(i in 1:length(urls)) {
       http_request(urls[[i]],
                    "DELETE",
-                   "No Content")
+                   "No Content",
+                   httpheader=headers)
     }
     return(invisible(NULL))
     
@@ -28,7 +31,8 @@ dropLabel.node = function(node, ..., all = FALSE) {
     for (i in 1:length(urls)) {
       http_request(urls[[i]],
                    "DELETE",
-                   "No Content")
+                   "No Content",
+                   httpheader=headers)
     }
     return(invisible(NULL))
   

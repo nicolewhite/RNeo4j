@@ -10,7 +10,7 @@ addConstraint.graph = function(graph, label, key) {
             length(label) == 1,
             length(key) == 1)
     
-  header = setHeaders()
+  header = setHeaders(graph)
   fields = paste0('{\n "property_keys": [ "', key, '" ] \n}')
   url = paste(attr(graph, "constraints"), label, "uniqueness", sep = "/")
   

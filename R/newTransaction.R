@@ -6,7 +6,7 @@ newTransaction.default = function(x) {
 
 newTransaction.graph = function(graph) {
   url = attr(graph, "transaction")
-  header = setHeaders()
+  header = setHeaders(graph)
   h = basicHeaderGatherer()
   t = basicTextGatherer()
   opts = list(customrequest = "POST",
@@ -19,6 +19,7 @@ newTransaction.graph = function(graph) {
   location = headers["Location"][[1]]
   commit = fromJSON(text)$commit
   transaction = list(location = location, commit = commit)
+  attr(transaction, "auth_token") = attr(graph, "auth_token")
   class(transaction) = "transaction"
   return(transaction)
 }

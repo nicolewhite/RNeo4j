@@ -5,9 +5,11 @@ commit.default = function(x) {
 }
 
 commit.transaction = function(transaction) {
+  headers = setHeaders(transaction)
   response = http_request(transaction$commit,
                           "POST",
-                          "OK")
+                          "OK",
+                          httpheader=headers)
   
   response = fromJSON(response)
   

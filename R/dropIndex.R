@@ -9,6 +9,8 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
             is.character(key), 
             is.logical(all))
   
+  headers = setHeaders(graph)
+  
   url = attr(graph, "indexes")
   constraints = suppressMessages(getConstraint(graph))
   
@@ -39,7 +41,8 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     for(i in 1:length(urls)) {
       http_request(urls[i],
                    "DELETE",
-                   "No Content")
+                   "No Content",
+                   httpheader=headers)
     }
     
     return(invisible(NULL))
@@ -55,7 +58,7 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     }
     
     url = paste(url, label, key, sep = "/")
-    http_request(url, "DELETE", "No Content")
+    http_request(url, "DELETE", "No Content", httpheader=headers)
     return(invisible(NULL))
     
   # Else, user supplied an invalid combination of arguments.  

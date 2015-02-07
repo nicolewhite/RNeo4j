@@ -5,7 +5,7 @@ incomingRels.default = function(x, ...) {
 }
 
 incomingRels.node = function(node, ...) {
-  header = setHeaders()
+  header = setHeaders(node)
   url = attr(node, "incoming_relationships")
   type = c(...)
   

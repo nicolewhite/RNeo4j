@@ -7,7 +7,7 @@ getLabeledNodes.default = function(x, ...) {
 getLabeledNodes.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
 
-  header = setHeaders()
+  header = setHeaders(graph)
   url = paste(attr(graph, "root"), "label", .label, "nodes", sep = "/")
   param = c(...)
   
@@ -51,6 +51,6 @@ getLabeledNodes.graph = function(graph, .label, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password")))
+  nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
   return(nodes)
 }

@@ -26,6 +26,6 @@ getNodes.graph = function(graph, query, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password")))
+  nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
   return(nodes)
 }

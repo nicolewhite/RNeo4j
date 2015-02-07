@@ -27,6 +27,6 @@ getPaths.graph = function(graph, query, ...) {
   }
   
   result = lapply(1:length(result), set_class)
-  paths = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password")))
+  paths = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
   return(paths)
 }

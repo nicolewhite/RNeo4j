@@ -9,7 +9,7 @@ appendCypher.transaction = function(transaction, query, ...) {
             length(query) == 1)
   
   url = transaction$location
-  header = setHeaders()
+  header = setHeaders(transaction)
   params = list(...)
   fields = list(statement = query)
   

@@ -10,7 +10,7 @@ shortestPath.node = function(fromNode, relType, toNode, direction = "out", max_d
             direction %in% c("in", "out"),
             is.numeric(max_depth))
   
-  header = setHeaders()
+  header = setHeaders(fromNode)
   
   url = paste(attr(fromNode, "self"), "path", sep = "/")
   to = attr(toNode, "self")
@@ -36,6 +36,6 @@ shortestPath.node = function(fromNode, relType, toNode, direction = "out", max_d
   result = fromJSON(response)
   
   class(result) = "path"
-  path = configure_result(result, attr(fromNode, "username"), attr(fromNode, "password"))
+  path = configure_result(result, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token"))
   return(path)
 }

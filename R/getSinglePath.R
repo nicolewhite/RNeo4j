@@ -24,6 +24,6 @@ getSinglePath.graph = function(graph, query, ...) {
   }
   
   class(result) = "path"
-  path = configure_result(result, attr(graph, "username"), attr(graph, "password"))
+  path = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
   return(path)
 }

@@ -7,7 +7,7 @@ getConstraint.default = function(x, ...) {
 getConstraint.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
-  header = setHeaders()
+  header = setHeaders(graph)
   url = attr(graph, "constraints")
   
   # If label is not given, get constraints for entire graph.

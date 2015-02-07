@@ -18,7 +18,7 @@ addLabel.node = function(node, ...) {
     fields = toJSON(labels)
   }
   
-  header = setHeaders()
+  header = setHeaders(node)
   url = attr(node, "labels")
   
   for (i in 1:length(labels)) {

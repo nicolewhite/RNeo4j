@@ -10,7 +10,7 @@ updateProp.entity = function(entity, ...) {
   if(length(props) == 0)
     stop("Must supply properties to update.")
   
-  header = setHeaders()
+  header = setHeaders(entity)
   
   for (i in 1:length(props)) {
     url = paste(attr(entity, "properties"), names(props[i]), sep = "/")

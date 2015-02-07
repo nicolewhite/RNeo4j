@@ -7,6 +7,8 @@ getIndex.default = function(x, ...) {
 getIndex.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
+  headers = setHeaders(graph)
+  
   url = attr(graph, "indexes")
   
   # If label not provided, get indexes for the entire graph.
@@ -19,7 +21,7 @@ getIndex.graph = function(graph, label = character()) {
     }
     urls = lapply(labels, function(l) paste(url, l, sep = "/"))
     for(i in 1:length(urls)) {
-      response = http_request(urls[[i]], "GET", "OK")
+      response = http_request(urls[[i]], "GET", "OK", httpheader=headers)
       response = fromJSON(response)
       if(length(response) == 0) {
         next
@@ -41,7 +43,7 @@ getIndex.graph = function(graph, label = character()) {
     }
     
     url = paste(url, label, sep = "/")
-    response = http_request(url, "GET", "OK")
+    response = http_request(url, "GET", "OK", httpheader=headers)
     result = fromJSON(response)
     
     if(length(result) == 0) {

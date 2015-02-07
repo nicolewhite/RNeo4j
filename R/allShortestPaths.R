@@ -10,7 +10,7 @@ allShortestPaths.node = function(fromNode, relType, toNode, direction = "out", m
             direction %in% c("in", "out"),
             is.numeric(max_depth))
   
-  header = setHeaders()
+  header = setHeaders(fromNode)
   
   url = paste(attr(fromNode, "self"), "paths", sep = "/")
   to = attr(toNode, "self")
@@ -45,6 +45,6 @@ allShortestPaths.node = function(fromNode, relType, toNode, direction = "out", m
   }
   
   result = lapply(result, set_class)
-  paths = lapply(result, function(r) configure_result(r, attr(fromNode, "username"), attr(fromNode, "password")))
+  paths = lapply(result, function(r) configure_result(r, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token")))
   return(paths)
 }

@@ -1,13 +1,4 @@
 configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
-  if(!is.null(username) && !is.null(password)) {
-    attr(result, "username") = username
-    attr(result, "password") = password
-  }
-  
-  if(!is.null(auth_token)) {
-    attr(result, "auth_token") = auth_token
-  }
-  
   data = result$data
   self = result$self
   property = result$property
@@ -59,6 +50,15 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     attr(result, "start") = start
     attr(result, "type") = type
     attr(result, "end") = end
+  }
+  
+  if(!is.null(username) && !is.null(password)) {
+    attr(result, "username") = username
+    attr(result, "password") = password
+  }
+  
+  if(!is.null(auth_token)) {
+    attr(result, "auth_token") = auth_token
   }
   
   class(result) = class

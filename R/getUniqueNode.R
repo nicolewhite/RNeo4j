@@ -38,7 +38,7 @@ getUniqueNode.graph = function(graph, .label, ...) {
     stop("Property value must be character, numeric, or logical.")
   }
   
-  header = setHeaders()
+  header = setHeaders(graph)
   response = http_request(url,
                           "GET",
                           "OK",
@@ -52,6 +52,6 @@ getUniqueNode.graph = function(graph, .label, ...) {
   
   result = result[[1]]
   class(result) = c("entity", "node")
-  node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
+  node = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
   return(node)
 }
