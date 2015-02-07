@@ -25,7 +25,7 @@ createNode.graph = function(graph, .label = character(), ...) {
   
   result = fromJSON(response)
   class(result) = c("node", "entity")
-  node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
+  node = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
 
   if(length(.label) > 0) {
     if(length(grep(" ", .label)) > 0) {
