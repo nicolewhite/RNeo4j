@@ -14,6 +14,8 @@ startGraph.default = function(url, username = character(), password = character(
     attr(graph, "password") = password
   } else if(length(auth_token == 1)) {
     attr(graph, "auth_token") = auth_token
+  } else if(Sys.getenv('NEO4J_AUTH_TOKEN') != "") {
+    attr(graph, "auth_token") = Sys.getenv('NEO4J_AUTH_TOKEN')
   }
   
   headers = setHeaders(graph)
