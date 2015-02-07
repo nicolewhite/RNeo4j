@@ -1,7 +1,7 @@
 Package: RNeo4j
 Title: Interact with a Neo4j database through R.
 LazyData: true
-Version: 1.1.0
+Version: 1.2.0
 Date: 2014-05-02
 Author: Nicole White
 License: MIT
@@ -9,3 +9,4 @@ Imports: RCurl, RJSONIO
 Maintainer: <nicole@neotechnology.com>
 Description: Easily interact with a Neo4j graph database from your R environment.
 URL: nicolewhite.github.io/RNeo4j
+Suggests: testthat

@@ -104,7 +104,7 @@ http_request = function(url, request_type, wanted_status, postfields = NULL, htt
   opts = list(customrequest = request_type,
               writefunction = t$update,
               headerfunction = h$update,
-              useragent = "RNeo4j/1.1.0")
+              useragent = "RNeo4j/1.2.0")
   
   if(!is.null(postfields)) {
     opts = c(opts, list(postfields = postfields))
