@@ -1,3 +1,7 @@
+version = function() {
+  return("1.2.0")
+}
+
 configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
   data = result$data
   self = result$self
@@ -104,7 +108,7 @@ http_request = function(url, request_type, wanted_status, postfields = NULL, htt
   opts = list(customrequest = request_type,
               writefunction = t$update,
               headerfunction = h$update,
-              useragent = "RNeo4j/1.2.0")
+              useragent = paste0("RNeo4j/", version()))
   
   if(!is.null(postfields)) {
     opts = c(opts, list(postfields = postfields))
