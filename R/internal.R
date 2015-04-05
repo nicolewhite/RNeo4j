@@ -171,3 +171,66 @@ cypher_endpoint = function(graph, query, params) {
   result = fromJSON(response)  
   return(result)
 }
+
+shortest_path_algo = function(all, algo, fromNode, relType, toNode, cost_property=character(), direction = "out", max_depth = 1) {
+  stopifnot(is.character(relType), 
+            "node" %in% class(toNode),
+            direction %in% c("in", "out"),
+            is.numeric(max_depth),
+            is.character(cost_property))
+  
+  if(algo == "dijkstra" & length(cost_property) == 0) {
+    stop("Must specificy the name of the cost property if using the dijkstra algorithm.")
+  }
+  
+  header = setHeaders(fromNode)
+  
+  path = ifelse(all, "paths", "path")
+  
+  url = paste(attr(fromNode, "self"), path, sep = "/")
+  to = attr(toNode, "self")
+  fields = list(to = to,
+                relationships = list(type = relType,
+                                     direction = direction),
+                algorithm = algo)
+  
+  if(algo == "shortestPath") {
+    fields = c(fields, list(max_depth=max_depth))
+  } else if(algo == "dijkstra") {
+    fields = c(fields, list(cost_property=cost_property))
+  }
+  
+  fields = toJSON(fields)
+  
+  response = try(http_request(url,
+                              "POST",
+                              "OK",
+                              postfields = fields,
+                              httpheader = header),
+                 silent = T)
+  
+  if(class(response) == "try-error") {
+    return(invisible())
+  }
+  
+  result = fromJSON(response)
+  
+  if(length(result) == 0) {
+    return(invisible())
+  }
+  
+  set_class = function(x) {
+    class(x) = "path"
+    return(x)
+  }
+  
+  if(all) {
+    result = lapply(result, set_class)
+    paths = lapply(result, function(r) configure_result(r, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token")))
+    return(paths)
+  } else {
+    class(result) = "path"
+    path = configure_result(result, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token"))
+    return(path)
+  }
+}
