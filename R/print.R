@@ -24,5 +24,8 @@ print.relationship = function(rel) {
 }
 
 print.path = function(path) {
-  print(path["length"])
+  cat("< Path Object > \n")
+  if(any(!is.na(names(path)))) {
+    invisible(lapply(names(path), function(x) {print(path[x])}))
+  }
 }

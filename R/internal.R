@@ -17,6 +17,7 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
   nodes = result$nodes
   len = result$length
   rels = result$relationships
+  weight = result$weight
   class = class(result)
   
   if("node" %in% class | "relationship" %in% class) {
@@ -34,8 +35,14 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
   }
 
   if("path" %in% class) {
-    length(result) = 1
-    names(result) = "length"
+    if(!is.null(weight)) {
+      length(result) = 2
+      names(result) = c("length", "weight")
+      result["weight"] = weight
+    } else {
+      length(result) = 1
+      names(result) = "length"
+    }
     result["length"] = len
     attr(result, "start") = start
     attr(result, "end") = end
