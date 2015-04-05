@@ -1,5 +1,5 @@
 version = function() {
-  return("1.2.1")
+  return("1.3.0")
 }
 
 configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
