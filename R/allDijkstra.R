@@ -1,11 +1,11 @@
-dijkstra = function(fromNode, relType, toNode, direction = "out", cost_property = character()) UseMethod("dijkstra")
+allDijkstra = function(fromNode, relType, toNode, direction = "out", cost_property = character()) UseMethod("allDijkstra")
 
-dijkstra.default = function(x, ...) {
+allDijkstra.default = function(x, ...) {
   stop("Invalid object. Must supply node object.")
 }
 
-dijkstra.node = function(fromNode, relType, toNode, cost_property, direction = "out") {
-  return(shortest_path_algo(all=F, 
+allDijkstra.node = function(fromNode, relType, toNode, cost_property, direction = "out") {
+  return(shortest_path_algo(all=T, 
                             algo="dijkstra", 
                             fromNode=fromNode, 
                             relType=relType, 

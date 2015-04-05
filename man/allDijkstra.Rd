@@ -1,15 +1,15 @@
-\name{dijkstra}
-\alias{dijkstra}
+\name{allDijkstra}
+\alias{allDijkstra}
 \title{Retrieve Weighted Shortest Paths}
 \description{
-Retrieve the shortest path between two nodes weighted by a cost property.
+Retrieve all the shortest paths between two nodes weighted by a cost property.
 }
 \usage{
-dijkstra(fromNode, 
-         relType, 
-         toNode,
-         cost_property,
-         direction = "out")
+allDijkstra(fromNode, 
+            relType, 
+            toNode,
+            cost_property,
+            direction = "out")
 }
 \arguments{
   \item{fromNode}{A node object.}
@@ -19,7 +19,7 @@ dijkstra(fromNode,
   \item{direction}{The relationship direction to traverse. Accepts "in" or "out".}
 }
 \value{
-A path object. Returns NULL if a path is not found.
+A list of path objects. Returns NULL if no paths are found.
 }
 \examples{
 graph = startGraph("http://localhost:7474/db/data/")
@@ -38,12 +38,16 @@ r4 = createRel(charles, "KNOWS", david, weight=1)
 r5 = createRel(alice, "KNOWS", elaine, weight=2)
 r6 = createRel(elaine, "KNOWS", david, weight=2.5)
 
-p = dijkstra(alice, "KNOWS", david, cost_property="weight")
+p = allDijkstra(alice, "KNOWS", david, cost_property="weight")
 
-p$length
-p$weight
-nodes(p)
+p[[1]]$length
+p[[1]]$weight
+nodes(p[[1]])
+
+p[[2]]$length
+p[[2]]$weight
+nodes(p[[2]])
 }
 \seealso{
-\code{\link{allDijkstra}}
+\code{\link{dijkstra}}
 }

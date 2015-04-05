@@ -17,7 +17,7 @@ r1 = createRel(alice, "WORKS_WITH", bob, weight=1.5)
 r2 = createRel(bob, "WORKS_WITH", charles, weight=2)
 r3 = createRel(bob, "WORKS_WITH", david, weight=4)
 r4 = createRel(charles, "WORKS_WITH", david, weight=1)
-r5 = createRel(alice, "WORKS_WITH", elaine, weight=3)
+r5 = createRel(alice, "WORKS_WITH", elaine, weight=2)
 r6 = createRel(elaine, "WORKS_WITH", david, weight=2.5)
 
 test_that("shortestPath returns null when not found", {
@@ -108,11 +108,24 @@ test_that("dijkstra works", {
   p = dijkstra(alice, "WORKS_WITH", david, cost_property="weight")
   
   expect_equal(p$weight, 4.5)
-  expect_equal(p$length, 3)
+  expect_equal(p$length, 2)
 })
 
 test_that("dijkstra returns null when not found", {
   p = dijkstra(alice, "WORKS_WITH", david, cost_property="weight", direction="in")
+  
+  expect_null(p)
+})
+
+test_that("allDijkstra works", {
+  p = allDijkstra(alice, "WORKS_WITH", david, cost_property="weight")
+  
+  expect_equal(p[[1]]$weight, 4.5)
+  expect_equal(p[[2]]$weight, 4.5)
+})
+
+test_that("allDijkstra returns null when not found", {
+  p = allDijkstra(alice, "WORKS_WITH", david, cost_property="weight", direction="in")
   
   expect_null(p)
 })
