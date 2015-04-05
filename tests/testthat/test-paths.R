@@ -1,7 +1,10 @@
 library(RNeo4j)
 context("Paths")
 
-neo4j = startGraph("http://localhost:7474/db/data/")
+username = Sys.getenv("NEO4J_USERNAME")
+password = Sys.getenv("NEO4J_PASSWORD")
+
+neo4j = startGraph("http://localhost:7474/db/data/", username, password)
 clear(neo4j, input=F)
 
 alice = createNode(neo4j, "Person", name = "Alice")
@@ -10,12 +13,12 @@ charles = createNode(neo4j, "Person", name = "Charles")
 david = createNode(neo4j, "Person", name = "David")
 elaine = createNode(neo4j, "Person", name = "Elaine")
 
-r1 = createRel(alice, "WORKS_WITH", bob)
-r2 = createRel(bob, "WORKS_WITH", charles)
-r3 = createRel(bob, "WORKS_WITH", david)
-r4 = createRel(charles, "WORKS_WITH", david)
-r5 = createRel(alice, "WORKS_WITH", elaine)
-r6 = createRel(elaine, "WORKS_WITH", david)
+r1 = createRel(alice, "WORKS_WITH", bob, weight=1.5)
+r2 = createRel(bob, "WORKS_WITH", charles, weight=2)
+r3 = createRel(bob, "WORKS_WITH", david, weight=4)
+r4 = createRel(charles, "WORKS_WITH", david, weight=1)
+r5 = createRel(alice, "WORKS_WITH", elaine, weight=3)
+r6 = createRel(elaine, "WORKS_WITH", david, weight=2.5)
 
 test_that("shortestPath returns null when not found", {
   p = shortestPath(alice, "WORKS_WITH", david)
@@ -99,4 +102,17 @@ test_that("getPaths works", {
   actual_names = sapply(ends, '[[', 'name')
   expected_names = rep("David", 3)
   expect_equal(actual_names, expected_names)
+})
+
+test_that("dijkstra works", {
+  p = dijkstra(alice, "WORKS_WITH", david, cost_property="weight")
+  
+  expect_equal(p$weight, 4.5)
+  expect_equal(p$length, 3)
+})
+
+test_that("dijkstra returns null when not found", {
+  p = dijkstra(alice, "WORKS_WITH", david, cost_property="weight", direction="in")
+  
+  expect_null(p)
 })

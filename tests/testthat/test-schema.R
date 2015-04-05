@@ -1,7 +1,10 @@
 library(RNeo4j)
 context("Schema")
 
-neo4j = startGraph("http://localhost:7474/db/data/")
+username = Sys.getenv("NEO4J_USERNAME")
+password = Sys.getenv("NEO4J_PASSWORD")
+
+neo4j = startGraph("http://localhost:7474/db/data/", username, password)
 
 test_that("addConstraint fails on data that violates the constraint", {
   clear(neo4j, input=F)

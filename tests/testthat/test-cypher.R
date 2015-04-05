@@ -1,8 +1,11 @@
 library(RNeo4j)
 context("Cypher")
 
-neo4j = startGraph("http://localhost:7474/db/data/")
-importSample(neo4j, "dfw", input = FALSE)
+username = Sys.getenv("NEO4J_USERNAME")
+password = Sys.getenv("NEO4J_PASSWORD")
+
+neo4j = startGraph("http://localhost:7474/db/data/", username, password)
+importSample(neo4j, "dfw", input=F)
 
 test_that("cypher handles nulls correctly", {
   expected = data.frame(
