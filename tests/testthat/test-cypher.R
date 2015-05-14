@@ -7,6 +7,13 @@ password = Sys.getenv("NEO4J_PASSWORD")
 neo4j = startGraph("http://localhost:7474/db/data/", username, password)
 importSample(neo4j, "dfw", input=F)
 
+test_that("cypher works", {
+  options(stringsAsFactors=F)
+  expected = data.frame(terminal = c("A", "B", "C", "D", "E"))
+  actual = cypher(neo4j, "MATCH (t:Terminal) RETURN t.name AS terminal ORDER BY terminal")
+  expect_identical(actual, expected)
+})
+
 test_that("cypher handles nulls correctly", {
   expected = data.frame(
     n.thing = c(
@@ -14,7 +21,7 @@ test_that("cypher handles nulls correctly", {
     )
   )
   actual = cypher(neo4j, "MATCH n WITH n LIMIT 10 RETURN n.thing")
-  expect_equal(actual, expected)
+  expect_identical(actual, expected)
 })
 
 test_that("cypher won't return graph results - paths", {
