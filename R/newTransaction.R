@@ -20,6 +20,8 @@ newTransaction.graph = function(graph) {
   commit = fromJSON(text)$commit
   transaction = list(location = location, commit = commit)
   attr(transaction, "auth_token") = attr(graph, "auth_token")
+  attr(transaction, "username") = attr(graph, "username")
+  attr(transaction, "password") = attr(graph, "password")
   class(transaction) = "transaction"
   return(transaction)
 }
