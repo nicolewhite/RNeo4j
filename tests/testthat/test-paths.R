@@ -1,10 +1,7 @@
 library(RNeo4j)
 context("Paths")
 
-username = Sys.getenv("NEO4J_USERNAME")
-password = Sys.getenv("NEO4J_PASSWORD")
-
-neo4j = startGraph("http://localhost:7474/db/data/", username, password)
+neo4j = startGraph("http://localhost:7474/db/data/")
 clear(neo4j, input=F)
 
 alice = createNode(neo4j, "Person", name = "Alice")

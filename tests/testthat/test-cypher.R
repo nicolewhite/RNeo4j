@@ -1,10 +1,7 @@
 library(RNeo4j)
 context("Cypher")
 
-username = Sys.getenv("NEO4J_USERNAME")
-password = Sys.getenv("NEO4J_PASSWORD")
-
-neo4j = startGraph("http://localhost:7474/db/data/", username, password)
+neo4j = startGraph("http://localhost:7474/db/data/")
 importSample(neo4j, "dfw", input=F)
 
 test_that("cypher works", {
