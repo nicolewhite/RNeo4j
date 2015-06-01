@@ -36,11 +36,6 @@ cypher.graph = function(graph, query, ...) {
   options(stringsAsFactors = FALSE)
   df = data.frame(data)
   
-  # Get the maximum length of nested lists.
-  checkNested <- function(col) {
-    max(unlist(sapply(col, function(x) {sapply(x, length)})))
-  }
-  
   # Unlist columns that aren't variable-length.
   if(all(sapply(df, class) == "list")) {
     for(i in 1:ncol(df)) {

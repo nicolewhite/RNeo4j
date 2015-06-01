@@ -3,6 +3,10 @@ version = function() {
 }
 
 configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
+  if(is.character(result) | is.numeric(result)) {
+    return(result)
+  }
+  
   data = result$data
   self = result$self
   property = result$property
@@ -18,9 +22,9 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
   len = result$length
   rels = result$relationships
   weight = result$weight
-  class = class(result)
   
-  if("node" %in% class | "relationship" %in% class) {
+  # Nodes and Relationships
+  if(!is.null(labels) | !is.null(type)) {
     length(result) = length(data)
     names(result) = names(data)
     
@@ -33,8 +37,26 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     attr(result, "property") = property
     attr(result, "properties") = properties
   }
+  
+  # Nodes
+  if(!is.null(labels)) {
+    attr(result, "labels") = labels
+    attr(result, "create_relationship") = create_rel
+    attr(result, "incoming_relationships") = inc
+    attr(result, "outgoing_relationships") = out
+    class(result) = "node"
+  } 
+  
+  # Relationships
+  if(!is.null(type)) {
+    attr(result, "start") = start
+    attr(result, "type") = type
+    attr(result, "end") = end
+    class(result) = "relationship"
+  }
 
-  if("path" %in% class) {
+  # Paths
+  if(!is.null(nodes)) {
     if(!is.null(weight)) {
       length(result) = 2
       names(result) = c("length", "weight")
@@ -48,19 +70,7 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     attr(result, "end") = end
     attr(result, "nodes") = nodes
     attr(result, "relationships") = rels
-  }
-  
-  if("node" %in% class) {
-    attr(result, "labels") = labels
-    attr(result, "create_relationship") = create_rel
-    attr(result, "incoming_relationships") = inc
-    attr(result, "outgoing_relationships") = out
-  } 
-  
-  if("relationship" %in% class) {
-    attr(result, "start") = start
-    attr(result, "type") = type
-    attr(result, "end") = end
+    class(result) = "path"
   }
   
   if(!is.null(username) && !is.null(password)) {
@@ -72,7 +82,6 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     attr(result, "auth_token") = auth_token
   }
   
-  class(result) = class
   return(result)
 }
 
@@ -234,4 +243,8 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, cost_propert
     path = configure_result(result, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token"))
     return(path)
   }
+}
+
+checkNested <- function(col) {
+  max(unlist(sapply(col, function(x) {sapply(x, length)})))
 }
