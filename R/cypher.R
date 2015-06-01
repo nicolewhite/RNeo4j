@@ -39,7 +39,7 @@ cypher.graph = function(graph, query, ...) {
   # Unlist columns that aren't variable-length.
   if(all(sapply(df, class) == "list")) {
     for(i in 1:ncol(df)) {
-      if(checkNested(df[i]) == 1) {
+      if(check_nested_depth(df[i]) == 1) {
         df[i] = unlist(df[i])
       } 
     }
