@@ -30,7 +30,7 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     
     for (i in 1:length(data)) {
       name = names(data[i])
-      result[name] = data[name]
+      result[name] = data$name[[1]]
     }
     
     attr(result, "self") = self
@@ -85,101 +85,63 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
   return(result)
 }
 
-setBasicAuthHeader = function(headers, username, password, realm=NULL) {
-  credentials = paste0(username, ":", password)
-  
-  if(!is.null(realm)) {
-    auth = paste0('Basic realm="', realm, '" ')
-  } else {
-    auth = 'Basic '
-  }
-  
-  auth = paste0(auth, base64(credentials)[1])
-  headers = c(headers, list('Authorization' = auth))
-  return(headers)
-}
+global_config = httr::set_config(ssl.verifypeer = FALSE, useragent = paste0("RNeo4j/", version()))
 
-setHeaders = function(entity) {
-  headers = list('Accept' = 'application/json', 
-                 'Content-Type' = 'application/json',
-                 'X-Stream' = TRUE)
+http_request = function(url, request_type, body=NULL, master_entity) {
+  conf = list()
   
-  username = attr(entity, "username")
-  password = attr(entity, "password")
-  auth_token = attr(entity, "auth_token")
+  opts = attr(master_entity, "opts")
+  username = attr(master_entity, "username")
+  password = attr(master_entity, "password")
   
-  if(!is.null(username) && !is.null(password)) {
-    headers = setBasicAuthHeader(headers, username, password)
-  } else if(!is.null(auth_token)) {
-    headers = setBasicAuthHeader(headers, "", auth_token, realm="Neo4j")
+  if(!is.null(opts)) {
+    conf = c(conf, opts)
   }
   
-  return(headers)
-}
-
-http_request = function(url, request_type, wanted_status, postfields = NULL, httpheader = NULL, addtl_opts = list()) {
-  t = basicTextGatherer()
-  h = basicHeaderGatherer()
+  if(!is.null(username) & !is.null(password)) {
+    auth = httr::authenticate(username, password, type="basic")
+    conf = c(conf, auth)
+  }
   
-  opts = list(customrequest = request_type,
-              writefunction = t$update,
-              headerfunction = h$update,
-              ssl.verifypeer = FALSE,
-              useragent = paste0("RNeo4j/", version()))
+  if(request_type == "POST") {
+    response = httr::POST(url=url, config=conf, body=body, encode="json")
+  } else if(request_type == "PUT") {
+    response = httr::PUT(url=url, config=conf, body=body, encode="json")
+  } else if(request_type == "GET") {
+    response = httr::GET(url=url, config=conf, body=body, encode="json")
+  } else if(request_type == "DELETE") {
+    response = httr::DELETE(url=url, config=conf, body=body, encode="json")
+  }
   
-  if(!is.null(postfields)) {
-    opts = c(opts, list(postfields = postfields))
-  }
-  if(!is.null(httpheader)) {
-    opts = c(opts, list(httpheader = httpheader))
-  }
-  if(length(addtl_opts) > 0) {
-    opts = c(opts, addtl_opts)
-  }
-
-  curlPerform(url = url, .opts = opts) 
-  text = t$value()
-  headers = h$value()
-  status_message = headers['statusMessage']
+  status = httr::http_status(response)
   
-  if(status_message != wanted_status) {
-    status = headers['status']
-    stop(status, " ", status_message, "\n\n",
-         text,
-         call. = FALSE)
-  } else {
-    return(text)
+  if(status$category != "success") {
+    error = httr::content(response)$errors[[1]]
+    message = paste(status$message, 
+                    error$code,
+                    error$message,
+                    sep="\n")
+    stop(message, call.=FALSE)
   }
-}
-
-find_max_dig = function(params) {
-  max_dig = 0
-  if(any(sapply(params, class) == "numeric")) {
-    max_dig = max(unlist(sapply(params[sapply(params, class) == "numeric"], nchar)))
-  }
-  return(max_dig)
+  
+  return(httr::content(response))
 }
 
 cypher_endpoint = function(graph, query, params) {
-  header = setHeaders(graph)
-  fields = list(query = query)
+  body = list(query = query)
   
   if(length(params) > 0) {
-    fields = c(fields, params = list(params))
-    max_digits = find_max_dig(params)
+    body = c(body, params = list(params))
   }
   
-  fields = toJSON(fields, digits = max_digits)
+  body = RJSONIO::toJSON(body)
   url = attr(graph, "cypher")
   response = http_request(url,
                           "POST",
-                          "OK",
-                          postfields = fields,
-                          httpheader = header,
-                          addtl_opts = attr(graph, "opts"))
+                          body,
+                          graph)
   
-  result = fromJSON(response)  
-  return(result)
+  return(response)
 }
 
 shortest_path_algo = function(all, algo, fromNode, relType, toNode, cost_property=character(), direction = "out", max_depth = 1) {
