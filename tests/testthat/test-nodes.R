@@ -40,3 +40,27 @@ test_that("getOrCreateNode works", {
   node = getOrCreateNode(neo4j, "Bar", name="Mugshots")
   expect_identical(class(node), c("entity", "node"))
 })
+
+test_that("getLabeledNodes works", {
+  node1 = createNode(neo4j, "Something")
+  node2 = createNode(neo4j, "Something", prop=1)
+  
+  somethings = getLabeledNodes(neo4j, "Something")
+  x = class(somethings[[1]])
+  
+  expect_equal(length(somethings), 2)
+  expect_true("node" %in% x)
+  
+  somethings1 = getLabeledNodes(neo4j, "Something", prop=1)
+  x = class(somethings1[[1]])
+  
+  expect_equal(length(somethings), 1)
+  expect_true("node" %in% x)
+})
+
+test_that("delete works", {
+  n = createNode(neo4j, "Thing", name="Nicole")
+  delete(n)
+  n = getSingleNode(neo4j, "MATCH (n:Thing) WHERE n.name = 'Nicole' RETURN n")
+  expect_null(n)
+})

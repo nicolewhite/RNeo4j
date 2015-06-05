@@ -79,3 +79,10 @@ test_that("getType works", {
   type = getType(r)
   expect_equal(type, "SOMETHING")
 })
+
+test_that("delete works", {
+  rels = getRels(neo4j, "MATCH (:Bar {name:'Mugshots'})-[r]-() RETURN DISTINCT r")
+  lapply(rels, delete)
+  rels = getRels(neo4j, "MATCH (:Bar {name:'Mugshots'})-[r]-() RETURN DISTINCT r")
+  expect_null(rels)
+})
