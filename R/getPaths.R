@@ -13,20 +13,18 @@ getPaths.graph = function(graph, query, ...) {
   result = result$data
   
   if(length(result) == 0) {
-    return(invisible(NULL))
+    return(invisible())
   }
   
-  set_class = function(i) {
+  for(i in 1:length(result)) {
     current = result[[i]][[1]]
     is.path = try(current$self, silent = T)
     if(!is.null(is.path) | class(is.path) == "try-error") {
       stop("At least one entity returned is not a path. Check that your query is returning paths.")
     }
-    class(current) = "path"
-    return(current)
+    result[[i]] = current
   }
   
-  result = lapply(1:length(result), set_class)
   paths = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
   return(paths)
 }

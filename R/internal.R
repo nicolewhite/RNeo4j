@@ -160,8 +160,6 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, cost_propert
     stop("Must specificy the name of the cost property if using the dijkstra algorithm.")
   }
   
-  header = setHeaders(fromNode)
-  
   path = ifelse(all, "paths", "path")
   
   url = paste(attr(fromNode, "self"), path, sep = "/")
@@ -177,36 +175,20 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, cost_propert
     fields = c(fields, list(cost_property=cost_property))
   }
   
-  fields = toJSON(fields)
+  result = try(http_request(url, "POST", fromNode, fields), silent = T)
   
-  response = try(http_request(url,
-                              "POST",
-                              "OK",
-                              postfields = fields,
-                              httpheader = header),
-                 silent = T)
-  
-  if(class(response) == "try-error") {
+  if(class(result) == "try-error") {
     return(invisible())
   }
-  
-  result = fromJSON(response)
   
   if(length(result) == 0) {
     return(invisible())
   }
   
-  set_class = function(x) {
-    class(x) = "path"
-    return(x)
-  }
-  
   if(all) {
-    result = lapply(result, set_class)
     paths = lapply(result, function(r) configure_result(r, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token")))
     return(paths)
   } else {
-    class(result) = "path"
     path = configure_result(result, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token"))
     return(path)
   }
