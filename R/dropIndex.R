@@ -9,8 +9,6 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
             is.character(key), 
             is.logical(all))
   
-  headers = setHeaders(graph)
-  
   url = attr(graph, "indexes")
   constraints = suppressMessages(getConstraint(graph))
   
@@ -33,7 +31,7 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
       }
       stop(errors,
            "Remove the uniqueness constraint(s) instead using dropConstraint(). This drops the index(es) as well.")
-      return(invisible(NULL))
+      return(invisible())
     }
     
     urls = apply(indexes, 1, function(x) paste(url, x['label'], x['property_keys'], sep = "/"))
@@ -41,11 +39,10 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     for(i in 1:length(urls)) {
       http_request(urls[i],
                    "DELETE",
-                   "No Content",
-                   httpheader=headers)
+                   graph)
     }
     
-    return(invisible(NULL))
+    return(invisible())
     
   # Else, drop the index for the label and key given.
   } else if (length(label) == 1 & length(key) == 1) {
@@ -58,8 +55,8 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     }
     
     url = paste(url, label, key, sep = "/")
-    http_request(url, "DELETE", "No Content", httpheader=headers)
-    return(invisible(NULL))
+    http_request(url, "DELETE", graph)
+    return(invisible())
     
   # Else, user supplied an invalid combination of arguments.  
   } else {

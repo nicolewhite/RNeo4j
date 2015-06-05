@@ -9,8 +9,6 @@ dropConstraint.graph = function(graph, label = character(), key = character(), a
             is.character(key),
             is.logical(all))
   
-  headers = setHeaders(graph)
-  
   url = attr(graph, "constraints")
   
   # If user sets all=TRUE, drop all uniqueness constraints from the graph.
@@ -19,18 +17,18 @@ dropConstraint.graph = function(graph, label = character(), key = character(), a
     
     if(is.null(constraints)) {
       message("No constraints to drop.")
-      return(invisible(NULL))
+      return(invisible())
     }
     
     urls = apply(constraints, 1, function(c) paste(url, c['label'], "uniqueness", c['property_keys'], sep = "/"))
-    lapply(urls, function(u) http_request(u, "DELETE", "No Content", httpheader=headers))
-    return(invisible(NULL))
+    lapply(urls, function(u) http_request(u, "DELETE", graph))
+    return(invisible())
     
   # Else, drop the uniqueness constraint for the label and key given.
   } else if (length(label) == 1 & length(key) == 1) {    
     url = paste(url, label, "uniqueness", key, sep = "/")
-    http_request(url, "DELETE", "No Content", httpheader=headers)
-    return(invisible(NULL))
+    http_request(url, "DELETE", graph)
+    return(invisible())
   
   # Else, user supplied an invalid combination of arguments.
   } else {
