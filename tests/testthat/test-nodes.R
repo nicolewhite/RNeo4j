@@ -8,8 +8,8 @@ mugshots = createNode(neo4j, "Bar", name="Mugshots", location="México")
 nastys = createNode(neo4j, "Bar", name="Nasty's")
 
 test_that("createNode works", {
-  expect_equal(class(mugshots), "node")
-  expect_equal(class(nastys), "node")
+  expect_identical(class(mugshots), c("entity", "node"))
+  expect_identical(class(nastys), c("entity", "node"))
 })
 
 test_that("array properties are added correctly", {
@@ -37,8 +37,10 @@ test_that("getSingleNode works", {
 test_that("getUniqueNode works", {
   addConstraint(neo4j, "Bar", "name")
   node = getUniqueNode(neo4j, "Bar", name="Mugshots")
+  expect_identical(class(node), c("entity", "node"))
 })
 
 test_that("getOrCreateNode works", {
   node = getOrCreateNode(neo4j, "Bar", name="Mugshots")
+  expect_identical(class(node), c("entity", "node"))
 })

@@ -50,7 +50,7 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     attr(result, "create_relationship") = create_rel
     attr(result, "incoming_relationships") = inc
     attr(result, "outgoing_relationships") = out
-    class(result) = "node"
+    class(result) = c("entity", "node")
   } 
   
   # Relationships
@@ -58,7 +58,7 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     attr(result, "start") = start
     attr(result, "type") = type
     attr(result, "end") = end
-    class(result) = "relationship"
+    class(result) = c("entity", "relationship")
   }
 
   # Paths
