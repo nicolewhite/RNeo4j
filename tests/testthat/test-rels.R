@@ -73,3 +73,9 @@ test_that("incomingRels works with given type", {
   x = class(r[[1]])
   expect_true("relationship" %in% x)
 })
+
+test_that("getType works", {
+  r = createRel(mugshots, "SOMETHING", nastys)
+  type = getType(r)
+  expect_equal(type, "SOMETHING")
+})
