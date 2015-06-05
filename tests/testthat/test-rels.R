@@ -12,11 +12,6 @@ test_that("createRel works", {
   expect_true("relationship" %in% class(rel))
 })
 
-test_that("array propertied are added correctly", {
-  newRel = createRel(mugshots, "SOMETHING", nastys, array=c(1,3,4))
-  expect_identical(newRel$array, c(1,3,4))
-})
-
 test_that("getRels works", {
   r = getRels(neo4j, "MATCH ()-[r]-() RETURN r")
   x = class(r[[1]])
