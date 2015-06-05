@@ -8,5 +8,5 @@ License: MIT
 Imports: httr, RJSONIO
 Maintainer: <nicole@neotechnology.com>
 Description: Easily interact with a Neo4j graph database from your R environment.
-URL: nicolewhite.github.io/RNeo4j, http://stackoverflow.com/questions/tagged/r-neo4j
+URL: http://github.com/nicolewhite/RNeo4j, http://stackoverflow.com/questions/tagged/r-neo4j
 Suggests: testthat
