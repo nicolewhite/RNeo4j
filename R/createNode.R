@@ -7,13 +7,15 @@ createNode.default = function(x, ...) {
 createNode.graph = function(graph, .label = character(), ...) {
   stopifnot(is.character(.label))
   
-  body = list(...)
+  props = list(...)
+  body = NULL
+  if(length(props) > 0) {
+    body = props
+  }
+  
   url = attr(graph, "node")
   
-  result = http_request(url,
-                        "POST",
-                        graph,
-                        body)
+  result = http_request(url, "POST", graph, body)
   
   node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
 

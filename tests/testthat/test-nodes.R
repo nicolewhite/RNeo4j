@@ -12,13 +12,9 @@ test_that("createNode works", {
   expect_identical(class(nastys), c("entity", "node"))
 })
 
-test_that("array properties are added correctly", {
-  newNode = createNode(neo4j, "Thing", array=c(1,3,4))
-  expect_identical(newNode$array, c(1,3,4))
-})
-
-test_that("properties are retrieved with correct encoding", {
-  expect_equal(mugshots$location, "México")
+test_that("createNode works without any properties", {
+  n = createNode(neo4j, "Person")
+  expect_equal(length(n), 0)
 })
 
 test_that("getNodes works", {

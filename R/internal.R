@@ -28,14 +28,16 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     length(result) = length(data)
     names(result) = names(data)
     
-    for (i in 1:length(data)) {
-      name = names(data[i])
-      depth = length(data[name][[1]])
-      
-      if(depth > 1) {
-        result[[name]] = unlist(data[name][[1]])
-      } else {
-        result[name] = data[name][[1]][[1]]
+    if(length(data) > 0) {
+      for (i in 1:length(data)) {
+        name = names(data[i])
+        depth = length(data[name][[1]])
+        
+        if(depth > 1) {
+          result[[name]] = unlist(data[name][[1]])
+        } else {
+          result[name] = data[name][[1]][[1]]
+        }
       }
     }
     
@@ -107,7 +109,9 @@ http_request = function(url, request_type, master_entity, body=NULL) {
     conf = c(conf, auth)
   }
   
-  body = RJSONIO::toJSON(body)
+  if(!is.null(body)) {
+    body = RJSONIO::toJSON(body)
+  }
   
   if(request_type == "POST") {
     response = httr::POST(url=url, config=conf, body=body, encode="json")
