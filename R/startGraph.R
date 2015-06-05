@@ -18,10 +18,10 @@ startGraph.default = function(url, username = character(), password = character(
     attr(graph, "auth_token") = Sys.getenv('NEO4J_AUTH_TOKEN')
   }
   
-  headers = setHeaders(graph)
-  response = http_request(url,"GET","OK", httpheader = headers, addtl_opts = opts)
+  attr(graph, "opts") = opts
+  
+  result = http_request(url, "GET", graph)
 
-  result = fromJSON(response)
   graph$version = result$neo4j_version
   attr(graph, "node") = paste0(url, "node")
   attr(graph, "node_index") = paste0(url, "index/node")
