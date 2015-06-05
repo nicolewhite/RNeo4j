@@ -54,7 +54,7 @@ test_that("getLabeledNodes works", {
   somethings1 = getLabeledNodes(neo4j, "Something", prop=1)
   x = class(somethings1[[1]])
   
-  expect_equal(length(somethings), 1)
+  expect_equal(length(somethings1), 1)
   expect_true("node" %in% x)
 })
 

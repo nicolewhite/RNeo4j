@@ -7,7 +7,6 @@ getLabeledNodes.default = function(x, ...) {
 getLabeledNodes.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
 
-  header = setHeaders(graph)
   url = paste(attr(graph, "root"), "label", .label, "nodes", sep = "/")
   param = c(...)
   
@@ -33,24 +32,12 @@ getLabeledNodes.graph = function(graph, .label, ...) {
     }
   }
 
-  response = http_request(url, 
-                          "GET", 
-                          "OK", 
-                          httpheader = header,
-                          addtl_opts = attr(graph, "opts"))
-  
-  result = fromJSON(response)
+  result = http_request(url, "GET", graph)
 
   if(length(result) == 0) {
-    return(invisible(NULL))
+    return(invisible())
   }
   
-  set_class = function(i) {
-    class(result[[i]]) = c("entity", "node")
-    return(result[[i]])
-  }
-  
-  result = lapply(1:length(result), set_class)
   nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
   return(nodes)
 }
