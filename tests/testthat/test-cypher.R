@@ -22,6 +22,18 @@ test_that("cypher retrieves arrays correctly", {
   expect_true("list" %in% classes)
 })
 
+test_that("cypher works with parameters", {
+  query = "MATCH (t:Terminal) WHERE t.name = {terminal} RETURN t.name"
+  data = cypher(neo4j, query, terminal="A")
+  expect_equal(data[1, 1], "A")
+})
+
+test_that("cypher works with array parameters", {
+  query = "MATCH (t:Terminal) WHERE t.name IN {terminals} RETURN t.name"
+  data = cypher(neo4j, query, terminals=c("A", "B"))
+  expect_equal(nrow(data), 2)
+})
+
 test_that("cypher handles nulls correctly", {
   expected = data.frame(
     n.thing = c(
