@@ -12,22 +12,17 @@ addLabel.node = function(node, ...) {
     stop("Cannot have spaces in labels. Use CamelCase instead.")
   }
   
-    if(length(labels) == 1) {
+  if(length(labels) == 1) {
     fields = paste0(' "', labels, '" ')
   } else {
-    fields = toJSON(labels)
+    fields = labels
   }
   
-  header = setHeaders(node)
   url = attr(node, "labels")
   
   for (i in 1:length(labels)) {
     field = paste0(' "', labels[i], '" ')
-    http_request(url,
-                 "POST",
-                 "No Content",
-                 postfields = field,
-                 httpheader = header)
+    http_request(url, "POST", node, labels)
   }
-  return(invisible(NULL))
+  return(invisible())
 }
