@@ -109,18 +109,18 @@ http_request = function(url, request_type, master_entity, body=NULL) {
     conf = c(conf, auth)
   }
   
-  if(!is.null(body)) {
+  if(!is.null(body) && length(body) > 0) {
     body = RJSONIO::toJSON(body)
   }
   
   if(request_type == "POST") {
-    response = httr::POST(url=url, config=conf, body=body, encode="json")
+    response = httr::POST(url=url, config=conf, body=body)
   } else if(request_type == "PUT") {
-    response = httr::PUT(url=url, config=conf, body=body, encode="json")
+    response = httr::PUT(url=url, config=conf, body=body)
   } else if(request_type == "GET") {
-    response = httr::GET(url=url, config=conf, body=body, encode="json")
+    response = httr::GET(url=url, config=conf, body=body)
   } else if(request_type == "DELETE") {
-    response = httr::DELETE(url=url, config=conf, body=body, encode="json")
+    response = httr::DELETE(url=url, config=conf, body=body)
   }
   
   status = httr::http_status(response)
