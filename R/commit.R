@@ -5,18 +5,12 @@ commit.default = function(x) {
 }
 
 commit.transaction = function(transaction) {
-  headers = setHeaders(transaction)
-  response = http_request(transaction$commit,
-                          "POST",
-                          "OK",
-                          httpheader=headers)
-  
-  response = fromJSON(response)
+  response = http_request(transaction$commit, "POST", transaction)
   
   if(length(response$errors) > 0) {
     error = response$errors[[1]]
-    stop(paste(error['code'], error['message']))
+    stop(paste(error['code'], error['message'], sep="\n"))
   }
   
-  return(invisible(NULL))
+  return(invisible())
 }

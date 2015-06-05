@@ -6,22 +6,19 @@ newTransaction.default = function(x) {
 
 newTransaction.graph = function(graph) {
   url = attr(graph, "transaction")
-  header = setHeaders(graph)
-  h = basicHeaderGatherer()
-  t = basicTextGatherer()
-  opts = list(customrequest = "POST",
-              httpheader = header,
-              writefunction = t$update, 
-              headerfunction = h$update)
-  curlPerform(url = url, .opts = opts)
-  text = t$value()
-  headers = h$value()
-  location = headers["Location"][[1]]
-  commit = fromJSON(text)$commit
+  conf = c(global_http_config(), attr(graph, "opts"))
+  
+  response = httr::POST(url, config=conf)
+  header = httr::headers(response)
+  content = httr::content(response)
+
+  location = header$location
+  commit = content$commit
   transaction = list(location = location, commit = commit)
-  attr(transaction, "auth_token") = attr(graph, "auth_token")
+  
   attr(transaction, "username") = attr(graph, "username")
   attr(transaction, "password") = attr(graph, "password")
   class(transaction) = "transaction"
+  
   return(transaction)
 }

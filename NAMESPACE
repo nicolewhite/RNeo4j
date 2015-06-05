@@ -143,5 +143,6 @@ importFrom(httr, DELETE)
 importFrom(httr, authenticate)
 importFrom(httr, http_status)
 importFrom(httr, content)
+importFrom(httr, headers)
 
 importFrom(RJSONIO, toJSON)
