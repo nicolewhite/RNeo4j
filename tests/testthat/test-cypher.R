@@ -11,13 +11,24 @@ test_that("cypher works", {
   expect_identical(actual, expected)
 })
 
+test_that("cypher retrieves arrays correctly", {
+  query = "
+  MATCH (p:Place)-[:IN_CATEGORY]->(c:Category)
+  RETURN c.name AS category, COLLECT(p.name) AS places
+  "
+  
+  data = cypher(neo4j, query)
+  classes = sapply(data, class)
+  expect_true("list" %in% classes)
+})
+
 test_that("cypher handles nulls correctly", {
   expected = data.frame(
     n.thing = c(
       rep(NA, 10)
     )
   )
-  actual = cypher(neo4j, "MATCH n WITH n LIMIT 10 RETURN n.thing")
+  actual = cypher(neo4j, "MATCH n RETURN n.thing LIMIT 10")
   expect_identical(actual, expected)
 })
 

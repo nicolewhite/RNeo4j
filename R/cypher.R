@@ -13,7 +13,7 @@ cypher.graph = function(graph, query, ...) {
   data = result$data
   
   if(length(data) == 0) {
-    return(invisible(NULL))
+    return(invisible())
   }
   
   if("metadata" %in% unlist(lapply(data[[1]], names))) {
