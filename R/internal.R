@@ -30,7 +30,13 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     
     for (i in 1:length(data)) {
       name = names(data[i])
-      result[name] = data$name[[1]]
+      depth = length(data[name][[1]])
+      
+      if(depth > 1) {
+        result[[name]] = unlist(data[name][[1]])
+      } else {
+        result[name] = data[name][[1]][[1]]
+      }
     }
     
     attr(result, "self") = self
@@ -85,10 +91,8 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
   return(result)
 }
 
-global_config = httr::set_config(ssl.verifypeer = FALSE, useragent = paste0("RNeo4j/", version()))
-
-http_request = function(url, request_type, body=NULL, master_entity) {
-  conf = list()
+http_request = function(url, request_type, master_entity, body=NULL) {
+  conf = list(ssl.verifypeer = FALSE, useragent = paste0("RNeo4j/", version()))
   
   opts = attr(master_entity, "opts")
   username = attr(master_entity, "username")
@@ -102,6 +106,8 @@ http_request = function(url, request_type, body=NULL, master_entity) {
     auth = httr::authenticate(username, password, type="basic")
     conf = c(conf, auth)
   }
+  
+  body = RJSONIO::toJSON(body)
   
   if(request_type == "POST") {
     response = httr::POST(url=url, config=conf, body=body, encode="json")
@@ -134,12 +140,11 @@ cypher_endpoint = function(graph, query, params) {
     body = c(body, params = list(params))
   }
   
-  body = RJSONIO::toJSON(body)
   url = attr(graph, "cypher")
   response = http_request(url,
                           "POST",
-                          body,
-                          graph)
+                          graph,
+                          body)
   
   return(response)
 }
