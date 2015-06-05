@@ -7,25 +7,15 @@ createNode.default = function(x, ...) {
 createNode.graph = function(graph, .label = character(), ...) {
   stopifnot(is.character(.label))
   
-  header = setHeaders(graph)
-  fields = NULL
-  
-  params = list(...)
-  if(length(params) > 0) {
-    max_digits = find_max_dig(params)
-    fields = toJSON(params, digits = max_digits)
-  }
-
+  body = list(...)
   url = attr(graph, "node")
-  response = http_request(url,
-                          "POST",
-                          "Created",
-                          postfields = fields,
-                          httpheader = header)
   
-  result = fromJSON(response)
-  class(result) = c("node", "entity")
-  node = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
+  result = http_request(url,
+                        "POST",
+                        graph,
+                        body)
+  
+  node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
 
   if(length(.label) > 0) {
     if(length(grep(" ", .label)) > 0) {

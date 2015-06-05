@@ -13,7 +13,7 @@ getSingleNode.graph = function(graph, query, ...) {
   result = result$data
   
   if(length(result) == 0) {
-    return(invisible(NULL))
+    return(invisible())
   }
   
   result = result[[1]][[1]]
@@ -23,7 +23,6 @@ getSingleNode.graph = function(graph, query, ...) {
     stop("The entity returned is not a node. Check that your query is returning a node.")
   }
   
-  class(result) = c("entity", "node")
   node = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
   return(node)
 }

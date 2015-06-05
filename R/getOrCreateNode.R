@@ -6,7 +6,9 @@ getOrCreateNode.default = function(x, ...) {
 
 getOrCreateNode.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
+  
   props = c(...)
+  
   if(!(names(props)[1] %in% getConstraint(graph, .label)$property_keys)) {
     stop("The first key = value pair listed in ... must be uniquely constrained for the given node label.")
   }

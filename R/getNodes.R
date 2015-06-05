@@ -12,20 +12,13 @@ getNodes.graph = function(graph, query, ...) {
   result = result$data
   
   if(length(result) == 0) {
-    return(invisible(NULL))
+    return(invisible())
   }
   
-  set_class = function(i) {
-    current = result[[i]][[1]]
-    is.node = try(current$start, silent = T)
-    if(!is.null(is.node) | class(is.node) == "try-error") {
-      stop("At least one entity returned is not a node. Check that your query is returning nodes.")
-    }
-    class(current) = c("entity", "node")
-    return(current)
+  for(i in 1:length(result)) {
+    result[[i]] = result[[i]][[1]]
   }
-  
-  result = lapply(1:length(result), set_class)
+
   nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
   return(nodes)
 }
