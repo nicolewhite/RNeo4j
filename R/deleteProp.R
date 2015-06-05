@@ -9,10 +9,8 @@ deleteProp.entity = function(entity, ..., all = FALSE) {
   props = c(...)
   url = attr(entity, "properties")
   
-  headers = setHeaders(entity)
-  
   if(all) {
-    http_request(url, "DELETE", "No Content", httpheader=headers)
+    http_request(url, "DELETE", entity)
     names(entity) = NULL
     return(entity)
     
@@ -21,10 +19,7 @@ deleteProp.entity = function(entity, ..., all = FALSE) {
       urls = vapply(props, function(p) paste(url, p, sep = "/"), "")
       
       for (i in 1:length(urls)) {
-        http_request(urls[[i]],
-                     "DELETE",
-                     "No Content",
-                     httpheader=headers)
+        http_request(urls[[i]], "DELETE", entity)
         entity[props[i]] = NULL
       }
       return(entity)

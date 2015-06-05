@@ -10,30 +10,13 @@ updateProp.entity = function(entity, ...) {
   if(length(props) == 0)
     stop("Must supply properties to update.")
   
-  header = setHeaders(entity)
-  
   for (i in 1:length(props)) {
-    url = paste(attr(entity, "properties"), names(props[i]), sep = "/")
-    
-    if(is.character(props[[i]])) {
-      field = paste0('"', props[[i]], '"')
-    } else if(is.numeric(props[[i]])) {
-      field = toString(props[[i]])
-    } else if(is.logical(props[[i]])) {
-      if(props[[i]]) {
-        field = "true"
-      } else {
-        field = "false"
-      }
-    } else {
-      stop("Must supply character, numeric, or logical property values.")
-    }
-    http_request(url,
-                 "PUT",
-                 "No Content",
-                 field,
-                 header)
-    entity[names(props[i])] = props[names(props[i])]
+    key = names(props[i])
+    value = props[[i]]
+    url = paste(attr(entity, "properties"), key, sep = "/")
+    http_request(url, "PUT", entity, value)
+    entity[key] = props[key]
   }
+  
   return(entity)
 }
