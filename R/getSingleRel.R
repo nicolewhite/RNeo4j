@@ -13,7 +13,7 @@ getSingleRel.graph = function(graph, query, ...) {
   result = result$data
   
   if(length(result) == 0) {
-    return(invisible(NULL))
+    return(invisible())
   }
   
   result = result[[1]][[1]]
@@ -23,7 +23,6 @@ getSingleRel.graph = function(graph, query, ...) {
     stop("The entity returned is not a relationship. Check that your query is returning a relationship.")
   }
   
-  class(result) = c("entity", "relationship")
   rel = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
   return(rel)
 }

@@ -5,7 +5,6 @@ outgoingRels.default = function(x, ...) {
 }
 
 outgoingRels.node = function(node, ...) {  
-  header = setHeaders(node)
   url = attr(node, "outgoing_relationships")
   type = c(...)
   
@@ -14,23 +13,13 @@ outgoingRels.node = function(node, ...) {
     url = paste(url, paste(type, collapse = "%26"), sep = "/")
   }
     
-  response = http_request(url,
-                          "GET",
-                          "OK",
-                          httpheader = header)
-  result = fromJSON(response)
+  result = http_request(url, "GET", node)
 
   if(length(result) == 0) {
     message("No outgoing relationships.")
-    return(invisible(NULL))
+    return(invisible())
   }
   
-  set_class = function(i) {
-    class(result[[i]]) = c("entity", "relationship")
-    return(result[[i]])
-  }
-  
-  result = lapply(1:length(result), set_class)
   outgoing_rels = lapply(result, function(r) configure_result(r, attr(node, "username"), attr(node, "password"), attr(node, "auth_token")))
   return(outgoing_rels)
 }

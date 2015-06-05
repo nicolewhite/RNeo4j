@@ -5,7 +5,6 @@ incomingRels.default = function(x, ...) {
 }
 
 incomingRels.node = function(node, ...) {
-  header = setHeaders(node)
   url = attr(node, "incoming_relationships")
   type = c(...)
   
@@ -14,23 +13,13 @@ incomingRels.node = function(node, ...) {
     url = paste(url, paste(type, collapse = "%26"), sep = "/")
   }
   
-  response = http_request(url,
-                          "GET",
-                          "OK",
-                          httpheader = header)
-  result = fromJSON(response)
+  result = http_request(url, "GET", node)
   
   if(length(result) == 0) {
     message("No incoming relationships for the given type(s).")
-    return(invisible(NULL))
+    return(invisible())
   }
-  
-  set_class = function(i) {
-    class(result[[i]]) = c("entity", "relationship")
-    return(result[[i]])
-  }
-  
-  result = lapply(1:length(result), set_class)
+
   incoming_rels = lapply(result, function(r) configure_result(r, attr(node, "username"), attr(node, "password")))
   return(incoming_rels)
 }

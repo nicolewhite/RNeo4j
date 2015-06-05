@@ -12,20 +12,13 @@ getRels.graph = function(graph, query, ...) {
   result = result$data
   
   if(length(result) == 0) {
-    return(invisible(NULL))
+    return(invisible())
   }
   
-  set_class = function(i) {
-    current = result[[i]][[1]]
-    is.rel = try(current$labels, silent = T)
-    if(!is.null(is.rel) | class(is.rel) == "try-error") {
-      stop("At least one entity returned is not a relationship. Check that your query is returning relationships.")
-    }
-    class(current) = c("entity", "relationship")
-    return(current)
+  for(i in 1:length(result)) {
+    result[[i]] = result[[i]][[1]]
   }
   
-  result = lapply(1:length(result), set_class)
   rels = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
   return(rels)
 }

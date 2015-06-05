@@ -14,28 +14,19 @@ createRel.node = function(.fromNode, .relType, .toNode, ...) {
     stop("Cannot have spaces in relationship types. Use UNDER_SCORES instead.")
   }
   
-  header = setHeaders(.fromNode)
-  
   fields = list(to = attr(.toNode, "self"), type = .relType)
-  
   params = list(...)
   
   if(length(params) > 0) {
     fields = c(fields, data = list(params)) 
-    max_digits = find_max_dig(params)
   }
     
-
-  fields = toJSON(fields, digits = max_digits)
   url = attr(.fromNode, "create_relationship")
-  response = http_request(url,
-                          "POST",
-                          "Created",
-                          postfields = fields,
-                          httpheader = header)
+  result = http_request(url,
+                        "POST",
+                        .fromNode,
+                        fields)
 
-  result = fromJSON(response)
-  class(result) = c("entity", "relationship")
   rel = configure_result(result, attr(.fromNode, "username"), attr(.fromNode, "password"), attr(.fromNode, "auth_token"))
   return(rel)
 }
