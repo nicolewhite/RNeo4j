@@ -2,6 +2,10 @@ version = function() {
   return("1.3.2")
 }
 
+global_http_config = function() {
+  return(list(ssl.verifypeer = FALSE, useragent = paste0("RNeo4j/", version())))
+}
+
 configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
   if(is.character(result) | is.numeric(result)) {
     return(result)
@@ -94,8 +98,7 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
 }
 
 http_request = function(url, request_type, master_entity, body=NULL) {
-  conf = list(ssl.verifypeer = FALSE, useragent = paste0("RNeo4j/", version()))
-  
+  conf = global_http_config()
   opts = attr(master_entity, "opts")
   username = attr(master_entity, "username")
   password = attr(master_entity, "password")
