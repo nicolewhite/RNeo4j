@@ -57,7 +57,7 @@ test_that("outgoingRels works", {
 })
 
 test_that("outgoingRels works with given type", {
-  r = outgoingRels(mugshots, "SOMETHING")
+  r = outgoingRels(mugshots, "IS_NEAR")
   x = class(r[[1]])
   expect_true("relationship" %in% x)
 })
@@ -69,7 +69,7 @@ test_that("incomingRels works", {
 })
 
 test_that("incomingRels works with given type", {
-  r = incomingRels(nastys, "SOMETHING")
+  r = incomingRels(nastys, "IS_NEAR")
   x = class(r[[1]])
   expect_true("relationship" %in% x)
 })
