@@ -112,7 +112,19 @@ http_request = function(url, request_type, master_entity, body=NULL) {
     conf = c(conf, auth)
   }
   
-  if(!is.null(body) && length(body) > 0) {
+  if(is.null(names(body)) && length(body) == 1) {
+    if(is.character(body)) {
+      body = paste0('"', body, '"')
+    } else if(is.numeric(body)) {
+      body = toString(body)
+    } else if(is.logical(body)) {
+      if(body) {
+        body = "true"
+      } else {
+        body = "false"
+      }
+    }
+  } else if(length(body) > 0) {
     body = RJSONIO::toJSON(body)
   }
   

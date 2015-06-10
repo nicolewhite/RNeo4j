@@ -43,18 +43,27 @@ test_that("updateProp works with strings", {
   n = createNode(neo4j, "Person")
   n = updateProp(n, name="Nicole")
   expect_equal(n$name, "Nicole")
+  
+  nicole = getSingleNode(neo4j, "MATCH n WHERE n.name = 'Nicole' RETURN n")
+  expect_true(!is.null(nicole))
 })
 
 test_that("updateProp works with numerics", {
   n = createNode(neo4j, "Person")
   n = updateProp(n, age=24)
   expect_equal(n$age, 24)
+  
+  twentyfour = getSingleNode(neo4j, "MATCH n WHERE n.age = 24 RETURN n")
+  expect_true(!is.null(twentyfour))
 })
 
 test_that("updateProp works with booleans", {
   n = createNode(neo4j, "Person")
   n = updateProp(n, awesome=TRUE)
   expect_true(n$awesome)
+  
+  awesome = getSingleNode(neo4j, "MATCH n WHERE n.awesome = true RETURN n")
+  expect_true(!is.null(awesome))
 })
 
 test_that("updateProp both replaces and creates new properties", {
