@@ -1,5 +1,5 @@
 version = function() {
-  return("1.3.5")
+  return("1.4.0")
 }
 
 global_http_config = function() {
