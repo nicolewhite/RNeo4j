@@ -1,7 +1,7 @@
 library(RNeo4j)
 context("Cypher")
 
-neo4j = startGraph("http://localhost:7474/db/data/")
+neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 importSample(neo4j, "dfw", input=F)
 
 test_that("cypher works", {

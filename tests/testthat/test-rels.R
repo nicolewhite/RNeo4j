@@ -1,7 +1,7 @@
 library(RNeo4j)
 context("Relationships")
 
-neo4j = startGraph("http://localhost:7474/db/data/")
+neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 clear(neo4j, input=F)
 
 mugshots = createNode(neo4j, "Bar", name="Mugshots", location="México")

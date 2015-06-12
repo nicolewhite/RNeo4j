@@ -1,7 +1,7 @@
 library(RNeo4j)
 context("Paths")
 
-neo4j = startGraph("http://localhost:7474/db/data/")
+neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 clear(neo4j, input=F)
 
 alice = createNode(neo4j, "Person", name = "Alice")
