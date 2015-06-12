@@ -20,3 +20,6 @@ update:
 	sed 's/$(OLD)/$(NEW)/' DESCRIPTION > tempfile && mv tempfile DESCRIPTION
 	sed 's/$(OLD)/$(NEW)/' man/RNeo4j-package.Rd > tempfile && mv tempfile man/RNeo4j-package.Rd
 	sed 's/$(OLD)/$(NEW)/' R/internal.R > tempfile && mv tempfile R/internal.R
+
+version:
+	/usr/bin/Rscript -e 'packageDescription("RNeo4j")["Version"];'
