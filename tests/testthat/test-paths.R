@@ -65,6 +65,32 @@ test_that("allShortestPaths works", {
   expect_equal(length(p), 2)
 })
 
+test_that("shortestPath works with cost property", {
+  p = shortestPath(alice, "WORKS_WITH", david, cost_property="weight")
+  
+  expect_equal(p$weight, 4.5)
+  expect_equal(p$length, 2)
+})
+
+test_that("shortestPath with cost property returns null when not found", {
+  p = shortestPath(alice, "WORKS_WITH", david, direction="in", cost_property="weight")
+  
+  expect_null(p)
+})
+
+test_that("allShortestPaths works with cost property", {
+  p = allShortestPaths(alice, "WORKS_WITH", david, cost_property="weight")
+  
+  expect_equal(p[[1]]$weight, 4.5)
+  expect_equal(p[[2]]$weight, 4.5)
+})
+
+test_that("allShortestPaths with cost property returns null when not found", {
+  p = allShortestPaths(alice, "WORKS_WITH", david, direction="in", cost_property="weight")
+  
+  expect_null(p)
+})
+
 test_that("getPaths returns null when not found", {
   query = "
   MATCH p = (:Thing)--(:Thing)
@@ -99,30 +125,4 @@ test_that("getPaths works", {
   actual_names = sapply(ends, '[[', 'name')
   expected_names = rep("David", 3)
   expect_equal(actual_names, expected_names)
-})
-
-test_that("dijkstra works", {
-  p = dijkstra(alice, "WORKS_WITH", david, cost_property="weight")
-  
-  expect_equal(p$weight, 4.5)
-  expect_equal(p$length, 2)
-})
-
-test_that("dijkstra returns null when not found", {
-  p = dijkstra(alice, "WORKS_WITH", david, cost_property="weight", direction="in")
-  
-  expect_null(p)
-})
-
-test_that("allDijkstra works", {
-  p = allDijkstra(alice, "WORKS_WITH", david, cost_property="weight")
-  
-  expect_equal(p[[1]]$weight, 4.5)
-  expect_equal(p[[2]]$weight, 4.5)
-})
-
-test_that("allDijkstra returns null when not found", {
-  p = allDijkstra(alice, "WORKS_WITH", david, cost_property="weight", direction="in")
-  
-  expect_null(p)
 })

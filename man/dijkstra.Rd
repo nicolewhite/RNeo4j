@@ -2,6 +2,8 @@
 \alias{dijkstra}
 \title{Retrieve Weighted Shortest Paths}
 \description{
+Deprecated. Use \code{\link{shortestPath}}.
+
 Retrieve the shortest path between two nodes weighted by a cost property.
 }
 \usage{
@@ -25,11 +27,11 @@ A path object. Returns NULL if a path is not found.
 graph = startGraph("http://localhost:7474/db/data/")
 clear(graph)
 
-alice = createNode(neo4j, "Person", name = "Alice")
-bob = createNode(neo4j, "Person", name = "Bob")
-charles = createNode(neo4j, "Person", name = "Charles")
-david = createNode(neo4j, "Person", name = "David")
-elaine = createNode(neo4j, "Person", name = "Elaine")
+alice = createNode(graph, "Person", name = "Alice")
+bob = createNode(graph, "Person", name = "Bob")
+charles = createNode(graph, "Person", name = "Charles")
+david = createNode(graph, "Person", name = "David")
+elaine = createNode(graph, "Person", name = "Elaine")
 
 r1 = createRel(alice, "KNOWS", bob, weight=1.5)
 r2 = createRel(bob, "KNOWS", charles, weight=2)

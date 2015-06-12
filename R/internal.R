@@ -166,7 +166,7 @@ cypher_endpoint = function(graph, query, params) {
   return(response)
 }
 
-shortest_path_algo = function(all, algo, fromNode, relType, toNode, cost_property=character(), direction = "out", max_depth = 1) {
+shortest_path_algo = function(all, algo, fromNode, relType, toNode, direction = "out", max_depth = 1, cost_property=character()) {
   stopifnot(is.character(relType), 
             "node" %in% class(toNode),
             direction %in% c("in", "out"),
@@ -182,8 +182,7 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, cost_propert
   url = paste(attr(fromNode, "self"), path, sep = "/")
   to = attr(toNode, "self")
   fields = list(to = to,
-                relationships = list(type = relType,
-                                     direction = direction),
+                relationships = list(type = relType, direction = direction),
                 algorithm = algo)
   
   if(algo == "shortestPath") {
