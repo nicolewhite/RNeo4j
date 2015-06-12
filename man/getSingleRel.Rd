@@ -2,6 +2,8 @@
 \alias{getSingleRel}
 \title{Retrieve Relationships with Cypher Queries}
 \description{
+Deprecated. Use \code{\link{cypherToList}}.
+
 Retrieve a single relationship from the graph with a Cypher query.
 }
 \usage{

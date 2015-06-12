@@ -1,13 +1,11 @@
-\name{getPaths}
-\alias{getPaths}
-\title{Retrieve Paths with Cypher Queries}
+\name{cypherToList}
+\alias{cypherToList}
+\title{Retrieve Cypher Query Results as a List}
 \description{
-Deprecated. Use \code{\link{cypherToList}}.
-
-Retrieve paths from the graph with a Cypher query.
+Retrieve Cypher query results as a list.
 }
 \usage{
-getPaths(graph, query, ...)
+cypherToList(graph, query, ...)
 }
 \arguments{
   \item{graph}{A graph object.}
@@ -15,7 +13,7 @@ getPaths(graph, query, ...)
   \item{...}{Optional parameters to pass to the query in the form key = value, if applicable.}
 }
 \value{
-A list of path objects. Returns NULL if no paths are found.
+A list. Cypher queries returning no results will return NULL.
 }
 \examples{
 graph = startGraph("http://localhost:7474/db/data/")
@@ -24,17 +22,15 @@ clear(graph)
 alice = createNode(graph, "Person", name = "Alice", age = 23)
 bob = createNode(graph, "Person", name = "Bob", age = 22)
 charles = createNode(graph, "Person", name = "Charles", age = 25)
+david = createNode(graph, "Person", name = "David", age = 20)
 
 createRel(alice, "KNOWS", bob)
 createRel(alice, "KNOWS", charles)
+createRel(charles, "KNOWS", david)
 
-query = "MATCH p = (:Person {name:'Alice'})-[:KNOWS]->(:Person) RETURN p"
+cypherToList(graph, "MATCH n RETURN n, n.age")
+     
+cypherToList(graph, "MATCH (n)-[:KNOWS]-(m) RETURN n, COLLECT(m) AS friends, COUNT(m) AS num_friends")
 
-paths = getPaths(graph, query)
-
-lapply(paths, startNode)
-lapply(paths, endNode)
-}
-\seealso{
-\code{\link{getSinglePath}}
+cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m) RETURN p")
 }

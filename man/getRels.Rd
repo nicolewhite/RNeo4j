@@ -2,6 +2,8 @@
 \alias{getRels}
 \title{Retrieve Relationships with Cypher Queries}
 \description{
+Deprecated. Use \code{\link{cypherToList}}.
+
 Retrieve relationships from the graph with a Cypher query.
 }
 \usage{

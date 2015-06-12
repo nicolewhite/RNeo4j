@@ -2,6 +2,8 @@
 \alias{getSingleNode}
 \title{Retrieve Nodes with Cypher Queries}
 \description{
+Deprecated. Use \code{\link{cypherToList}}.
+
 Retrieve a single node from the graph with a Cypher query.
 }
 \usage{

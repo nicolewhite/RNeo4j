@@ -2,6 +2,8 @@
 \alias{getNodes}
 \title{Retrieve Nodes with Cypher Queries}
 \description{
+Deprecated. Use \code{\link{cypherToList}}.
+
 Retrieve nodes from the graph with a Cypher query.
 }
 \usage{

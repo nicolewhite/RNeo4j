@@ -2,6 +2,8 @@
 \alias{getSinglePath}
 \title{Retrieve Paths with Cypher Queries}
 \description{
+Deprecated. Use \code{\link{cypherToList}}.
+
 Retrieve a single path from the graph with a Cypher query.
 }
 \usage{
