@@ -139,11 +139,17 @@ http_request = function(url, request_type, master_entity, body=NULL) {
   status = httr::http_status(response)
   
   if(status$category != "success") {
-    error = httr::content(response)$errors[[1]]
-    message = paste(status['message'], 
-                    error['code'],
-                    error['message'],
-                    sep="\n")
+    message = status['message']
+    content = httr::content(response)
+    
+    if("errors" %in% names(content)) {
+      error = content$errors[[1]]
+      message = paste(message, 
+                      error['code'],
+                      error['message'],
+                      sep="\n")
+    }
+    
     stop(message, call.=FALSE)
   }
   
