@@ -24,8 +24,8 @@ newTransaction.graph = function(graph) {
   commit = content$commit
   transaction = list(location = location, commit = commit)
   
-  attr(transaction, "username") = attr(graph, "username")
-  attr(transaction, "password") = attr(graph, "password")
+  attr(transaction, "username") = username
+  attr(transaction, "password") = password
   class(transaction) = "transaction"
   
   return(transaction)
