@@ -7,6 +7,10 @@ startGraph.default = function(url, username = character(), password = character(
             is.character(password),
             is.list(opts))
   
+  if(substr(url, nchar(url) - 3, nchar(url)) == "data") {
+    url = paste0(url, "/")
+  }
+  
   graph = list()
   
   if(length(username) == 1 && length(password) == 1) {
