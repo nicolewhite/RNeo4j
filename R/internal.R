@@ -119,10 +119,7 @@ http_request = function(url, request_type, master_entity, body=NULL) {
       body = toString(body)
     } else if(is.logical(body)) {
       if(body) {
-        body = "true"
-      } else {
-        body = "false"
-      }
+        body = ifelse(body, "true", "false")
     }
   } else if(length(body) > 0) {
     body = RJSONIO::toJSON(body)
