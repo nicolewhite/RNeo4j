@@ -8,6 +8,14 @@ newTransaction.graph = function(graph) {
   url = attr(graph, "transaction")
   conf = c(global_http_config(), attr(graph, "opts"))
   
+  username = attr(graph, "username")
+  password = attr(graph, "password")
+  
+  if(!is.null(username) && !is.null(password)) {
+    auth = httr::authenticate(username, password, type="basic")
+    conf = c(conf, auth)
+  }
+  
   response = httr::POST(url, config=conf)
   header = httr::headers(response)
   content = httr::content(response)
