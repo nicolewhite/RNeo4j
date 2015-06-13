@@ -14,10 +14,16 @@ An R package that allows you to easily interact with a Neo4j database from your 
 \author{
 Nicole White
 
-<nicole@neotechnology.com>
+If you think you've found a bug, please create a new GitHub issue:
 
-Please take your questions to StackOverflow and use the r-neo4j tag:
+https://github.com/nicolewhite/RNeo4j/issues
+
+If you have a question about how to do something in RNeo4j or need help troubleshooting, please post to StackOverflow and use the r-neo4j tag:
 
 http://stackoverflow.com/questions/tagged/r-neo4j
+
+For anything else, you can email me:
+
+<nicole@neotechnology.com>
 }
 
