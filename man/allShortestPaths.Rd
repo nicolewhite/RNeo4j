@@ -9,7 +9,8 @@ allShortestPaths(fromNode,
                  relType, 
                  toNode, 
                  direction = "out", 
-                 max_depth = 1)
+                 max_depth = 1,
+                 cost_property = character())
 }
 \arguments{
   \item{fromNode}{A node object.}
@@ -17,6 +18,7 @@ allShortestPaths(fromNode,
   \item{toNode}{A node object.}
   \item{direction}{The relationship direction to traverse. Accepts "in" or "out".}
   \item{max_depth}{The maximum depth of the path. Accepts an integer.}
+  \item{cost_property}{If retrieving a weighted shortest path, the name of the relationship property that contains the weights. Accepts a string.}
 }
 \value{
 A list of path objects. Returns NULL if no paths are found.
