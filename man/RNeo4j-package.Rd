@@ -7,7 +7,7 @@ An R package that allows you to easily interact with a Neo4j database from your 
 \details{
   \tabular{ll}{
   Package: \tab RNeo4j\cr
-  Version: \tab 1.4.0\cr
+  Version: \tab 1.4.1\cr
   Date: \tab 2014-05-02\cr
   }
 }
