@@ -1,6 +1,8 @@
 library(RNeo4j)
 context("Nodes")
 
+options(digits=20)
+
 neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 clear(neo4j, input=F)
 
@@ -15,6 +17,13 @@ test_that("createNode works", {
 test_that("createNode works without any properties", {
   n = createNode(neo4j, "Person")
   expect_equal(length(n), 0)
+})
+
+test_that("createNode doesn't round numeric parameters", {
+  AGE = 123456789
+  n = createNode(neo4j, "Person", age=AGE)
+  n = getSingleNode(neo4j, "MATCH n WHERE n.age = {age} RETURN n", age=AGE)
+  expect_equal(n$age, AGE)
 })
 
 test_that("getNodes works", {

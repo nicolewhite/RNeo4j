@@ -123,7 +123,7 @@ http_request = function(url, request_type, master_entity, body=NULL) {
       }
     }
   } else if(length(body) > 0) {
-    body = RJSONIO::toJSON(body)
+    body = RJSONIO::toJSON(body, digits=find_max_dig(body))
   }
   
   if(request_type == "POST") {
@@ -218,4 +218,19 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, direction = 
 
 check_nested_depth = function(col) {
   max(unlist(sapply(col, function(x) {sapply(x, length)})))
+}
+
+find_max_dig = function(params) {
+  types = sapply(params, class)
+  max_dig = 0
+  
+  for (i in 1:length(types)) {
+    if (types[[i]] == "list") {
+      max_dig = find_max_dig(params[[i]])
+    } else if (types[[i]] == "numeric") {
+      max_dig = max(sapply(params[[i]], nchar))
+    }
+  }
+  
+  return(max_dig)
 }

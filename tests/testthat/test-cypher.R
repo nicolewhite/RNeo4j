@@ -1,6 +1,8 @@
 library(RNeo4j)
 context("Cypher")
 
+options(digits=20)
+
 neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 importSample(neo4j, "dfw", input=F)
 
@@ -32,6 +34,13 @@ test_that("cypher works with array parameters", {
   query = "MATCH (t:Terminal) WHERE t.name IN {terminals} RETURN t.name"
   data = cypher(neo4j, query, terminals=c("A", "B"))
   expect_equal(nrow(data), 2)
+})
+
+test_that("cypher doesn't round numeric parameters", {
+  NUMBER = 123456789
+  query = "RETURN {number}"
+  data = cypher(neo4j, query, number=NUMBER)
+  expect_equal(data[1, 1], NUMBER)
 })
 
 test_that("cypher handles nulls correctly", {
