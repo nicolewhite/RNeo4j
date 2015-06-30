@@ -2,10 +2,6 @@ version = function() {
   return("1.4.1")
 }
 
-global_http_config = function() {
-  return(list(ssl.verifypeer = FALSE, useragent = paste0("RNeo4j/", version())))
-}
-
 configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
   if(is.character(result) | is.numeric(result)) {
     return(result)
@@ -98,18 +94,15 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
 }
 
 http_request = function(url, request_type, master_entity, body=NULL) {
-  conf = global_http_config()
-  opts = attr(master_entity, "opts")
+  httr::set_config(httr::user_agent(paste("RNeo4j", version(), sep="/")))
+  opts = c(attr(master_entity, "opts"), ssl_verifypeer = 0)
+  
   username = attr(master_entity, "username")
   password = attr(master_entity, "password")
   
-  if(!is.null(opts)) {
-    conf = c(conf, opts)
-  }
-  
   if(!is.null(username) & !is.null(password)) {
     auth = httr::authenticate(username, password, type="basic")
-    conf = c(conf, auth)
+    httr::set_config(auth)
   }
   
   if(is.null(names(body)) && length(body) == 1) {
@@ -127,13 +120,13 @@ http_request = function(url, request_type, master_entity, body=NULL) {
   }
   
   if(request_type == "POST") {
-    response = httr::POST(url=url, config=conf, body=body)
+    response = httr::POST(url=url, httr::config(opts), body=body)
   } else if(request_type == "PUT") {
-    response = httr::PUT(url=url, config=conf, body=body)
+    response = httr::PUT(url=url, httr::config(opts), body=body)
   } else if(request_type == "GET") {
-    response = httr::GET(url=url, config=conf, body=body)
+    response = httr::GET(url=url, httr::config(opts), body=body)
   } else if(request_type == "DELETE") {
-    response = httr::DELETE(url=url, config=conf, body=body)
+    response = httr::DELETE(url=url, httr::config(opts), body=body)
   }
   
   status = httr::http_status(response)

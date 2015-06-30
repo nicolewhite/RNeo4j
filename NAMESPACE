@@ -147,5 +147,8 @@ importFrom(httr, authenticate)
 importFrom(httr, http_status)
 importFrom(httr, content)
 importFrom(httr, headers)
+importFrom(httr, user_agent)
+importFrom(httr, set_config)
+importFrom(httr, config)
 
 importFrom(RJSONIO, toJSON)

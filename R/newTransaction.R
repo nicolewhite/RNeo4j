@@ -5,18 +5,19 @@ newTransaction.default = function(x) {
 }
 
 newTransaction.graph = function(graph) {
-  url = attr(graph, "transaction")
-  conf = c(global_http_config(), attr(graph, "opts"))
+  httr::set_config(httr::user_agent(paste("RNeo4j", version(), sep="/")))
+  opts = c(attr(graph, "opts"), ssl_verifypeer = 0)
   
   username = attr(graph, "username")
   password = attr(graph, "password")
   
   if(!is.null(username) && !is.null(password)) {
     auth = httr::authenticate(username, password, type="basic")
-    conf = c(conf, auth)
+    httr::set_config(auth)
   }
   
-  response = httr::POST(url, config=conf)
+  url = attr(graph, "transaction")
+  response = httr::POST(url, httr::config(opts))
   header = httr::headers(response)
   content = httr::content(response)
 
