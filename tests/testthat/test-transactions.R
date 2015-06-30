@@ -39,5 +39,5 @@ test_that("transactions work", {
   
   expected = cypher(neo4j, q)
   
-  expect_identical(actual, expected)
+  expect_equal(actual, expected)
 })

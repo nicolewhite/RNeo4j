@@ -26,17 +26,17 @@ test_that("boolean properties are added correctly", {
 
 test_that("arrays of strings are added correctly", {
   n = createNode(neo4j, "Person", names=c("Alice", "Bob"))
-  expect_identical(n$names, c("Alice", "Bob"))
+  expect_equal(n$names, c("Alice", "Bob"))
 })
 
 test_that("arrays of numerics are added correctly", {
   n = createNode(neo4j, "Person", ages=c(1, 2, 3))
-  expect_identical(n$ages, c(1, 2, 3))
+  expect_equal(n$ages, c(1, 2, 3))
 })
 
 test_that("arrays of booleans are added correctly", {
   n = createNode(neo4j, "Person", awesome=c(TRUE, FALSE))
-  expect_identical(n$awesome, c(TRUE, FALSE))
+  expect_equal(n$awesome, c(TRUE, FALSE))
 })
 
 test_that("updateProp works with strings", {
@@ -77,7 +77,7 @@ test_that("updateProp works with array properties", {
   n = createNode(neo4j, "Person", name="Nicole")
   n = updateProp(n, ages=c(1, 2, 3))
   expect_equal(n$name, "Nicole")
-  expect_identical(n$ages, c(1, 2, 3))
+  expect_equal(n$ages, c(1, 2, 3))
 })
 
 test_that("deleteProp works with given property", {
