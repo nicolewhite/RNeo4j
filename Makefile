@@ -23,3 +23,6 @@ update:
 
 version:
 	/usr/bin/Rscript -e 'packageDescription("RNeo4j")["Version"];'
+	
+readme:
+	/usr/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
