@@ -15,7 +15,7 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 * [Visualizations](#visualizations)
 * [Import](#import)
 
-## <a name="#install"></a> Install
+## <a name="#install"></a>Install
 
 
 ```r
@@ -26,7 +26,7 @@ library(RNeo4j)
 
 
 
-## <a name="#connect"></a> Connect
+## <a name="#connect"></a>Connect
 
 
 ```r
@@ -35,7 +35,7 @@ graph = startGraph("http://localhost:7474/db/data/")
 
 
 
-## <a name="#nodes"></a> Nodes
+## <a name="#nodes"></a>Nodes
 
 
 ```r
@@ -45,7 +45,7 @@ kenny = createNode(graph, "Person", name="Kenny", age=27)
 shannon = createNode(graph, "Person", name="Shannon", age=23)
 ```
 
-## <a name="#relationships"></a> Relationships
+## <a name="#relationships"></a>Relationships
 
 
 ```r
@@ -55,7 +55,7 @@ r3 = createRel(kenny, "LIKES", shannon, weight=3)
 r4 = createRel(nicole, "LIKES", shannon, weight=5)
 ```
 
-## <a name="#cypher"></a> Cypher
+## <a name="#cypher"></a>Cypher
 
 If you're returning tabular results, use `cypher`, which will give you a `data.frame`.
 
@@ -108,7 +108,7 @@ cypherToList(graph, query)
 ## [1] "Shannon"
 ```
 
-## <a name="#shortest-paths"></a> Shortest Paths
+## <a name="#shortest-paths"></a>Shortest Paths
 
 
 ```r
@@ -121,7 +121,7 @@ sapply(n, "[[", "name")
 ## [1] "Greta"   "Nicole"  "Shannon"
 ```
 
-## <a name="#weighted-shortest-paths"></a> Weighted Shortest Paths
+## <a name="#weighted-shortest-paths"></a>Weighted Shortest Paths
 
 
 ```r
@@ -142,7 +142,7 @@ p$weight
 ## [1] 11
 ```
 
-## <a name="#cypher"></a> Graph Algorithms
+## <a name="#cypher"></a>Graph Algorithms
 
 
 ```r
@@ -173,7 +173,7 @@ closeness(ig)
 ## 0.3333333 0.2000000 0.2500000 0.2500000
 ```
 
-## <a name="#visualizations"></a> Visualizations
+## <a name="#visualizations"></a>Visualizations
 
 ### `igraph`
 
@@ -201,7 +201,7 @@ ggnet(net, label.nodes=TRUE)
 
 [Read this blog post](http://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html).
 
-## <a name="#import"></a> Import
+## <a name="#import"></a>Import
 
 
 
