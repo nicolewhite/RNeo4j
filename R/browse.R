@@ -7,7 +7,11 @@ browse.default = function(x, ...) {
 browse.graph = function(graph, viewer = TRUE) {
   url <- sub("db/data", "browser", attr(graph, "root"))
   if (Sys.getenv("RSTUDIO") == "1" & viewer & grepl('localhost', url)) {
-    rstudio::viewer(url)
+    if('rstudio' %in% names(installed.packages()[, 1])) {
+      rstudio::viewer(url)
+    } else {
+      rstudioapi::viewer(url)
+    }
   } else {
     browseURL(url)
   }
