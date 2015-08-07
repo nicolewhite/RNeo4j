@@ -25,23 +25,25 @@ test_that("shortestPath returns null when not found", {
   expect_null(p)
 })
 
-test_that("shortestPath works", {
-  p = shortestPath(alice, "WORKS_WITH", david, max_depth=4)
+test_that("shortestPath works with direction=out", {
+  p = shortestPath(alice, "WORKS_WITH", charles, max_depth=4)
   expect_is(p, "path")
   expect_equal(p$length, 2)
   
   n = nodes(p)
   actual_names = sapply(n, '[[', 'name')
-  expected_names = c("Alice", "Bob", "David")
+  expected_names = c("Alice", "Bob", "Charles")
   expect_equal(actual_names, expected_names)
-  
-  p = shortestPath(david, "WORKS_WITH", alice, direction = "in", max_depth = 4)
+})
+
+test_that("shortestPath works with direction=in", {
+  p = shortestPath(charles, "WORKS_WITH", alice, direction = "in", max_depth = 4)
   expect_is(p, "path")
   expect_equal(p$length, 2)
   
   n = nodes(p)
   actual_names = sapply(n, '[[', 'name')
-  expected_names = c("David", "Bob", "Alice")
+  expected_names = c("Charles", "Bob", "Alice")
   expect_equal(actual_names, expected_names)
 })
 
