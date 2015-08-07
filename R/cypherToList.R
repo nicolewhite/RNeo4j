@@ -8,7 +8,8 @@ cypherToList.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)
   
-  params = list(...)
+  dots = list(...)
+  params = parse_dots(dots)
   result = cypher_endpoint(graph, query, params)
   data = result$data
   

@@ -99,3 +99,30 @@ test_that("collections of nodes are retrieved", {
   expect_true(is.list(response[[1]]$tweets))
   expect_true("node" %in% class(response[[1]]$tweets[[1]]))
 })
+
+test_that("it works with parameters", {
+  query = "
+  MATCH n RETURN n LIMIT {limit}
+  "
+  
+  response = cypherToList(neo4j, query, limit=5)
+  expect_equal(length(response), 5)
+})
+
+test_that("it works with multiple parameters", {
+  query = "
+  MATCH n RETURN n SKIP {skip} LIMIT {limit}
+  "
+  
+  response = cypherToList(neo4j, query, limit=5, skip=5)
+  expect_equal(length(response), 5)
+})
+
+test_that("it works with a list of parameters", {
+  query = "
+  MATCH n RETURN n SKIP {skip} LIMIT {limit}
+  "
+  
+  response = cypherToList(neo4j, query, list(limit=5, skip=5))
+  expect_equal(length(response), 5)
+})
