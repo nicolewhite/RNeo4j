@@ -15,7 +15,7 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 * [Visualizations](#visualizations)
 * [Import](#import)
 
-## <a name="#install"></a> Install
+## <a name="#install"></a>Install
 
 ```{r, eval=FALSE}
 install.packages("devtools")
@@ -27,7 +27,7 @@ library(RNeo4j)
 library(RNeo4j)
 ```
 
-## <a name="#connect"></a> Connect
+## <a name="#connect"></a>Connect
 
 ```{r}
 graph = startGraph("http://localhost:7474/db/data/")
@@ -37,7 +37,7 @@ graph = startGraph("http://localhost:7474/db/data/")
 clear(graph, input=F)
 ```
 
-## <a name="#nodes"></a> Nodes
+## <a name="#nodes"></a>Nodes
 
 ```{r}
 nicole = createNode(graph, "Person", name="Nicole", age=24)
@@ -46,7 +46,7 @@ kenny = createNode(graph, "Person", name="Kenny", age=27)
 shannon = createNode(graph, "Person", name="Shannon", age=23)
 ```
 
-## <a name="#relationships"></a> Relationships
+## <a name="#relationships"></a>Relationships
 
 ```{r}
 r1 = createRel(greta, "LIKES", nicole, weight=7)
@@ -55,7 +55,7 @@ r3 = createRel(kenny, "LIKES", shannon, weight=3)
 r4 = createRel(nicole, "LIKES", shannon, weight=5)
 ```
 
-## <a name="#cypher"></a> Cypher
+## <a name="#cypher"></a>Cypher
 
 If you're returning tabular results, use `cypher`, which will give you a `data.frame`.
 
@@ -81,7 +81,7 @@ RETURN nicole, COLLECT(p.name) AS friends
 cypherToList(graph, query)
 ```
 
-## <a name="#shortest-paths"></a> Shortest Paths
+## <a name="#shortest-paths"></a>Shortest Paths
 
 ```{r}
 p = shortestPath(greta, "LIKES", shannon, max_depth=4)
@@ -89,7 +89,7 @@ n = nodes(p)
 sapply(n, "[[", "name")
 ```
 
-## <a name="#weighted-shortest-paths"></a> Weighted Shortest Paths
+## <a name="#weighted-shortest-paths"></a>Weighted Shortest Paths
 
 ```{r}
 p = shortestPath(greta, "LIKES", shannon, max_depth=4, cost_property="weight")
@@ -98,7 +98,7 @@ sapply(n, "[[", "name")
 p$weight
 ```
 
-## <a name="#cypher"></a> Graph Algorithms
+## <a name="#cypher"></a>Graph Algorithms
 
 ```{r, message=FALSE}
 library(igraph)
@@ -115,7 +115,7 @@ betweenness(ig)
 closeness(ig)
 ```
 
-## <a name="#visualizations"></a> Visualizations
+## <a name="#visualizations"></a>Visualizations
 
 ### `igraph`
 
@@ -137,7 +137,7 @@ ggnet(net, label.nodes=TRUE)
 
 [Read this blog post](http://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html).
 
-## <a name="#import"></a> Import
+## <a name="#import"></a>Import
 
 ```{r, echo=FALSE}
 clear(graph, input=F)
