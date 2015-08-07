@@ -26,3 +26,8 @@ version:
 	
 readme:
 	/usr/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
+	
+download:
+	./neoget
+	tar -xvzf *.tar.gz
+	rm *.tar.gz
