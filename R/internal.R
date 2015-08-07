@@ -227,3 +227,15 @@ find_max_dig = function(params) {
   
   return(max_dig)
 }
+
+parse_dots = function(dots) {
+  if(length(dots) == 0) {
+    params = list()
+  } else if(is.null(names(dots))) {
+    params = as.list(dots[[1]])
+  } else {
+    params = dots
+  }
+  
+  return(params)
+}
