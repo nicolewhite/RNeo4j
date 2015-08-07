@@ -77,3 +77,25 @@ test_that("cypher won't return graph results - relationships", {
 test_that("cypher throws error on invalid query", {
   expect_error(cypher(neo4j, "MATCH n RETURN m"))
 })
+
+test_that("it works with multiple parameters", {
+  query = "
+  MATCH (g:Gate)-[:IN_TERMINAL]->(t:Terminal) 
+  WHERE g.gate = {gate} AND t.name = {terminal}
+  RETURN g.gate
+  "
+  
+  data = cypher(neo4j, query, gate=4, terminal="A")
+  expect_equal(data[1, 1], 4)
+})
+
+test_that("it works with a list of parameters", {
+  query = "
+  MATCH (g:Gate)-[:IN_TERMINAL]->(t:Terminal) 
+  WHERE g.gate = {gate} AND t.name = {terminal}
+  RETURN g.gate
+  "
+  
+  data = cypher(neo4j, query, list(gate=4, terminal="A"))
+  expect_equal(data[1, 1], 4)
+})

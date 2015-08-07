@@ -8,7 +8,16 @@ cypher.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)
   
-  params = list(...)
+  args = list(...)
+  
+  if(length(args) == 0) {
+    params = list()
+  } else if(is.null(names(args))) {
+    params = as.list(args[[1]])
+  } else {
+    params = args
+  }
+  
   result = cypher_endpoint(graph, query, params)
   data = result$data
   
