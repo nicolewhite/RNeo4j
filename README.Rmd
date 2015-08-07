@@ -14,6 +14,7 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 * [Graph Algorithms](#graph-algorithms)
 * [Visualizations](#visualizations)
 * [Import](#import)
+* [Connection Issues](#connection-issues)
 
 ## <a name="#install"></a>Install
 
@@ -196,4 +197,35 @@ for(i in 1:nrow(hflights)) {
 commit(tx)
 
 summary(graph)
+```
+
+## <a name="#connection-issues"></a>Connection Issues
+
+### Couldn't connect to server
+```
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Couldn't connect to server
+```
+
+Neo4j probably isn't running. Make sure Neo4j is running first. It's also possible you have localhost resolution issues; try connecting to `http://127.0.0.1:7474/db/data/` instead.
+
+### No authorization header supplied
+
+```
+Error: client error: (401) Unauthorized
+Neo.ClientError.Security.AuthorizationFailed
+No authorization header supplied.
+```
+
+You have auth enabled on Neo4j and either didn't provide your username and password or they were invalid. You can pass a username and password to `startGraph`.
+
+```
+graph = startGraph("http://localhost:7474/db/data/", username="neo4j", password="password")
+```
+
+You can also disable auth by editing the following line in `conf/neo4j-server.properties`.
+
+```
+# Require (or disable the requirement of) auth to access Neo4j
+dbms.security.auth_enabled=false
 ```

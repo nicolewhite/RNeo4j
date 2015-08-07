@@ -14,6 +14,7 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 * [Graph Algorithms](#graph-algorithms)
 * [Visualizations](#visualizations)
 * [Import](#import)
+* [Connection Issues](#connection-issues)
 
 ## <a name="#install"></a>Install
 
@@ -72,8 +73,8 @@ cypher(graph, query)
 
 ```
 ##   nicole.name r.weight  p.name
-## 1      Nicole        1   Kenny
-## 2      Nicole        5 Shannon
+## 1      Nicole        5 Shannon
+## 2      Nicole        1   Kenny
 ```
 
 For anything more complicated, use `cypherToList`, which will give you a `list`.
@@ -102,10 +103,10 @@ cypherToList(graph, query)
 ## 
 ## [[1]]$friends
 ## [[1]]$friends[[1]]
-## [1] "Kenny"
+## [1] "Shannon"
 ## 
 ## [[1]]$friends[[2]]
-## [1] "Shannon"
+## [1] "Kenny"
 ```
 
 ## <a name="#shortest-paths"></a>Shortest Paths
@@ -215,33 +216,33 @@ head(hflights)
 
 ```
 ##         Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
-## 4832354 2011    10         16         7    2252    2354            XE
-## 1566415 2011     4          9         6    1817    1915            CO
-## 3147457 2011     7          7         4     702    1005            DL
-## 2213072 2011     5          3         2    1317    1631            XE
-## 4695998 2011    10         12         3    1605    1954            CO
-## 463485  2011     1         17         1    1635    1945            XE
+## 3819990 2011     8         18         4     829    1019            XE
+## 4891262 2011    10          3         1    1730    1828            OO
+## 2128272 2011     5         11         3     854    1013            WN
+## 5322365 2011    11         23         3    1922    2020            XE
+## 2484740 2011     5          1         7    1849    2225            MQ
+## 92043   2011     1          4         2    2115    2241            CO
 ##         FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay
-## 4832354      4632  N27190                62      45       -1       -3
-## 1566415      1779  N37434                58      36        6        2
-## 3147457       810  N975DL               123     100       -8        2
-## 2213072      2980  N36915               134     102       11       -3
-## 4695998      1606  N39728               169     150       -9        0
-## 463485       2488  N13118               130     112       -9       -1
+## 3819990      3056  N12900               110      96       30       39
+## 4891262      5161  N764SK               118     103      -12        0
+## 2128272      1615  N782SA                79      68      -12       -6
+## 5322365      4498  N15932                58      36       -4       -3
+## 2484740      3717  N515MQ               216     137       85       24
+## 92043         511  N73299                86      60       29       20
 ##         Origin Dest Distance TaxiIn TaxiOut Cancelled CancellationCode
-## 4832354    IAH  MSY      305      6      11         0                 
-## 1566415    IAH  SAT      191      3      19         0                 
-## 3147457    IAH  ATL      689     12      11         0                 
-## 2213072    IAH  TYS      772      5      27         0                 
-## 4695998    IAH  DCA     1208      6      13         0                 
-## 463485     IAH  CLT      913      6      12         0                 
+## 3819990    IAH  MCI      643      4      10         0                 
+## 4891262    IAH  ABQ      744      5      10         0                 
+## 2128272    HOU  MAF      441      3       8         0                 
+## 5322365    IAH  LFT      201      7      15         0                 
+## 2484740    IAH  ORD      925     29      50         0                 
+## 92043      IAH  MFE      316      5      21         0                 
 ##         Diverted
-## 4832354        0
-## 1566415        0
-## 3147457        0
-## 2213072        0
-## 4695998        0
-## 463485         0
+## 3819990        0
+## 4891262        0
+## 2128272        0
+## 5322365        0
+## 2484740        0
+## 92043          0
 ```
 
 ```r
@@ -299,4 +300,35 @@ summary(graph)
 ## 1 Flight OPERATED_BY Carrier
 ## 2 Flight      ORIGIN Airport
 ## 3 Flight DESTINATION Airport
+```
+
+## <a name="#connection-issues"></a>Connection Issues
+
+### Couldn't connect to server
+```
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Couldn't connect to server
+```
+
+Neo4j probably isn't running. Make sure Neo4j is running first. It's also possible you have localhost resolution issues; try connecting to `http://127.0.0.1:7474/db/data/` instead.
+
+### No authorization header supplied
+
+```
+Error: client error: (401) Unauthorized
+Neo.ClientError.Security.AuthorizationFailed
+No authorization header supplied.
+```
+
+You have auth enabled on Neo4j and either didn't provide your username and password or they were invalid. You can pass a username and password to `startGraph`.
+
+```
+graph = startGraph("http://localhost:7474/db/data/", username="neo4j", password="password")
+```
+
+You can also disable auth by editing the following line in `conf/neo4j-server.properties`.
+
+```
+# Require (or disable the requirement of) auth to access Neo4j
+dbms.security.auth_enabled=false
 ```
