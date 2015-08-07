@@ -45,6 +45,11 @@ names = c("Alice", "Charles")
 cypher(graph,
 	   "MATCH n WHERE n.name IN {names} RETURN n.name, n.age",
 	   names = names)
+	   
+# Parameters can be passed as a single list.
+cypher(graph, 
+      "MATCH n WHERE n.age > {age1} AND n.age < {age2}", 
+      list(age1=22, age2=30))
      
 # Query that returns a collection.
 # The 'friends' column will have lists as values.
