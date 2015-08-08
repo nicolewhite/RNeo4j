@@ -128,3 +128,29 @@ test_that("getPaths works", {
   expected_names = rep("David", 3)
   expect_equal(actual_names, expected_names)
 })
+
+test_that("getPaths works with parametes", {
+  query = "
+  MATCH p = (:Person {name:{alice}})-[:WORKS_WITH*1..4]->(:Person {name:{david}})
+  RETURN p
+  "
+  
+  p = getPaths(neo4j, query, alice="Alice", david="David")
+  
+  expect_equal(length(p), 3)
+  expect_is(p, "list")
+  expect_is(p[[1]], "path")
+})
+
+test_that("getPaths works with a list of parameters", {
+  query = "
+  MATCH p = (:Person {name:{alice}})-[:WORKS_WITH*1..4]->(:Person {name:{david}})
+  RETURN p
+  "
+  
+  p = getPaths(neo4j, query, list(alice="Alice", david="David"))
+  
+  expect_equal(length(p), 3)
+  expect_is(p, "list")
+  expect_is(p[[1]], "path")
+})
