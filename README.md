@@ -1,4 +1,4 @@
-# RNeo4j
+# RNeo4j [![Build Status](https://travis-ci.org/nicolewhite/RNeo4j.svg?branch=master)](https://travis-ci.org/nicolewhite/RNeo4j)
 
 RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j directly from your R environment.
 
@@ -109,6 +109,33 @@ cypherToList(graph, query)
 ## [1] "Kenny"
 ```
 
+Both `cypher` and `cypherToList` accept parameters. These parameters can be passed individually or as a list.
+
+
+```r
+query = "
+MATCH (p1:Person)-[r:LIKES]->(p2:Person)
+WHERE p1.name = {name1} AND p2.name = {name2}
+RETURN p1.name, r.weight, p2.name
+"
+
+cypher(graph, query, name1="Nicole", name2="Shannon")
+```
+
+```
+##   p1.name r.weight p2.name
+## 1  Nicole        5 Shannon
+```
+
+```r
+cypher(graph, query, list(name1="Nicole", name2="Shannon"))
+```
+
+```
+##   p1.name r.weight p2.name
+## 1  Nicole        5 Shannon
+```
+
 ## <a name="#shortest-paths"></a>Shortest Paths
 
 
@@ -183,7 +210,7 @@ closeness(ig)
 plot(ig)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
 
 ### `ggnet`
 
@@ -196,7 +223,7 @@ net = network(edgelist)
 ggnet(net, label.nodes=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
 
 ### `visNetwork`
 
@@ -216,33 +243,33 @@ head(hflights)
 
 ```
 ##         Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
-## 3819990 2011     8         18         4     829    1019            XE
-## 4891262 2011    10          3         1    1730    1828            OO
-## 2128272 2011     5         11         3     854    1013            WN
-## 5322365 2011    11         23         3    1922    2020            XE
-## 2484740 2011     5          1         7    1849    2225            MQ
-## 92043   2011     1          4         2    2115    2241            CO
+## 1689355 2011     4         27         3     752    1059            XE
+## 5667091 2011    12         28         3    1912    2306            CO
+## 3803236 2011     8          5         5     715    1054            XE
+## 1187449 2011     3         13         7    1948    2056            MQ
+## 4819114 2011    10         19         3    2123    2225            XE
+## 3896065 2011     8         18         4    2110    2241            OO
 ##         FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay
-## 3819990      3056  N12900               110      96       30       39
-## 4891262      5161  N764SK               118     103      -12        0
-## 2128272      1615  N782SA                79      68      -12       -6
-## 5322365      4498  N15932                58      36       -4       -3
-## 2484740      3717  N515MQ               216     137       85       24
-## 92043         511  N73299                86      60       29       20
+## 1689355      2435  N18982               127     102       -3       -8
+## 5667091      1235  N76269               174     143        4        2
+## 3803236      2240  N11187               159     140        0        0
+## 1187449      3328  N641MQ                68      50        6        8
+## 4819114      4216  N14920                62      39        4        3
+## 3896065      5844  N907SW                91      64        6       -5
 ##         Origin Dest Distance TaxiIn TaxiOut Cancelled CancellationCode
-## 3819990    IAH  MCI      643      4      10         0                 
-## 4891262    IAH  ABQ      744      5      10         0                 
-## 2128272    HOU  MAF      441      3       8         0                 
-## 5322365    IAH  LFT      201      7      15         0                 
-## 2484740    IAH  ORD      925     29      50         0                 
-## 92043      IAH  MFE      316      5      21         0                 
+## 1689355    IAH  JAX      817      7      18         0                 
+## 5667091    IAH  DTW     1075      5      26         0                 
+## 3803236    IAH  RDU     1042     11       8         0                 
+## 1187449    HOU  DFW      247      8      10         0                 
+## 4819114    IAH  BTR      253      7      16         0                 
+## 3896065    IAH  MAF      429      3      24         0                 
 ##         Diverted
-## 3819990        0
-## 4891262        0
-## 2128272        0
-## 5322365        0
-## 2484740        0
-## 92043          0
+## 1689355        0
+## 5667091        0
+## 3803236        0
+## 1187449        0
+## 4819114        0
+## 3896065        0
 ```
 
 ```r

@@ -1,4 +1,4 @@
-# RNeo4j
+# RNeo4j [![Build Status](https://travis-ci.org/nicolewhite/RNeo4j.svg?branch=master)](https://travis-ci.org/nicolewhite/RNeo4j)
 
 RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j directly from your R environment.
 
@@ -80,6 +80,19 @@ RETURN nicole, COLLECT(p.name) AS friends
 "
 
 cypherToList(graph, query)
+```
+
+Both `cypher` and `cypherToList` accept parameters. These parameters can be passed individually or as a list.
+
+```{r}
+query = "
+MATCH (p1:Person)-[r:LIKES]->(p2:Person)
+WHERE p1.name = {name1} AND p2.name = {name2}
+RETURN p1.name, r.weight, p2.name
+"
+
+cypher(graph, query, name1="Nicole", name2="Shannon")
+cypher(graph, query, list(name1="Nicole", name2="Shannon"))
 ```
 
 ## <a name="#shortest-paths"></a>Shortest Paths
