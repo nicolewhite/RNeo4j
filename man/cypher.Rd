@@ -12,12 +12,21 @@ cypher(graph, query, ...)
   \item{...}{Optional parameters to pass to the query in the form key = value, if applicable.}
 }
 \details{
-If returning data, you can only query for tabular results. That is, you can't return node or relationship entities. See \code{\link{getNodes}} and \code{\link{getRels}} for returning entities.
+If returning data, you can only query for tabular results. That is, you can't return node or relationship entities. See \code{\link{cypherToList}} for returning non-tabular data.
 
-You can send Cypher queries without any return values (i.e., a Cypher query without the word \code{RETURN} in it).
+Parameters can be passed in individually or as a list, e.g.
+
+\code{cypher(graph, query, key1=value1, key2=value2)}
+
+or
+
+\code{cypher(graph, query, list(key1=value1, key2=value2))}
 }
 \value{
 A data frame. Cypher queries returning no results will return NULL.
+}
+\seealso{
+\code{\link{cypherToList}}
 }
 \examples{
 graph = startGraph("http://localhost:7474/db/data/")
@@ -48,7 +57,7 @@ cypher(graph,
 	   
 # Parameters can be passed as a single list.
 cypher(graph, 
-      "MATCH n WHERE n.age > {age1} AND n.age < {age2}", 
+      "MATCH n WHERE n.age > {age1} AND n.age < {age2} RETURN n.name", 
       list(age1=22, age2=30))
      
 # Query that returns a collection.
@@ -62,5 +71,5 @@ cypher(graph,
 	     "MATCH n SET n.born = {year} - n.age REMOVE n.age",
 	     year = 2014)
 
-cypher(graph, 'MATCH n RETURN n.name, n.born')
+cypher(graph, "MATCH n RETURN n.name, n.born")
 }

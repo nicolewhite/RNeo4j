@@ -12,6 +12,18 @@ cypherToList(graph, query, ...)
   \item{query}{A Cypher query in the form of a string.}
   \item{...}{Optional parameters to pass to the query in the form key = value, if applicable.}
 }
+\details{
+Parameters can be passed in individually or as a list, e.g.
+
+\code{cypherToList(graph, query, key1=value1, key2=value2)}
+
+or
+
+\code{cypherToList(graph, query, list(key1=value1, key2=value2))}
+}
+\seealso{
+\code{\link{cypher}}
+}
 \value{
 A list. Cypher queries returning no results will return NULL.
 }
@@ -33,4 +45,6 @@ cypherToList(graph, "MATCH n RETURN n, n.age")
 cypherToList(graph, "MATCH (n)-[:KNOWS]-(m) RETURN n, COLLECT(m) AS friends, COUNT(m) AS num_friends")
 
 cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m) RETURN p")
+
+cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m) WHERE n.name = {name} RETURN p", name="Alice")
 }
