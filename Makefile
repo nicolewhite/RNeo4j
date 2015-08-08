@@ -27,7 +27,10 @@ version:
 readme:
 	/usr/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
-download:
+download_neo4j:
 	./neoget
-	tar -xvzf *.tar.gz
+	rm -rf neo4j
+	mkdir neo4j
+	tar -xvzf *.tar.gz -C neo4j --strip-components=1
 	rm *.tar.gz
+	cd neo4j/conf && sed 's/auth_enabled=true/auth_enabled=false/g' neo4j-server.properties > tempfile && mv tempfile neo4j-server.properties
