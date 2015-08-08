@@ -8,8 +8,7 @@ getSinglePath.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)
   
-  dots = list(...)
-  params = parse_dots(dots)
+  params = list(...)  
   result = cypher_endpoint(graph, query, params)
   result = result$data
   
