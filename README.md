@@ -1,4 +1,4 @@
-# RNeo4j [![Build Status](https://travis-ci.org/nicolewhite/RNeo4j.svg?branch=master)](https://travis-ci.org/nicolewhite/RNeo4j)
+# RNeo4j [![Build Status](https://travis-ci.org/nicolewhite/RNeo4j.svg?branch=master)](https://travis-ci.org/nicolewhite/RNeo4j) [![Coverage Status](https://coveralls.io/repos/nicolewhite/RNeo4j/badge.svg?branch=master&service=github)](https://coveralls.io/github/nicolewhite/RNeo4j?branch=master)
 
 RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j directly from your R environment.
 
@@ -237,39 +237,33 @@ ggnet(net, label.nodes=TRUE)
 ```r
 library(hflights)
 hflights = hflights[sample(nrow(hflights), 1000), ]
+row.names(hflights) = NULL
 
 head(hflights)
 ```
 
 ```
-##         Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
-## 1689355 2011     4         27         3     752    1059            XE
-## 5667091 2011    12         28         3    1912    2306            CO
-## 3803236 2011     8          5         5     715    1054            XE
-## 1187449 2011     3         13         7    1948    2056            MQ
-## 4819114 2011    10         19         3    2123    2225            XE
-## 3896065 2011     8         18         4    2110    2241            OO
-##         FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay
-## 1689355      2435  N18982               127     102       -3       -8
-## 5667091      1235  N76269               174     143        4        2
-## 3803236      2240  N11187               159     140        0        0
-## 1187449      3328  N641MQ                68      50        6        8
-## 4819114      4216  N14920                62      39        4        3
-## 3896065      5844  N907SW                91      64        6       -5
-##         Origin Dest Distance TaxiIn TaxiOut Cancelled CancellationCode
-## 1689355    IAH  JAX      817      7      18         0                 
-## 5667091    IAH  DTW     1075      5      26         0                 
-## 3803236    IAH  RDU     1042     11       8         0                 
-## 1187449    HOU  DFW      247      8      10         0                 
-## 4819114    IAH  BTR      253      7      16         0                 
-## 3896065    IAH  MAF      429      3      24         0                 
-##         Diverted
-## 1689355        0
-## 5667091        0
-## 3803236        0
-## 1187449        0
-## 4819114        0
-## 3896065        0
+##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     7         21         4    1615    1721            XE      2308
+## 2 2011     6         13         1     754     904            WN       323
+## 3 2011     8         10         3    1933    2226            FL       296
+## 4 2011    12         21         3     601     919            DL      2010
+## 5 2011     8         20         6    1255    1449            CO      1446
+## 6 2011     5         11         3     932    1029            XE      2559
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N13553                66      50       52       55    IAH  BRO      308
+## 2  N699SW                70      55       -1       -1    HOU  JAN      359
+## 3  N261AT               113      96        6       13    HOU  ATL      696
+## 4  N956DL               138      91       14        1    IAH  ATL      689
+## 5  N77430               234     201        0        0    IAH  SFO     1635
+## 6  N14945                57      38       -5       -8    IAH  LFT      201
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1      4      12         0                         0
+## 2      5      10         0                         0
+## 3      8       9         0                         0
+## 4     15      32         0                         0
+## 5      6      27         0                         0
+## 6      6      13         0                         0
 ```
 
 ```r
