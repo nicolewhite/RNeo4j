@@ -7,7 +7,8 @@ createNode.default = function(x, ...) {
 createNode.graph = function(graph, .label = character(), ...) {
   stopifnot(is.character(.label))
   
-  props = list(...)
+  dots = list(...)
+  props = parse_dots(dots)
   body = NULL
   if(length(props) > 0) {
     body = props

@@ -15,7 +15,8 @@ createRel.node = function(.fromNode, .relType, .toNode, ...) {
   }
   
   fields = list(to = attr(.toNode, "self"), type = .relType)
-  params = list(...)
+  dots = list(...)
+  params = parse_dots(dots)
   
   if(length(params) > 0) {
     fields = c(fields, data = list(params)) 

@@ -9,7 +9,7 @@ deleteProp(object, ..., all = FALSE)
 }
 \arguments{
   \item{object}{A node or relationship object for which the named properties will be deleted.}
-  \item{...}{The properties to be deleted. Accepts a single string or strings separated by commas.}
+  \item{...}{The properties to be deleted. Accepts strings separated by commas or a list of strings.}
   \item{all}{Set to TRUE to delete all properties on the node or relationship object.}
 }
 \value{

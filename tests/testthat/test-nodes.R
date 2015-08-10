@@ -50,6 +50,12 @@ test_that("getOrCreateNode works", {
   expect_identical(class(node), c("entity", "node"))
 })
 
+test_that("getOrCreateNode works with last of parameters", {
+  node = getOrCreateNode(neo4j, "Bar", list(name="Mugshots", other="Other"))
+  expect_identical(class(node), c("entity", "node"))
+  expect_null(node$other)
+})
+
 test_that("getLabeledNodes works", {
   node1 = createNode(neo4j, "Something")
   node2 = createNode(neo4j, "Something", prop=1)
@@ -72,4 +78,11 @@ test_that("delete works", {
   delete(n)
   n = getSingleNode(neo4j, "MATCH (n:Thing) WHERE n.name = 'Nicole' RETURN n")
   expect_null(n)
+})
+
+test_that("createNode can set properties passed as a list", {
+  n = createNode(neo4j, "Thing", list(name="Nicole", age=24))
+  
+  expect_equal(n$name, "Nicole")
+  expect_equal(n$age, 24)
 })

@@ -86,3 +86,10 @@ test_that("delete works", {
   rels = getRels(neo4j, "MATCH (:Bar {name:'Mugshots'})-[r]-() RETURN DISTINCT r")
   expect_null(rels)
 })
+
+test_that("createRel can set properties passed as a list", {
+  r = createRel(mugshots, "WHATEVER", nastys, list(prop1=1, prop2="2"))
+  
+  expect_equal(r$prop1, 1)
+  expect_equal(r$prop2, "2")
+})

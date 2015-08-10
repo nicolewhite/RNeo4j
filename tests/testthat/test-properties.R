@@ -82,9 +82,9 @@ test_that("updateProp works with array properties", {
 
 test_that("deleteProp works with given property", {
   n = createNode(neo4j, "Person", name="Nicole", age=24)
-  n = deleteProp(n, "age")
+  n = deleteProp(n, "age", "name")
   expect_null(n$age)
-  expect_equal(n$name, "Nicole")
+  expect_null(n$name)
 })
 
 test_that("deleteProp works with all=TRUE", {
@@ -92,4 +92,18 @@ test_that("deleteProp works with all=TRUE", {
   n = deleteProp(n, all=TRUE)
   expect_null(n$age)
   expect_null(n$name)
+})
+
+test_that("deleteProp works with a list of properties", {
+  n = createNode(neo4j, "Person", name="Nicole", age=24)
+  n = deleteProp(n, list("age"))
+  expect_null(n$age)
+  expect_equal(n$name, "Nicole")
+})
+
+test_that("updateProp works with a list of properties", {
+  n = createNode(neo4j, "Person", name="Nicole")
+  n = updateProp(n, list(name="Julian", age=100))
+  expect_equal(n$name, "Julian")
+  expect_equal(n$age, 100)
 })

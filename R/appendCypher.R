@@ -9,7 +9,8 @@ appendCypher.transaction = function(transaction, query, ...) {
             length(query) == 1)
   
   url = transaction$location
-  params = list(...)
+  dots = list(...)
+  params = parse_dots(dots)
   
   if(length(params) > 0) {
     fields = list(statements = list(list(statement=query, parameters=params)))

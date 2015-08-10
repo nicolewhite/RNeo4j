@@ -45,31 +45,27 @@ createRel(charles, "KNOWS", david)
 cypher(graph, "MATCH n RETURN n.name, n.age")
 
 # Query with parameters.
-cypher(graph, 
-	   "MATCH n WHERE n.age < {age} RETURN n.name, n.age", 
-	   age = 24)
+query = "MATCH n WHERE n.age < {age} RETURN n.name, n.age"
+cypher(graph, query, age = 24)
 
 # Query with array parameter.
+query = "MATCH n WHERE n.name IN {names} RETURN n.name, n.age"
 names = c("Alice", "Charles")
-cypher(graph,
-	   "MATCH n WHERE n.name IN {names} RETURN n.name, n.age",
-	   names = names)
+cypher(graph, query, names = names)
 	   
 # Parameters can be passed as a single list.
-cypher(graph, 
-      "MATCH n WHERE n.age > {age1} AND n.age < {age2} RETURN n.name", 
-      list(age1=22, age2=30))
+query = "MATCH n WHERE n.age > {age1} AND n.age < {age2} RETURN n.name"
+cypher(graph, query, list(age1=22, age2=30))
      
 # Query that returns a collection.
 # The 'friends' column will have lists as values.
-df = cypher(graph, "MATCH (n)-[:KNOWS]-(m) RETURN n.name, COLLECT(m.name) AS friends, COUNT(m) AS num_friends")
+query = "MATCH (n)-[:KNOWS]-(m) RETURN n.name, COLLECT(m.name) AS friends, COUNT(m) AS num_friends"
+df = cypher(graph, query)
 sapply(df, class)
 df$friends
 
 # Query that doesn't return anything.
-cypher(graph, 
-	     "MATCH n SET n.born = {year} - n.age REMOVE n.age",
-	     year = 2014)
-
+query = "MATCH n SET n.born = {year} - n.age REMOVE n.age"
+cypher(graph, query, year = 2014)
 cypher(graph, "MATCH n RETURN n.name, n.born")
 }

@@ -6,7 +6,10 @@ deleteProp.default = function(x, ...) {
 
 deleteProp.entity = function(entity, ..., all = FALSE) {
   stopifnot(is.logical(all))
+  
   props = c(...)
+  props = as.list(props)
+  
   url = attr(entity, "properties")
   
   if(all) {
@@ -15,12 +18,11 @@ deleteProp.entity = function(entity, ..., all = FALSE) {
     return(entity)
     
   } else if(length(props) > 0) {
-      stopifnot(is.character(props))
-      urls = vapply(props, function(p) paste(url, p, sep = "/"), "")
+      urls = lapply(props, function(p) paste(url, p, sep = "/"))
       
       for (i in 1:length(urls)) {
         http_request(urls[[i]], "DELETE", entity)
-        entity[props[i]] = NULL
+        entity[props[[i]]] = NULL
       }
       return(entity)
   } else {

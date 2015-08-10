@@ -5,7 +5,8 @@ updateProp.default = function(x, ...) {
 }
 
 updateProp.entity = function(entity, ...) {
-  props = list(...)
+  dots = list(...)
+  props = parse_dots(dots)
   
   if(length(props) == 0)
     stop("Must supply properties to update.")

@@ -22,9 +22,16 @@ commit(transaction)
 \item{query}{A Cypher query in the form of a string.}
 \item{...}{Optional parameters to pass to the query in the form key = value, if applicable.}
 }
-
 \details{
 As of now, there is no functionality for returning data from the transactional endpoint.
+
+Parameters can be passed in individually or as a list, e.g.
+
+\code{appendCypher(transaction, query, key1=value1, key2=value2)}
+
+or
+
+\code{appendCypher(transaction, query, list(key1=value1, key2=value2))}
 }
 
 \value{

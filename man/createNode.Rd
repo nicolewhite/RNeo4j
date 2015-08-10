@@ -10,8 +10,16 @@ createNode(graph, .label = character(), ...)
 \arguments{
   \item{graph}{A graph object.}
   \item{.label}{Optional node label(s). Accepts a string or vector of strings.}
-  \item{...}{Optional node properties in the form key = value (separated by commas).}
-  
+  \item{...}{Optional node properties in the form key = value.}
+}
+\details{
+Parameters can be passed in individually or as a list, e.g.
+
+\code{createNode(graph, "Person", key1=value1, key2=value2)}
+
+or
+
+\code{createNode(graph, "Person", list(key1=value1, key2=value2))}
 }
 \value{
 A node object.
@@ -20,18 +28,10 @@ A node object.
 graph = startGraph("http://localhost:7474/db/data/")
 clear(graph)
 
-# Node without properties.
-mystery = createNode(graph)
-
-# Node with properties.
-alice = createNode(graph, name = "Alice", age = 23)
-
-# Node with label and properties. Arrays can be added as properties as well.
 bob = createNode(graph, "Person", name = "Bob", age = 24, kids = c("Jenny", "Larry"))
 
-# Node with multiple labels and properties.
-charles = createNode(graph, 
-					 c("Person", "Student"), 
-					 name = "Charles", 
-					 age = 21)
+charles = createNode(graph, c("Person", "Student"), name = "Charles", age = 21)
+					 
+props = list(name="David", age = 26)
+david = createNode(graph, "Person", props)
 }

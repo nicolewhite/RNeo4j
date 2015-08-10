@@ -13,6 +13,15 @@ createRel(.fromNode, .relType, .toNode, ...)
   \item{.toNode}{A node object to which the relationship will be incoming.}
   \item{...}{Optional relationship properties in the form key = value (separated by commas).}
 }
+\details{
+Parameters can be passed in individually or as a list, e.g.
+
+\code{createRel(node1, "REL_TYPE", node2, key1=value1, key2=value2)}
+
+or
+
+\code{createRel(node1, "REL_TYPE", node2, list(key1=value1, key2=value2))}
+}
 \value{
 A relationship object.
 }
@@ -29,6 +38,10 @@ createRel(alice, "WORKS_WITH", bob)
 
 # Relationship with properties.
 createRel(bob, "KNOWS", charles, since = 2000, through = "Work")
+
+# Properties can be passed as a list.
+props = list(since = 2001, through = "School")
+createRel(alice, "KNOWS", charles, props)
 }
 \seealso{
 \code{\link{startNode}}, \code{\link{endNode}}
