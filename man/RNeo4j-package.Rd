@@ -7,7 +7,7 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 \details{
   \tabular{ll}{
   Package: \tab RNeo4j\cr
-  Version: \tab 1.4.2\cr
+  Version: \tab 1.5.0\cr
   Date: \tab 2014-05-02\cr
   }
 }
