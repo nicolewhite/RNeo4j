@@ -15,6 +15,7 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 * [Visualizations](#visualizations)
 * [Import](#import)
 * [Connection Issues](#connection-issues)
+* [Contribute](#contribute)
 
 ## <a name="#install"></a>Install
 
@@ -261,3 +262,7 @@ You can also disable auth by editing the following line in `conf/neo4j-server.pr
 # Require (or disable the requirement of) auth to access Neo4j
 dbms.security.auth_enabled=false
 ```
+
+## <a name="#contribute"></a>Contribute
+
+Check out [the contributing doc](https://github.com/nicolewhite/RNeo4j/blob/master/CONTRIBUTING.md) if you'd like to contribute!

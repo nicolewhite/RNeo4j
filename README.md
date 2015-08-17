@@ -15,6 +15,7 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 * [Visualizations](#visualizations)
 * [Import](#import)
 * [Connection Issues](#connection-issues)
+* [Contribute](#contribute)
 
 ## <a name="#install"></a>Install
 
@@ -262,26 +263,26 @@ head(hflights)
 
 ```
 ##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 1 2011     3          8         2    1801    2148            CO      1826
-## 2 2011     5         13         5    1731    1930            XE      2882
-## 3 2011     9         30         5    1440    1548            CO      1257
-## 4 2011    11         20         7    1907    2231            CO      1586
-## 5 2011     3          6         7    1749    1934            CO      1795
-## 6 2011     1         15         6    2051    2225            CO      1095
+## 1 2011     1          4         2    1430    1520            WN       500
+## 2 2011     9          5         1    1848    2233            XE      2316
+## 3 2011     3          4         5    1121    1253            XE      3152
+## 4 2011    11         21         1    2256    2339            OO      5168
+## 5 2011    10         31         1    1550    1949            CO      1688
+## 6 2011     1         31         1    1302    1357            WN        28
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 1  N29717               167     139       -4        1    IAH  DCA     1208
-## 2  N34111               119      96       10        1    IAH  BNA      657
-## 3  N14237               188     160       -9        0    IAH  LAS     1222
-## 4  N32404               144     115       16        7    IAH  MCO      854
-## 5  N57868               225     197        4       -1    IAH  LAX     1379
-## 6  N36272               214     182       -6        1    IAH  LAX     1379
+## 1  N754SW                50      42        5       15    HOU  MSY      303
+## 2  N11137               165     146       -1       -2    IAH  RIC     1157
+## 3  N14942                92      76      -10       -4    IAH  AMA      519
+## 4  N789SK                43      29       -8       -4    IAH  AUS      140
+## 5  N11612               179     150       -8       -5    IAH  DTW     1075
+## 6  N490WN                55      40       -3        2    HOU  DAL      239
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
-## 1      5      23         0                         0
-## 2      7      16         0                         0
-## 3      9      19         0                         0
-## 4     10      19         0                         0
-## 5     10      18         0                         0
-## 6     12      20         0                         0
+## 1      2       6         0                         0
+## 2      7      12         0                         0
+## 3      5      11         0                         0
+## 4      5       9         0                         0
+## 5      9      20         0                         0
+## 6      2      13         0                         0
 ```
 
 ```r
@@ -336,9 +337,9 @@ summary(graph)
 
 ```
 ##     This          To    That
-## 1 Flight DESTINATION Airport
-## 2 Flight OPERATED_BY Carrier
-## 3 Flight      ORIGIN Airport
+## 1 Flight OPERATED_BY Carrier
+## 2 Flight      ORIGIN Airport
+## 3 Flight DESTINATION Airport
 ```
 
 ## <a name="#connection-issues"></a>Connection Issues
@@ -371,3 +372,7 @@ You can also disable auth by editing the following line in `conf/neo4j-server.pr
 # Require (or disable the requirement of) auth to access Neo4j
 dbms.security.auth_enabled=false
 ```
+
+## <a name="#contribute"></a>Contribute
+
+Check out [the contributing doc](https://github.com/nicolewhite/RNeo4j/blob/master/CONTRIBUTING.md) if you'd like to contribute!
