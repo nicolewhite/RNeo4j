@@ -18,6 +18,24 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 
 ## <a name="#install"></a>Install
 
+### Neo4j
+
+[Download Neo4j](http://neo4j.com/download/) community edition.
+
+#### Windows
+
+If you're on Windows, just download the `.exe` and follow the instructions. You'll get a GUI where you simply press "Start" to start Neo4j.
+
+#### OS X
+
+If you're on OS X, you can download either the `.dmg` or the `.tar.gz`. The `.dmg` is currently offered under the "beta program." This will give you a GUI where you simply press "Start" to start Neo4j. Otherwise, download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
+
+#### Linux
+
+If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
+
+### RNeo4j
+
 ```{r, eval=FALSE}
 install.packages("devtools")
 devtools::install_github("nicolewhite/RNeo4j")
@@ -149,7 +167,7 @@ ggnet(net, label.nodes=TRUE)
 
 ### `visNetwork`
 
-[Read this blog post](http://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html).
+[Read this blog post](http://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html) and [check out this slide deck](http://nicolewhite.github.io/neo4j-presentations/RNeo4j/Visualizations/Visualizations.html#1).
 
 ## <a name="#import"></a>Import
 

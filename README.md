@@ -18,6 +18,24 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 
 ## <a name="#install"></a>Install
 
+### Neo4j
+
+[Download Neo4j](http://neo4j.com/download/) community edition.
+
+#### Windows
+
+If you're on Windows, just download the `.exe` and follow the instructions. You'll get a GUI where you simply press "Start" to start Neo4j.
+
+#### OS X
+
+If you're on OS X, you can download either the `.dmg` or the `.tar.gz`. The `.dmg` is currently offered under the "beta program." This will give you a GUI where you simply press "Start" to start Neo4j. Otherwise, download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
+
+#### Linux
+
+If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
+
+### RNeo4j
+
 
 ```r
 install.packages("devtools")
@@ -73,8 +91,8 @@ cypher(graph, query)
 
 ```
 ##   nicole.name r.weight  p.name
-## 1      Nicole        5 Shannon
-## 2      Nicole        1   Kenny
+## 1      Nicole        1   Kenny
+## 2      Nicole        5 Shannon
 ```
 
 For anything more complicated, use `cypherToList`, which will give you a `list`.
@@ -103,10 +121,10 @@ cypherToList(graph, query)
 ## 
 ## [[1]]$friends
 ## [[1]]$friends[[1]]
-## [1] "Shannon"
+## [1] "Kenny"
 ## 
 ## [[1]]$friends[[2]]
-## [1] "Kenny"
+## [1] "Shannon"
 ```
 
 Both `cypher` and `cypherToList` accept parameters. These parameters can be passed individually or as a list.
@@ -227,7 +245,7 @@ ggnet(net, label.nodes=TRUE)
 
 ### `visNetwork`
 
-[Read this blog post](http://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html).
+[Read this blog post](http://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html) and [check out this slide deck](http://nicolewhite.github.io/neo4j-presentations/RNeo4j/Visualizations/Visualizations.html#1).
 
 ## <a name="#import"></a>Import
 
@@ -244,26 +262,26 @@ head(hflights)
 
 ```
 ##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 1 2011     7         21         4    1615    1721            XE      2308
-## 2 2011     6         13         1     754     904            WN       323
-## 3 2011     8         10         3    1933    2226            FL       296
-## 4 2011    12         21         3     601     919            DL      2010
-## 5 2011     8         20         6    1255    1449            CO      1446
-## 6 2011     5         11         3     932    1029            XE      2559
+## 1 2011     3          8         2    1801    2148            CO      1826
+## 2 2011     5         13         5    1731    1930            XE      2882
+## 3 2011     9         30         5    1440    1548            CO      1257
+## 4 2011    11         20         7    1907    2231            CO      1586
+## 5 2011     3          6         7    1749    1934            CO      1795
+## 6 2011     1         15         6    2051    2225            CO      1095
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 1  N13553                66      50       52       55    IAH  BRO      308
-## 2  N699SW                70      55       -1       -1    HOU  JAN      359
-## 3  N261AT               113      96        6       13    HOU  ATL      696
-## 4  N956DL               138      91       14        1    IAH  ATL      689
-## 5  N77430               234     201        0        0    IAH  SFO     1635
-## 6  N14945                57      38       -5       -8    IAH  LFT      201
+## 1  N29717               167     139       -4        1    IAH  DCA     1208
+## 2  N34111               119      96       10        1    IAH  BNA      657
+## 3  N14237               188     160       -9        0    IAH  LAS     1222
+## 4  N32404               144     115       16        7    IAH  MCO      854
+## 5  N57868               225     197        4       -1    IAH  LAX     1379
+## 6  N36272               214     182       -6        1    IAH  LAX     1379
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
-## 1      4      12         0                         0
-## 2      5      10         0                         0
-## 3      8       9         0                         0
-## 4     15      32         0                         0
-## 5      6      27         0                         0
-## 6      6      13         0                         0
+## 1      5      23         0                         0
+## 2      7      16         0                         0
+## 3      9      19         0                         0
+## 4     10      19         0                         0
+## 5     10      18         0                         0
+## 6     12      20         0                         0
 ```
 
 ```r
@@ -318,9 +336,9 @@ summary(graph)
 
 ```
 ##     This          To    That
-## 1 Flight OPERATED_BY Carrier
-## 2 Flight      ORIGIN Airport
-## 3 Flight DESTINATION Airport
+## 1 Flight DESTINATION Airport
+## 2 Flight OPERATED_BY Carrier
+## 3 Flight      ORIGIN Airport
 ```
 
 ## <a name="#connection-issues"></a>Connection Issues
