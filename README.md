@@ -37,11 +37,22 @@ If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip
 
 ### RNeo4j
 
+#### From GitHub
+
 
 ```r
 install.packages("devtools")
 devtools::install_github("nicolewhite/RNeo4j")
 library(RNeo4j)
+```
+
+#### From Source
+
+Go to the [latest release](https://github.com/nicolewhite/RNeo4j/releases/latest) and download the source code. You can then install with `install.packages`.
+
+
+```r
+install.packages("/path/to/file.tar.gz", repos=NULL, type="source")
 ```
 
 
@@ -51,6 +62,13 @@ library(RNeo4j)
 
 ```r
 graph = startGraph("http://localhost:7474/db/data/")
+```
+
+If you have authentication enabled, pass your username and password.
+
+
+```r
+graph = startGraph("http://localhost:7474/db/data/", username="neo4j", password="password")
 ```
 
 
@@ -92,8 +110,8 @@ cypher(graph, query)
 
 ```
 ##   nicole.name r.weight  p.name
-## 1      Nicole        1   Kenny
-## 2      Nicole        5 Shannon
+## 1      Nicole        5 Shannon
+## 2      Nicole        1   Kenny
 ```
 
 For anything more complicated, use `cypherToList`, which will give you a `list`.
@@ -122,10 +140,10 @@ cypherToList(graph, query)
 ## 
 ## [[1]]$friends
 ## [[1]]$friends[[1]]
-## [1] "Kenny"
+## [1] "Shannon"
 ## 
 ## [[1]]$friends[[2]]
-## [1] "Shannon"
+## [1] "Kenny"
 ```
 
 Both `cypher` and `cypherToList` accept parameters. These parameters can be passed individually or as a list.
@@ -229,7 +247,7 @@ closeness(ig)
 plot(ig)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
 
 ### `ggnet`
 
@@ -242,7 +260,7 @@ net = network(edgelist)
 ggnet(net, label.nodes=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
 
 ### `visNetwork`
 
@@ -263,26 +281,26 @@ head(hflights)
 
 ```
 ##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 1 2011     1          4         2    1430    1520            WN       500
-## 2 2011     9          5         1    1848    2233            XE      2316
-## 3 2011     3          4         5    1121    1253            XE      3152
-## 4 2011    11         21         1    2256    2339            OO      5168
-## 5 2011    10         31         1    1550    1949            CO      1688
-## 6 2011     1         31         1    1302    1357            WN        28
+## 1 2011    12          7         3    1531    1647            CO        33
+## 2 2011    11         16         3    1955    2058            WN       218
+## 3 2011     1         23         7    1909    2005            XE      2562
+## 4 2011    10         10         1    1126    1258            WN      1343
+## 5 2011     7         15         5    1643    1744            WN        42
+## 6 2011    12         10         6    1026    1340            US      1170
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 1  N754SW                50      42        5       15    HOU  MSY      303
-## 2  N11137               165     146       -1       -2    IAH  RIC     1157
-## 3  N14942                92      76      -10       -4    IAH  AMA      519
-## 4  N789SK                43      29       -8       -4    IAH  AUS      140
-## 5  N11612               179     150       -8       -5    IAH  DTW     1075
-## 6  N490WN                55      40       -3        2    HOU  DAL      239
+## 1  N36444                76      46        7        1    IAH  MSY      305
+## 2  N924WN                63      44       13       20    HOU  HRL      277
+## 3  N11548                56      39       94       99    IAH  DAL      217
+## 4  N791SW                92      80       -2       -4    HOU  BHM      570
+## 5  N397SW                61      44       14       13    HOU  DAL      239
+## 6  N451UW               134     107       -6        1    IAH  CLT      912
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
-## 1      2       6         0                         0
-## 2      7      12         0                         0
-## 3      5      11         0                         0
-## 4      5       9         0                         0
-## 5      9      20         0                         0
-## 6      2      13         0                         0
+## 1      7      23         0                         0
+## 2      2      17         0                         0
+## 3      5      12         0                         0
+## 4      2      10         0                         0
+## 5      2      15         0                         0
+## 6      8      19         0                         0
 ```
 
 ```r

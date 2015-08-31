@@ -37,10 +37,20 @@ If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip
 
 ### RNeo4j
 
+#### From GitHub
+
 ```{r, eval=FALSE}
 install.packages("devtools")
 devtools::install_github("nicolewhite/RNeo4j")
 library(RNeo4j)
+```
+
+#### From Source
+
+Go to the [latest release](https://github.com/nicolewhite/RNeo4j/releases/latest) and download the source code. You can then install with `install.packages`.
+
+```{r, eval=FALSE}
+install.packages("/path/to/file.tar.gz", repos=NULL, type="source")
 ```
 
 ```{r, echo=FALSE}
@@ -49,8 +59,14 @@ library(RNeo4j)
 
 ## <a name="#connect"></a>Connect
 
-```{r}
+```{r, eval=FALSE}
 graph = startGraph("http://localhost:7474/db/data/")
+```
+
+If you have authentication enabled, pass your username and password.
+
+```{r}
+graph = startGraph("http://localhost:7474/db/data/", username="neo4j", password="password")
 ```
 
 ```{r, echo=FALSE}
