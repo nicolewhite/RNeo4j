@@ -1,10 +1,10 @@
 # RNeo4j [![Build Status](https://travis-ci.org/nicolewhite/RNeo4j.svg?branch=master)](https://travis-ci.org/nicolewhite/RNeo4j) [![Coverage Status](https://coveralls.io/repos/nicolewhite/RNeo4j/badge.svg?branch=master&service=github)](https://coveralls.io/github/nicolewhite/RNeo4j?branch=master)
 
-<img align="right" src="figure/RNeo4j-logo.png" />
-
 RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j directly from your R environment.
 
 ## Contents
+
+<img align="right" src="figure/RNeo4j-logo.png" />
 
 * [Install](#install)
 * [Connect](#connect)
