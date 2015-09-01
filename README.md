@@ -1,5 +1,7 @@
 # RNeo4j [![Build Status](https://travis-ci.org/nicolewhite/RNeo4j.svg?branch=master)](https://travis-ci.org/nicolewhite/RNeo4j) [![Coverage Status](https://coveralls.io/repos/nicolewhite/RNeo4j/badge.svg?branch=master&service=github)](https://coveralls.io/github/nicolewhite/RNeo4j?branch=master)
 
+<img align="right" src="figure/RNeo4j-logo.png" />
+
 RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j directly from your R environment.
 
 ## Contents
@@ -281,26 +283,26 @@ head(hflights)
 
 ```
 ##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 1 2011    12          7         3    1531    1647            CO        33
-## 2 2011    11         16         3    1955    2058            WN       218
-## 3 2011     1         23         7    1909    2005            XE      2562
-## 4 2011    10         10         1    1126    1258            WN      1343
-## 5 2011     7         15         5    1643    1744            WN        42
-## 6 2011    12         10         6    1026    1340            US      1170
+## 1 2011    10         24         1     730    1143            OO      5193
+## 2 2011     1         15         6     908    1010            OO      1100
+## 3 2011     2         13         7    1757    1952            US       587
+## 4 2011     2          3         4      NA      NA            CO      1832
+## 5 2011     6          7         2    1250    1413            XE      2815
+## 6 2011     7         24         7     810     958            UA       434
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 1  N36444                76      46        7        1    IAH  MSY      305
-## 2  N924WN                63      44       13       20    HOU  HRL      277
-## 3  N11548                56      39       94       99    IAH  DAL      217
-## 4  N791SW                92      80       -2       -4    HOU  BHM      570
-## 5  N397SW                61      44       14       13    HOU  DAL      239
-## 6  N451UW               134     107       -6        1    IAH  CLT      912
+## 1  N773SK               193     157        9        0    IAH  IAD     1190
+## 2  N793SK               122     100      -10       -2    IAH  ABQ      744
+## 3  N155AW               175     142      -16       -3    IAH  PHX     1009
+## 4                        NA      NA       NA       NA    IAH  LGA     1416
+## 5  N13936                83      62        8        0    IAH  MOB      427
+## 6  N485UA               228     207      -11       -2    IAH  SFO     1635
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
-## 1      7      23         0                         0
-## 2      2      17         0                         0
-## 3      5      12         0                         0
-## 4      2      10         0                         0
-## 5      2      15         0                         0
-## 6      8      19         0                         0
+## 1      9      27         0                         0
+## 2      3      19         0                         0
+## 3     12      21         0                         0
+## 4     NA      NA         1                B        0
+## 5      5      16         0                         0
+## 6      8      13         0                         0
 ```
 
 ```r
