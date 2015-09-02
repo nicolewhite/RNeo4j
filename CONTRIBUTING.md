@@ -54,7 +54,7 @@ Tests are located in the `tests/testthat` directory. Check out some of the curre
 
 ## Run Tests
 
-Run tests with `make test`.
+Run tests with `make test`. Neo4j must be running in order to run the tests.
 
 ## Commit Your Changes
 
