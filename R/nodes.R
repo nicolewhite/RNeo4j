@@ -18,7 +18,12 @@
 #' createRel(alice, "WORKS_WITH", bob)
 #' createRel(bob, "WORKS_WITH", charles)
 #' 
-#' path = cypherToList(graph, "MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH*]->(:Person {name:'Charles'}) RETURN p")[[1]]
+#' query = "
+#' MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH*]->(:Person {name:'Charles'}) 
+#' RETURN p
+#' "
+#' 
+#' path = cypherToList(graph, query)[[1]]
 #' 
 #' nodes(path)
 #' }
