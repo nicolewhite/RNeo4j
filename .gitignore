@@ -5,3 +5,4 @@
 neo4j*/
 _site
 *.html
+*.tar.gz
