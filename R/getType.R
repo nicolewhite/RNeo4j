@@ -30,10 +30,10 @@ getType = function(object) UseMethod("getType")
 getType.graph = function(object) {
   url = attr(object, "relationship_types")
   response = http_request(url, "GET", object)
-  result = fromJSON(response)
-  return(result)
+  return(response)
 }
 
+#' @export
 getType.relationship = function(object) {
   return(attr(object, "type"))
 }
