@@ -24,14 +24,9 @@
 getLabel = function(object) UseMethod("getLabel")
 
 #' @export
-getLabel.default = function(x) {
-  stop("Invalid object. Must supply a graph or node object.")
-}
-
-#' @export
-getLabel.graph = function(graph) {
-  url = attr(graph, "node_labels")
-  result = http_request(url, "GET", graph)
+getLabel.graph = function(object) {
+  url = attr(object, "node_labels")
+  result = http_request(url, "GET", object)
   if(length(result) == 0) {
     message("No labels in the graph.")
     return(invisible())
@@ -40,9 +35,9 @@ getLabel.graph = function(graph) {
 }
 
 #' @export
-getLabel.node = function(node) {
-  url = attr(node, "labels")
-  result = http_request(url, "GET", node)
+getLabel.node = function(object) {
+  url = attr(object, "labels")
+  result = http_request(url, "GET", object)
   if(length(result) == 0) {
     message("No labels on the node.")
     return(invisible())

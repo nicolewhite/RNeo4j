@@ -27,18 +27,13 @@
 getType = function(object) UseMethod("getType")
 
 #' @export
-getType.default = function(x) {
-  stop("Invalid object. Must supply relationship or graph object.")
-}
-
-#' @export
-getType.graph = function(graph) {
-  url = attr(graph, "relationship_types")
-  response = http_request(url, "GET", graph)
+getType.graph = function(object) {
+  url = attr(object, "relationship_types")
+  response = http_request(url, "GET", object)
   result = fromJSON(response)
   return(result)
 }
 
-getType.relationship = function(rel) {
-  return(attr(rel, "type"))
+getType.relationship = function(object) {
+  return(attr(object, "type"))
 }

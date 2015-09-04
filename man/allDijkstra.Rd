@@ -4,8 +4,8 @@
 \alias{allDijkstra}
 \title{Weighted Shortest Paths}
 \usage{
-allDijkstra(fromNode, relType, toNode, direction = "out",
-  cost_property = character())
+allDijkstra(fromNode, relType, toNode, cost_property = character(),
+  direction = "out")
 }
 \arguments{
 \item{fromNode}{A node object.}
@@ -14,9 +14,9 @@ allDijkstra(fromNode, relType, toNode, direction = "out",
 
 \item{toNode}{A node object.}
 
-\item{direction}{A character string. The relationship direction to traverse. Should be "in" or "out".}
-
 \item{cost_property}{A character string. If retrieving a weighted shortest path, the name of the relationship property that contains the weights.}
+
+\item{direction}{A character string. The relationship direction to traverse. Should be "in" or "out".}
 }
 \value{
 A list of path objects. Returns NULL if no paths are found.

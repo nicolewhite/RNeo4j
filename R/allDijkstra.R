@@ -42,12 +42,7 @@
 #' @seealso \code{\link{dijkstra}}
 #' 
 #' @export
-allDijkstra = function(fromNode, relType, toNode, direction = "out", cost_property = character()) UseMethod("allDijkstra")
-
-#' @export
-allDijkstra.default = function(x, ...) {
-  stop("Invalid object. Must supply node object.")
-}
+allDijkstra = function(fromNode, relType, toNode, cost_property = character(), direction = "out") UseMethod("allDijkstra")
 
 #' @export
 allDijkstra.node = function(fromNode, relType, toNode, cost_property, direction = "out") {

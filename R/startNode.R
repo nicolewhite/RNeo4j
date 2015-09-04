@@ -35,22 +35,17 @@
 startNode = function(object) UseMethod("startNode")
 
 #' @export
-startNode.default = function(x) {
-  stop("Invalid object. Must supply a relationship or path object.")
-}
-
-#' @export
-startNode.relationship = function(rel) {
-  url = attr(rel, "start")
-  result = http_request(url, "GET", rel)
-  node = configure_result(result, attr(rel, "username"), attr(rel, "password"), attr(rel, "auth_token"))
+startNode.relationship = function(object) {
+  url = attr(object, "start")
+  result = http_request(url, "GET", object)
+  node = configure_result(result, attr(object, "username"), attr(object, "password"), attr(object, "auth_token"))
   return(node)
 }
 
 #' @export
-startNode.path = function(path) {
-  url = attr(path, "start")
-  result = http_request(url, "GET", path)
-  node = configure_result(result, attr(path, "username"), attr(path, "password"), attr(path, "auth_token"))
+startNode.path = function(object) {
+  url = attr(object, "start")
+  result = http_request(url, "GET", object)
+  node = configure_result(result, attr(object, "username"), attr(object, "password"), attr(object, "auth_token"))
   return(node)
 }

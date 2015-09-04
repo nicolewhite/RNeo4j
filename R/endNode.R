@@ -35,22 +35,17 @@
 endNode = function(object) UseMethod("endNode")
 
 #' @export
-endNode.default = function(x) {
-  stop("Invalid object. Must supply a relationship or path object.")
-}
-
-#' @export
-endNode.relationship = function(rel) {
-  url = attr(rel, "end")
-  result = http_request(url, "GET", rel)
-  node = configure_result(result, attr(rel, "username"), attr(rel, "password"), attr(rel, "auth_token"))
+endNode.relationship = function(object) {
+  url = attr(object, "end")
+  result = http_request(url, "GET", object)
+  node = configure_result(result, attr(object, "username"), attr(object, "password"), attr(object, "auth_token"))
   return(node)
 }
 
 #' @export
-endNode.path = function(path) {
-  url = attr(path, "end")
-  result = http_request(url, "GET", path)
-  node = configure_result(result, attr(path, "username"), attr(path, "password"), attr(path, "auth_token"))
+endNode.path = function(object) {
+  url = attr(object, "end")
+  result = http_request(url, "GET", object)
+  node = configure_result(result, attr(object, "username"), attr(object, "password"), attr(object, "auth_token"))
   return(node)
 }
