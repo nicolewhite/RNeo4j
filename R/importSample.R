@@ -3,7 +3,7 @@
 #' Populate the graph database with one of the sample datasets supplied with this package.
 #' 
 #' @param graph A graph object.
-#' @param A character string. Datasets include "tweets", "dfw", "caltrain", and "movies".
+#' @param data A character string. Datasets include "tweets", "dfw", "caltrain", and "movies".
 #' @param input A logical constant. If \code{TRUE}, require confirmation.
 #' 
 #' @examples 

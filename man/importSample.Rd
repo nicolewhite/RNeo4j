@@ -9,9 +9,9 @@ importSample(graph, data, input = TRUE)
 \arguments{
 \item{graph}{A graph object.}
 
-\item{input}{A logical constant. If \code{TRUE}, require confirmation.}
+\item{data}{A character string. Datasets include "tweets", "dfw", "caltrain", and "movies".}
 
-\item{A}{character string. Datasets include "tweets", "dfw", "caltrain", and "movies".}
+\item{input}{A logical constant. If \code{TRUE}, require confirmation.}
 }
 \description{
 Populate the graph database with one of the sample datasets supplied with this package.

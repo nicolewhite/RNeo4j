@@ -9,6 +9,8 @@ getLabeledNodes(graph, .label, ...)
 \arguments{
 \item{graph}{A graph object.}
 
+\item{.label}{A character string.}
+
 \item{...}{A named list. A key = value pair to search the labeled nodes.}
 }
 \value{

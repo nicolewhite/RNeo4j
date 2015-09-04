@@ -3,6 +3,7 @@
 #' Retrieve nodes from the graph with the specified label and optional key = value pair.
 #' 
 #' @param graph A graph object.
+#' @param .label A character string.
 #' @param ... A named list. A key = value pair to search the labeled nodes.
 #' 
 #' @return A list of node objects.

@@ -2,7 +2,7 @@
 #' 
 #' For a node or relationship object, delete the named properties or delete all properties.
 #' 
-#' @param object A node or relationship object.
+#' @param entity A node or relationship object.
 #' @param ... A character vector. The properties to delete.
 #' @param all A logical constant. If \code{TRUE}, delete all properties.
 #' 

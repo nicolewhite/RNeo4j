@@ -2,7 +2,7 @@
 #' 
 #' Retrieve the internal ID of a node or relationship object.
 #' 
-#' @param object A node or relationship object.
+#' @param entity A node or relationship object.
 #' 
 #' @return An integer.
 #' 

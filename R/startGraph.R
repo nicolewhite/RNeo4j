@@ -22,10 +22,10 @@
 #' }
 #' 
 #' @export
-startGraph = function(url, username = character(), password = character(), auth_token = character(), opts = list()) UseMethod("startGraph")
+startGraph = function(url, username = character(), password = character(), opts = list()) UseMethod("startGraph")
 
 #' @export
-startGraph.default = function(url, username = character(), password = character(), auth_token=character(), opts = list()) {
+startGraph.default = function(url, username = character(), password = character(), opts = list()) {
   stopifnot(is.character(url), 
             length(url) == 1,
             is.character(username),
@@ -41,10 +41,6 @@ startGraph.default = function(url, username = character(), password = character(
   if(length(username) == 1 && length(password) == 1) {
     attr(graph, "username") = username
     attr(graph, "password") = password
-  } else if(length(auth_token == 1)) {
-    attr(graph, "auth_token") = auth_token
-  } else if(Sys.getenv('NEO4J_AUTH_TOKEN') != "") {
-    attr(graph, "auth_token") = Sys.getenv('NEO4J_AUTH_TOKEN')
   }
   
   attr(graph, "opts") = opts

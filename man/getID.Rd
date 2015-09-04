@@ -7,7 +7,7 @@
 getID(entity)
 }
 \arguments{
-\item{object}{A node or relationship object.}
+\item{entity}{A node or relationship object.}
 }
 \value{
 An integer.

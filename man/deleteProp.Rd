@@ -7,11 +7,11 @@
 deleteProp(entity, ..., all = FALSE)
 }
 \arguments{
+\item{entity}{A node or relationship object.}
+
 \item{...}{A character vector. The properties to delete.}
 
 \item{all}{A logical constant. If \code{TRUE}, delete all properties.}
-
-\item{object}{A node or relationship object.}
 }
 \value{
 A node or relationship object.

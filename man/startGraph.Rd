@@ -5,7 +5,7 @@
 \title{Connect to the Database}
 \usage{
 startGraph(url, username = character(), password = character(),
-  auth_token = character(), opts = list())
+  opts = list())
 }
 \arguments{
 \item{url}{A character string.}

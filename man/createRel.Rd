@@ -13,7 +13,7 @@ createRel(.fromNode, .relType, .toNode, ...)
 
 \item{.toNode}{A node object.}
 
-\item{A}{named list. Relationship properties in the form key = value.}
+\item{...}{A named list. Relationship properties in the form key = value.}
 }
 \value{
 A relationship object.

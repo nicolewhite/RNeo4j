@@ -5,7 +5,7 @@
 #' @param .fromNode A node object.
 #' @param .relType A character string.
 #' @param .toNode A node object.
-#' @param A named list. Relationship properties in the form key = value.
+#' @param ... A named list. Relationship properties in the form key = value.
 #' 
 #' @return A relationship object.
 #' 
