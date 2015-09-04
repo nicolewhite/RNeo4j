@@ -35,11 +35,14 @@ createRel(charles, "KNOWS", david)
 
 cypherToList(graph, "MATCH n RETURN n, n.age")
 
-cypherToList(graph, "MATCH (n)-[:KNOWS]-(m) RETURN n, COLLECT(m) AS friends, COUNT(m) AS num_friends")
+cypherToList(graph, "MATCH (n)-[:KNOWS]-(m)
+                     RETURN n, COLLECT(m) AS friends, COUNT(m) AS num_friends")
 
 cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m) RETURN p")
 
-cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m) WHERE n.name = {name} RETURN p", name="Alice")
+cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m)
+                     WHERE n.name = {name}
+                     RETURN p", name="Alice")
 }
 }
 \seealso{
