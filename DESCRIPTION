@@ -7,7 +7,7 @@ Author: Nicole White
 License: MIT + file LICENSE
 Imports: httr (>= 1.0.0), RJSONIO
 Maintainer: Nicole White <nicole@neotechnology.com>
-Description: RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j directly from your R environment.
+Description: Neo4j's R driver. RNeo4j allows you to read and write data from / to Neo4j directly from your R environment.
 URL: http://github.com/nicolewhite/RNeo4j
 BugReports: https://github.com/nicolewhite/RNeo4j/issues
 Suggests: testthat
