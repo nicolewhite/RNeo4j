@@ -15,11 +15,6 @@
 browse = function(graph, viewer = TRUE) UseMethod("browse", graph)
 
 #' @export
-browse.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 browse.graph = function(graph, viewer = TRUE) {
   url <- sub("db/data", "browser", attr(graph, "root"))
   if (Sys.getenv("RSTUDIO") == "1" & viewer & grepl('localhost', url)) {

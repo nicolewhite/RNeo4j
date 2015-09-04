@@ -73,11 +73,6 @@ allShortestPaths = function(fromNode,
 }
 
 #' @export
-allShortestPaths.default = function(x, ...) {
-  stop("Invalid object. Must supply node object.")
-}
-
-#' @export
 allShortestPaths.node = function(fromNode, 
                                  relType, 
                                  toNode, 

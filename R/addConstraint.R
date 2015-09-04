@@ -31,11 +31,6 @@
 addConstraint = function(graph, label, key) UseMethod("addConstraint")
 
 #' @export
-addConstraint.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 addConstraint.graph = function(graph, label, key) {
   stopifnot(is.character(label), 
             is.character(key),

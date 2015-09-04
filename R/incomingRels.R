@@ -35,11 +35,6 @@
 incomingRels = function(node, ...) UseMethod("incomingRels")
 
 #' @export
-incomingRels.default = function(x, ...) {
-  stop("Invalid object. Must supply node object.")
-}
-
-#' @export
 incomingRels.node = function(node, ...) {
   url = attr(node, "incoming_relationships")
   type = c(...)

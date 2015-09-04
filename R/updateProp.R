@@ -28,11 +28,6 @@
 updateProp = function(entity, ...) UseMethod("updateProp")
 
 #' @export
-updateProp.default = function(x, ...) {
-  stop("Invalid object. Must supply node or relationship object.")
-}
-
-#' @export
 updateProp.entity = function(entity, ...) {
   dots = list(...)
   props = parse_dots(dots)

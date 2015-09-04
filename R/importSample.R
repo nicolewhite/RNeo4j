@@ -16,11 +16,6 @@
 importSample = function(graph, data, input = TRUE) UseMethod("importSample")
 
 #' @export
-importSample.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 importSample.graph = function(graph, data, input = TRUE) {
   stopifnot(is.character(data))
   clear(graph, input = input)

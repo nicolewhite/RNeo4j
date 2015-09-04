@@ -27,11 +27,6 @@
 getIndex = function(graph, label = character()) UseMethod("getIndex")
 
 #' @export
-getIndex.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getIndex.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   

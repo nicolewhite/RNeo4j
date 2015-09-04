@@ -40,11 +40,6 @@
 getOrCreateNode = function(graph, .label, ...) UseMethod("getOrCreateNode")
 
 #' @export
-getOrCreateNode.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getOrCreateNode.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
   

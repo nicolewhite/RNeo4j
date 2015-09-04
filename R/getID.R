@@ -19,11 +19,6 @@
 getID = function(entity) UseMethod("getID")
 
 #' @export
-getID.default = function(x) {
-  stop("Invalid object. Must supply a node or relationship object.")
-}
-
-#' @export
 getID.entity = function(entity) {
   id = as.numeric(unlist(strsplit(unlist(strsplit(attr(entity, "self"), "db/data/"))[2], "/"))[2])
   return(id)

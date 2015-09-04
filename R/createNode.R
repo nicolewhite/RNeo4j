@@ -24,11 +24,6 @@
 createNode = function(graph, .label = character(), ...) UseMethod("createNode")
 
 #' @export 
-createNode.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export 
 createNode.graph = function(graph, .label = character(), ...) {
   stopifnot(is.character(.label))
   

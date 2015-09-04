@@ -31,11 +31,6 @@
 addIndex = function(graph, label, key) UseMethod("addIndex")
 
 #' @export
-addIndex.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 addIndex.graph = function(graph, label, key) {
   stopifnot(is.character(label), 
             is.character(key),

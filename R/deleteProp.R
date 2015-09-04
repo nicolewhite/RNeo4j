@@ -28,11 +28,6 @@
 deleteProp = function(entity, ..., all = FALSE) UseMethod("deleteProp")
 
 #' @export
-deleteProp.default = function(x, ...) {
-  stop("Invalid object. Must supply node or relationship object.")
-}
-
-#' @export
 deleteProp.entity = function(entity, ..., all = FALSE) {
   stopifnot(is.logical(all))
   

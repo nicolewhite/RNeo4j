@@ -40,11 +40,6 @@
 getNodes = function(graph, query, ...) UseMethod("getNodes")
 
 #' @export
-getNodes.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getNodes.graph = function(graph, query, ...) {
   stopifnot(is.character(query))
   

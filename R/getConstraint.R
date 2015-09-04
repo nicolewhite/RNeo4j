@@ -27,11 +27,6 @@
 getConstraint = function(graph, label = character()) UseMethod("getConstraint")
 
 #' @export
-getConstraint.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getConstraint.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   

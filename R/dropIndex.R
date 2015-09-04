@@ -31,11 +31,6 @@
 dropIndex = function(graph, label = character(), key = character(), all = FALSE) UseMethod("dropIndex")
 
 #' @export
-dropIndex.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 dropIndex.graph = function(graph, label = character(), key = character(), all = FALSE) {
   stopifnot(is.character(label), 
             is.character(key), 

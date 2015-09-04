@@ -35,11 +35,6 @@
 getRels = function(graph, query, ...) UseMethod("getRels")
 
 #' @export
-getRels.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getRels.graph = function(graph, query, ...) {
   stopifnot(is.character(query))
   

@@ -29,11 +29,6 @@
 rels = function(path) UseMethod("rels")
 
 #' @export
-rels.default = function(x, ...) {
-  stop("Invalid object. Must supply path object.")
-}
-
-#' @export
 rels.path = function(path) {
   urls = attr(path, "relationships")
 

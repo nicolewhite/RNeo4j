@@ -29,11 +29,6 @@
 nodes = function(path) UseMethod("nodes")
 
 #' @export
-nodes.default = function(x, ...) {
-  stop("Invalid object. Must supply path object.")
-}
-
-#' @export
 nodes.path = function(path) {
   urls = attr(path, "nodes")
 

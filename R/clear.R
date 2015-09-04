@@ -15,11 +15,6 @@
 clear = function(graph, input = TRUE) UseMethod("clear")
 
 #' @export
-clear.default = function(x, ...) {
-  stop("Invalid object. Must supply a graph object.")
-}
-
-#' @export
 clear.graph = function(graph, input = TRUE) {
   stopifnot(is.logical(input))
   

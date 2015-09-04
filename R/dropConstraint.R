@@ -27,11 +27,6 @@
 dropConstraint = function(graph, label = character(), key = character(), all = FALSE) UseMethod("dropConstraint")
 
 #' @export
-dropConstraint.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 dropConstraint.graph = function(graph, label = character(), key = character(), all = FALSE) {
   stopifnot(is.character(label), 
             is.character(key),

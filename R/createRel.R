@@ -31,11 +31,6 @@ createRel = function(.fromNode, .relType, .toNode, ...) {
 }
 
 #' @export
-createRel.default = function(x, ...) {
-  stop("Invalid object. Must supply node object.")
-}
-
-#' @export
 createRel.node = function(.fromNode, .relType, .toNode, ...) {
   stopifnot(is.character(.relType), 
             "node" %in% class(.toNode))

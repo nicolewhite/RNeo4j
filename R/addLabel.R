@@ -25,11 +25,6 @@
 addLabel = function(node, ...) UseMethod("addLabel")
 
 #' @export
-addLabel.default = function(x, ...) {
-  stop("Invalid object. Must supply node object.")
-}
-
-#' @export
 addLabel.node = function(node, ...) {
   labels = c(...)
   stopifnot(is.character(labels), length(labels) > 0)

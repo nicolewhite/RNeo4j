@@ -37,11 +37,6 @@
 cypherToList = function(graph, query, ...) UseMethod("cypherToList")
 
 #' @export
-cypherToList.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 cypherToList.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)

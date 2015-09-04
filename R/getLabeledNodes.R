@@ -35,11 +35,6 @@
 getLabeledNodes = function(graph, .label, ...) UseMethod("getLabeledNodes")
 
 #' @export
-getLabeledNodes.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getLabeledNodes.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
 

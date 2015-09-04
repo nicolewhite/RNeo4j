@@ -27,11 +27,6 @@
 dropLabel = function(node, ..., all = FALSE) UseMethod("dropLabel")
 
 #' @export
-dropLabel.default = function(x, ...) {
-  stop("Invalid object. Must supply node object.")
-}
-
-#' @export
 dropLabel.node = function(node, ..., all = FALSE) {
   stopifnot(is.logical(all))
   labels = c(...)

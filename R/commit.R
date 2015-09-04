@@ -52,11 +52,6 @@ NULL
 commit = function(transaction) UseMethod("commit")
 
 #' @export
-commit.default = function(x) {
-  stop("Invalid object. Must supply transaction object.")
-}
-
-#' @export
 commit.transaction = function(transaction) {
   response = http_request(transaction$commit, "POST", transaction)
   

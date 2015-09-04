@@ -37,11 +37,6 @@
 getSingleNode = function(graph, query, ...) UseMethod("getSingleNode")
 
 #' @export
-getSingleNode.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getSingleNode.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)

@@ -27,11 +27,6 @@
 getUniqueNode = function(graph, .label, ...) UseMethod("getUniqueNode")
 
 #' @export
-getUniqueNode.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getUniqueNode.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
   

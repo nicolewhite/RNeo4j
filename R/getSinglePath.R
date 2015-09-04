@@ -35,11 +35,6 @@
 getSinglePath = function(graph, query, ...) UseMethod("getSinglePath")
 
 #' @export
-getSinglePath.default = function(x, ...) {
-  stop("Invalid object. Must supply graph object.")
-}
-
-#' @export
 getSinglePath.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)
