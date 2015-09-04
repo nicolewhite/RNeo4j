@@ -34,3 +34,9 @@ download_neo4j:
 	tar -xvzf *.tar.gz -C neo4j --strip-components=1
 	rm *.tar.gz
 	cd neo4j/conf && sed 's/auth_enabled=true/auth_enabled=false/g' neo4j-server.properties > tempfile && mv tempfile neo4j-server.properties
+	
+cran:
+	- rm *.tar.gz
+	/usr/bin/Rscript -e 'library(methods);library(testthat);devtools::build(path=".");'
+	R CMD check --as-cran *.tar.gz
+	rm -rf RNeo4j.Rcheck
