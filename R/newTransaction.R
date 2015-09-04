@@ -1,9 +1,13 @@
+#' @rdname transactions
+#' @export
 newTransaction = function(graph) UseMethod("newTransaction")
 
+#' @export
 newTransaction.default = function(x) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 newTransaction.graph = function(graph) {
   httr::set_config(httr::user_agent(paste("RNeo4j", version(), sep="/")))
   opts = c(attr(graph, "opts"), ssl_verifypeer = 0)

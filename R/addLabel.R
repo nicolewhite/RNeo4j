@@ -1,9 +1,35 @@
+#' Node Labels
+#' 
+#' Add a label or multiple labels to an existing node object.
+#' 
+#' @param node A node object.
+#' @param ... A character vector.
+#' 
+#' @return NULL.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' alice = createNode(graph, name = "Alice")
+#' bob = createNode(graph, name = "Bob")
+#' 
+#' addLabel(alice, "Person")
+#' addLabel(bob, c("Person", "Student"))
+#' }
+#' 
+#' @seealso \code{\link{getLabel}}, \code{\link{dropLabel}}
+#' 
+#' @export
 addLabel = function(node, ...) UseMethod("addLabel")
 
+#' @export
 addLabel.default = function(x, ...) {
   stop("Invalid object. Must supply node object.")
 }
 
+#' @export
 addLabel.node = function(node, ...) {
   labels = c(...)
   stopifnot(is.character(labels), length(labels) > 0)

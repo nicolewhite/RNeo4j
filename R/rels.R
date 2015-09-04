@@ -1,9 +1,39 @@
+#' Retrieve Relationships from Paths
+#' 
+#' Retrieve all relationships from a path object.
+#' 
+#' @param path A path object.
+#' 
+#' @return A list of relationship objects.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' alice = createNode(graph, "Person", name = "Alice")
+#' bob = createNode(graph, "Person", name = "Bob")
+#' charles = createNode(graph, "Person", name = "Charles")
+#' 
+#' createRel(alice, "WORKS_WITH", bob)
+#' createRel(bob, "WORKS_WITH", charles)
+#' 
+#' path = getSinglePath(graph, "MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH*]->(:Person {name:'Charles'}) RETURN p")
+#' 
+#' rels(path)
+#' }
+#' 
+#' @seealso \code{\link{nodes}}
+#' 
+#' @export
 rels = function(path) UseMethod("rels")
 
+#' @export
 rels.default = function(x, ...) {
   stop("Invalid object. Must supply path object.")
 }
 
+#' @export
 rels.path = function(path) {
   urls = attr(path, "relationships")
 

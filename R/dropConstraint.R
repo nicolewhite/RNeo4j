@@ -1,9 +1,37 @@
+#' Uniqueness Constraints
+#' 
+#' Drop uniqueness constraint(s) for a given label and property key or for the entire graph database.
+#' 
+#' @param graph A graph object.
+#' @param label A character string.
+#' @param key A character string.
+#' @param all A logical constant. If \code{TRUE}, drop all constraints in the graph.
+#' 
+#' @return NULL.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' addConstraint(graph, "Person", "name")
+#' getConstraint(graph)
+#' 
+#' dropConstraint(graph, "Person", "name")
+#' getConstraint(graph)
+#' }
+#' 
+#' @seealso \code{\link{addConstraint}}, \code{\link{getConstraint}}
+#' 
+#' @export
 dropConstraint = function(graph, label = character(), key = character(), all = FALSE) UseMethod("dropConstraint")
 
+#' @export
 dropConstraint.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 dropConstraint.graph = function(graph, label = character(), key = character(), all = FALSE) {
   stopifnot(is.character(label), 
             is.character(key),

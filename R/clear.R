@@ -1,9 +1,25 @@
+#' Clear the Database
+#' 
+#' Delete all nodes, relationships, constraints, and indexes from Neo4j.
+#' 
+#' @param graph A graph object.
+#' @param input A logical constant. If \code{FALSE}, do not require user input for confirmation.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' }
+#' 
+#' @export
 clear = function(graph, input = TRUE) UseMethod("clear")
 
+#' @export
 clear.default = function(x, ...) {
   stop("Invalid object. Must supply a graph object.")
 }
 
+#' @export
 clear.graph = function(graph, input = TRUE) {
   stopifnot(is.logical(input))
   

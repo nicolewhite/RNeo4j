@@ -1,9 +1,38 @@
+#' Delete Node and Relationship Properties
+#' 
+#' For a node or relationship object, delete the named properties or delete all properties.
+#' 
+#' @param object A node or relationship object.
+#' @param ... A character vector. The properties to delete.
+#' @param all A logical constant. If \code{TRUE}, delete all properties.
+#' 
+#' @return A node or relationship object.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' alice = createNode(graph, "Person", name = "Alice", age = 23, status = "Married")
+#' bob = createNode(graph, "Person", name = "Bob", age = 22, status = "Married")
+#' charles = createNode(graph, "Person", name = "Charles", age = 25, status = "Unmarried")
+#' 
+#' alice = deleteProp(alice, "age")
+#' bob = deleteProp(bob, c("name", "age"))
+#' charles = deleteProp(charles, all = TRUE)
+#' }
+#' 
+#' @seealso \code{\link{updateProp}}
+#' 
+#' @export
 deleteProp = function(entity, ..., all = FALSE) UseMethod("deleteProp")
 
+#' @export
 deleteProp.default = function(x, ...) {
   stop("Invalid object. Must supply node or relationship object.")
 }
 
+#' @export
 deleteProp.entity = function(entity, ..., all = FALSE) {
   stopifnot(is.logical(all))
   

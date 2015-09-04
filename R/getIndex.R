@@ -1,9 +1,37 @@
+#' Indexes
+#' 
+#' Get all indexes for a given label or for the entire graph database.
+#' 
+#' Omitting the \code{label} argument returns all indexes in the graph database.
+#' 
+#' @param graph A graph object.
+#' @param label A character string.
+#' 
+#' @return A data.frame.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' addIndex(graph, "Person", "status")
+#' addIndex(graph, "School", "type")
+#' 
+#' getIndex(graph, "Person")
+#' getIndex(graph)
+#' }
+#' 
+#' @seealso \code{\link{addIndex}}, \code{\link{dropIndex}}
+#' 
+#' @export
 getIndex = function(graph, label = character()) UseMethod("getIndex")
 
+#' @export
 getIndex.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 getIndex.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   

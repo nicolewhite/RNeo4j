@@ -1,9 +1,41 @@
+#' Indexes
+#' 
+#' Add an index to a node label and property key.
+#' 
+#' An index already exists for any (label, key) pair that has a uniqueness constraint applied. 
+#' Attempting to add an index where a uniqueness constraint already exists results in an error. 
+#' Use \code{\link{getConstraint}} to view any pre-existing uniqueness constraints. 
+#' If a uniqueness constraint already exists for the (label, key) pair, then it must be true that the index exists as well; adding an index is unnecessary.
+#' 
+#' @param graph A graph object.
+#' @param label A character string.
+#' @param key A character string.
+#' 
+#' @return NULL.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' addIndex(graph, "Person", "status")
+#' 
+#' createNode(graph, "Person", name = "Nicole", status = "Employed")
+#' createNode(graph, "Person", name = "Drew", status = "Employed")
+#' createNode(graph, "Person", name = "Aaron", status = "Unemployed")
+#' }
+#' 
+#' @seealso \code{\link{getIndex}}, \code{\link{dropIndex}}
+#' 
+#' @export
 addIndex = function(graph, label, key) UseMethod("addIndex")
 
+#' @export
 addIndex.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 addIndex.graph = function(graph, label, key) {
   stopifnot(is.character(label), 
             is.character(key),

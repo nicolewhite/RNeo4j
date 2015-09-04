@@ -1,9 +1,55 @@
+#' Cypher
+#' 
+#' Retrieve Cypher query results as a data frame.
+#' 
+#' If returning data, you can only query for tabular results. 
+#' That is, you can't return node or relationship entities. 
+#' See \code{\link{cypherToList}} for returning non-tabular data.
+#' 
+#' @param graph A graph object.
+#' @param query A character string.
+#' @param ... A named list. Parameters to pass to the query in the form key = value, if applicable.
+#' 
+#' @return A data.frame.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' alice = createNode(graph, "Person", name = "Alice", age = 23)
+#' bob = createNode(graph, "Person", name = "Bob", age = 22)
+#' charles = createNode(graph, "Person", name = "Charles", age = 25)
+#' david = createNode(graph, "Person", name = "David", age = 20)
+#' 
+#' createRel(alice, "KNOWS", bob)
+#' createRel(alice, "KNOWS", charles)
+#' createRel(charles, "KNOWS", david)
+#' 
+#' cypher(graph, "MATCH n RETURN n.name, n.age")
+#' 
+#' query = "MATCH n WHERE n.age < {age} RETURN n.name, n.age"
+#' cypher(graph, query, age = 24)
+#' 
+#' query = "MATCH n WHERE n.name IN {names} RETURN n.name, n.age"
+#' names = c("Alice", "Charles")
+#' cypher(graph, query, names = names)
+#' 
+#' query = "MATCH n WHERE n.age > {age1} AND n.age < {age2} RETURN n.name"
+#' cypher(graph, query, list(age1=22, age2=30))
+#' }
+#' 
+#' @seealso \code{\link{cypherToList}}
+#' 
+#' @export
 cypher = function(graph, query, ...) UseMethod("cypher")
 
+#' @export
 cypher.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 cypher.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)

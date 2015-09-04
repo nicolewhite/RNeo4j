@@ -1,9 +1,13 @@
+#' @rdname transactions
+#' @export
 appendCypher = function(transaction, query, ...) UseMethod("appendCypher")
 
+#' @export
 appendCypher.default = function(x) {
   stop("Invalid object. Must supply transaction object.")
 }
 
+#' @export
 appendCypher.transaction = function(transaction, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)

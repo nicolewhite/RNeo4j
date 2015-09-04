@@ -1,9 +1,39 @@
+#' Retrieve Nodes from Paths
+#' 
+#' Retrieve all nodes from a path object.
+#' 
+#' @param path A path object.
+#' 
+#' @return A list of node objects.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' alice = createNode(graph, "Person", name = "Alice")
+#' bob = createNode(graph, "Person", name = "Bob")
+#' charles = createNode(graph, "Person", name = "Charles")
+#' 
+#' createRel(alice, "WORKS_WITH", bob)
+#' createRel(bob, "WORKS_WITH", charles)
+#' 
+#' path = cypherToList(graph, "MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH*]->(:Person {name:'Charles'}) RETURN p")[[1]]
+#' 
+#' nodes(path)
+#' }
+#' 
+#' @seealso \code{\link{rels}}
+#' 
+#' @export
 nodes = function(path) UseMethod("nodes")
 
+#' @export
 nodes.default = function(x, ...) {
   stop("Invalid object. Must supply path object.")
 }
 
+#' @export
 nodes.path = function(path) {
   urls = attr(path, "nodes")
 

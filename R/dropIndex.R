@@ -1,9 +1,41 @@
+#' Indexes
+#' 
+#' Drop the index(es) for a given node label and property key or for the entire graph database.
+#' 
+#' Dropping a uniqueness constraint necessarily drops the index as well. 
+#' It is unnecessary to use \code{dropIndex} if \code{dropConstraint} has already been 
+#' applied to the same \code{(label, key)} pair.
+#' 
+#' @param graph A graph object.
+#' @param label A character string.
+#' @param key A character string.
+#' @param all A logical constant. If \code{TRUE}, drop all indexes from the graph.
+#' 
+#' @return NULL.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' addIndex(graph, "Person", "status")
+#' getIndex(graph)
+#' 
+#' dropIndex(graph, "Person", "status")
+#' getIndex(graph)
+#' }
+#' 
+#' @seealso \code{\link{addIndex}}, \code{\link{getIndex}}
+#' 
+#' @export
 dropIndex = function(graph, label = character(), key = character(), all = FALSE) UseMethod("dropIndex")
 
+#' @export
 dropIndex.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 dropIndex.graph = function(graph, label = character(), key = character(), all = FALSE) {
   stopifnot(is.character(label), 
             is.character(key), 
@@ -63,4 +95,3 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     stop("Arguments supplied are invalid.")
   }
 }
-

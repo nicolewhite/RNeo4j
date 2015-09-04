@@ -1,5 +1,30 @@
+#' Connect to the Database
+#' 
+#' Establish a connection to Neo4j.
+#' 
+#' @param url A character string.
+#' @param username A character string. If authentication is enabled, your username.
+#' @param password A character string. If authentication is enabled, your password.
+#' @param opts A named list. Optional HTTP settings.
+#' 
+#' @return A graph object.
+#' 
+#' @examples
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' 
+#' graph = startGraph("http://localhost:7474/db/data/", 
+#'                    username = "neo4j",
+#'                    password = "password")
+#' 
+#' graph = startGraph("http://localhost:7474/db/data/", 
+#'                    opts = list(timeout=3))
+#' }
+#' 
+#' @export
 startGraph = function(url, username = character(), password = character(), auth_token = character(), opts = list()) UseMethod("startGraph")
 
+#' @export
 startGraph.default = function(url, username = character(), password = character(), auth_token=character(), opts = list()) {
   stopifnot(is.character(url), 
             length(url) == 1,

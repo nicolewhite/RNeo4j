@@ -1,9 +1,26 @@
+#' Import Sample Datasets
+#' 
+#' Populate the graph database with one of the sample datasets supplied with this package.
+#' 
+#' @param graph A graph object.
+#' @param A character string. Datasets include "tweets", "dfw", "caltrain", and "movies".
+#' @param input A logical constant. If \code{TRUE}, require confirmation.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' importSample(graph, "tweets")
+#' }
+#' 
+#' @export
 importSample = function(graph, data, input = TRUE) UseMethod("importSample")
 
+#' @export
 importSample.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 importSample.graph = function(graph, data, input = TRUE) {
   stopifnot(is.character(data))
   clear(graph, input = input)

@@ -1,9 +1,38 @@
+#' Update Node and Relationship Properties
+#' 
+#' For a node or relationship object, update its properties. 
+#' Existing properties can be overridden and new properties can be added.
+#' 
+#' @param entity A node or relationship object.
+#' @param ... A named list. Property updates in the form key = value.
+#' 
+#' @return A node or relationship object.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' alice = createNode(graph, "Person", name = "Alice")
+#' bob = createNode(graph, "Person", name = "Bob")
+#' 
+#' alice = updateProp(alice, age = 24, eyes = "green")
+#' 
+#' newProps = list(age = 25, eyes = "brown")
+#' bob = updateProp(bob, newProps)
+#' }
+#' 
+#' @seealso \code{\link{deleteProp}}
+#' 
+#' @export
 updateProp = function(entity, ...) UseMethod("updateProp")
 
+#' @export
 updateProp.default = function(x, ...) {
   stop("Invalid object. Must supply node or relationship object.")
 }
 
+#' @export
 updateProp.entity = function(entity, ...) {
   dots = list(...)
   props = parse_dots(dots)

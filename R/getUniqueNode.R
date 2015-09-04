@@ -1,9 +1,37 @@
+#' Retrieve Nodes by Label and Property
+#' 
+#' Retrieve a single node from the graph by specifying its label and unique key = value pair.
+#' 
+#' @param graph A graph object.
+#' @param .label A character string.
+#' @param ... A named list. A key = value pair by which the node label is uniquely constrained.
+#' 
+#' @return A node object.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' createNode(graph, "Person", name = "Alice")
+#' createNode(graph, "Person", name = "Bob")
+#' 
+#' addConstraint(graph, "Person", "name")
+#' 
+#' getUniqueNode(graph, "Person", name = "Alice")
+#' }
+#' 
+#' @seealso \code{\link{getLabeledNodes}}
+#' 
+#' @export
 getUniqueNode = function(graph, .label, ...) UseMethod("getUniqueNode")
 
+#' @export
 getUniqueNode.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 getUniqueNode.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
   

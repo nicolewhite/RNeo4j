@@ -1,9 +1,44 @@
+#' Retrieve Nodes by Label and Property
+#' 
+#' Retrieve nodes from the graph with the specified label and optional key = value pair.
+#' 
+#' @param graph A graph object.
+#' @param ... A named list. A key = value pair to search the labeled nodes.
+#' 
+#' @return A list of node objects.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' createNode(graph, "School", name = "University of Texas at Austin")
+#' createNode(graph, "School", name = "Louisiana State University")
+#' 
+#' createNode(graph, "Person", name = "Nicole", status = "Employed")
+#' createNode(graph, "Person", name = "Drew", status = "Employed")
+#' createNode(graph, "Person", name = "Aaron", status = "Unemployed")
+#' 
+#' schools = getLabeledNodes(graph, "School")
+#' 
+#' sapply(schools, function(s) s$name)
+#' 
+#' employed_people = getLabeledNodes(graph, "Person", status = "Employed")
+#' 
+#' sapply(employed_people, function(p) p$name)
+#' }
+#' 
+#' @seealso \code{\link{getUniqueNode}}
+#' 
+#' @export
 getLabeledNodes = function(graph, .label, ...) UseMethod("getLabeledNodes")
 
+#' @export
 getLabeledNodes.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 getLabeledNodes.graph = function(graph, .label, ...) {
   stopifnot(is.character(.label))
 

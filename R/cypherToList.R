@@ -1,9 +1,47 @@
+#' Cypher
+#' 
+#' Retrieve Cypher query results as a list.
+#' 
+#' @param graph A graph object.
+#' @param query A character string.
+#' @param ... A named list. Parameters to pass to the query in the form key = value, if applicable.
+#' 
+#' @return A list.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' alice = createNode(graph, "Person", name = "Alice", age = 23)
+#' bob = createNode(graph, "Person", name = "Bob", age = 22)
+#' charles = createNode(graph, "Person", name = "Charles", age = 25)
+#' david = createNode(graph, "Person", name = "David", age = 20)
+#' 
+#' createRel(alice, "KNOWS", bob)
+#' createRel(alice, "KNOWS", charles)
+#' createRel(charles, "KNOWS", david)
+#' 
+#' cypherToList(graph, "MATCH n RETURN n, n.age")
+#' 
+#' cypherToList(graph, "MATCH (n)-[:KNOWS]-(m) RETURN n, COLLECT(m) AS friends, COUNT(m) AS num_friends")
+#' 
+#' cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m) RETURN p")
+#' 
+#' cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m) WHERE n.name = {name} RETURN p", name="Alice")
+#' }
+#' 
+#' @seealso \code{\link{cypher}}
+#' 
+#' @export
 cypherToList = function(graph, query, ...) UseMethod("cypherToList")
 
+#' @export
 cypherToList.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 cypherToList.graph = function(graph, query, ...) {
   stopifnot(is.character(query),
             length(query) == 1)

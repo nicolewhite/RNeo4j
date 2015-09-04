@@ -1,9 +1,37 @@
+#' Uniqueness Constraints
+#' 
+#' Get all uniqueness constraints for a given label or for the entire graph database.
+#' 
+#' Omitting the \code{label} argument returns all uniqueness constraints in the graph database.
+#' 
+#' @param graph A graph object.
+#' @param label A character string.
+#' 
+#' @return A data.frame.
+#' 
+#' @examples 
+#' \dontrun{
+#' graph = startGraph("http://localhost:7474/db/data/")
+#' clear(graph)
+#' 
+#' addConstraint(graph, "Person", "name")
+#' addConstraint(graph, "City", "name")
+#' 
+#' getConstraint(graph, "Person")
+#' getConstraint(graph)
+#' }
+#' 
+#' @seealso \code{\link{addConstraint}}, \code{\link{dropConstraint}}
+#' 
+#' @export
 getConstraint = function(graph, label = character()) UseMethod("getConstraint")
 
+#' @export
 getConstraint.default = function(x, ...) {
   stop("Invalid object. Must supply graph object.")
 }
 
+#' @export
 getConstraint.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
