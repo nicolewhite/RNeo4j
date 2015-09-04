@@ -4,7 +4,7 @@ LazyData: true
 Version: 1.5.0
 Date: 2014-05-02
 Author: Nicole White
-License: MIT
+License: MIT + file LICENSE
 Imports: httr (>= 1.0.0), RJSONIO
 Maintainer: Nicole White <nicole@neotechnology.com>
 Description: RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j directly from your R environment.
