@@ -1,6 +1,8 @@
 library(RNeo4j)
 context("Schema")
 
+skip_on_cran()
+
 neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 
 test_that("addConstraint fails on data that violates the constraint", {

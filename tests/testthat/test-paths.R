@@ -1,6 +1,8 @@
 library(RNeo4j)
 context("Paths")
 
+skip_on_cran()
+
 neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 clear(neo4j, input=F)
 

@@ -1,6 +1,8 @@
 library(RNeo4j)
 context("Cypher To List")
 
+skip_on_cran()
+
 neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
 importSample(neo4j, "tweets", input=F)
 
