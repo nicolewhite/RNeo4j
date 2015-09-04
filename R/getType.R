@@ -34,8 +34,7 @@ getType.default = function(x) {
 #' @export
 getType.graph = function(graph) {
   url = attr(graph, "relationship_types")
-  headers = setHeaders(graph)
-  response = http_request(url, "GET", "OK", httpheader=headers)
+  response = http_request(url, "GET", graph)
   result = fromJSON(response)
   return(result)
 }
