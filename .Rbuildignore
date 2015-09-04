@@ -1,2 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+README.Rmd
+README.md
+figure/
+CONTRIBUTING.md
+Makefile
+.travis.yml
+neo4j/
+neoget
