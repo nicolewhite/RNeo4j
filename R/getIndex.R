@@ -37,7 +37,6 @@ getIndex.graph = function(graph, label = character()) {
     labels = suppressMessages(getLabel(graph))
     result = list()
     if(length(labels) == 0) {
-      message("No indexes in the graph.")
       return(invisible())
     }
     urls = lapply(labels, function(l) paste(url, l, sep = "/"))
@@ -50,7 +49,6 @@ getIndex.graph = function(graph, label = character()) {
     }
     
     if(length(result) == 0) {
-      message("No indexes in the graph.")
       return(invisible())
     }
   }
@@ -58,7 +56,6 @@ getIndex.graph = function(graph, label = character()) {
   # Else, get index for the specified label.
   else if(length(label) == 1) {
     if(!(label %in% getLabel(graph))) {
-      message("Label '", label, "' does not exist.")
       return(invisible())
     }
     
@@ -66,7 +63,6 @@ getIndex.graph = function(graph, label = character()) {
     result = http_request(url, "GET", graph)
     
     if(length(result) == 0) {
-      message(paste0("No index for label '", label, "'."))
       return(invisible())
     }
     

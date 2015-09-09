@@ -28,7 +28,6 @@ getLabel.graph = function(object) {
   url = attr(object, "node_labels")
   result = http_request(url, "GET", object)
   if(length(result) == 0) {
-    message("No labels in the graph.")
     return(invisible())
   }
   return(unlist(result))
@@ -39,7 +38,6 @@ getLabel.node = function(object) {
   url = attr(object, "labels")
   result = http_request(url, "GET", object)
   if(length(result) == 0) {
-    message("No labels on the node.")
     return(invisible())
   }
   return(unlist(result))

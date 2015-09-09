@@ -37,14 +37,12 @@ getConstraint.graph = function(graph, label = character()) {
     result = http_request(url, "GET", graph)
     
     if(length(result) == 0) {
-      message("No constraints in the graph.")
       return(invisible())
     }
     
   # Else, if label is given, only get constraint on label.  
   } else if(length(label) == 1) {
     if(!(label %in% getLabel(graph))) {
-      message("Label '", label, "' does not exist.")
       return(invisible())
     }
     
@@ -52,7 +50,6 @@ getConstraint.graph = function(graph, label = character()) {
     result = http_request(url, "GET", graph)
     
     if(length(result) == 0) {
-      message(paste0("No constraints for label '", label, "'."))
       return(invisible())
     }
     

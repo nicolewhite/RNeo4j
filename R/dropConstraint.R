@@ -39,7 +39,6 @@ dropConstraint.graph = function(graph, label = character(), key = character(), a
     constraints = suppressMessages(getConstraint(graph))
     
     if(is.null(constraints)) {
-      message("No constraints to drop.")
       return(invisible())
     }
     

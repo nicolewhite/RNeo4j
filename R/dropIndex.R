@@ -44,7 +44,6 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     indexes = suppressMessages(getIndex(graph))
         
     if(is.null(indexes)) {
-      message("No indexes to drop.")
       return(invisible(NULL))
     }
     
