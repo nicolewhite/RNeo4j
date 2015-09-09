@@ -17,12 +17,8 @@ browse = function(graph, viewer = TRUE) UseMethod("browse", graph)
 #' @export
 browse.graph = function(graph, viewer = TRUE) {
   url <- sub("db/data", "browser", attr(graph, "root"))
-  if (Sys.getenv("RSTUDIO") == "1" & viewer & grepl('localhost', url)) {
-    if('rstudio' %in% names(installed.packages()[, 1])) {
-      rstudio::viewer(url)
-    } else {
-      rstudioapi::viewer(url)
-    }
+  if (rstudioapi::isAvailable() && viewer && grepl("localhost", url)) {
+    rstudioapi::viewer(url)
   } else {
     browseURL(url)
   }
