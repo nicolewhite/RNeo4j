@@ -21,6 +21,10 @@ test_that("createNode works without any properties", {
   expect_equal(length(n), 0)
 })
 
+test_that("createNode works without any properties or labels", {
+  createNode(neo4j)
+})
+
 test_that("createNode doesn't round numeric parameters", {
   AGE = 123456789
   n = createNode(neo4j, "Person", age=AGE)

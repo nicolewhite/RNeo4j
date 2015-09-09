@@ -37,10 +37,12 @@ createNode.graph = function(graph, .label = character(), ...) {
 
   query = "CREATE (n"
   
-  for(i in 1:length(.label)) {
-    query = paste0(query, ":", .label[i])
+  if(length(.label) > 0) {
+    for(i in 1:length(.label)) {
+      query = paste0(query, ":", .label[i])
+    }
   }
-  
+
   query = paste0(query, ") ")
   query = ifelse(length(props) > 0, paste0(query, "SET n = {props} "), query)
   query = paste0(query, "RETURN n")
