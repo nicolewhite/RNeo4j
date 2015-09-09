@@ -24,7 +24,7 @@
 #' RETURN p
 #' "
 #' 
-#' path = getSinglePath(graph, query)
+#' path = cypherToList(graph, query)[[1]]$p
 #' 
 #' endNode(path)
 #' }

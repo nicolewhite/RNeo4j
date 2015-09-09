@@ -31,6 +31,10 @@ charles = createNode(graph, "Person", name = "Charles", age = 25, status = "Unma
 alice = deleteProp(alice, "age")
 bob = deleteProp(bob, c("name", "age"))
 charles = deleteProp(charles, all = TRUE)
+
+alice
+bob
+charles
 }
 }
 \seealso{

@@ -34,7 +34,7 @@ addConstraint(graph, "Person", "name")
 
 createNode(graph, "Person", name = "Alice")
 createNode(graph, "Person", name = "Bob")
-createNode(graph, "Person", name = "Alice")
+try(createNode(graph, "Person", name = "Alice"))
 }
 }
 \seealso{

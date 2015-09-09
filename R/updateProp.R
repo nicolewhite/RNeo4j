@@ -20,6 +20,9 @@
 #' 
 #' newProps = list(age = 25, eyes = "brown")
 #' bob = updateProp(bob, newProps)
+#' 
+#' alice
+#' bob
 #' }
 #' 
 #' @seealso \code{\link{deleteProp}}

@@ -17,8 +17,10 @@
 #' bob = createNode(graph, c("Person", "Student"), name = "Bob")
 #' 
 #' dropLabel(alice, "Person")
-#' 
 #' dropLabel(bob, all = TRUE)
+#' 
+#' alice
+#' bob
 #' }
 #' 
 #' @seealso \code{\link{addLabel}}, \code{\link{getLabel}}

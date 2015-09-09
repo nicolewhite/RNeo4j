@@ -36,7 +36,10 @@
 #' cypher(graph, query, names = names)
 #' 
 #' query = "MATCH n WHERE n.age > {age1} AND n.age < {age2} RETURN n.name"
-#' cypher(graph, query, list(age1=22, age2=30))
+#' cypher(graph, query, age1=22, age2=30)
+#' 
+#' params = list(age1=22, age2=30)
+#' cypher(graph, query, params)
 #' }
 #' 
 #' @seealso \code{\link{cypherToList}}

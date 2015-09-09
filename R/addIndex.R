@@ -18,11 +18,9 @@
 #' graph = startGraph("http://localhost:7474/db/data/")
 #' clear(graph)
 #' 
-#' addIndex(graph, "Person", "status")
+#' createNode(graph, "Person", name="Alice", status="Employed")
 #' 
-#' createNode(graph, "Person", name = "Nicole", status = "Employed")
-#' createNode(graph, "Person", name = "Drew", status = "Employed")
-#' createNode(graph, "Person", name = "Aaron", status = "Unemployed")
+#' addIndex(graph, "Person", "status")
 #' }
 #' 
 #' @seealso \code{\link{getIndex}}, \code{\link{dropIndex}}

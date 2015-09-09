@@ -30,6 +30,9 @@ alice = updateProp(alice, age = 24, eyes = "green")
 
 newProps = list(age = 25, eyes = "brown")
 bob = updateProp(bob, newProps)
+
+alice
+bob
 }
 }
 \seealso{

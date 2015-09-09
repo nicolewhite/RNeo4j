@@ -27,6 +27,9 @@ bob = createNode(graph, name = "Bob")
 
 addLabel(alice, "Person")
 addLabel(bob, c("Person", "Student"))
+
+alice
+bob
 }
 }
 \seealso{

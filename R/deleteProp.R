@@ -20,6 +20,10 @@
 #' alice = deleteProp(alice, "age")
 #' bob = deleteProp(bob, c("name", "age"))
 #' charles = deleteProp(charles, all = TRUE)
+#' 
+#' alice
+#' bob
+#' charles
 #' }
 #' 
 #' @seealso \code{\link{updateProp}}

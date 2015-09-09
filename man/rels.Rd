@@ -32,7 +32,7 @@ MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH*]->(:Person {name:'Charles'})
 RETURN p
 "
 
-path = cypherToList(graph, query)[[1]]
+path = cypherToList(graph, query)[[1]]$p
 
 rels(path)
 }

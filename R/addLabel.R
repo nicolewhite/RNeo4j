@@ -17,6 +17,9 @@
 #' 
 #' addLabel(alice, "Person")
 #' addLabel(bob, c("Person", "Student"))
+#' 
+#' alice
+#' bob
 #' }
 #' 
 #' @seealso \code{\link{getLabel}}, \code{\link{dropLabel}}
