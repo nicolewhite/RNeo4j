@@ -47,7 +47,6 @@ outgoingRels.node = function(node, ...) {
   result = http_request(url, "GET", node)
 
   if(length(result) == 0) {
-    message("No outgoing relationships.")
     return(invisible())
   }
   

@@ -47,7 +47,6 @@ incomingRels.node = function(node, ...) {
   result = http_request(url, "GET", node)
   
   if(length(result) == 0) {
-    message("No incoming relationships for the given type(s).")
     return(invisible())
   }
 
