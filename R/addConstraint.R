@@ -11,8 +11,6 @@
 #' @param label A character string.
 #' @param key A character string.
 #' 
-#' @return NULL.
-#' 
 #' @examples 
 #' \dontrun{
 #' graph = startGraph("http://localhost:7474/db/data/")

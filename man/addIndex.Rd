@@ -13,9 +13,6 @@ addIndex(graph, label, key)
 
 \item{key}{A character string.}
 }
-\value{
-NULL.
-}
 \description{
 Add an index to a node label and property key.
 }

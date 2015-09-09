@@ -8,7 +8,7 @@
 #' @param direction A character string. The relationship direction to traverse. Should be "in" or "out".
 #' @param cost_property A character string. If retrieving a weighted shortest path, the name of the relationship property that contains the weights.
 #' 
-#' @return A list of path objects. Returns NULL if no paths are found.
+#' @return A list of path objects.
 #' 
 #' @examples 
 #' \dontrun{

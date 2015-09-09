@@ -5,8 +5,6 @@
 #' @param node A node object.
 #' @param ... A character vector.
 #' 
-#' @return NULL.
-#' 
 #' @examples 
 #' \dontrun{
 #' graph = startGraph("http://localhost:7474/db/data/")

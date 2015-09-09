@@ -2,7 +2,7 @@
 % Please edit documentation in R/cypher.R
 \name{cypher}
 \alias{cypher}
-\title{Cypher}
+\title{Cypher Queries to Data Frames}
 \usage{
 cypher(graph, query, ...)
 }

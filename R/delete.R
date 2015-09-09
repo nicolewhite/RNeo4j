@@ -7,8 +7,6 @@
 #' 
 #' @param ... A list of entities to delete.
 #' 
-#' @return NULL.
-#' 
 #' @examples 
 #' \dontrun{
 #' graph = startGraph("http://localhost:7474/db/data/")

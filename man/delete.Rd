@@ -9,9 +9,6 @@ delete(...)
 \arguments{
 \item{...}{A list of entities to delete.}
 }
-\value{
-NULL.
-}
 \description{
 Delete node or relationship object(s) from the graph.
 }

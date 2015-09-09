@@ -19,7 +19,7 @@ allDijkstra(fromNode, relType, toNode, cost_property = character(),
 \item{direction}{A character string. The relationship direction to traverse. Should be "in" or "out".}
 }
 \value{
-A list of path objects. Returns NULL if no paths are found.
+A list of path objects.
 }
 \description{
 Deprecated. Use \code{\link{allShortestPaths}}. Retrieve all the shortest paths between two nodes weighted by a cost property.

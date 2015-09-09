@@ -15,9 +15,6 @@ dropConstraint(graph, label = character(), key = character(), all = FALSE)
 
 \item{all}{A logical constant. If \code{TRUE}, drop all constraints in the graph.}
 }
-\value{
-NULL.
-}
 \description{
 Drop uniqueness constraint(s) for a given label and property key or for the entire graph database.
 }

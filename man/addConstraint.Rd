@@ -13,9 +13,6 @@ addConstraint(graph, label, key)
 
 \item{key}{A character string.}
 }
-\value{
-NULL.
-}
 \description{
 Add a uniqueness constraint to a label and property key.
 }

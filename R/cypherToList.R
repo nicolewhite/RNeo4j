@@ -1,4 +1,4 @@
-#' Cypher
+#' Cypher Queries to Lists
 #' 
 #' Retrieve Cypher query results as a list.
 #' 

@@ -6,8 +6,6 @@
 #' @param ... A character vector.
 #' @param all A logical constant. If \code{TRUE}, drop all labels from the node.
 #' 
-#' @return NULL.
-#' 
 #' @examples 
 #' \dontrun{
 #' graph = startGraph("http://localhost:7474/db/data/")

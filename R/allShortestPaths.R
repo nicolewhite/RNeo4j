@@ -1,4 +1,4 @@
-#' Shortest Paths
+#' Shortest Paths and Weighted Shortest Paths
 #' 
 #' Retrieve all the shortest paths between two nodes.
 #' 
@@ -9,7 +9,7 @@
 #' @param max_depth An integer. The maximum depth of the path.
 #' @param cost_property A character string. If retrieving a weighted shortest path, the name of the relationship property that contains the weights.
 #' 
-#' @return A list of path objects. Returns NULL if no paths are found.
+#' @return A list of path objects.
 #' 
 #' @examples 
 #' \dontrun{

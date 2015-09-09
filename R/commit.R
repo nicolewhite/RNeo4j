@@ -5,7 +5,7 @@
 #' @param query A character string.
 #' @param ... A named list. Optional parameters to pass to the query in the form key = value, if applicable.
 #' 
-#' @return \code{newTransaction} returns a transaction object. Both \code{appendCypher} and \code{commit} return NULL.
+#' @return \code{newTransaction} returns a transaction object. Both \code{appendCypher} and \code{commit} return \code{NULL}.
 #' 
 #' @examples 
 #' \dontrun{

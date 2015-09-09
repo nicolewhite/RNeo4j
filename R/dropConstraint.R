@@ -7,8 +7,6 @@
 #' @param key A character string.
 #' @param all A logical constant. If \code{TRUE}, drop all constraints in the graph.
 #' 
-#' @return NULL.
-#' 
 #' @examples 
 #' \dontrun{
 #' graph = startGraph("http://localhost:7474/db/data/")

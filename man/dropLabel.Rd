@@ -13,9 +13,6 @@ dropLabel(node, ..., all = FALSE)
 
 \item{all}{A logical constant. If \code{TRUE}, drop all labels from the node.}
 }
-\value{
-NULL.
-}
 \description{
 Drop the specified label(s) from a node.
 }

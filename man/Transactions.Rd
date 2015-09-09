@@ -23,7 +23,7 @@ newTransaction(graph)
 \item{graph}{A graph object.}
 }
 \value{
-\code{newTransaction} returns a transaction object. Both \code{appendCypher} and \code{commit} return NULL.
+\code{newTransaction} returns a transaction object. Both \code{appendCypher} and \code{commit} return \code{NULL}.
 }
 \description{
 Transactions

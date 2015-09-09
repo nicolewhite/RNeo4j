@@ -1,4 +1,4 @@
-#' Cypher
+#' Cypher Queries to Data Frames
 #' 
 #' Retrieve Cypher query results as a data frame.
 #' 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/allShortestPaths.R
 \name{allShortestPaths}
 \alias{allShortestPaths}
-\title{Shortest Paths}
+\title{Shortest Paths and Weighted Shortest Paths}
 \usage{
 allShortestPaths(fromNode, relType, toNode, direction = "out",
   max_depth = 1, cost_property = character())
@@ -21,7 +21,7 @@ allShortestPaths(fromNode, relType, toNode, direction = "out",
 \item{cost_property}{A character string. If retrieving a weighted shortest path, the name of the relationship property that contains the weights.}
 }
 \value{
-A list of path objects. Returns NULL if no paths are found.
+A list of path objects.
 }
 \description{
 Retrieve all the shortest paths between two nodes.

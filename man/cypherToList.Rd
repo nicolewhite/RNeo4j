@@ -2,7 +2,7 @@
 % Please edit documentation in R/cypherToList.R
 \name{cypherToList}
 \alias{cypherToList}
-\title{Cypher}
+\title{Cypher Queries to Lists}
 \usage{
 cypherToList(graph, query, ...)
 }

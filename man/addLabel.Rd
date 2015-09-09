@@ -11,9 +11,6 @@ addLabel(node, ...)
 
 \item{...}{A character vector.}
 }
-\value{
-NULL.
-}
 \description{
 Add a label or multiple labels to an existing node object.
 }

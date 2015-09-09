@@ -15,9 +15,6 @@ dropIndex(graph, label = character(), key = character(), all = FALSE)
 
 \item{all}{A logical constant. If \code{TRUE}, drop all indexes from the graph.}
 }
-\value{
-NULL.
-}
 \description{
 Drop the index(es) for a given node label and property key or for the entire graph database.
 }
