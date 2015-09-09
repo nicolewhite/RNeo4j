@@ -40,3 +40,7 @@ cran:
 	/usr/bin/Rscript -e 'library(methods);library(testthat);devtools::build(path=".");'
 	R CMD check --as-cran *.tar.gz
 	rm -rf RNeo4j.Rcheck
+	
+pdf:
+	R CMD Rd2pdf ../RNeo4j
+	rm -rf .*Rd2pdf
