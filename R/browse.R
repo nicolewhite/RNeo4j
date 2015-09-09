@@ -11,6 +11,8 @@
 #' browse(graph)
 #' }
 #' 
+#' @importFrom utils browseURL
+#' 
 #' @export
 browse = function(graph, viewer = TRUE) UseMethod("browse", graph)
 

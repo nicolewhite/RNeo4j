@@ -23,6 +23,8 @@
 #' 
 #' @seealso \code{\link{getLabeledNodes}}
 #' 
+#' @importFrom utils URLencode
+#' 
 #' @export
 getUniqueNode = function(graph, .label, ...) UseMethod("getUniqueNode")
 
