@@ -16,8 +16,13 @@
 #' bob = createNode(graph, "Person", name = "Bob", age = 24, kids = c("Jenny", "Larry"))
 #' charles = createNode(graph, c("Person", "Student"), name = "Charles", age = 21)
 #' 
+#' bob
+#' charles
+#' 
 #' props = list(name="David", age = 26)
 #' david = createNode(graph, "Person", props)
+#' 
+#' david
 #' }
 #' 
 #' @export 
@@ -29,26 +34,18 @@ createNode.graph = function(graph, .label = character(), ...) {
   
   dots = list(...)
   props = parse_dots(dots)
-  body = NULL
-  if(length(props) > 0) {
-    body = props
-  }
-  
-  url = attr(graph, "node")
-  
-  result = http_request(url, "POST", graph, body)
-  
-  node = configure_result(result, attr(graph, "username"), attr(graph, "password"))
 
-  if(length(.label) > 0) {
-    if(length(grep(" ", .label)) > 0) {
-      stop("Cannot have spaces in labels. Use CamelCase instead.")
-    }
-    test = try(addLabel(node, .label), TRUE)
-    if("try-error" %in% class(test)) {
-      delete(node)
-      stop(test)
-    }
+  query = "CREATE (n"
+  
+  for(i in 1:length(.label)) {
+    query = paste0(query, ":", .label[i])
   }
+  
+  query = paste0(query, ") ")
+  query = ifelse(length(props) > 0, paste0(query, "SET n = {props} "), query)
+  query = paste0(query, "RETURN n")
+  
+  node = cypherToList(graph, query, props = props)[[1]]$n
+  
   return(node)
 }

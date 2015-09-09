@@ -27,8 +27,13 @@ clear(graph)
 bob = createNode(graph, "Person", name = "Bob", age = 24, kids = c("Jenny", "Larry"))
 charles = createNode(graph, c("Person", "Student"), name = "Charles", age = 21)
 
+bob
+charles
+
 props = list(name="David", age = 26)
 david = createNode(graph, "Person", props)
+
+david
 }
 }
 
