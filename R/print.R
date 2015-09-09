@@ -1,6 +1,6 @@
 #' @export
 print.graph = function(graph) {
-  cat("< Graph Object > \n")
+  cat("< Graph > \n")
   invisible(lapply(names(graph), function(x) {print(graph[x])}))
 }
 
@@ -13,7 +13,9 @@ summary.graph = function(graph) {
 
 #' @export
 print.node = function(node) {
-  cat("< Node Object > \n")
+  cat("< Node > \n")
+  cat(getLabel(node))
+  cat("\n\n")
   if(suppressWarnings(any(!is.na(names(node))))) {
     invisible(lapply(names(node), function(x) {print(node[x])}))
   }
@@ -21,7 +23,9 @@ print.node = function(node) {
 
 #' @export
 print.relationship = function(rel) {
-  cat("< Relationship Object > \n")
+  cat("< Relationship > \n")
+  cat(getType(rel))
+  cat("\n\n")
   if(suppressWarnings(any(!is.na(names(rel))))) {
     invisible(lapply(names(rel), function(x) {print(rel[x])}))
   }
@@ -29,7 +33,7 @@ print.relationship = function(rel) {
 
 #' @export
 print.path = function(path) {
-  cat("< Path Object > \n")
+  cat("< Path > \n")
   if(suppressWarnings(any(!is.na(names(path))))) {
     invisible(lapply(names(path), function(x) {print(path[x])}))
   }
