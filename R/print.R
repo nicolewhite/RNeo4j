@@ -1,40 +1,40 @@
 #' @export
-print.graph = function(graph) {
+print.graph = function(x, ...) {
   cat("< Graph > \n")
-  invisible(lapply(names(graph), function(x) {print(graph[x])}))
+  invisible(lapply(names(x), function(y) {print(x[y])}))
 }
 
 #' @export
-summary.graph = function(graph) {
+summary.graph = function(object, ...) {
   query = "MATCH (a)-[r]->(b) RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That"
-  df = suppressMessages(cypher(graph, query))
+  df = suppressMessages(cypher(object, query))
   print(df)
 }
 
 #' @export
-print.node = function(node) {
+print.node = function(x, ...) {
   cat("< Node > \n")
-  cat(getLabel(node))
+  cat(getLabel(x))
   cat("\n\n")
-  if(suppressWarnings(any(!is.na(names(node))))) {
-    invisible(lapply(names(node), function(x) {print(node[x])}))
+  if(suppressWarnings(any(!is.na(names(x))))) {
+    invisible(lapply(names(x), function(y) {print(x[y])}))
   }
 }
 
 #' @export
-print.relationship = function(rel) {
+print.relationship = function(x, ...) {
   cat("< Relationship > \n")
-  cat(getType(rel))
+  cat(getType(x))
   cat("\n\n")
-  if(suppressWarnings(any(!is.na(names(rel))))) {
-    invisible(lapply(names(rel), function(x) {print(rel[x])}))
+  if(suppressWarnings(any(!is.na(names(x))))) {
+    invisible(lapply(names(x), function(y) {print(x[y])}))
   }
 }
 
 #' @export
-print.path = function(path) {
+print.path = function(x, ...) {
   cat("< Path > \n")
-  if(suppressWarnings(any(!is.na(names(path))))) {
-    invisible(lapply(names(path), function(x) {print(path[x])}))
+  if(suppressWarnings(any(!is.na(names(x))))) {
+    invisible(lapply(names(x), function(y) {print(x[y])}))
   }
 }
