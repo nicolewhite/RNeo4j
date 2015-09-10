@@ -5,7 +5,4 @@ before_install:
   - make start_neo4j
 r_github_packages:
   - hadley/testthat
-  - jimhester/covr
 script: make test
-after_success:
-  - Rscript -e 'covr::coveralls()'
