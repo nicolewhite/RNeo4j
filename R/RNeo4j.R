@@ -1,7 +1,9 @@
 #' @title Neo4j Driver for R
 #' @author Nicole White
 #' @name RNeo4j
-#' @description Neo4j's R driver. RNeo4j allows you to read and write data from / to Neo4j directly from your R environment. For bug reports, please
+#' @description Neo4j, a graph database, allows users to store their data as a property graph. A graph consists of nodes that are connected by relationships; both nodes and relationships can have properties, or key-value pairs. RNeo4j is Neo4j's R driver. It allows users to read and write data from and to Neo4j directly from their R environment by exposing an interface for interacting with nodes, relationships, paths, and more. Most notably, it allows users to retrieve Cypher query results as R data frames, where Cypher is Neo4j's graph query language. Visit \href{http://www.neo4j.com}{neo4j.com} to learn more about Neo4j.
+#' 
+#' For bug reports, please
 #' \href{https://github.com/nicolewhite/RNeo4j/issues}{create a new GitHub issue}. 
 #' For support, please \href{http://stackoverflow.com/questions/tagged/r-neo4j}{create a question on StackOverflow}.
 #'
