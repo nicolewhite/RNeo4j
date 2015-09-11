@@ -39,12 +39,16 @@ If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip
 
 ### RNeo4j
 
+#### From CRAN
+
+```{r, eval=FALSE}
+install.packages("RNeo4j")
+```
+
 #### From GitHub
 
 ```{r, eval=FALSE}
-install.packages("devtools")
 devtools::install_github("nicolewhite/RNeo4j")
-library(RNeo4j)
 ```
 
 #### From Source
@@ -55,7 +59,9 @@ Go to the [latest release](https://github.com/nicolewhite/RNeo4j/releases/latest
 install.packages("/path/to/file.tar.gz", repos=NULL, type="source")
 ```
 
-```{r, echo=FALSE}
+#### Load the Package
+
+```{r}
 library(RNeo4j)
 ```
 

@@ -39,13 +39,18 @@ If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip
 
 ### RNeo4j
 
+#### From CRAN
+
+
+```r
+install.packages("RNeo4j")
+```
+
 #### From GitHub
 
 
 ```r
-install.packages("devtools")
 devtools::install_github("nicolewhite/RNeo4j")
-library(RNeo4j)
 ```
 
 #### From Source
@@ -57,7 +62,12 @@ Go to the [latest release](https://github.com/nicolewhite/RNeo4j/releases/latest
 install.packages("/path/to/file.tar.gz", repos=NULL, type="source")
 ```
 
+#### Load the Package
 
+
+```r
+library(RNeo4j)
+```
 
 ## <a name="#connect"></a>Connect
 
@@ -132,7 +142,9 @@ cypherToList(graph, query)
 ```
 ## [[1]]
 ## [[1]]$nicole
-## < Node Object > 
+## < Node > 
+## Person
+## 
 ## $name
 ## [1] "Nicole"
 ## 
@@ -249,7 +261,7 @@ closeness(ig)
 plot(ig)
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
 
 ### `ggnet`
 
@@ -262,7 +274,7 @@ net = network(edgelist)
 ggnet(net, label.nodes=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
 
 ### `visNetwork`
 
@@ -283,26 +295,26 @@ head(hflights)
 
 ```
 ##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 1 2011    10         24         1     730    1143            OO      5193
-## 2 2011     1         15         6     908    1010            OO      1100
-## 3 2011     2         13         7    1757    1952            US       587
-## 4 2011     2          3         4      NA      NA            CO      1832
-## 5 2011     6          7         2    1250    1413            XE      2815
-## 6 2011     7         24         7     810     958            UA       434
+## 1 2011    12          9         5    2059    2313            CO      1615
+## 2 2011     8          4         4      NA      NA            MQ      2870
+## 3 2011     2         17         4    1057    1416            WN         9
+## 4 2011    12         10         6    1325    1628            CO      1151
+## 5 2011    11         20         7    1922    2100            XE      4370
+## 6 2011    10         25         2    1033    1143            WN       183
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 1  N773SK               193     157        9        0    IAH  IAD     1190
-## 2  N793SK               122     100      -10       -2    IAH  ABQ      744
-## 3  N155AW               175     142      -16       -3    IAH  PHX     1009
-## 4                        NA      NA       NA       NA    IAH  LGA     1416
-## 5  N13936                83      62        8        0    IAH  MOB      427
-## 6  N485UA               228     207      -11       -2    IAH  SFO     1635
+## 1  N14629               194     168       -8       -1    IAH  SLC     1195
+## 2  N692MQ                NA      NA       NA       NA    HOU  DFW      247
+## 3  N511SW               139     123       36       32    HOU  FLL      957
+## 4  N57852               123     102      -18       -5    IAH  MCO      854
+## 5  N15948                98      76       64       62    IAH  LBB      458
+## 6  N368SW                70      57       -7       -2    HOU  LIT      393
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
-## 1      9      27         0                         0
-## 2      3      19         0                         0
-## 3     12      21         0                         0
-## 4     NA      NA         1                B        0
-## 5      5      16         0                         0
-## 6      8      13         0                         0
+## 1     10      16         0                         0
+## 2     NA      NA         1                A        0
+## 3      3      13         0                         0
+## 4      7      14         0                         0
+## 5      5      17         0                         0
+## 6      4       9         0                         0
 ```
 
 ```r
