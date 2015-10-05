@@ -60,7 +60,7 @@ cypherToList.graph = function(graph, query, ...) {
     for(j in 1:length(result$columns)) {
       name = result$columns[[j]]
       record = data[[i]][[j]]
-      if(!is.null(names(record)) || !is.list(record)) {
+      if(!is.null(names(record)) || !is.list(record) || length(record) == 0) {
         datum[[name]] = configure_result(record)
       } else {
         depth = length(record)
