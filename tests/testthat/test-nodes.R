@@ -19,6 +19,20 @@ test_that("createNode works without any properties or labels", {
   createNode(neo4j)
 })
 
+test_that("createNode works with properties set to NA", {
+  clear(neo4j, input=F)
+  n = createNode(neo4j, "Person", name="Nicole", age=NA)
+  expect_equal(n$name, "Nicole")
+  expect_null(n$age)
+})
+
+test_that("createNode works with properties set to NULL", {
+  clear(neo4j, input=F)
+  n = createNode(neo4j, "Person", name="Nicole", age=NULL)
+  expect_equal(n$name, "Nicole")
+  expect_null(n$age)
+})
+
 test_that("createNode doesn't round numeric parameters", {
   clear(neo4j, input=F)
   AGE = 123456789
@@ -75,6 +89,50 @@ test_that("getOrCreateNode works with last of parameters", {
   node = getOrCreateNode(neo4j, "Bar", list(name="Mugshots", other="Other"))
   expect_identical(class(node), c("entity", "node"))
   expect_null(node$other)
+})
+
+test_that("getOrCreateNode works with NA properties when the node already exists", {
+  clear(neo4j, input=F)
+  addConstraint(neo4j, "Bar", "name")
+  
+  mugshots = createNode(neo4j, "Bar", name="Mugshots", location="México")
+  
+  n = getOrCreateNode(neo4j, "Bar", name="Mugshots", location=NA)
+  
+  expect_equal(n$name, "Mugshots")
+  expect_equal(n$location, "México")
+})
+
+test_that("getOrCreateNode works with NULL properties when the node already exists", {
+  clear(neo4j, input=F)
+  addConstraint(neo4j, "Bar", "name")
+  
+  mugshots = createNode(neo4j, "Bar", name="Mugshots", location="México")
+  
+  n = getOrCreateNode(neo4j, "Bar", name="Mugshots", location=NULL)
+  
+  expect_equal(n$name, "Mugshots")
+  expect_equal(n$location, "México")
+})
+
+test_that("getOrCreateNode works with NA properties when the node doesn't already exist", {
+  clear(neo4j, input=F)
+  addConstraint(neo4j, "User", "user_id_hash")
+  
+  n = getOrCreateNode(neo4j, "User", user_id_hash="john", age=NA)
+  
+  expect_equal(n$user_id_hash, "john")
+  expect_null(n$age)
+})
+
+test_that("getOrCreateNode works with NULL properties when the node doesn't already exist", {
+  clear(neo4j, input=F)
+  addConstraint(neo4j, "User", "user_id_hash")
+  
+  n = getOrCreateNode(neo4j, "User", user_id_hash="john", age=NULL)
+  
+  expect_equal(n$user_id_hash, "john")
+  expect_null(n$age)
 })
 
 test_that("getLabeledNodes works", {
