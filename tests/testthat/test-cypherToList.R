@@ -128,3 +128,13 @@ test_that("it works with a list of parameters", {
   response = cypherToList(neo4j, query, list(limit=5, skip=5))
   expect_equal(length(response), 5)
 })
+
+test_that("it can return nodes with empty collections as properties", {
+  clear(neo4j, input=F)
+  
+  cypherToList(neo4j, 'CREATE (n:test {a:[]})')
+  n = cypherToList(neo4j, 'MATCH (n:test {a:[]}) RETURN n')
+  n = n[[1]]$n
+  
+  expect_equal(length(n$a), 0)
+})

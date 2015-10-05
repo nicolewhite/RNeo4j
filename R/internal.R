@@ -33,10 +33,12 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
         name = names(data[i])
         depth = length(data[name][[1]])
         
-        if(depth > 1) {
-          result[[name]] = unlist(data[name][[1]])
+        if (depth == 0) {
+          result[[name]] = data[[name]]
+        } else if (depth == 1) {
+          result[[name]] = data[name][[1]][[1]]
         } else {
-          result[name] = data[name][[1]][[1]]
+          result[[name]] = unlist(data[name][[1]])
         }
       }
     }
