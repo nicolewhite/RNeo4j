@@ -14,7 +14,7 @@ allShortestPaths(fromNode, relType, toNode, direction = "out",
 
 \item{toNode}{A node object.}
 
-\item{direction}{A character string. The relationship direction to traverse. Should be "in" or "out".}
+\item{direction}{A character string. The relationship direction to traverse; this can be either "in", "out", or "all".}
 
 \item{max_depth}{An integer. The maximum depth of the path.}
 

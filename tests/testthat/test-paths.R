@@ -49,6 +49,17 @@ test_that("shortestPath works with direction=in", {
   expect_equal(actual_names, expected_names)
 })
 
+test_that("shortestPath works with direction=all", {
+  p = shortestPath(charles, "WORKS_WITH", elaine, direction = "all", max_depth = 4)
+  expect_is(p, "path")
+  expect_equal(p$length, 2)
+  
+  n = nodes(p)
+  actual_names = sapply(n, '[[', 'name')
+  expected_names = c("Charles", "David", "Elaine")
+  expect_equal(actual_names, expected_names)
+})
+
 test_that("allShortestPaths returns null when not found", {
   p = allShortestPaths(alice, "WORKS_WITH", david)
   expect_null(p)
@@ -57,13 +68,22 @@ test_that("allShortestPaths returns null when not found", {
   expect_null(p)
 })
 
-test_that("allShortestPaths works", {
-  p = allShortestPaths(alice, "WORKS_WITH", david, max_depth = 4)
+test_that("allShortestPaths works with direction=out", {
+  p = allShortestPaths(alice, "WORKS_WITH", david, direction = "out", max_depth = 4)
   expect_is(p, "list")
   expect_is(p[[1]], "path")
   expect_equal(length(p), 2)
-  
+})
+
+test_that("allShortestPaths works with direction=in", {
   p = allShortestPaths(david, "WORKS_WITH", alice, direction = "in", max_depth = 4)
+  expect_is(p, "list")
+  expect_is(p[[1]], "path")
+  expect_equal(length(p), 2)
+})
+
+test_that("allShortestPaths works with direction=all", {
+  p = allShortestPaths(bob, "WORKS_WITH", elaine, direction = "all", max_depth = 4)
   expect_is(p, "list")
   expect_is(p[[1]], "path")
   expect_equal(length(p), 2)

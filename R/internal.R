@@ -170,7 +170,7 @@ cypher_endpoint = function(graph, query, params) {
 shortest_path_algo = function(all, algo, fromNode, relType, toNode, direction = "out", max_depth = 1, cost_property=character()) {
   stopifnot(is.character(relType), 
             "node" %in% class(toNode),
-            direction %in% c("in", "out"),
+            direction %in% c("in", "out", "all"),
             is.numeric(max_depth),
             is.character(cost_property))
   
