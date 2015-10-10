@@ -5,7 +5,7 @@
 #' @param fromNode A node object.
 #' @param relType A character string. The relationship type to traverse.
 #' @param toNode A node object.
-#' @param direction A character string. The relationship direction to traverse. Should be "in" or "out".
+#' @param direction A character string. The relationship direction to traverse; this can be either "in", "out", or "all".
 #' @param max_depth An integer. The maximum depth of the path.
 #' @param cost_property A character string. If retrieving a weighted shortest path, the name of the relationship property that contains the weights.
 #' 
