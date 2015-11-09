@@ -23,15 +23,15 @@ RNeo4j is Neo4j's R driver. It allows you to read and write data from / to Neo4j
 
 ### Neo4j
 
-[Download Neo4j](http://neo4j.com/download/) community edition.
+First and foremost, [download Neo4j](http://neo4j.com/download/other-releases/)!
 
 #### Windows
 
-If you're on Windows, just download the `.exe` and follow the instructions. You'll get a GUI where you simply press "Start" to start Neo4j.
+If you're on Windows, download the `.exe` and follow the instructions. You'll get a GUI where you simply press "Start" to start Neo4j.
 
 #### OS X
 
-If you're on OS X, you can download either the `.dmg` or the `.tar.gz`. The `.dmg` is currently offered under the "beta program." This will give you a GUI where you simply press "Start" to start Neo4j. Otherwise, download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
+If you're on OS X, you can download either the `.dmg` or the `.tar.gz`. The `.dmg` will give you a GUI where you simply press "Start" to start Neo4j. Otherwise, download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
 
 #### Linux
 
@@ -278,7 +278,7 @@ ggnet(net, label.nodes=TRUE)
 
 ### `visNetwork`
 
-[Read this blog post](http://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html) and [check out this slide deck](http://nicolewhite.github.io/neo4j-presentations/RNeo4j/Visualizations/Visualizations.html#1).
+[Read this blog post](http://neo4j.com/blog/visualize-graph-with-rneo4j/) and [check out this slide deck](http://nicolewhite.github.io/neo4j-presentations/RNeo4j/Visualizations/Visualizations.html#1).
 
 ## <a name="#import"></a>Import
 
@@ -295,26 +295,26 @@ head(hflights)
 
 ```
 ##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 1 2011    12          9         5    2059    2313            CO      1615
-## 2 2011     8          4         4      NA      NA            MQ      2870
-## 3 2011     2         17         4    1057    1416            WN         9
-## 4 2011    12         10         6    1325    1628            CO      1151
-## 5 2011    11         20         7    1922    2100            XE      4370
-## 6 2011    10         25         2    1033    1143            WN       183
+## 1 2011     1         15         6     927    1038            XE      2885
+## 2 2011    10         10         1    2001    2322            XE      4243
+## 3 2011     6         15         3    1853    2108            CO       670
+## 4 2011     4         10         7    2100     102            CO       410
+## 5 2011     1         25         2     739    1016            XE      3083
+## 6 2011     9         13         2    1745    1841            CO      1204
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 1  N14629               194     168       -8       -1    IAH  SLC     1195
-## 2  N692MQ                NA      NA       NA       NA    HOU  DFW      247
-## 3  N511SW               139     123       36       32    HOU  FLL      957
-## 4  N57852               123     102      -18       -5    IAH  MCO      854
-## 5  N15948                98      76       64       62    IAH  LBB      458
-## 6  N368SW                70      57       -7       -2    HOU  LIT      393
+## 1  N34110               131     113      -10       -3    IAH  COS      809
+## 2  N13970               141     127        2       19    IAH  CMH      986
+## 3  N36207               255     231       15       -2    IAH  SFO     1635
+## 4  N76517               182     162      -18        5    IAH  EWR     1400
+## 5  N12922               157     128        0       -6    IAH  MKE      984
+## 6  N35271                56      34       -7       -5    IAH  SAT      191
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
-## 1     10      16         0                         0
-## 2     NA      NA         1                A        0
-## 3      3      13         0                         0
-## 4      7      14         0                         0
-## 5      5      17         0                         0
-## 6      4       9         0                         0
+## 1      6      12         0                         0
+## 2      4      10         0                         0
+## 3      5      19         0                         0
+## 4      7      13         0                         0
+## 5      4      25         0                         0
+## 6      3      19         0                         0
 ```
 
 ```r
