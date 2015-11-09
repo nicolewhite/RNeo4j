@@ -2,7 +2,6 @@ language: r
 sudo: required
 before_install:
   - make download_neo4j
-  - make start_neo4j
 r_github_packages:
   - hadley/testthat
-script: make test
+script: make test_all

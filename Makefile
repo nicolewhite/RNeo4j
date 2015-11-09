@@ -1,11 +1,8 @@
 test:
 	/usr/bin/Rscript -e 'library(methods);library(testthat);devtools::test();'
 
-start_neo4j:
-	./neo4j/bin/neo4j start || ./neo4j/bin/neo4j restart
-
-stop_neo4j:
-	./neo4j/bin/neo4j stop
+test_all:
+	neokit/neorun ./test.sh 2.3.0 2.2.6 2.1.8
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
@@ -27,12 +24,8 @@ readme:
 	/usr/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
 download_neo4j:
-	./neoget
-	rm -rf neo4j
-	mkdir neo4j
-	tar -xvzf *.tar.gz -C neo4j --strip-components=1
-	rm *.tar.gz
-	cd neo4j/conf && sed 's/auth_enabled=true/auth_enabled=false/g' neo4j-server.properties > tempfile && mv tempfile neo4j-server.properties
+	neokit/neoget -i -x 2.3.0 2.2.6 2.1.8
+	neokit/neoctl unzip 2.3.0 2.2.6 2.1.8
 	
 cran:
 	- rm *.tar.gz
