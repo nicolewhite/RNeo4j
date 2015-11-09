@@ -5,7 +5,7 @@
 #' Omitting the \code{label} argument returns all uniqueness constraints in the graph database.
 #' 
 #' @param graph A graph object.
-#' @param label A character string.
+#' @param label A character vector.
 #' 
 #' @return A data.frame.
 #' 
@@ -31,38 +31,22 @@ getConstraint.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
   url = attr(graph, "constraints")
+  result = http_request(url, "GET", graph)
   
-  # If label is not given, get constraints for entire graph.
-  if(length(label) == 0) {
-    result = http_request(url, "GET", graph)
-    
-    if(length(result) == 0) {
-      return(invisible())
+  if (length(result) > 0) {
+    for(i in 1:length(result)) {
+      result[[i]]['property_keys'] = result[[i]]['property_keys'][[1]][[1]]
     }
-    
-  # Else, if label is given, only get constraint on label.  
-  } else if(length(label) == 1) {
-    if(!(label %in% getLabel(graph))) {
-      return(invisible())
-    }
-    
-    url = url = paste(url, label, "uniqueness", sep = "/")
-    result = http_request(url, "GET", graph)
-    
-    if(length(result) == 0) {
-      return(invisible())
-    }
-    
-  # Else, user supplied an invalid combination of arguments.  
   } else {
-    stop("Arguments supplied are invalid.")
-  }
-  
-  for(i in 1:length(result)) {
-    result[[i]]['property_keys'] = result[[i]]['property_keys'][[1]][[1]]
+    return(invisible())
   }
   
   df = do.call(rbind.data.frame, result)
   rownames(df) = NULL
+  
+  if (length(label) > 0) {
+    df = df[which(df$label == label), ]
+  }
+  
   return(df)
 }
