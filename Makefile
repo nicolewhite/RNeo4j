@@ -28,6 +28,7 @@ download_neo4j:
 	neokit/neoctl unzip 2.3.0 2.2.6 2.1.8
 	
 cran:
+	export PATH="$PATH:/usr/texbin"
 	- rm *.tar.gz
 	/usr/bin/Rscript -e 'library(methods);library(testthat);devtools::build(path=".");'
 	R CMD check --as-cran *.tar.gz
