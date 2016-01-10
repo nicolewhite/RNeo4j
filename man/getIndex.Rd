@@ -9,7 +9,7 @@ getIndex(graph, label = character())
 \arguments{
 \item{graph}{A graph object.}
 
-\item{label}{A character string.}
+\item{label}{A character vector.}
 }
 \value{
 A data.frame.
