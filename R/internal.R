@@ -218,16 +218,30 @@ check_nested_depth = function(col) {
 find_max_dig = function(params) {
   types = sapply(params, class)
   max_dig = 0
+  new_max = 0
   
   for (i in 1:length(types)) {
     if (types[[i]] == "list") {
-      max_dig = find_max_dig(params[[i]])
+      new_max = find_max_dig(params[[i]])
     } else if (types[[i]] == "numeric") {
-      max_dig = max(sapply(params[[i]], nchar))
+      new_max = max(sapply(params[[i]], number.length))
+    } else {
+      new_max = 0
+    }
+    
+    if (new_max > max_dig) {
+      max_dig = new_max 
     }
   }
-  
   return(max_dig)
+}
+
+is.float = function(x) {
+  return(x %% 1 != 0)
+}
+
+number.length = function(x) {
+  return(ifelse(is.float(x), nchar(x) - 1, nchar(x)))
 }
 
 parse_dots = function(dots) {
