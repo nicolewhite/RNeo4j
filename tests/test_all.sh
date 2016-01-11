@@ -1,0 +1,2 @@
+make change_password
+make test

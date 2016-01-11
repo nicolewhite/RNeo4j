@@ -1,8 +1,8 @@
 test:
-	/usr/bin/Rscript -e 'library(methods);library(testthat);devtools::test();'
+	tests/test.sh
 
 test_all:
-	neokit/neorun ./test.sh 2.3.0 2.2.6 2.1.8
+	neokit/neorun tests/test_all.sh 2.3.1 2.2.6 2.1.8
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
@@ -24,8 +24,8 @@ readme:
 	/usr/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
 download_neo4j:
-	neokit/neoget -i -x 2.3.0 2.2.6 2.1.8
-	neokit/neoctl unzip 2.3.0 2.2.6 2.1.8
+	neokit/neoget -i -x 2.3.1 2.2.6 2.1.8
+	neokit/neoctl unzip 2.3.1 2.2.6 2.1.8
 	
 cran:
 	export PATH="$PATH:/usr/texbin"
@@ -37,3 +37,6 @@ cran:
 pdf:
 	R CMD Rd2pdf ../RNeo4j
 	rm -rf .*Rd2pdf
+
+change_password:
+	curl -u neo4j:neo4j --data "password=password" http://localhost:7474/user/neo4j/password
