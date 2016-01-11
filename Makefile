@@ -30,7 +30,7 @@ download_neo4j:
 cran:
 	export PATH="$PATH:/usr/texbin"
 	- rm *.tar.gz
-	/usr/bin/Rscript -e 'library(methods);library(testthat);devtools::build(path=".");'
+	./build.sh
 	R CMD check --as-cran *.tar.gz
 	rm -rf RNeo4j.Rcheck
 	

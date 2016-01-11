@@ -7,6 +7,5 @@ figure/
 CONTRIBUTING.md
 Makefile
 .travis.yml
-neo4j/
 neokit/
-test.sh
+build.sh
