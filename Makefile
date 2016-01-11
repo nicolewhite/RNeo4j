@@ -37,6 +37,3 @@ cran:
 pdf:
 	R CMD Rd2pdf ../RNeo4j
 	rm -rf .*Rd2pdf
-
-change_password:
-	curl -u neo4j:neo4j --data "password=password" http://localhost:7474/user/neo4j/password
