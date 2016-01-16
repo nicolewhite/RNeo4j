@@ -118,7 +118,7 @@ http_request = function(url, request_type, master_entity, body=NULL) {
       }
     }
   } else if(length(body) > 0) {
-    body = RJSONIO::toJSON(body, digits=find_max_dig(body))
+    body = RJSONIO::toJSON(body, digits=longest_digit(body))
   }
   
   if(request_type == "POST") {
@@ -215,16 +215,16 @@ check_nested_depth = function(col) {
   max(unlist(sapply(col, function(x) {sapply(x, length)})))
 }
 
-find_max_dig = function(params) {
+longest_digit = function(params) {
   types = sapply(params, class)
   max_dig = 0
   new_max = 0
   
   for (i in 1:length(types)) {
     if (types[[i]] == "list") {
-      new_max = find_max_dig(params[[i]])
+      new_max = longest_digit(params[[i]])
     } else if (types[[i]] == "numeric") {
-      new_max = max(sapply(params[[i]], number.length))
+      new_max = max(sapply(params[[i]], number_length))
     } else {
       new_max = 0
     }
@@ -233,15 +233,16 @@ find_max_dig = function(params) {
       max_dig = new_max 
     }
   }
+  
   return(max_dig)
 }
 
-is.float = function(x) {
+is_float = function(x) {
   return(x %% 1 != 0)
 }
 
-number.length = function(x) {
-  return(ifelse(is.float(x), nchar(x) - 1, nchar(x)))
+number_length = function(x) {
+  return(if(is_float(x)) nchar(x) - 1 else nchar(x))
 }
 
 parse_dots = function(dots) {
