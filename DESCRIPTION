@@ -1,8 +1,8 @@
 Package: RNeo4j
 Title: Neo4j Driver for R
 LazyData: true
-Version: 1.6.2
-Date: 2016-01-10
+Version: 1.6.3
+Date: 2016-01-29
 Author: Nicole White
 License: MIT + file LICENSE
 Imports: httr (>= 1.1.0), RJSONIO, rstudioapi
