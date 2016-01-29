@@ -133,7 +133,7 @@ http_request = function(url, request_type, master_entity, body=NULL) {
   
   status = httr::http_status(response)
   
-  if(status$category != "success") {
+  if(status$category != "Success") {
     message = status['message']
     content = httr::content(response)
     
