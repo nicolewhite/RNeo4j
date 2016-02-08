@@ -131,9 +131,9 @@ http_request = function(url, request_type, master_entity, body=NULL) {
     response = httr::DELETE(url=url, httr::config(opts), body=body)
   }
   
+  status_code = httr::status_code(response)
   status = httr::http_status(response)
-  
-  if(status$category != "Success") {
+  if(status_code != 200) {
     message = status['message']
     content = httr::content(response)
     
