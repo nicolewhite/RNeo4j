@@ -133,7 +133,8 @@ http_request = function(url, request_type, master_entity, body=NULL) {
   
   status_code = httr::status_code(response)
   status = httr::http_status(response)
-  if(status_code != 200) {
+  
+  if(status_code >= 300 | status_code < 200) {
     message = status['message']
     content = httr::content(response)
     
