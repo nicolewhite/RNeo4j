@@ -35,10 +35,6 @@ createRel.node = function(.fromNode, .relType, .toNode, ...) {
   stopifnot(is.character(.relType), 
             "node" %in% class(.toNode))
   
-  if(length(grep(" ", .relType)) > 0) {
-    stop("Cannot have spaces in relationship types. Use UNDER_SCORES instead.")
-  }
-  
   fields = list(to = attr(.toNode, "self"), type = .relType)
   dots = list(...)
   params = parse_dots(dots)

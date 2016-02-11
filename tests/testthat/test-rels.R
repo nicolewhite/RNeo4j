@@ -95,3 +95,10 @@ test_that("createRel can set properties passed as a list", {
   expect_equal(r$prop1, 1)
   expect_equal(r$prop2, "2")
 })
+
+test_that("you can create relationship types with spaces", {
+  r = createRel(mugshots, "SPACE HERE", nastys)
+  
+  rels = getRels(neo4j, "MATCH ()-[r:`SPACE HERE`]-() RETURN DISTINCT r;")
+  expect_equal(length(rels), 1)
+})
