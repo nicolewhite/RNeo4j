@@ -157,11 +157,7 @@ cypher_endpoint = function(graph, query, params) {
   }
   
   url = attr(graph, "cypher")
-  response = http_request(url,
-                          "POST",
-                          graph,
-                          body)
-  
+  response = http_request(url, "POST", graph, body)
   return(response)
 }
 
@@ -180,9 +176,7 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, direction = 
   
   url = paste(attr(fromNode, "self"), path, sep = "/")
   to = attr(toNode, "self")
-  fields = list(to = to,
-                relationships = list(type = relType, direction = direction),
-                algorithm = algo)
+  fields = list(to = to, relationships = list(type = relType, direction = direction), algorithm = algo)
   
   if(algo == "shortestPath") {
     fields = c(fields, list(max_depth=max_depth))
