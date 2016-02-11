@@ -132,24 +132,21 @@ http_request = function(url, request_type, master_entity, body=NULL) {
   }
   
   status_code = httr::status_code(response)
-  status = httr::http_status(response)
+  content = httr::content(response)
   
-  if(status_code >= 300 | status_code < 200) {
-    message = status['message']
-    content = httr::content(response)
+  if(status_code >= 300 || status_code < 200) {
+    status = httr::http_status(response)
+    message = status["message"]
     
     if("errors" %in% names(content)) {
       error = content$errors[[1]]
-      message = paste(message, 
-                      error['code'],
-                      error['message'],
-                      sep="\n")
+      message = paste(message, error["code"], error["message"], sep="\n")
     }
     
     stop(message, call.=FALSE)
   }
   
-  return(httr::content(response))
+  return(content)
 }
 
 cypher_endpoint = function(graph, query, params) {
