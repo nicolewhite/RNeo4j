@@ -107,30 +107,11 @@ http_request = function(url, request_type, master_entity, body=NULL) {
     httr::set_config(auth)
   }
   
-  if(is.null(names(body)) && length(body) == 1) {
-    if(is.character(body)) {
-      body = paste0('"', body, '"')
-    } else if(is.numeric(body)) {
-      body = toString(body)
-    } else if(is.logical(body)) {
-      if(body) {
-        body = ifelse(body, "true", "false")
-      }
-    }
-  } else if(length(body) > 0) {
-    body = RJSONIO::toJSON(body, digits=longest_digit(body))
+  if (!is.null(body)) {
+    body = jsonlite::toJSON(body, auto_unbox=TRUE, null="null")
   }
   
-  if(request_type == "POST") {
-    response = httr::POST(url=url, httr::config(opts), body=body)
-  } else if(request_type == "PUT") {
-    response = httr::PUT(url=url, httr::config(opts), body=body)
-  } else if(request_type == "GET") {
-    response = httr::GET(url=url, httr::config(opts), body=body)
-  } else if(request_type == "DELETE") {
-    response = httr::DELETE(url=url, httr::config(opts), body=body)
-  }
-  
+  response = httr::VERB(request_type, url=url, config=httr::config(opts), body=body)
   status_code = httr::status_code(response)
   content = httr::content(response)
   
