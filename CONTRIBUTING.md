@@ -26,7 +26,7 @@ In RStudio, `File --> Open Project...` and open the `RNeo4j.Rproj` file.
 
 ```r
 install.packages("httr")
-install.packages("RJSONIO")
+install.packages("jsonlite")
 install.packages("testthat")
 ```
 
@@ -46,7 +46,7 @@ If you're modifying existing code, just use `make test` to ensure you haven't br
 
 ### Add New Code
 
-If you're adding a new function, add a new file to the `R` directory where the name of the file is the name of the function. Look at the other files in the `R` directory for an example. You'll also need to document your function in the `man` directory by creating an `.Rd` file. I don't use roxygen so you'll have to build this by hand. Of course, you need to add tests for your new function.
+If you're adding a new function, add a new file to the `R` directory where the name of the file is the name of the function. Look at the other files in the `R` directory for an example. You'll also need to document your function with `roxygen` syntax and add tests.
 
 ## Add Tests
 
