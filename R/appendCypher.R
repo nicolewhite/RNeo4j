@@ -17,7 +17,7 @@ appendCypher.transaction = function(transaction, query, ...) {
     fields = list(statements = list(list(statement=query)))
   }
   
-  response = http_request(url, "POST", transaction, fields)
+  response = http_request(url, "POST", fields)
   
   if(length(response$errors) > 0) {
     error = response$errors[[1]]

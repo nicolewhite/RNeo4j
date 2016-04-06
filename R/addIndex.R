@@ -35,9 +35,7 @@ addIndex.graph = function(graph, label, key) {
   
   field = list(property_keys = key)
   url = paste(attr(graph, "indexes"), label, sep = "/")
-  http_request(url,
-               "POST",
-               graph,
-               field)
+  http_request(url, "POST", field)
+  
   return(invisible())
 }

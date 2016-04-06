@@ -5,10 +5,10 @@ newTransaction = function(graph) UseMethod("newTransaction")
 #' @export
 newTransaction.graph = function(graph) {
   httr::set_config(httr::user_agent(paste("RNeo4j", version(), sep="/")))
-  opts = c(attr(graph, "opts"), ssl_verifypeer = 0)
+  opts = c(.state$opts, ssl_verifypeer = 0)
   
-  username = attr(graph, "username")
-  password = attr(graph, "password")
+  username = .state$username
+  password = .state$password
   
   if(!is.null(username) && !is.null(password)) {
     auth = httr::authenticate(username, password, type="basic")
@@ -23,9 +23,6 @@ newTransaction.graph = function(graph) {
   location = header$location
   commit = content$commit
   transaction = list(location = location, commit = commit)
-  
-  attr(transaction, "username") = username
-  attr(transaction, "password") = password
   class(transaction) = "transaction"
   
   return(transaction)

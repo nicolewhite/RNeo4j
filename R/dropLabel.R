@@ -44,7 +44,7 @@ dropLabel.node = function(node, ..., all = FALSE) {
   urls = vapply(labels, function(label) paste(url, label, sep = "/"), "")
   
   for (i in 1:length(urls)) {
-    http_request(urls[[i]], "DELETE", node)
+    http_request(urls[[i]], "DELETE")
   }
   
   return(invisible())

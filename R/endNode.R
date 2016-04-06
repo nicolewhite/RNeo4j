@@ -37,15 +37,15 @@ endNode = function(object) UseMethod("endNode")
 #' @export
 endNode.relationship = function(object) {
   url = attr(object, "end")
-  result = http_request(url, "GET", object)
-  node = configure_result(result, attr(object, "username"), attr(object, "password"), attr(object, "auth_token"))
+  result = http_request(url, "GET")
+  node = configure_result(result)
   return(node)
 }
 
 #' @export
 endNode.path = function(object) {
   url = attr(object, "end")
-  result = http_request(url, "GET", object)
-  node = configure_result(result, attr(object, "username"), attr(object, "password"), attr(object, "auth_token"))
+  result = http_request(url, "GET")
+  node = configure_result(result)
   return(node)
 }

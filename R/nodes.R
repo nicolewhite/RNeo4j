@@ -39,8 +39,8 @@ nodes.path = function(path) {
 
   FUN <- function(x) {
     url = x
-    result = http_request(url, "GET", path)
-    node = configure_result(result, attr(path, "username"), attr(path, "password"), attr(path, "auth_token"))
+    result = http_request(url, "GET")
+    node = configure_result(result)
     return(node)
   }
   nodes = lapply(urls, FUN)

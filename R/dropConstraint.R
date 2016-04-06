@@ -41,13 +41,13 @@ dropConstraint.graph = function(graph, label = character(), key = character(), a
     }
     
     urls = apply(constraints, 1, function(c) paste(url, c['label'], "uniqueness", c['property_keys'], sep = "/"))
-    lapply(urls, function(u) http_request(u, "DELETE", graph))
+    lapply(urls, function(u) http_request(u, "DELETE"))
     return(invisible())
     
   # Else, drop the uniqueness constraint for the label and key given.
   } else if (length(label) == 1 & length(key) == 1) {    
     url = paste(url, label, "uniqueness", key, sep = "/")
-    http_request(url, "DELETE", graph)
+    http_request(url, "DELETE")
     return(invisible())
   
   # Else, user supplied an invalid combination of arguments.

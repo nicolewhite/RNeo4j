@@ -31,7 +31,7 @@ getConstraint.graph = function(graph, label = character()) {
   stopifnot(is.character(label))
   
   url = attr(graph, "constraints")
-  result = http_request(url, "GET", graph)
+  result = http_request(url, "GET")
   
   if (length(result) > 0) {
     for(i in 1:length(result)) {

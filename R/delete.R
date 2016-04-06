@@ -33,7 +33,7 @@ delete.default = function(...) {
   urls = vapply(entities, function(x) (attr(x, "self")), "")
   
   for(i in 1:length(urls)) {
-    http_request(urls[i], "DELETE", entities[[1]])
+    http_request(urls[i], "DELETE")
   }
   
   return(invisible())

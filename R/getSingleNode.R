@@ -56,6 +56,6 @@ getSingleNode.graph = function(graph, query, ...) {
     stop("The entity returned is not a node. Check that your query is returning a node.")
   }
   
-  node = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
+  node = configure_result(result)
   return(node)
 }

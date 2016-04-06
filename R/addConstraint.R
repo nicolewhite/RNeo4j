@@ -37,11 +37,7 @@ addConstraint.graph = function(graph, label, key) {
     
   fields = list(property_keys = key)
   url = paste(attr(graph, "constraints"), label, "uniqueness", sep = "/")
-  
-  http_request(url,
-               "POST",
-               graph,
-               fields)
+  http_request(url, "POST", fields)
   
   return(invisible())
 }

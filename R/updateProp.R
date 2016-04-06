@@ -42,7 +42,7 @@ updateProp.entity = function(entity, ...) {
     key = names(props[i])
     value = props[[i]]
     url = paste(attr(entity, "properties"), key, sep = "/")
-    http_request(url, "PUT", entity, value)
+    http_request(url, "PUT", value)
     entity[key] = props[key]
   }
   

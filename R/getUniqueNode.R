@@ -63,13 +63,13 @@ getUniqueNode.graph = function(graph, .label, ...) {
     stop("Property value must be character, numeric, or logical.")
   }
   
-  result = http_request(url, "GET", graph)
+  result = http_request(url, "GET")
 
   if(length(result) == 0) {
     return(invisible())
   }
   
   result = result[[1]]
-  node = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
+  node = configure_result(result)
   return(node)
 }

@@ -44,7 +44,7 @@ addLabel.node = function(node, ...) {
   
   for (i in 1:length(labels)) {
     field = paste0(' "', labels[i], '" ')
-    http_request(url, "POST", node, labels)
+    http_request(url, "POST", labels)
   }
   return(invisible())
 }

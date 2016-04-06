@@ -29,7 +29,7 @@ getType = function(object) UseMethod("getType")
 #' @export
 getType.graph = function(object) {
   url = attr(object, "relationship_types")
-  response = http_request(url, "GET", object)
+  response = http_request(url, "GET")
   return(response)
 }
 

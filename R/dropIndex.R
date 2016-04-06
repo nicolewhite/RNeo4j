@@ -61,9 +61,7 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     urls = apply(indexes, 1, function(x) paste(url, x['label'], x['property_keys'], sep = "/"))
     
     for(i in 1:length(urls)) {
-      http_request(urls[i],
-                   "DELETE",
-                   graph)
+      http_request(urls[i], "DELETE")
     }
     
     return(invisible())
@@ -79,7 +77,7 @@ dropIndex.graph = function(graph, label = character(), key = character(), all = 
     }
     
     url = paste(url, label, key, sep = "/")
-    http_request(url, "DELETE", graph)
+    http_request(url, "DELETE")
     return(invisible())
     
   # Else, user supplied an invalid combination of arguments.  

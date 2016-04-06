@@ -44,12 +44,12 @@ outgoingRels.node = function(node, ...) {
     url = paste(url, paste(type, collapse = "%26"), sep = "/")
   }
     
-  result = http_request(url, "GET", node)
+  result = http_request(url, "GET")
 
   if(length(result) == 0) {
     return(invisible())
   }
   
-  outgoing_rels = lapply(result, function(r) configure_result(r, attr(node, "username"), attr(node, "password"), attr(node, "auth_token")))
+  outgoing_rels = lapply(result, function(r) configure_result(r))
   return(outgoing_rels)
 }

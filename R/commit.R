@@ -53,7 +53,7 @@ commit = function(transaction) UseMethod("commit")
 
 #' @export
 commit.transaction = function(transaction) {
-  response = http_request(transaction$commit, "POST", transaction)
+  response = http_request(transaction$commit, "POST")
   
   if(length(response$errors) > 0) {
     error = response$errors[[1]]

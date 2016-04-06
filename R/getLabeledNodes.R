@@ -63,12 +63,12 @@ getLabeledNodes.graph = function(graph, .label, ...) {
     }
   }
 
-  result = http_request(url, "GET", graph)
+  result = http_request(url, "GET")
 
   if(length(result) == 0) {
     return(invisible())
   }
   
-  nodes = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
+  nodes = lapply(result, function(r) configure_result(r))
   return(nodes)
 }

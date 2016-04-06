@@ -56,6 +56,6 @@ getSingleRel.graph = function(graph, query, ...) {
     stop("The entity returned is not a relationship. Check that your query is returning a relationship.")
   }
   
-  rel = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
+  rel = configure_result(result)
   return(rel)
 }

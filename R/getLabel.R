@@ -26,7 +26,7 @@ getLabel = function(object) UseMethod("getLabel")
 #' @export
 getLabel.graph = function(object) {
   url = attr(object, "node_labels")
-  result = http_request(url, "GET", object)
+  result = http_request(url, "GET")
   if(length(result) == 0) {
     return(invisible())
   }
@@ -36,7 +36,7 @@ getLabel.graph = function(object) {
 #' @export
 getLabel.node = function(object) {
   url = attr(object, "labels")
-  result = http_request(url, "GET", object)
+  result = http_request(url, "GET")
   if(length(result) == 0) {
     return(invisible())
   }

@@ -41,7 +41,7 @@ deleteProp.entity = function(entity, ..., all = FALSE) {
   url = attr(entity, "properties")
   
   if(all) {
-    http_request(url, "DELETE", entity)
+    http_request(url, "DELETE")
     names(entity) = NULL
     return(entity)
     
@@ -49,7 +49,7 @@ deleteProp.entity = function(entity, ..., all = FALSE) {
       urls = lapply(props, function(p) paste(url, p, sep = "/"))
       
       for (i in 1:length(urls)) {
-        http_request(urls[[i]], "DELETE", entity)
+        http_request(urls[[i]], "DELETE")
         entity[props[[i]]] = NULL
       }
       return(entity)

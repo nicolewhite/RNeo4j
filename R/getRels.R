@@ -50,6 +50,6 @@ getRels.graph = function(graph, query, ...) {
     result[[i]] = result[[i]][[1]]
   }
   
-  rels = lapply(result, function(r) configure_result(r, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token")))
+  rels = lapply(result, function(r) configure_result(r))
   return(rels)
 }

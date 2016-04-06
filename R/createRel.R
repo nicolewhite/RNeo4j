@@ -44,11 +44,7 @@ createRel.node = function(.fromNode, .relType, .toNode, ...) {
   }
     
   url = attr(.fromNode, "create_relationship")
-  result = http_request(url,
-                        "POST",
-                        .fromNode,
-                        fields)
-
-  rel = configure_result(result, attr(.fromNode, "username"), attr(.fromNode, "password"), attr(.fromNode, "auth_token"))
+  result = http_request(url, "POST", fields)
+  rel = configure_result(result)
   return(rel)
 }

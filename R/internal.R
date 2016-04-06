@@ -2,7 +2,7 @@ version = function() {
   return("1.6.3")
 }
 
-configure_result = function(result, username = NULL, password = NULL, auth_token=NULL) {
+configure_result = function(result) {
   if(is.character(result) | is.numeric(result)) {
     return(result)
   }
@@ -83,26 +83,17 @@ configure_result = function(result, username = NULL, password = NULL, auth_token
     class(result) = "path"
   }
   
-  if(!is.null(username) && !is.null(password)) {
-    attr(result, "username") = username
-    attr(result, "password") = password
-  }
-  
-  if(!is.null(auth_token)) {
-    attr(result, "auth_token") = auth_token
-  }
-  
   return(result)
 }
 
-http_request = function(url, request_type, master_entity, body=NULL) {
+http_request = function(url, request_type, body=NULL) {
   httr::set_config(httr::user_agent(paste("RNeo4j", version(), sep="/")))
-  opts = c(attr(master_entity, "opts"), ssl_verifypeer = 0)
+  opts = c(.state$opts, ssl_verifypeer = 0)
   
-  username = attr(master_entity, "username")
-  password = attr(master_entity, "password")
+  username = .state$username
+  password = .state$password
   
-  if(!is.null(username) & !is.null(password)) {
+  if(!is.null(username) && !is.null(password)) {
     auth = httr::authenticate(username, password, type="basic")
     httr::set_config(auth)
   }
@@ -138,7 +129,7 @@ cypher_endpoint = function(graph, query, params) {
   }
   
   url = attr(graph, "cypher")
-  response = http_request(url, "POST", graph, body)
+  response = http_request(url, "POST", body)
   return(response)
 }
 
@@ -165,7 +156,7 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, direction = 
     fields = c(fields, list(cost_property=cost_property))
   }
   
-  result = try(http_request(url, "POST", fromNode, fields), silent = T)
+  result = try(http_request(url, "POST", fields), silent = T)
   
   if(class(result) == "try-error") {
     return(invisible())
@@ -176,10 +167,10 @@ shortest_path_algo = function(all, algo, fromNode, relType, toNode, direction = 
   }
   
   if(all) {
-    paths = lapply(result, function(r) configure_result(r, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token")))
+    paths = lapply(result, function(r) configure_result(r))
     return(paths)
   } else {
-    path = configure_result(result, attr(fromNode, "username"), attr(fromNode, "password"), attr(fromNode, "auth_token"))
+    path = configure_result(result)
     return(path)
   }
 }

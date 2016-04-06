@@ -39,8 +39,8 @@ rels.path = function(path) {
 
   FUN <- function(x) {
     url = x
-    result = http_request(url, "GET", path)
-    rel = configure_result(result, attr(path, "username"), attr(path, "password"), attr(path, "auth_token"))
+    result = http_request(url, "GET")
+    rel = configure_result(result)
     return(rel)
   }
   rels = lapply(urls, FUN)

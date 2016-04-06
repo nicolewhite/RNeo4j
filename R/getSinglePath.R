@@ -54,6 +54,6 @@ getSinglePath.graph = function(graph, query, ...) {
     stop("The entity returned is not a path. Check that your query is returning a path.")
   }
   
-  path = configure_result(result, attr(graph, "username"), attr(graph, "password"), attr(graph, "auth_token"))
+  path = configure_result(result)
   return(path)
 }

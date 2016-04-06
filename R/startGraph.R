@@ -24,6 +24,8 @@
 #' @export
 startGraph = function(url, username = character(), password = character(), opts = list()) UseMethod("startGraph")
 
+.state = new.env(parent = emptyenv())
+
 #' @export
 startGraph.default = function(url, username = character(), password = character(), opts = list()) {
   stopifnot(is.character(url), 
@@ -39,13 +41,13 @@ startGraph.default = function(url, username = character(), password = character(
   graph = list()
   
   if(length(username) == 1 && length(password) == 1) {
-    attr(graph, "username") = username
-    attr(graph, "password") = password
+    .state$username = username
+    .state$password = password
   }
   
-  attr(graph, "opts") = opts
+  .state$opts = opts
   
-  result = http_request(url, "GET", graph)
+  result = http_request(url, "GET")
 
   graph$version = result$neo4j_version
   attr(graph, "node") = paste0(url, "node")
