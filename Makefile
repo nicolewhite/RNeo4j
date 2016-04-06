@@ -2,7 +2,7 @@ test:
 	tests/test.sh
 
 test_all:
-	neokit/neorun tests/test_all.sh 2.3.3 2.2.6 2.1.8
+	neokit/neorun tests/test_all.sh 2.3.3 2.2.9 2.1.8
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
@@ -24,8 +24,8 @@ readme:
 	/usr/local/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
 download_neo4j:
-	neokit/neoget -i -x 2.3.3 2.2.6 2.1.8
-	neokit/neoctl unzip 2.3.3 2.2.6 2.1.8
+	neokit/neoget -i -x 2.3.3 2.2.9 2.1.8
+	neokit/neoctl unzip 2.3.3 2.2.9 2.1.8
 	
 cran:
 	export PATH="$PATH:/usr/local/texbin"
