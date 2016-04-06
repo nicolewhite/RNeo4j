@@ -9,3 +9,4 @@ Makefile
 .travis.yml
 neokit/
 build.sh
+neo4j/
