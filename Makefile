@@ -18,10 +18,10 @@ update:
 	sed 's/$(OLD)/$(NEW)/' R/internal.R > tempfile && mv tempfile R/internal.R
 
 version:
-	/usr/bin/Rscript -e 'packageDescription("RNeo4j")["Version"];'
+	/usr/local/bin/Rscript -e 'packageDescription("RNeo4j")["Version"];'
 	
 readme:
-	/usr/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
+	/usr/local/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
 download_neo4j:
 	neokit/neoget -i -x 2.3.1 2.2.6 2.1.8
