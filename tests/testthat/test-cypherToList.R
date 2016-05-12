@@ -80,7 +80,7 @@ test_that("paths and relationships are retrieved", {
 test_that("collections of properties are retrieved", {
   query = "
   MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
-  WHERE m.title STARTS WITH 'The Matrix'
+  WHERE m.title =~ 'The Matrix.*'
   RETURN m, COLLECT(p.name) AS actors;
   "
   

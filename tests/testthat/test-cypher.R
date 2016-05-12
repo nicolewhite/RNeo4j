@@ -19,7 +19,7 @@ test_that("cypher works", {
 test_that("cypher retrieves arrays correctly", {
   query = "
   MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
-  WHERE m.title STARTS WITH 'The Matrix'
+  WHERE m.title =~ 'The Matrix.*'
   RETURN m.title, COLLECT(p.name);
   "
   
