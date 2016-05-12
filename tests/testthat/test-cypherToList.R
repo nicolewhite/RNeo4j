@@ -80,15 +80,15 @@ test_that("paths and relationships are retrieved", {
 test_that("collections of properties are retrieved", {
   query = "
   MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
-  WHERE m.title =~ 'The Matrix.*'
-  RETURN m, COLLECT(p.name) AS actors;
+  RETURN m, COLLECT(p.name) AS actors
+  LIMIT 5
   "
   
   response = cypherToList(neo4j, query)
   
   expect_true("node" %in% class(response[[1]]$m))
   expect_true(is.list(response[[1]]$actors))
-  expect_equal(length(response), 3)
+  expect_equal(length(response), 5)
 })
 
 test_that("collections of nodes are retrieved", {
