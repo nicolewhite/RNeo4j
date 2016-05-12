@@ -37,7 +37,7 @@ test_that("createNode doesn't round numeric parameters", {
   clear(neo4j, input=F)
   AGE = 123456789
   n = createNode(neo4j, "Person", age=AGE)
-  n = getSingleNode(neo4j, "MATCH n WHERE n.age = {age} RETURN n", age=AGE)
+  n = getSingleNode(neo4j, "MATCH (n) WHERE n.age = {age} RETURN n", age=AGE)
   expect_equal(n$age, AGE)
 })
 
@@ -47,7 +47,7 @@ test_that("getNodes works", {
   mugshots = createNode(neo4j, "Bar", name="Mugshots", location="México")
   nastys = createNode(neo4j, "Bar", name="Nasty's")
   
-  nodes = getNodes(neo4j, "MATCH n RETURN n")
+  nodes = getNodes(neo4j, "MATCH (n) RETURN n")
   
   names = sapply(nodes, '[[', 'name')
   expect_true("Mugshots" %in% names)
