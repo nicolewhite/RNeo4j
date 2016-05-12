@@ -1,5 +1,5 @@
 version = function() {
-  return("1.6.4")
+  return("1.7.0")
 }
 
 configure_result = function(result) {
