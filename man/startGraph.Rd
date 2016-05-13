@@ -24,7 +24,7 @@ Establish a connection to Neo4j.
 }
 \examples{
 \dontrun{
-graph = startGraph("http://localhost:7474/db/data/")
+graph = startGraph() # http://localhost:7474/db/data/ by default
 
 graph = startGraph("http://localhost:7474/db/data/",
                    username = "neo4j",

@@ -11,7 +11,7 @@
 #' 
 #' @examples
 #' \dontrun{
-#' graph = startGraph("http://localhost:7474/db/data/")
+#' graph = startGraph() # http://localhost:7474/db/data/ by default
 #' 
 #' graph = startGraph("http://localhost:7474/db/data/", 
 #'                    username = "neo4j",
@@ -27,12 +27,14 @@ startGraph = function(url, username = character(), password = character(), opts 
 .state = new.env(parent = emptyenv())
 
 #' @export
-startGraph.default = function(url, username = character(), password = character(), opts = list()) {
+startGraph.default = function(url = character(), username = character(), password = character(), opts = list()) {
   stopifnot(is.character(url), 
-            length(url) == 1,
             is.character(username),
             is.character(password),
             is.list(opts))
+  if (length(url) == 0) {
+    url = "http://localhost:7474/db/data/"
+  }
   
   if(substr(url, nchar(url) - 3, nchar(url)) == "data") {
     url = paste0(url, "/")
