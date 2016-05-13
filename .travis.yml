@@ -1,9 +1,11 @@
 language: r
 sudo: required
-jdk:
-  - oraclejdk8
 before_install:
   - make download_neo4j
+  - brew update
+  - brew tap caskroom/cask
+  - brew install brew-cask
+  - brew cask install java
 r_github_packages:
   - hadley/testthat
 r_packages:
