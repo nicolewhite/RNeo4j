@@ -1,9 +1,5 @@
 language: r
 sudo: required
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
 before_install:
   - make download_neo4j
 r_github_packages:
