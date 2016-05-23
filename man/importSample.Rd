@@ -9,7 +9,7 @@ importSample(graph, data, input = TRUE)
 \arguments{
 \item{graph}{A graph object.}
 
-\item{data}{A character string.}
+\item{data}{A character string. Datasets include "tweets", "dfw", "caltrain", and "movies".}
 
 \item{input}{A logical constant. If \code{TRUE}, require confirmation.}
 }
@@ -19,7 +19,7 @@ Populate the graph database with one of the sample datasets supplied with this p
 \examples{
 \dontrun{
 graph = startGraph("http://localhost:7474/db/data/")
-importSample(graph, "movies")
+importSample(graph, "tweets")
 }
 }
 
