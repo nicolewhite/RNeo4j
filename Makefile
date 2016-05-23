@@ -2,7 +2,7 @@ test:
 	tests/test.sh
 
 test_all:
-	neokit/neorun tests/test_all.sh 3.0.1 2.3.3 2.2.9 2.1.8
+	neokit/neorun tests/test_all.sh 2.3.3 2.2.9 2.1.8
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
