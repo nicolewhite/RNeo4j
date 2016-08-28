@@ -24,8 +24,8 @@ readme:
 	/usr/local/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
 download_neo4j:
-	neokit/neoget -i -x 3.0.1 2.3.3 2.2.9 2.1.8
-	neokit/neoctl unzip 3.0.1 2.3.3 2.2.9 2.1.8
+	neokit/neoget -i -x 3.0.4 2.3.6 2.2.10
+	neokit/neoctl unzip 3.0.4 2.3.6 2.2.10
 	
 cran:
 	PATH="$PATH:/Library/TeX/texbin/pdflatex"
