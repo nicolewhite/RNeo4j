@@ -3,12 +3,7 @@ context("Cypher To List")
 
 skip_on_cran()
 
-if (!is.na(Sys.getenv("NEO4J_BOLT", NA))) {
-  neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password", boltUri = "neo4j://localhost:7687")
-} else {
-  neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
-}
-importSample(neo4j, "movies", input=F)
+neo4j = startTestGraph("movies")
 
 test_that("single property is retrieved", {
   query = "MATCH (p:Person) RETURN p.name LIMIT 5"
@@ -31,7 +26,7 @@ test_that("nodes and properties are retrieved", {
   query = "MATCH (p:Person) RETURN p, p.name LIMIT 5"
   response = cypherToList(neo4j, query)
   
-  expect_true("node" %in% class(response[[1]]$p))
+  expect_true(isNode(response[[1]]$p))
   expect_true(is.character(response[[1]]$p.name))
   expect_equal(length(response), 5)
 })
@@ -51,7 +46,7 @@ test_that("nodes and relationships are retrieved", {
   query = "MATCH (p:Person)-[r:ACTED_IN]->(:Movie) RETURN p, r LIMIT 5"
   response = cypherToList(neo4j, query)
   
-  expect_true("node" %in% class(response[[1]]$p))
+  expect_true(isNode(response[[1]]$p))
   expect_true("relationship" %in% class(response[[1]]$r))
   expect_equal(length(response), 5)
 })
@@ -72,7 +67,7 @@ test_that("paths and nodes are retrieved", {
   response = cypherToList(neo4j, query)
   
   expect_equal(class(response[[1]]$x), "path")
-  expect_true("node" %in% class(response[[1]]$p))
+  expect_true(isNode(response[[1]]$p))
   expect_equal(length(response), 5)
 })
 
@@ -95,7 +90,7 @@ test_that("collections of properties are retrieved", {
   
   response = cypherToList(neo4j, query)
   
-  expect_true("node" %in% class(response[[1]]$m))
+  expect_true(isNode(response[[1]]$m))
   expect_true(is.list(response[[1]]$actors))
   expect_equal(length(response), 5)
 })
@@ -104,9 +99,9 @@ test_that("collections of nodes are retrieved", {
   query = "MATCH (p:Person)-[:ACTED_IN]->(m:Movie) RETURN p, COLLECT(m) AS movies LIMIT 5"
   response = cypherToList(neo4j, query)
   
-  expect_true("node" %in% class(response[[1]]$p))
+  expect_true(isNode(response[[1]]$p))
   expect_true(is.list(response[[1]]$movies))
-  expect_true("node" %in% class(response[[1]]$movies[[1]]))
+  expect_true(isNode(response[[1]]$movies[[1]]))
 })
 
 test_that("it works with parameters", {

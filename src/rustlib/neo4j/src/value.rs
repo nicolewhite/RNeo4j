@@ -92,7 +92,7 @@ impl<'a> IntoR for ValueRef<'a> {
                     rlist.set(i as _, ValueRef::from_c_ty(value).intor()?)?;
                 }
                 rlist.set_name(&names)?;
-                rlist.set_attr::<_, _, Preserve>("class", "node".intor()?);
+                rlist.set_attr::<_, _, Preserve>("class", "boltNode".intor()?);
                 rlist.intor()
             } else if ty == NEO4J_LIST {
                 let len = neo4j_list_length(value) as usize;

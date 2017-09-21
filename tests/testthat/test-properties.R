@@ -3,8 +3,7 @@ context("Properties")
 
 skip_on_cran()
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
-clear(neo4j, input=F)
+neo4j = startTestGraph()
 
 test_that("string properties are added correctly", {
   n = createNode(neo4j, "Person", name="Alice")

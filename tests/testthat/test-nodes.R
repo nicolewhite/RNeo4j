@@ -5,8 +5,7 @@ skip_on_cran()
 
 options(digits=20)
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
-clear(neo4j, input=F)
+neo4j = startTestGraph()
 
 test_that("createNode works without any properties", {
   clear(neo4j, input=F)
