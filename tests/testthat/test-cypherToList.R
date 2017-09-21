@@ -3,7 +3,11 @@ context("Cypher To List")
 
 skip_on_cran()
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
+if (!is.na(Sys.getenv("NEO4J_BOLT", NA))) {
+  neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password", boltUri = "neo4j://localhost:7687")
+} else {
+  neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
+}
 importSample(neo4j, "movies", input=F)
 
 test_that("single property is retrieved", {
@@ -33,6 +37,7 @@ test_that("nodes and properties are retrieved", {
 })
 
 test_that("relationships and properties are retrieved", {
+  skip_on_bolt(neo4j, "relationships")
   query = "MATCH (:Person)-[r:ACTED_IN]->(m:Movie) RETURN r, m.title LIMIT 5"
   response = cypherToList(neo4j, query)
   
@@ -42,6 +47,7 @@ test_that("relationships and properties are retrieved", {
 })
 
 test_that("nodes and relationships are retrieved", {
+  skip_on_bolt(neo4j, "relationships")
   query = "MATCH (p:Person)-[r:ACTED_IN]->(:Movie) RETURN p, r LIMIT 5"
   response = cypherToList(neo4j, query)
   
@@ -51,6 +57,7 @@ test_that("nodes and relationships are retrieved", {
 })
 
 test_that("paths and properties are retrieved", {
+  skip_on_bolt(neo4j, "paths")
   query = "MATCH x = (p:Person)-[:ACTED_IN]->(:Movie) RETURN x, p.name LIMIT 5"
   response = cypherToList(neo4j, query)
   
@@ -60,6 +67,7 @@ test_that("paths and properties are retrieved", {
 })
 
 test_that("paths and nodes are retrieved", {
+  skip_on_bolt(neo4j, "paths")
   query = "MATCH x = (p:Person)-[:ACTED_IN]->(:Movie) RETURN x, p LIMIT 5"
   response = cypherToList(neo4j, query)
   
@@ -69,6 +77,7 @@ test_that("paths and nodes are retrieved", {
 })
 
 test_that("paths and relationships are retrieved", {
+  skip_on_bolt(neo4j, "paths or relationships")
   query = "MATCH x = (:Person)-[r:ACTED_IN]->(:Movie) RETURN x, r LIMIT 5"
   response = cypherToList(neo4j, query)
   

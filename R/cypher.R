@@ -82,16 +82,23 @@ cypher.graph = function(graph, query, ...) {
   options(stringsAsFactors = FALSE)
   df = data.frame(data)
   
-  # Unlist columns that aren't variable-length.
-  if(all(sapply(df, class) == "list")) {
-    for(i in 1:ncol(df)) {
-      if(check_nested_depth(df[i]) == 1) {
-        df[i] = unlist(df[i])
-      } 
-    }
-  }
-  
+  df = unlist_deep(df)
   names(df) = result$columns
+  row.names(df) = NULL
+  return(df)
+}
+
+#' @export
+cypher.boltGraph = function(graph, query, ...) {
+  params = parse_dots(list(...))
+
+  df = bolt_query_internal(graph$bolt, query, params, TRUE)
+  if (nrow(df) == 0) {
+    return(df)
+  }
+
+  is.na(df) <- df == "NULL"
+  df = unlist_deep(df)
   row.names(df) = NULL
   return(df)
 }

@@ -5,7 +5,7 @@
 \title{Connect to the Database}
 \usage{
 startGraph(url, username = character(), password = character(),
-  opts = list())
+  opts = list(), boltUri = character())
 }
 \arguments{
 \item{url}{A character string.}
@@ -15,6 +15,8 @@ startGraph(url, username = character(), password = character(),
 \item{password}{A character string. If authentication is enabled, your password.}
 
 \item{opts}{A named list. Optional HTTP settings.}
+
+\item{boltUri}{A character string. The bolt URI. Optionally enables the Bolt interface for Cypher.}
 }
 \value{
 A graph object.

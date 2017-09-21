@@ -1,0 +1,12 @@
+[package]
+name = "neo4j"
+version = "0.1.0"
+authors = ["Lee Bousfield <ljbousfield@gmail.com>"]
+build = "build.rs"
+
+[dependencies]
+rustr = "0.1"
+errno = "0.2"
+
+[build-dependencies]
+bindgen = "0.26"

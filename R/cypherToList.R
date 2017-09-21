@@ -76,3 +76,9 @@ cypherToList.graph = function(graph, query, ...) {
   
   return(response)
 }
+
+#' @export
+cypherToList.boltGraph = function(graph, query, ...) {
+  params = parse_dots(list(...))
+  return(bolt_query_internal(graph$bolt, query, params, FALSE))
+}

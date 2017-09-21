@@ -1,0 +1,20 @@
+ifneq "$(strip $(CARGO_HOME))" ""
+	CG="$(CARGO_HOME)"
+else
+	CG=cargo
+endif
+
+.PHONY: all
+
+# to make things
+all: $(SHLIB)
+
+# cargo build --release folder
+$(SHLIB): rustlib/target/release/librustlib.rlib
+
+# run cargo
+rustlib/target/release/librustlib.rlib: rustlib/src/*.rs
+	cd rustlib && $(CG) build --release
+
+# -lws2_32 -luserenv -ladvapi32 is needed for linking on windows
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/release/ -lrustlib -lneo4j-client -lssl -lcrypto -lm

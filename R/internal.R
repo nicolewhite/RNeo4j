@@ -229,3 +229,15 @@ parse_dots = function(dots) {
   
   return(params)
 }
+
+# Unlist columns that aren't variable-length.
+unlist_deep = function(df) {
+  if(all(sapply(df, class) == "list")) {
+    for(i in 1:ncol(df)) {
+      if(check_nested_depth(df[i]) == 1) {
+        df[i] = unlist(df[i])
+      }
+    }
+  }
+  return(df)
+}

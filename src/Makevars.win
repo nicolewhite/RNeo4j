@@ -1,0 +1,26 @@
+ifneq "$(strip $(CARGO_HOME))" ""
+	CG=$(CARGO_HOME)
+else
+	CG=cargo
+endif
+
+ifeq "$(WIN)" "64"
+	RUST_ARCH=x86_64-pc-windows-gnu
+else
+	RUST_ARCH=i686-pc-windows-gnu
+endif
+
+.PHONY: all
+
+# to make things
+all: $(SHLIB)
+
+# cargo build --release folder
+$(SHLIB): rustlib/target/$(RUST_ARCH)/release/librustlib.rlib
+
+# run cargo
+rustlib/target/$(RUST_ARCH)/release/librustlib.rlib: rustlib/src/*.rs
+	cd rustlib && $(CG) build --release --target $(RUST_ARCH)
+
+# -lws2_32 -lshell32 -luserenv -ladvapi32 is needed for linking on windows
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/$(RUST_ARCH)/release/ -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32 -lneo4j-client
