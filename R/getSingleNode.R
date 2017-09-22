@@ -38,9 +38,6 @@ getSingleNode = function(graph, query, ...) UseMethod("getSingleNode")
 
 #' @export
 getSingleNode.graph = function(graph, query, ...) {
-  stopifnot(is.character(query),
-            length(query) == 1)
-
   result = cypherToList(graph, query, ...)
   
   if(length(result) == 0) {

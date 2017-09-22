@@ -36,11 +36,7 @@ getRels = function(graph, query, ...) UseMethod("getRels")
 
 #' @export
 getRels.graph = function(graph, query, ...) {
-  stopifnot(is.character(query))
-  
-  params = list(...)  
-  result = cypher_endpoint(graph, query, params)
-  result = result$data
+  result = cypherToList(graph, query, ...)
   
   if(length(result) == 0) {
     return(invisible())
@@ -50,6 +46,5 @@ getRels.graph = function(graph, query, ...) {
     result[[i]] = result[[i]][[1]]
   }
   
-  rels = lapply(result, function(r) configure_result(r))
-  return(rels)
+  return(result)
 }

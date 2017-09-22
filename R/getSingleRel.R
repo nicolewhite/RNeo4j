@@ -38,12 +38,7 @@ getSingleRel = function(graph, query, ...) UseMethod("getSingleRel")
 
 #' @export
 getSingleRel.graph = function(graph, query, ...) {
-  stopifnot(is.character(query),
-            length(query) == 1)
-
-  params = list(...)  
-  result = cypher_endpoint(graph, query, params)
-  result = result$data
+  result = cypherToList(graph, query, ...)
   
   if(length(result) == 0) {
     return(invisible())
@@ -51,11 +46,9 @@ getSingleRel.graph = function(graph, query, ...) {
   
   result = result[[1]][[1]]
   
-  is.rel = try(result$labels, silent = T)
-  if(!is.null(is.rel) | class(is.rel) == "try-error") {
+  if(!("relationship" %in% class(result))) {
     stop("The entity returned is not a relationship. Check that your query is returning a relationship.")
   }
   
-  rel = configure_result(result)
-  return(rel)
+  return(result)
 }
