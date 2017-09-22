@@ -3,14 +3,16 @@
 use super::*;
 
 #[no_mangle]
-pub extern "C" fn rustr_bolt_begin_internal(uri : SEXP, username : SEXP, password : SEXP)->SEXP{
+pub extern "C" fn rustr_bolt_begin_internal(uri : SEXP, http_url : SEXP, username : SEXP, password : SEXP)->SEXP{
 
  let uri_ : CString = unwrapr!( CString::rnew(uri) );
+
+let http_url_ : Vec<String> = unwrapr!( Vec::rnew(http_url) );
 
 let username_ : Vec<CString> = unwrapr!( Vec::rnew(username) );
 
 let password_ : Vec<CString> = unwrapr!( Vec::rnew(password) );
- let res  = unwrapr!( bolt_begin_internal(uri_,username_,password_));
+ let res  = unwrapr!( bolt_begin_internal(uri_,http_url_,username_,password_));
 
  let res_sexp : SEXP = unwrapr!(res.intor());
 

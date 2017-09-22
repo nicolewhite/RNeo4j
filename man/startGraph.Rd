@@ -8,7 +8,7 @@ startGraph(url, username = character(), password = character(),
   opts = list(), boltUri = character())
 }
 \arguments{
-\item{url}{A character string.}
+\item{url}{A character string. The HTTP url. Optional if boltUri is specified.}
 
 \item{username}{A character string. If authentication is enabled, your username.}
 

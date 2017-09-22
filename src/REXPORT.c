@@ -3,7 +3,7 @@
 #include <Rinternals.h>
 #include <R.h>
 
-extern SEXP rustr_bolt_begin_internal(SEXP uri, SEXP username, SEXP password);
-SEXP RNeo4j_bolt_begin_internal(SEXP uri, SEXP username, SEXP password){ return(rustr_bolt_begin_internal(uri,username,password));}
+extern SEXP rustr_bolt_begin_internal(SEXP uri, SEXP http_url, SEXP username, SEXP password);
+SEXP RNeo4j_bolt_begin_internal(SEXP uri, SEXP http_url, SEXP username, SEXP password){ return(rustr_bolt_begin_internal(uri,http_url,username,password));}
 extern SEXP rustr_bolt_query_internal(SEXP graph, SEXP query, SEXP params, SEXP as_data_frame);
 SEXP RNeo4j_bolt_query_internal(SEXP graph, SEXP query, SEXP params, SEXP as_data_frame){ return(rustr_bolt_query_internal(graph,query,params,as_data_frame));}

@@ -9,10 +9,12 @@ use result_stream::ResultStream;
 
 pub struct Graph {
     ptr: *mut neo4j_connection_t,
+    pub http_url: Option<String>,
 }
 
 impl Graph {
-    pub fn open(uri: &CStr, username: Option<&CStr>, password: Option<&CStr>) -> RResult<Graph> {
+    // could accept user and pass as &CStr, but for our purposes this is easier
+    pub fn open(uri: &CStr, http_url: Option<String>, username: Option<CString>, password: Option<CString>) -> RResult<Graph> {
         unsafe {
             let conf = neo4j_new_config();
             if let Some(username) = username {
@@ -32,11 +34,13 @@ impl Graph {
             neo4j_config_free(conf);
             Ok(Graph {
                 ptr: ptr,
+                http_url: http_url,
             })
         }
     }
 
-    pub fn query<'a>(&'a mut self, query: CString, params: Value) -> RResult<ResultStream<'a>> {
+    // Should this require &mut self?
+    pub fn query<'a>(&'a self, query: CString, params: Value) -> RResult<ResultStream<'a>> {
         unsafe {
             let stream = neo4j_run(self.ptr, query.as_ptr(), params.inner);
             if stream.is_null() {

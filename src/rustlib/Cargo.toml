@@ -9,3 +9,9 @@ neo4j = { path = "neo4j" }
 [lib]
 name = "rustlib"
 crate-type = ["staticlib","rlib"]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"

@@ -1,8 +1,8 @@
 #' Connect to the Database
 #' 
 #' Establish a connection to Neo4j.
-#' 
-#' @param url A character string.
+#'
+#' @param url A character string. The HTTP url. Optional if boltUri is specified.
 #' @param username A character string. If authentication is enabled, your username.
 #' @param password A character string. If authentication is enabled, your password.
 #' @param opts A named list. Optional HTTP settings.
@@ -29,55 +29,63 @@ startGraph = function(url, username = character(), password = character(), opts 
 
 #' @export
 startGraph.default = function(url = character(), username = character(), password = character(), opts = list(), boltUri = character()) {
+  if (is.null(url)) {
+    url = character()
+  }
   stopifnot(is.character(url),
             is.character(username),
             is.character(password),
             is.list(opts))
-  if (length(url) == 0) {
+  if (length(url) == 0 && length(boltUri) != 1) {
     url = "http://localhost:7474/db/data/"
-  }
-  
-  if(substr(url, nchar(url) - 3, nchar(url)) == "data") {
-    url = paste0(url, "/")
   }
 
   graph = list()
 
   if (length(boltUri) == 1) {
-    graph$bolt = bolt_begin_internal(boltUri, username, password)
+    graph$bolt = bolt_begin_internal(boltUri, url, username, password)
   }
 
-  if(length(username) == 1 && length(password) == 1) {
+  if(length(url) > 0 && length(username) == 1 && length(password) == 1) {
     .state$username = username
     .state$password = password
   }
 
 
   .state$opts = opts
-  
-  result = http_request(url, "GET")
 
-  graph$version = result$neo4j_version
-  attr(graph, "node") = paste0(url, "node")
-  attr(graph, "node_index") = paste0(url, "index/node")
-  attr(graph, "relationship_index") = paste0(url, "index/relationship")
-  attr(graph, "relationship_types") = paste0(url, "relationship/types")
-  attr(graph, "batch") = paste0(url, "batch")
-  attr(graph, "cypher") = paste0(url, "cypher")
-  attr(graph, "indexes") = paste0(url, "schema/index")
-  attr(graph, "constraints") = paste0(url, "schema/constraint")
-  attr(graph, "node_labels") = paste0(url, "labels")
-  attr(graph, "transaction") = paste0(url, "transaction")
-  attr(graph, "opts") = opts
-  
-  root = substr(url, 1, nchar(url) - 1)
-  attr(graph, "root") = root
+  if (length(url) > 0) {
+    if(substr(url, nchar(url) - 3, nchar(url)) == "data") {
+      url = paste0(url, "/")
+    }
 
-  if (length(boltUri) == 1) {
-    class(graph) = c("boltGraph", "graph")
-  } else {
-    class(graph) = "graph"
+    result = http_request(url, "GET")
+
+    graph$version = result$neo4j_version
+    attr(graph, "node") = paste0(url, "node")
+    attr(graph, "node_index") = paste0(url, "index/node")
+    attr(graph, "relationship_index") = paste0(url, "index/relationship")
+    attr(graph, "relationship_types") = paste0(url, "relationship/types")
+    attr(graph, "batch") = paste0(url, "batch")
+    attr(graph, "cypher") = paste0(url, "cypher")
+    attr(graph, "indexes") = paste0(url, "schema/index")
+    attr(graph, "constraints") = paste0(url, "schema/constraint")
+    attr(graph, "node_labels") = paste0(url, "labels")
+    attr(graph, "transaction") = paste0(url, "transaction")
+    attr(graph, "opts") = opts
+    
+    root = substr(url, 1, nchar(url) - 1)
+    attr(graph, "root") = root
   }
+
+  graphClass = character()
+  if (length(boltUri) == 1) {
+    graphClass = c(graphClass, "boltGraph")
+  }
+  if (length(url) > 0) {
+    graphClass = c(graphClass, "graph")
+  }
+  class(graph) = graphClass
 
   return(graph)
 }

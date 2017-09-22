@@ -6,9 +6,41 @@ use std::ffi::{CStr, CString};
 use rustr::*;
 use bindings::*;
 
+use graph::Graph;
+
+const NODE_ENDPOINTS: &[(&str, &str)] = &[
+    ("self", ""),
+    ("property", "/properties"),
+    ("properties", "/properties/{key}"),
+    ("labels", "/labels"),
+    ("create_relationship", "/relationships"),
+    ("incoming_relationships", "/relationships/in"),
+    ("outgoing_relationships", "/relationships/out"),
+];
+
 // Defined as a macro in the header
 pub(crate) fn neo4j_type(value: neo4j_value_t) -> neo4j_type_t {
     return value._type;
+}
+
+unsafe fn map_to_rlist(value: neo4j_value_t, graph: &Graph) -> RResult<RList> {
+    assert_eq!(neo4j_type(value), NEO4J_MAP);
+    let len = neo4j_map_size(value);
+    let mut rlist = RList::alloc(len as _);
+    let mut names = CharVec::alloc(len as _);
+    for i in 0..len {
+        let entry = neo4j_map_getentry(value, i);
+        let key = (*entry).key;
+        let value = (*entry).value;
+        let key_slice = slice::from_raw_parts(
+            neo4j_ustring_value(key) as *const u8,
+            neo4j_string_length(key) as usize
+        );
+        names.set(i as _, str::from_utf8_unchecked(key_slice))?;
+        rlist.set(i as _, ValueRef::from_c_ty(value).intor(graph)?)?;
+    }
+    rlist.set_name(&names)?;
+    Ok(rlist)
 }
 
 pub struct ValueRef<'a> {
@@ -54,10 +86,8 @@ impl<'a> ValueRef<'a> {
             CStr::from_ptr(neo4j_typestr(neo4j_type(self.inner)))
         }
     }
-}
 
-impl<'a> IntoR for ValueRef<'a> {
-    fn intor(&self) -> RResult<SEXP> {
+    pub fn intor(&self, graph: &Graph) -> RResult<SEXP> {
         unsafe {
             let value = self.inner;
             let ty = neo4j_type(value);
@@ -77,31 +107,31 @@ impl<'a> IntoR for ValueRef<'a> {
                 str::from_utf8_unchecked(s).intor()
             } else if ty == NEO4J_NODE {
                 let properties = neo4j_node_properties(value);
-                let len = neo4j_map_size(properties);
-                let mut rlist = RList::alloc(len as _);
-                let mut names = CharVec::alloc(len as _);
-                for i in 0..len {
-                    let entry = neo4j_map_getentry(properties, i);
-                    let key = (*entry).key;
-                    let value = (*entry).value;
-                    let key_slice = slice::from_raw_parts(
-                        neo4j_ustring_value(key) as *const u8,
-                        neo4j_string_length(key) as usize
-                    );
-                    names.set(i as _, str::from_utf8_unchecked(key_slice))?;
-                    rlist.set(i as _, ValueRef::from_c_ty(value).intor()?)?;
+                let rlist = map_to_rlist(properties, graph)?;
+                let mut class = vec!["boltNode"];
+                rlist.set_attr::<_, _, Preserve>("boltIdentity", rptr::RPtr::new(Box::new(neo4j_node_identity(value)) as _).intor()?);
+                if let Some(ref http_url) = graph.http_url {
+                    class.extend(&["entity", "node"]);
+                    let mut id = neo4j_node_identity(value);
+                    // TODO this is *extremely* hacky, but there's no better way by design
+                    id._type = NEO4J_INT;
+                    let id = neo4j_int_value(id);
+                    for &(k, v) in NODE_ENDPOINTS {
+                        let v = format!("{}node/{}{}", http_url, id, v);
+                        rlist.set_attr::<_, _, Preserve>(k, v.intor()?);
+                    }
                 }
-                rlist.set_name(&names)?;
-                rlist.set_attr::<_, _, Preserve>("class", "boltNode".intor()?);
-                rlist.set_attr::<_, _, Preserve>("labels", Value::from_c_ty(neo4j_node_labels(value)).intor()?);
+                rlist.set_attr::<_, _, Preserve>("class", class.intor()?);
                 rlist.intor()
             } else if ty == NEO4J_LIST {
                 let len = neo4j_list_length(value) as usize;
                 let mut rlist = RList::alloc(len);
                 for i in 0..len {
-                    rlist.set(i, ValueRef::from_c_ty(neo4j_list_get(value, i as _)).intor()?)?;
+                    rlist.set(i, ValueRef::from_c_ty(neo4j_list_get(value, i as _)).intor(graph)?)?;
                 }
                 rlist.intor()
+            } else if ty == NEO4J_MAP {
+                map_to_rlist(value, graph)?.intor()
             } else {
                 stop!("Cannot convert Neo4j type to R type: {}", self.typestr().to_string_lossy())
             }
@@ -158,6 +188,10 @@ impl Value {
     pub fn typestr(&self) -> &'static CStr {
         self.borrow().typestr()
     }
+
+    pub fn intor(&self, graph: &Graph) -> RResult<SEXP> {
+        self.borrow().intor(graph)
+    }
 }
 
 impl<'a> fmt::Display for ValueRef<'a> {
@@ -180,12 +214,6 @@ impl<'a> fmt::Display for ValueRef<'a> {
 impl fmt::Display for Value {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.borrow().fmt(f)
-    }
-}
-
-impl IntoR for Value {
-    fn intor(&self) -> RResult<SEXP> {
-        self.borrow().intor()
     }
 }
 
@@ -253,8 +281,13 @@ impl RNew for Value {
         unsafe {
             let rty = RTYPEOF(r);
             if rty == NILSXP {
-                Ok(Value::from_c_ty(neo4j_null))
-            } else if rty == LGLSXP {
+                return Ok(Value::from_c_ty(neo4j_null));
+            }
+            // TODO there should be a better way to do this
+            if RFun::from_str_global("is.na")?.eval(&[&r])? {
+                return Ok(Value::from_c_ty(neo4j_null));
+            }
+            if rty == LGLSXP {
                 into_type::<bool>(r)
             } else if rty == INTSXP {
                 into_type::<i64>(r)
@@ -264,6 +297,9 @@ impl RNew for Value {
                 into_type::<String>(r)
             } else if rty == VECSXP {
                 let list = RList::rnew(r)?;
+                if let Ok(mut identity) = list.get_attr::<rptr::RPtr<neo4j_value_t>, Preserve, _>("boltIdentity") {
+                    return Ok(Value::from_c_ty(*identity.get()?));
+                }
                 if list.rsize() == 0 {
                     return Ok(Value {
                         inner: neo4j_map(ptr::null(), 0),

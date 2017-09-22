@@ -42,12 +42,3 @@ getLabel.node = function(object) {
   }
   return(unlist(result))
 }
-
-#' @export
-getLabel.boltNode = function(object) {
-  result = attr(object, "labels")
-  if(length(result) == 0) {
-    return(invisible())
-  }
-  return(unlist(result))
-}

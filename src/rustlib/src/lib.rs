@@ -11,18 +11,19 @@ extern crate neo4j;
 use neo4j::{Graph, Value, ValueRef};
 
 // #[rustr_export]
-pub fn bolt_begin_internal(uri: CString, username: Vec<CString>, password: Vec<CString>) -> RResult<RPtr<Graph>> {
+pub fn bolt_begin_internal(uri: CString, http_url: Vec<String>, username: Vec<CString>, password: Vec<CString>) -> RResult<RPtr<Graph>> {
+    // Normally we'd put mut in the function signature, but rustr doesn't like that.
     let mut username = { username };
     let mut password = { password };
+    let mut http_url = { http_url };
     if username.len() != 1 || password.len() != 1 {
         username.clear();
         password.clear();
     }
-    let username = username.pop();
-    let username = username.as_ref();
-    let password = password.pop();
-    let password = password.as_ref();
-    Graph::open(&uri, username.map(CString::as_c_str), password.map(CString::as_c_str)).map(Box::new).map(RPtr::new)
+    if http_url.len() != 1 {
+        http_url.clear();
+    }
+    Graph::open(&uri, http_url.pop(), username.pop(), password.pop()).map(Box::new).map(RPtr::new)
 }
 
 // #[rustr_export]
@@ -51,7 +52,7 @@ pub fn bolt_query_internal(graph: RPtr<Graph>, query: CString, params: Value, as
                 if !field.is_r_primitive() {
                     stop!("You must query for tabular results when using this function.");
                 }
-                data.set(x, field.intor()?)?;
+                data.set(x, field.intor(&graph)?)?;
             }
             out.set(y as _, data)?;
         }
@@ -63,7 +64,7 @@ pub fn bolt_query_internal(graph: RPtr<Graph>, query: CString, params: Value, as
             let mut fields = RList::alloc(nfields as _);
             fields.set_name(&fieldnames)?;
             for (y, field) in res.into_iter().enumerate() {
-                fields.set(y as _, field.intor()?)?;
+                fields.set(y as _, field.intor(&graph)?)?;
             }
             out.set(x as _, fields)?;
         }
