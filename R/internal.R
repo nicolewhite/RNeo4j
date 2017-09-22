@@ -131,6 +131,10 @@ http_request = function(url, request_type, body=NULL) {
 }
 
 cypher_endpoint = function(graph, query, params) {
+  if ("boltGraph" %in% class(graph)) {
+    stop("Attempted to use cypher_endpoint on boltGraph")
+  }
+
   body = list(query = query)
   
   if(length(params) > 0) {
