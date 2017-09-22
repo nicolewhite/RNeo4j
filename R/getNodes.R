@@ -43,8 +43,10 @@ getNodes = function(graph, query, ...) UseMethod("getNodes")
 getNodes.graph = function(graph, query, ...) {
   result = cypherToList(graph, query, ...)
   
-  for(i in 1:length(result)) {
-    result[[i]] = result[[i]][[1]]
+  if(length(result) > 0) {
+    for(i in 1:length(result)) {
+      result[[i]] = result[[i]][[1]]
+    }
   }
 
   return(result)

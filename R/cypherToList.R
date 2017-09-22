@@ -80,5 +80,11 @@ cypherToList.graph = function(graph, query, ...) {
 #' @export
 cypherToList.boltGraph = function(graph, query, ...) {
   params = parse_dots(list(...))
-  return(bolt_query_internal(graph$bolt, query, params, FALSE))
+  result = bolt_query_internal(graph$bolt, query, params, FALSE)
+
+  if (length(result) == 0) {
+    return(invisible())
+  }
+
+  return(result)
 }
