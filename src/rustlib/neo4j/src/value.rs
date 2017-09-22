@@ -10,8 +10,8 @@ use graph::Graph;
 
 const NODE_ENDPOINTS: &[(&str, &str)] = &[
     ("self", ""),
-    ("property", "/properties"),
-    ("properties", "/properties/{key}"),
+    ("property", "/properties/{key}"),
+    ("properties", "/properties"),
     ("labels", "/labels"),
     ("create_relationship", "/relationships"),
     ("incoming_relationships", "/relationships/in"),
@@ -107,7 +107,7 @@ impl<'a> ValueRef<'a> {
                 str::from_utf8_unchecked(s).intor()
             } else if ty == NEO4J_NODE {
                 let properties = neo4j_node_properties(value);
-                let rlist = map_to_rlist(properties, graph)?;
+                let mut rlist = map_to_rlist(properties, graph)?;
                 let mut class = vec!["boltNode"];
                 rlist.set_attr::<_, _, Preserve>("boltIdentity", rptr::RPtr::new(Box::new(neo4j_node_identity(value)) as _).intor()?);
                 if let Some(ref http_url) = graph.http_url {
@@ -121,13 +121,18 @@ impl<'a> ValueRef<'a> {
                         rlist.set_attr::<_, _, Preserve>(k, v.intor()?);
                     }
                 }
+                for i in 0..rlist.rsize() {
+                    if let Some(item) = rlist.at(i as _) {
+                        rlist.set(i as _, RFun::from_str_global("unlist")?.eval::<SEXP>(&[&item])?)?;
+                    }
+                }
                 rlist.set_attr::<_, _, Preserve>("class", class.intor()?);
                 rlist.intor()
             } else if ty == NEO4J_LIST {
-                let len = neo4j_list_length(value) as usize;
-                let mut rlist = RList::alloc(len);
+                let len = neo4j_list_length(value);
+                let mut rlist = RList::alloc(len as _);
                 for i in 0..len {
-                    rlist.set(i, ValueRef::from_c_ty(neo4j_list_get(value, i as _)).intor(graph)?)?;
+                    rlist.set(i as _, ValueRef::from_c_ty(neo4j_list_get(value, i)).intor(graph)?)?;
                 }
                 rlist.intor()
             } else if ty == NEO4J_MAP {
