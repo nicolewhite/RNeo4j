@@ -70,7 +70,7 @@ test_that("paths and nodes are retrieved", {
 })
 
 test_that("paths and relationships are retrieved", {
-  skip_on_bolt(neo4j, "paths or relationships")
+  skip_on_bolt(neo4j, "paths")
   query = "MATCH x = (:Person)-[r:ACTED_IN]->(:Movie) RETURN x, r LIMIT 5"
   response = cypherToList(neo4j, query)
   

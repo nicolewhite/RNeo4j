@@ -41,14 +41,14 @@ test_that("startNode works", {
   n = startNode(rel)
   x = class(n)
   expect_true("node" %in% x)
-  expect_identical(n, mugshots)
+  expect_equal(getID(n), getID(mugshots))
 })
 
 test_that("endNode works", {
   n = endNode(rel)
   x = class(n)
   expect_true("node" %in% x)
-  expect_identical(n, nastys)
+  expect_equal(getID(n), getID(nastys))
 })
 
 test_that("outgoingRels works", {

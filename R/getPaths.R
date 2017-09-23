@@ -43,6 +43,9 @@ getPaths.graph = function(graph, query, ...) {
 
   for(i in 1:length(result)) {
     result[[i]] = result[[i]][[1]]
+    if(!("path" %in% class(result[[i]]))) {
+      stop("At least one entity returned is not a path. Check that your query is returning paths.")
+    }
   }
 
   return(result)

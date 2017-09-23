@@ -124,11 +124,12 @@ test_that("getPaths returns null when not found", {
 })
 
 test_that("getPaths throws error when returning a non-path object", {
-  query = "MATCH n RETURN n"
+  query = "MATCH (n) RETURN n"
   expect_error(getPaths(neo4j, query))
 })
 
 test_that("getPaths works", {
+  skip_on_bolt(neo4j, "paths")
   query = "
   MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH*1..4]->(:Person {name:'David'})
   RETURN p
