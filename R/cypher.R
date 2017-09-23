@@ -90,9 +90,14 @@ cypher.graph = function(graph, query, ...) {
 
 #' @export
 cypher.boltGraph = function(graph, query, ...) {
+  return(cypher.externalptr(graph$bolt, query, ...))
+}
+
+#' @export
+cypher.externalptr = function(graph, query, ...) {
   params = parse_dots(list(...))
 
-  df = bolt_query_internal(graph$bolt, query, params, TRUE)
+  df = bolt_query_internal(graph, query, params, TRUE)
   if (nrow(df) == 0) {
     return(df)
   }

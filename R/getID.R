@@ -23,3 +23,8 @@ getID.entity = function(entity) {
   id = as.numeric(unlist(strsplit(unlist(strsplit(attr(entity, "self"), "db/data/"))[2], "/"))[2])
   return(id)
 }
+
+#' @export
+getID.boltEntity = function(entity) {
+  return(attr(entity, "boltId"))
+}

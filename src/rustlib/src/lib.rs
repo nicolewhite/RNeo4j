@@ -29,6 +29,8 @@ pub fn bolt_begin_internal(uri: CString, http_url: Vec<String>, username: Vec<CS
 // #[rustr_export]
 pub fn bolt_query_internal(graph: RPtr<Graph>, query: CString, params: Value, as_data_frame: bool) -> RResult<RList> {
     let mut graph = { graph };
+    // TODO RPtr is unsafe/broken: https://github.com/rustr/rustr/issues/6
+    let mut graph_for_intor = graph.clone();
     let graph = graph.get()?;
     let result_stream = graph.query(query, params)?;
     let nfields = result_stream.nfields();
@@ -52,7 +54,7 @@ pub fn bolt_query_internal(graph: RPtr<Graph>, query: CString, params: Value, as
                 if !field.is_r_primitive() {
                     stop!("You must query for tabular results when using this function.");
                 }
-                data.set(x, field.intor(&graph)?)?;
+                data.set(x, field.intor(&mut graph_for_intor)?)?;
             }
             out.set(y as _, data)?;
         }
@@ -64,7 +66,7 @@ pub fn bolt_query_internal(graph: RPtr<Graph>, query: CString, params: Value, as
             let mut fields = RList::alloc(nfields as _);
             fields.set_name(&fieldnames)?;
             for (y, field) in res.into_iter().enumerate() {
-                fields.set(y as _, field.intor(&graph)?)?;
+                fields.set(y as _, field.intor(&mut graph_for_intor)?)?;
             }
             out.set(x as _, fields)?;
         }

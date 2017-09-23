@@ -4,6 +4,7 @@ use std::marker::PhantomData;
 use std::ffi::{CStr, CString};
 
 use rustr::*;
+use rustr::rptr::RPtr;
 use bindings::*;
 
 use graph::Graph;
@@ -18,12 +19,18 @@ const NODE_ENDPOINTS: &[(&str, &str)] = &[
     ("outgoing_relationships", "/relationships/out"),
 ];
 
+const RELATIONSHIP_ENDPOINTS: &[(&str, &str)] = &[
+    ("self", ""),
+    ("property", "/properties/{key}"),
+    ("properties", "/properties"),
+];
+
 // Defined as a macro in the header
 pub(crate) fn neo4j_type(value: neo4j_value_t) -> neo4j_type_t {
     return value._type;
 }
 
-unsafe fn map_to_rlist(value: neo4j_value_t, graph: &Graph) -> RResult<RList> {
+unsafe fn map_to_rlist(value: neo4j_value_t, graph: &mut RPtr<Graph>) -> RResult<RList> {
     assert_eq!(neo4j_type(value), NEO4J_MAP);
     let len = neo4j_map_size(value);
     let mut rlist = RList::alloc(len as _);
@@ -41,6 +48,43 @@ unsafe fn map_to_rlist(value: neo4j_value_t, graph: &Graph) -> RResult<RList> {
     }
     rlist.set_name(&names)?;
     Ok(rlist)
+}
+
+unsafe fn identity_to_int(mut ident: neo4j_value_t) -> i64 {
+    // TODO this is *extremely* hacky, but there's no better way by design
+    ident._type = NEO4J_INT;
+    neo4j_int_value(ident)
+}
+
+unsafe fn configure_entity<RT: RAttribute>(
+    graph: &mut RPtr<Graph>, robj: &mut RT, ident: neo4j_value_t, name: &'static str,
+    bolt_name: &'static str, http_endpoints: &'static [(&'static str, &'static str)]
+) -> RResult<()> {
+    // to get around borrow checker
+    let maybe_class = ["boltEntity", "entity", bolt_name, name];
+    let mut class: &[&'static str] = &["boltEntity", bolt_name];
+    robj.set_attr::<_, _, Preserve>("boltGraph", graph.intor()?);
+    robj.set_attr::<_, _, Preserve>("boltIdentity", ValueRef::from_c_ty(ident).intor(graph)?);
+    let id = identity_to_int(ident);
+    robj.set_attr::<_, _, Preserve>("boltId", id.intor()?);
+    if let Some(ref http_url) = graph.get()?.http_url {
+        class = &maybe_class;
+        for &(k, v) in http_endpoints {
+            let v = format!("{}{}/{}{}", http_url, name, id, v);
+            robj.set_attr::<_, _, Preserve>(k, v.intor()?);
+        }
+    }
+    robj.set_attr::<_, _, Preserve>("class", class.intor()?);
+    Ok(())
+}
+
+fn unlist_items(rlist: &mut RList) -> RResult<()> {
+    for i in 0..rlist.rsize() {
+        if let Some(item) = rlist.at(i as _) {
+            rlist.set(i as _, RFun::from_str_global("unlist")?.eval::<SEXP>(&[&item])?)?;
+        }
+    }
+    Ok(())
 }
 
 pub struct ValueRef<'a> {
@@ -87,7 +131,7 @@ impl<'a> ValueRef<'a> {
         }
     }
 
-    pub fn intor(&self, graph: &Graph) -> RResult<SEXP> {
+    pub fn intor(&self, graph: &mut RPtr<Graph>) -> RResult<SEXP> {
         unsafe {
             let value = self.inner;
             let ty = neo4j_type(value);
@@ -106,27 +150,26 @@ impl<'a> ValueRef<'a> {
                 );
                 str::from_utf8_unchecked(s).intor()
             } else if ty == NEO4J_NODE {
-                let properties = neo4j_node_properties(value);
-                let mut rlist = map_to_rlist(properties, graph)?;
-                let mut class = vec!["boltNode"];
-                rlist.set_attr::<_, _, Preserve>("boltIdentity", rptr::RPtr::new(Box::new(neo4j_node_identity(value)) as _).intor()?);
-                if let Some(ref http_url) = graph.http_url {
-                    class.extend(&["entity", "node"]);
-                    let mut id = neo4j_node_identity(value);
-                    // TODO this is *extremely* hacky, but there's no better way by design
-                    id._type = NEO4J_INT;
-                    let id = neo4j_int_value(id);
-                    for &(k, v) in NODE_ENDPOINTS {
-                        let v = format!("{}node/{}{}", http_url, id, v);
-                        rlist.set_attr::<_, _, Preserve>(k, v.intor()?);
+                let mut rlist = map_to_rlist(neo4j_node_properties(value), graph)?;
+                configure_entity(graph, &mut rlist, neo4j_node_identity(value),
+                    "node", "boltNode", NODE_ENDPOINTS)?;
+                unlist_items(&mut rlist)?;
+                rlist.intor()
+            } else if ty == NEO4J_RELATIONSHIP {
+                let mut rlist = map_to_rlist(neo4j_relationship_properties(value), graph)?;
+                configure_entity(graph, &mut rlist, neo4j_relationship_identity(value),
+                    "relationship", "boltRelationship", RELATIONSHIP_ENDPOINTS)?;
+                rlist.set_attr::<_, _, Preserve>("type", ValueRef::from_c_ty(neo4j_relationship_type(value)).intor(graph)?);
+                let start_ident = neo4j_relationship_start_node_identity(value);
+                let end_ident = neo4j_relationship_end_node_identity(value);
+                rlist.set_attr::<_, _, Preserve>("boltStartIdent", ValueRef::from_c_ty(start_ident).intor(graph)?);
+                rlist.set_attr::<_, _, Preserve>("boltEndIdent", ValueRef::from_c_ty(end_ident).intor(graph)?);
+                if let Some(ref http_url) = graph.get()?.http_url {
+                    for &(name, ident) in &[("start", start_ident), ("end", end_ident)] {
+                        rlist.set_attr::<_, _, Preserve>(name, format!("{}node/{}", http_url, identity_to_int(ident)).intor()?);
                     }
                 }
-                for i in 0..rlist.rsize() {
-                    if let Some(item) = rlist.at(i as _) {
-                        rlist.set(i as _, RFun::from_str_global("unlist")?.eval::<SEXP>(&[&item])?)?;
-                    }
-                }
-                rlist.set_attr::<_, _, Preserve>("class", class.intor()?);
+                unlist_items(&mut rlist)?;
                 rlist.intor()
             } else if ty == NEO4J_LIST {
                 let len = neo4j_list_length(value);
@@ -137,6 +180,8 @@ impl<'a> ValueRef<'a> {
                 rlist.intor()
             } else if ty == NEO4J_MAP {
                 map_to_rlist(value, graph)?.intor()
+            } else if ty == NEO4J_IDENTITY {
+                RPtr::new(Box::new(value) as _).intor()
             } else {
                 stop!("Cannot convert Neo4j type to R type: {}", self.typestr().to_string_lossy())
             }
@@ -194,7 +239,7 @@ impl Value {
         self.borrow().typestr()
     }
 
-    pub fn intor(&self, graph: &Graph) -> RResult<SEXP> {
+    pub fn intor(&self, graph: &mut RPtr<Graph>) -> RResult<SEXP> {
         self.borrow().intor(graph)
     }
 }
@@ -302,7 +347,7 @@ impl RNew for Value {
                 into_type::<String>(r)
             } else if rty == VECSXP {
                 let list = RList::rnew(r)?;
-                if let Ok(mut identity) = list.get_attr::<rptr::RPtr<neo4j_value_t>, Preserve, _>("boltIdentity") {
+                if let Ok(mut identity) = list.get_attr::<RPtr<neo4j_value_t>, Preserve, _>("boltIdentity") {
                     return Ok(Value::from_c_ty(*identity.get()?));
                 }
                 if list.rsize() == 0 {

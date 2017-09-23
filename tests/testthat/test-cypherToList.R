@@ -32,7 +32,6 @@ test_that("nodes and properties are retrieved", {
 })
 
 test_that("relationships and properties are retrieved", {
-  skip_on_bolt(neo4j, "relationships")
   query = "MATCH (:Person)-[r:ACTED_IN]->(m:Movie) RETURN r, m.title LIMIT 5"
   response = cypherToList(neo4j, query)
   
@@ -42,7 +41,6 @@ test_that("relationships and properties are retrieved", {
 })
 
 test_that("nodes and relationships are retrieved", {
-  skip_on_bolt(neo4j, "relationships")
   query = "MATCH (p:Person)-[r:ACTED_IN]->(:Movie) RETURN p, r LIMIT 5"
   response = cypherToList(neo4j, query)
   
