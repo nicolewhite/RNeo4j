@@ -64,7 +64,7 @@ unsafe fn configure_entity<RT: RAttribute>(
     let maybe_class = ["boltEntity", "entity", bolt_name, name];
     let mut class: &[&'static str] = &["boltEntity", bolt_name];
     robj.set_attr::<_, _, Preserve>("boltGraph", graph.intor()?);
-    robj.set_attr::<_, _, Preserve>("boltIdentity", ValueRef::from_c_ty(ident).intor(graph)?);
+    robj.set_attr::<_, _, Preserve>("boltIdentity", Value::from_c_ty(ident).intor(graph)?);
     let id = identity_to_int(ident);
     robj.set_attr::<_, _, Preserve>("boltId", id.intor()?);
     if let Some(ref http_url) = graph.get()?.http_url {
@@ -159,11 +159,11 @@ impl<'a> ValueRef<'a> {
                 let mut rlist = map_to_rlist(neo4j_relationship_properties(value), graph)?;
                 configure_entity(graph, &mut rlist, neo4j_relationship_identity(value),
                     "relationship", "boltRelationship", RELATIONSHIP_ENDPOINTS)?;
-                rlist.set_attr::<_, _, Preserve>("type", ValueRef::from_c_ty(neo4j_relationship_type(value)).intor(graph)?);
+                rlist.set_attr::<_, _, Preserve>("type", Value::from_c_ty(neo4j_relationship_type(value)).intor(graph)?);
                 let start_ident = neo4j_relationship_start_node_identity(value);
                 let end_ident = neo4j_relationship_end_node_identity(value);
-                rlist.set_attr::<_, _, Preserve>("boltStartIdent", ValueRef::from_c_ty(start_ident).intor(graph)?);
-                rlist.set_attr::<_, _, Preserve>("boltEndIdent", ValueRef::from_c_ty(end_ident).intor(graph)?);
+                rlist.set_attr::<_, _, Preserve>("boltStartIdent", Value::from_c_ty(start_ident).intor(graph)?);
+                rlist.set_attr::<_, _, Preserve>("boltEndIdent", Value::from_c_ty(end_ident).intor(graph)?);
                 if let Some(ref http_url) = graph.get()?.http_url {
                     for &(name, ident) in &[("start", start_ident), ("end", end_ident)] {
                         rlist.set_attr::<_, _, Preserve>(name, format!("{}node/{}", http_url, identity_to_int(ident)).intor()?);
@@ -180,8 +180,6 @@ impl<'a> ValueRef<'a> {
                 rlist.intor()
             } else if ty == NEO4J_MAP {
                 map_to_rlist(value, graph)?.intor()
-            } else if ty == NEO4J_IDENTITY {
-                RPtr::new(Box::new(value) as _).intor()
             } else {
                 stop!("Cannot convert Neo4j type to R type: {}", self.typestr().to_string_lossy())
             }
@@ -240,7 +238,14 @@ impl Value {
     }
 
     pub fn intor(&self, graph: &mut RPtr<Graph>) -> RResult<SEXP> {
-        self.borrow().intor(graph)
+        unsafe {
+            let ty = neo4j_type(self.inner);
+            if ty == NEO4J_IDENTITY {
+                RPtr::new(Box::new(Value::from_c_ty(self.inner))).intor()
+            } else {
+                self.borrow().intor(graph)
+            }
+        }
     }
 }
 
@@ -334,7 +339,7 @@ impl RNew for Value {
                 return Ok(Value::from_c_ty(neo4j_null));
             }
             // TODO there should be a better way to do this
-            if RFun::from_str_global("is.na")?.eval(&[&r])? {
+            if rty != EXTPTRSXP && RFun::from_str_global("is.na")?.eval(&[&r])? {
                 return Ok(Value::from_c_ty(neo4j_null));
             }
             if rty == LGLSXP {
@@ -347,8 +352,10 @@ impl RNew for Value {
                 into_type::<String>(r)
             } else if rty == VECSXP {
                 let list = RList::rnew(r)?;
-                if let Ok(mut identity) = list.get_attr::<RPtr<neo4j_value_t>, Preserve, _>("boltIdentity") {
-                    return Ok(Value::from_c_ty(*identity.get()?));
+                if let Ok(identity) = list.get_attr::<SEXP, Preserve, _>("boltIdentity") {
+                    if RTYPEOF(identity) != NILSXP {
+                        return Value::rnew(identity);
+                    }
                 }
                 if list.rsize() == 0 {
                     return Ok(Value {
@@ -376,6 +383,11 @@ impl RNew for Value {
                     inner: map,
                     store: Some(Box::new(store) as Box<Any>),
                 })
+            } else if rty == EXTPTRSXP {
+                let mut rptr: RPtr<Value> = RPtr::rnew(r)?;
+                let ref value_ref = rptr.get()?;
+                assert!(value_ref.store.is_none(), "Encountered R Pointer to Value with store");
+                Ok(Value::from_c_ty(value_ref.inner))
             } else {
                 stop!("Cannot convert R type {} to Neo4j type", RTYPEOF(r))
             }

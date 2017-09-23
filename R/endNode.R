@@ -45,7 +45,7 @@ endNode.relationship = function(object) {
 #' @export
 startNode.boltRelationship = function(object) {
   query = "MATCH (n) WHERE ID(n) = {id} RETURN n"
-  return(cypherToList(attr(object, "boltGraph"), query, id=object)[[1]]$n)
+  return(cypherToList(attr(object, "boltGraph"), query, id=attr(object, "boltEndIdent"))[[1]]$n)
 }
 
 #' @export
