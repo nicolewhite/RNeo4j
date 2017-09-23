@@ -52,7 +52,10 @@ createRel.node = function(.fromNode, .relType, .toNode, ...) {
 createRel.boltNode = function(.fromNode, .relType, .toNode, ...) {
   stopifnot("boltNode" %in% class(.toNode))
 
+  params = list(...)
+  params = parse_dots(params)
+
   graph = attr(.fromNode, "boltGraph")
-  query = paste0("MATCH (a),(b) WHERE ID(a)={a} AND ID(b)={b} CREATE (a)-[r:`", .relType, "`]->(b) RETURN r")
-  return(cypherToList(graph, query, a=.fromNode, b=.toNode, relType=.relType)[[1]]$r)
+  query = paste0("MATCH (a),(b) WHERE ID(a)={a} AND ID(b)={b} CREATE (a)-[r:`", .relType, "` {props}]->(b) RETURN r")
+  return(cypherToList(graph, query, a=.fromNode, b=.toNode, relType=.relType, props=params)[[1]]$r)
 }
