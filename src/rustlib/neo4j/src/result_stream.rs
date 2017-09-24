@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 use std::any::Any;
 
 use rustr::*;
-use value::ValueRef;
+use value_ref::ValueRef;
 use bindings::*;
 use errno::{errno, Errno};
 

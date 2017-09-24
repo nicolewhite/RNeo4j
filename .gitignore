@@ -3,6 +3,7 @@
 .Rhistory
 .RData
 neo4j*/
+!src/rustlib/neo4j
 _site
 *.html
 *.tar.gz
