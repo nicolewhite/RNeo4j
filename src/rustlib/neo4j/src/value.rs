@@ -172,6 +172,12 @@ impl RNew for Value {
                 into_type::<f64>(r)
             } else if rty == STRSXP {
                 into_type::<String>(r)
+            } else if rty == RAWSXP {
+                let rvec = Vec::<u8>::rnew(r)?;
+                Ok(Value {
+                    inner: neo4j_bytes(rvec.as_ptr() as _, rvec.len() as _),
+                    store: Some(Box::new(rvec)),
+                })
             } else if rty == VECSXP {
                 let list = RList::rnew(r)?;
                 if let Ok(identity) = list.get_attr::<SEXP, Preserve, _>("boltIdentity") {
