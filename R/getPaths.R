@@ -50,3 +50,6 @@ getPaths.graph = function(graph, query, ...) {
 
   return(result)
 }
+
+#' @export
+getPaths.boltGraph = getPaths.graph;

@@ -48,3 +48,6 @@ getRels.graph = function(graph, query, ...) {
   
   return(result)
 }
+
+#' @export
+getRels.boltGraph = getRels.graph;

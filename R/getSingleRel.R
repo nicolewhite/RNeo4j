@@ -52,3 +52,6 @@ getSingleRel.graph = function(graph, query, ...) {
   
   return(result)
 }
+
+#' @export
+getSingleRel.boltGraph = getSingleRel.graph;

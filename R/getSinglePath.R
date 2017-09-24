@@ -50,3 +50,6 @@ getSinglePath.graph = function(graph, query, ...) {
   
   return(result)
 }
+
+#' @export
+getSinglePath.boltGraph = getSinglePath.graph;
