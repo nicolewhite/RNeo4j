@@ -129,7 +129,6 @@ test_that("getPaths throws error when returning a non-path object", {
 })
 
 test_that("getPaths works", {
-  skip_on_bolt(neo4j, "paths")
   query = "
   MATCH p = (:Person {name:'Alice'})-[:WORKS_WITH*1..4]->(:Person {name:'David'})
   RETURN p

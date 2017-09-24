@@ -1,6 +1,6 @@
-use std::{slice, str};
+use std::{slice, str, ptr};
 use std::marker::PhantomData;
-use std::ffi::CStr;
+use std::ffi::{CStr, CString};
 
 use rustr::*;
 use rustr::rptr::RPtr;
@@ -165,6 +165,44 @@ impl<'a> ValueRef<'a> {
                     }
                 }
                 unlist_items(&mut rlist)?;
+                rlist.intor()
+            } else if ty == NEO4J_PATH {
+                let mut rlist = RList::alloc(1);
+                let len = neo4j_path_length(value);
+                rlist.set(0, len.intor()?)?;
+                let name = CharVec::from(vec![CString::new("length").unwrap()]);
+                rlist.set_name(&name)?;
+                if len > 0 {
+                    for &(n, i) in &[("boltStartIdent", 0), ("boltEndIdent", len)] {
+                        rlist.set_attr::<_, _, Preserve>(n, Value::from_c_ty(neo4j_node_identity(neo4j_path_get_node(value, i))).intor(graph)?);
+                    }
+                }
+                rlist.set_attr::<_, _, Preserve>("boltGraph", graph.intor()?);
+                if let Some(ref http_url) = graph.get()?.http_url {
+                    rlist.set_attr::<_, _, Preserve>("class", (&["boltPath", "path"] as &[_]).intor()?);
+                    for &(n, i) in &[("start", 0), ("end", len)] {
+                        let ident = neo4j_node_identity(neo4j_path_get_node(value, i));
+                        let url = format!("{}node/{}", http_url, identity_to_int(ident));
+                        rlist.set_attr::<_, _, Preserve>(n, url.intor()?);
+                    }
+                    let nnodes = if len == 0 { 0 } else { len + 1 };
+                    let mut node_urls = CharVec::alloc(nnodes as _);
+                    for i in 0..nnodes {
+                        let ident = neo4j_node_identity(neo4j_path_get_node(value, i));
+                        let url = format!("{}node/{}", http_url, identity_to_int(ident));
+                        node_urls.set(i as _, &url)?;
+                    }
+                    rlist.set_attr::<_, _, Preserve>("nodes", node_urls.intor()?);
+                    let mut rel_urls = CharVec::alloc(len as _);
+                    for i in 0..len {
+                        let ident = neo4j_relationship_identity(neo4j_path_get_relationship(value, i, ptr::null_mut()));
+                        let url = format!("{}relationship/{}", http_url, identity_to_int(ident));
+                        rel_urls.set(i as _, &url)?;
+                    }
+                    rlist.set_attr::<_, _, Preserve>("relationships", rel_urls.intor()?);
+                } else {
+                    rlist.set_attr::<_, _, Preserve>("class", (&["boltPath"] as &[_]).intor()?);
+                }
                 rlist.intor()
             } else if ty == NEO4J_LIST {
                 let len = neo4j_list_length(value);
