@@ -211,13 +211,6 @@ impl<'a> ValueRef<'a> {
                     rlist.set(i as _, ValueRef::from_c_ty(neo4j_list_get(value, i)).intor(graph)?)?;
                 }
                 rlist.intor()
-            } else if ty == NEO4J_BYTES {
-                let slice = slice::from_raw_parts(neo4j_bytes_value(value) as *const u8, neo4j_bytes_length(value) as _);
-                let mut rawvec = RawVec::alloc(slice.len());
-                for (i, &b) in slice.into_iter().enumerate() {
-                    rawvec.set(i, b)?;
-                }
-                rawvec.intor()
             } else if ty == NEO4J_MAP {
                 map_to_rlist(value, graph)?.intor()
             } else {
