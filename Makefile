@@ -7,9 +7,11 @@ test_all:
 	python neokit/neorun.py --start=neo4j -v 3.0.4 -p password
 	make test
 	python neokit/neorun.py --stop=neo4j
+	sleep 2
 	python neokit/neorun.py --start=neo4j -v 2.3.6 -p password
 	make test
 	python neokit/neorun.py --stop=neo4j
+	sleep 2
 	python neokit/neorun.py --start=neo4j -v 2.2.10 -p password
 	make test
 	python neokit/neorun.py --stop=neo4j
