@@ -14,12 +14,22 @@
 #' \dontrun{
 #' graph = startGraph() # http://localhost:7474/db/data/ by default
 #' 
-#' graph = startGraph("http://localhost:7474/db/data/", 
+#' graph = startGraph("http://localhost:7474/db/data/",
 #'                    username = "neo4j",
 #'                    password = "password")
-#' 
-#' graph = startGraph("http://localhost:7474/db/data/", 
+#'
+#' graph = startGraph("http://localhost:7474/db/data/",
 #'                    opts = list(timeout=3))
+#'
+#' graph = startGraph("http://localhost:7474/db/data/",
+#'                    username = "neo4j",
+#'                    password = "password",
+#'                    boltUri = "neo4j://localhost:7687/")
+#'
+#' graph = startGraph(character(), # only use the Bolt interface
+#'                    username = "neo4j",
+#'                    password = "password",
+#'                    boltUri = "neo4j://localhost:7687/")
 #' }
 #' 
 #' @export
