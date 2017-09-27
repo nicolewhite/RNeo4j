@@ -2,7 +2,7 @@ test:
 	tests/test.sh
 
 test_all:
-	neokit/neorun tests/test_all.sh 2.3.3 2.2.9 2.1.8
+	python neokit/neorun.py -- tests/test_all.sh 2.3.3 2.2.9 2.1.8
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
@@ -24,8 +24,8 @@ readme:
 	/usr/local/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
 download_neo4j:
-	neokit/neoget -i -x 3.0.4 2.3.6 2.2.10
-	neokit/neoctl unzip 3.0.4 2.3.6 2.2.10
+	python neokit/neoget.py -- -i -x 3.0.4 2.3.6 2.2.10
+	python neokit/neoctl.py -- unzip 3.0.4 2.3.6 2.2.10
 	
 cran:
 	PATH="$PATH:/Library/TeX/texbin/pdflatex"
