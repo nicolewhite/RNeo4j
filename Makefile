@@ -8,10 +8,12 @@ test_all:
 	make test
 	python neokit/neorun.py --stop=neo4j
 	sleep 2
+	rm -r neo4j
 	python neokit/neorun.py --start=neo4j -v 2.3.6 -p password
 	make test
 	python neokit/neorun.py --stop=neo4j
 	sleep 2
+	rm -r neo4j
 	python neokit/neorun.py --start=neo4j -v 2.2.10 -p password
 	make test
 	python neokit/neorun.py --stop=neo4j
