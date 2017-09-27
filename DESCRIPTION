@@ -23,4 +23,4 @@ BugReports: https://github.com/nicolewhite/RNeo4j/issues
 Suggests:
     testthat
 RoxygenNote: 5.0.1
-SystemRequirements: cargo, rustc
+SystemRequirements: cargo, rustc, clang, libneo4j-client-dev
