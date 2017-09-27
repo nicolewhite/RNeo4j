@@ -1,8 +1,10 @@
 language: r
-sudo: required
+sudo: false
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
 before_install:
-  - make download_neo4j
-  - sudo apt-get update && sudo apt-get install oracle-java8-installer
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 r_github_packages:
   - hadley/testthat
