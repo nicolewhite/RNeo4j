@@ -1,5 +1,6 @@
 test:
 	tests/test.sh
+	NEO4J_BOLT=1 tests/test.sh
 
 test_all:
 	Rscript -e 'devtools::install()'
