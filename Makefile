@@ -3,15 +3,15 @@ test:
 
 test_all:
 	Rscript -e 'devtools::install()'
-	python neokit/neorun.py -- --start=neo4j -v 3.0.4 -p password
+	python neokit/neorun.py --start=neo4j -v 3.0.4 -p password
 	make test
-	python neokit/neorun.py -- --stop=neo4j
-	python neokit/neorun.py -- --start=neo4j -v 2.3.6 -p password
+	python neokit/neorun.py --stop=neo4j
+	python neokit/neorun.py --start=neo4j -v 2.3.6 -p password
 	make test
-	python neokit/neorun.py -- --stop=neo4j
-	python neokit/neorun.py -- --start=neo4j -v 2.2.10 -p password
+	python neokit/neorun.py --stop=neo4j
+	python neokit/neorun.py --start=neo4j -v 2.2.10 -p password
 	make test
-	python neokit/neorun.py -- --stop=neo4j
+	python neokit/neorun.py --stop=neo4j
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
@@ -34,9 +34,9 @@ readme:
 	
 # no longer needed as test_all will do this automatically
 download_neo4j:
-	python neokit/neoget.py -- -v 3.0.4
-	python neokit/neoget.py -- -v 2.3.6
-	python neokit/neoget.py -- -v 2.2.10
+	python neokit/neoget.py -v 3.0.4
+	python neokit/neoget.py -v 2.3.6
+	python neokit/neoget.py -v 2.2.10
 	
 cran:
 	PATH="$PATH:/Library/TeX/texbin/pdflatex"
