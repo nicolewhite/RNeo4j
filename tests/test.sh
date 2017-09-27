@@ -1,2 +1,5 @@
 #!/usr/bin/env Rscript
-devtools::test()
+df=as.data.frame(devtools::test())
+if(sum(df$failed) > 0 || any(df$error)) {
+    q(status=1)
+}
