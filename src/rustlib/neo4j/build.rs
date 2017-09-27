@@ -5,6 +5,7 @@ use std::path::PathBuf;
 
 fn main() {
     println!("cargo:rustc-link-lib=neo4j-client");
+    // for Rust unit tests
     println!("cargo:rustc-link-search=native=/usr/lib/R/lib");
 
     let bindings = bindgen::Builder::default()
