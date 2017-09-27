@@ -1,5 +1,8 @@
 language: r
 sudo: false
+cache:
+  - cargo
+  - packages
 addons:
   apt:
     packages:
