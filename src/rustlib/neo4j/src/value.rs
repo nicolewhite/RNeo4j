@@ -71,23 +71,6 @@ impl Value {
     }
 }
 
-impl<'a> fmt::Display for ValueRef<'a> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let mut buf = vec![0u8; 64];
-        unsafe {
-            let len = neo4j_ntostring(self.inner, buf.as_ptr() as _, buf.len());
-            let orig_len = buf.len();
-            buf.resize(len + 1, 0);
-            if len > orig_len {
-                let new_len = neo4j_ntostring(self.inner, buf.as_ptr() as _, buf.len());
-                buf.truncate(new_len + 1);
-            }
-        }
-        assert_eq!(buf.pop(), Some(0));
-        write!(f, "{}", CString::new(buf).map_err(|_| fmt::Error)?.into_string().map_err(|_| fmt::Error)?)
-    }
-}
-
 impl fmt::Display for Value {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.borrow().fmt(f)
