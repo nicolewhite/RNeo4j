@@ -1,4 +1,4 @@
-use std::{slice, str, ptr};
+use std::{slice, str, fmt, ptr};
 use std::marker::PhantomData;
 use std::ffi::{CStr, CString};
 
@@ -9,7 +9,7 @@ use bindings::*;
 use graph::Graph;
 use value::Value;
 
-const NODE_ENDPOINTS: &[(&str, &str)] = &[
+const NODE_ENDPOINTS: &'static [(&'static str, &'static str)] = &[
     ("self", ""),
     ("property", "/properties/{key}"),
     ("properties", "/properties"),
@@ -19,7 +19,7 @@ const NODE_ENDPOINTS: &[(&str, &str)] = &[
     ("outgoing_relationships", "/relationships/out"),
 ];
 
-const RELATIONSHIP_ENDPOINTS: &[(&str, &str)] = &[
+const RELATIONSHIP_ENDPOINTS: &'static [(&'static str, &'static str)] = &[
     ("self", ""),
     ("property", "/properties/{key}"),
     ("properties", "/properties"),
@@ -83,12 +83,12 @@ fn unlist_items(rlist: &mut RList) -> RResult<()> {
 }
 
 pub struct ValueRef<'a> {
-    pub(crate) inner: neo4j_value_t,
+    inner: neo4j_value_t,
     phantom: PhantomData<&'a ()>,
 }
 
 impl<'a> ValueRef<'a> {
-    pub(crate) unsafe fn from_c_ty(value: neo4j_value_t) -> ValueRef<'a> {
+    pub unsafe fn from_c_ty(value: neo4j_value_t) -> ValueRef<'a> {
         ValueRef {
             inner: value,
             phantom: PhantomData,

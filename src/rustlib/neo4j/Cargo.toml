@@ -9,4 +9,4 @@ rustr = "0.1"
 errno = "0.2"
 
 [build-dependencies]
-bindgen = "0.26"
+bindgen = "0.20"

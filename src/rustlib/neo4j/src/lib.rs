@@ -1,8 +1,11 @@
-pub(crate) mod bindings {
+pub mod bindings {
 	#![allow(dead_code)]
 	#![allow(non_snake_case)]
 	#![allow(non_camel_case_types)]
 	#![allow(non_upper_case_globals)]
+	// TODO drop this once we drop support for Rust 1.15 (and then upgrade bindgen)
+	#![allow(improper_ctypes)]
+
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 	// Defined as a macro in the header

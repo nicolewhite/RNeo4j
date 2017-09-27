@@ -42,11 +42,12 @@ impl Graph {
     // Should this require &mut self?
     pub fn query<'a>(&'a self, query: CString, params: Value) -> RResult<ResultStream<'a>> {
         unsafe {
-            let stream = neo4j_run(self.ptr, query.as_ptr(), params.inner);
+            let (value, store) = params.into_inner();
+            let stream = neo4j_run(self.ptr, query.as_ptr(), value);
             if stream.is_null() {
                 stop!("Failed to run query: {}", errno());
             }
-            Ok(ResultStream::from_c_ty(stream, query, params.store))
+            Ok(ResultStream::from_c_ty(stream, query, store))
         }
     }
 }

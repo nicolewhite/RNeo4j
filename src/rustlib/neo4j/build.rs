@@ -9,6 +9,7 @@ fn main() {
 
     let bindings = bindgen::Builder::default()
         .header("wrapper.h")
+        .no_unstable_rust()
         .generate()
         .expect("Failed to generate bindings");
 

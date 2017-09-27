@@ -117,7 +117,7 @@ impl<'a> Drop for QueryResult<'a> {
 }
 
 pub struct ResultStream<'a> {
-    pub(crate) inner: *mut neo4j_result_stream_t,
+    pub inner: *mut neo4j_result_stream_t,
     _param_store: Option<Box<Any>>,
     _query: CString,
     phantom: PhantomData<&'a ()>,
@@ -148,7 +148,7 @@ impl<'a> Iterator for ResultStreamFieldIter<'a> {
 }
 
 impl<'a> ResultStream<'a> {
-    pub(crate) unsafe fn from_c_ty(value: *mut neo4j_result_stream_t, query: CString, store: Option<Box<Any>>) -> ResultStream<'a> {
+    pub unsafe fn from_c_ty(value: *mut neo4j_result_stream_t, query: CString, store: Option<Box<Any>>) -> ResultStream<'a> {
         ResultStream {
             inner: value,
             phantom: PhantomData,

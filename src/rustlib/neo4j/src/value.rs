@@ -10,12 +10,12 @@ use graph::Graph;
 use value_ref::ValueRef;
 
 pub struct Value {
-    pub(crate) inner: neo4j_value_t,
-    pub(crate) store: Option<Box<Any>>,
+    inner: neo4j_value_t,
+    store: Option<Box<Any>>,
 }
 
 impl Value {
-    pub(crate) unsafe fn from_c_ty(value: neo4j_value_t) -> Value {
+    pub unsafe fn from_c_ty(value: neo4j_value_t) -> Value {
         Value {
             inner: value,
             store: None,
@@ -68,6 +68,10 @@ impl Value {
                 self.borrow().intor(graph)
             }
         }
+    }
+
+    pub unsafe fn into_inner(self) -> (neo4j_value_t, Option<Box<Any>>) {
+        (self.inner, self.store)
     }
 }
 
