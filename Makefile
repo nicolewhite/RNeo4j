@@ -2,6 +2,7 @@ test:
 	tests/test.sh
 
 test_all:
+	Rscript -e 'devtools::install()'
 	python neokit/neorun.py -- --start=neo4j -v 3.0.4 -p password
 	make test
 	python neokit/neorun.py -- --stop=neo4j

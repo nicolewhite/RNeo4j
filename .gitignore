@@ -8,3 +8,4 @@ _site
 *.html
 *.tar.gz
 *.pdf
+/libneo4j-client

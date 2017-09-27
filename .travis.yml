@@ -4,8 +4,11 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
+      - cargo
+      - clang
 before_install:
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - . ./build-libneo4j-client.sh
 r_github_packages:
   - hadley/testthat
 r_packages:
