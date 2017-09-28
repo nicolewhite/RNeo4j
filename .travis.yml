@@ -12,7 +12,6 @@ env:
   - NEO4J_VERSION=3.2.5
   - NEO4J_VERSION=3.0.4
   - NEO4J_VERSION=2.3.6
-  - NEO4J_VERSION=2.2.10
 before_install:
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain 1.15.1
