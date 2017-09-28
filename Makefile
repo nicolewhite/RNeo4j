@@ -2,21 +2,10 @@ test:
 	tests/test.sh
 	NEO4J_BOLT=1 tests/test.sh
 
-test_all:
+test_travis:
 	Rscript -e 'devtools::install()'
-	python neokit/neorun.py --start=neo4j -v 3.0.4 -p password
+	python neokit/neorun.py --start=neo4j -v $(NEO4J_VERSION) -p password
 	make test
-	python neokit/neorun.py --stop=neo4j
-	sleep 2
-	rm -r neo4j
-	python neokit/neorun.py --start=neo4j -v 2.3.6 -p password
-	make test
-	python neokit/neorun.py --stop=neo4j
-	sleep 2
-	rm -r neo4j
-	python neokit/neorun.py --start=neo4j -v 2.2.10 -p password
-	make test
-	python neokit/neorun.py --stop=neo4j
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
