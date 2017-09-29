@@ -37,6 +37,50 @@ If you're on OS X, you can download either the `.dmg` or the `.tar.gz`. The `.dm
 
 If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
 
+### Bolt dependencies
+
+These are required to build the Bolt interface library. While the bolt interface is optional, building the library is required.
+That means **even if you don't use Bolt you need these**.
+
+#### Windows
+
+- Clang: binary releases are available at http://releases.llvm.org/download.html
+- Rust: https://rustup.rs/
+- libneo4j-client: 
+    - Open your MinGW shell (check in start menu, `C:\MinGW\bin`, and `C:\MinGW\1.0\bin`)
+    - See "Installing libneo4j-from source" section
+
+#### OS X (with Homebrew)
+
+- Clang: `brew install llvm`
+- Rust: https://rustup.rs/
+- libneo4j-client: `brew install cleishm/libneo4j-client`
+
+#### Linux
+
+- Clang: get it from your package manager
+    - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install clang`
+    - Arch Linux: `sudo pacman -S clang`
+- Rust: https://rustup.rs/
+- libneo4j-client:
+    - Debian based: `sudo apt-get install libneo4j-client-dev`
+    - Other: See "Installing libneo4j-client from source"
+
+#### Installing libneo4j-client from source
+
+Run these commands in your shell:
+
+```sh
+git clone https://github.com/cleishm/libneo4j-client
+cd libneo4j-client
+./autogen.sh
+./configure --disable-tools
+sudo make install
+```
+
+See https://github.com/cleishm/libneo4j-client for more details
+
+
 ### RNeo4j
 
 #### From CRAN
