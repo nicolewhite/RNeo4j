@@ -18,9 +18,16 @@ all: $(SHLIB)
 # cargo build --release folder
 $(SHLIB): rustlib/target/$(RUST_ARCH)/release/librustlib.rlib
 
+ifeq ($(shell gcc rustlib/testDeps.c -Werror -lneo4j-client -lclang -o /dev/null && echo worked),worked)
 # run cargo
 rustlib/target/$(RUST_ARCH)/release/librustlib.rlib: rustlib/src/*.rs
 	cd rustlib && $(CG) build --release --target $(RUST_ARCH)
 
 # -lws2_32 -lshell32 -luserenv -ladvapi32 is needed for linking on windows
 PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/$(RUST_ARCH)/release/ -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32 -lneo4j-client -lssl -lcrypto -lm
+else
+rustlib/target/release/librustlib.rlib: rustlib/src/*.rs
+	cd rustlib && $(CG) build --release --no-default-features
+
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/$(RUST_ARCH)/release/ -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32
+endif

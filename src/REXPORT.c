@@ -7,3 +7,5 @@ extern SEXP rustr_bolt_begin_internal(SEXP uri, SEXP http_url, SEXP username, SE
 SEXP RNeo4j_bolt_begin_internal(SEXP uri, SEXP http_url, SEXP username, SEXP password){ return(rustr_bolt_begin_internal(uri,http_url,username,password));}
 extern SEXP rustr_bolt_query_internal(SEXP graph, SEXP query, SEXP params, SEXP as_data_frame);
 SEXP RNeo4j_bolt_query_internal(SEXP graph, SEXP query, SEXP params, SEXP as_data_frame){ return(rustr_bolt_query_internal(graph,query,params,as_data_frame));}
+extern SEXP rustr_bolt_supported_internal();
+SEXP RNeo4j_bolt_supported_internal(){ return(rustr_bolt_supported_internal());}

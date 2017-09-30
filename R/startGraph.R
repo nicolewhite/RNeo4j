@@ -46,6 +46,12 @@ startGraph.default = function(url = character(), username = character(), passwor
             is.character(username),
             is.character(password),
             is.list(opts))
+
+  if (length(boltUri) > 0 && !bolt_supported_internal()) {
+    warning("RNeo4j built without Bolt support (check build logs for errors), ignoring boltUri")
+    boltUri = character()
+  }
+
   if (length(url) == 0 && length(boltUri) != 1) {
     url = "http://localhost:7474/db/data/"
   }

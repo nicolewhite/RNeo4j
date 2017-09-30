@@ -36,3 +36,13 @@ let as_data_frame_ : bool = unwrapr!( bool::rnew(as_data_frame) );
  return res_sexp;
 }
 
+#[no_mangle]
+pub extern "C" fn rustr_bolt_supported_internal()->SEXP{
+
+  let res  = bolt_supported_internal();
+
+ let res_sexp : SEXP = unwrapr!(res.intor());
+
+ return res_sexp;
+}
+

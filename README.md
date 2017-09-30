@@ -39,23 +39,38 @@ If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip
 
 You may also find neo4j in your distribution's package manager.
 
+### Rust
+
+Because of the package build system, Rust is required to build RNeo4j.
+
+#### Windows or OS X
+
+See https://rustup.rs
+
+#### Linux
+
+Most distributions' package managers contain `cargo`, the rust package manager and build system.
+
+Alternatively, you can install Rust through https://rustup.rs but be sure that your PATH is set correctly.
+By default, rustup only sets the PATH in your shell. That means that if you try to build RNeo4j in a GUI application like RStudio, it may fail.
+
+
 ### Bolt dependencies
 
-These are required to build the Bolt interface library. While the bolt interface is optional, building the library is required.
-That means **even if you don't use Bolt you need these**.
+These depencies are are only required if you want to use the Bolt interface.
+They must be present at build time, and `libneo4j-client` must also be present at runtime.
 
 #### Windows
 
 - Clang: binary releases are available at http://releases.llvm.org/download.html
-- Rust: https://rustup.rs/
-- libneo4j-client: 
+- libneo4j-client:
+    - Make sure you have RTools installed (necessary for building R packages on Windows)
     - Open your MinGW shell (check in start menu, `C:\MinGW\bin`, and `C:\MinGW\1.0\bin`)
     - See "Installing libneo4j-from source" section
 
-#### OS X (with Homebrew)
+#### OS X (with Homebrew installed)
 
 - Clang: `brew install llvm`
-- Rust: https://rustup.rs/
 - libneo4j-client: `brew install cleishm/libneo4j-client`
 
 #### Linux
@@ -63,12 +78,13 @@ That means **even if you don't use Bolt you need these**.
 - Clang: get it from your package manager
     - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install clang`
     - Arch Linux: `sudo pacman -S clang`
-- Rust: https://rustup.rs/
 - libneo4j-client:
     - Debian based: `sudo apt-get install libneo4j-client-dev`
     - Other: See "Installing libneo4j-client from source"
 
 #### Installing libneo4j-client from source
+
+Newer versions of GCC require removing the `-Werror` from `GCC_CFLAGS` in `configure.ac`.
 
 Run these commands in your shell:
 
