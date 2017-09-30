@@ -12,7 +12,7 @@ all: $(SHLIB)
 # cargo build --release folder
 $(SHLIB): rustlib/target/release/librustlib.rlib
 
-ifeq ($(shell gcc rustlib/testDeps.c -Werror -lneo4j-client -lclang -o /dev/null && echo worked),worked)
+ifeq ($(shell gcc rustlib/testDeps.c -Werror -lneo4j-client -o /dev/null && echo worked),worked)
 
 # run cargo
 rustlib/target/release/librustlib.rlib: rustlib/src/*.rs
