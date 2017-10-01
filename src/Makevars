@@ -26,9 +26,9 @@ else
 
 rustlib/target/release/librustlib.a: rustlib/fallback.c $(wildcard rustlib/target/release/lib_built)
 	mkdir -p rustlib/target/release
-	$(CC) -I/usr/include/R/ -fpic -O2 -fstack-protector-strong -fno-plt -lR -c rustlib/fallback.c -o rustlib/target/release/fallback.o
+	$(CC) -I$(R_INCLUDE_DIR) -fpic -O2 -fstack-protector-strong -fno-plt -L$(R_LIBS) -lR -c rustlib/fallback.c -o rustlib/target/release/fallback.o
 	rm -f rustlib/target/release/librustlib.a
-	ar rcs rustlib/target/release/librustlib.a rustlib/target/release/fallback.o
+	$(AR) rcs rustlib/target/release/librustlib.a rustlib/target/release/fallback.o
 	touch rustlib/target/release/fallback_built
 
 PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/release/ -lrustlib
