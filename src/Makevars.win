@@ -30,12 +30,12 @@ PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/$(RUST_ARCH)
 
 else
 
-rustlib/target/release/librustlib.a: rustlib/fallback.c $(wildcard rustlib/target/release/lib_built)
-	mkdir -p rustlib/target/release
-	$(CC) -I/usr/include/R/ -fpic -O2 -fstack-protector-strong -fno-plt -lR -c rustlib/fallback.c -o rustlib/target/release/fallback.o
-	rm -f rustlib/target/release/librustlib.a
-	ar rcs rustlib/target/release/librustlib.a rustlib/target/release/fallback.o
-	touch rustlib/target/release/fallback_built
+rustlib/target/$(RUST_ARCH)/release/librustlib.a: rustlib/fallback.c $(wildcard rustlib/target/$(RUST_ARCH)/release/lib_built)
+	mkdir -p rustlib/target/$(RUST_ARCH)/release
+	$(CC) -I$(R_HOME)/include -fpic -O2 -fstack-protector-strong -lR -c rustlib/fallback.c -o rustlib/target/$(RUST_ARCH)/release/fallback.o
+	rm -f rustlib/target/$(RUST_ARCH)/release/librustlib.a
+	$(AR) rcs rustlib/target/$(RUST_ARCH)/release/librustlib.a rustlib/target/$(RUST_ARCH)/release/fallback.o
+	touch rustlib/target/$(RUST_ARCH)/release/fallback_built
 
 PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/$(RUST_ARCH)/release/ -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32
 

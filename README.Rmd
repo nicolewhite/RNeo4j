@@ -48,7 +48,7 @@ They must be present at build time, and `libneo4j-client` must also be present a
 - Clang: binary releases are available at http://releases.llvm.org/download.html
 - libneo4j-client:
     - Make sure you have RTools installed (necessary for building R packages on Windows)
-    - Open your MinGW shell (check in start menu, `C:\MinGW\bin`, and `C:\MinGW\1.0\bin`)
+    - Open your MinGW shell (check in start menu, `C:\RTools\mingw_64`, `C:\RTools\mingw_32`, `C:\MinGW\bin`, and `C:\MinGW\1.0\bin`)
     - See "Installing libneo4j-from source" section
 
 #### OS X (with Homebrew installed)
