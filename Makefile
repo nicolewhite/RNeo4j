@@ -1,9 +1,6 @@
 test:
 	tests/test.sh
-	# only neo4j > 3.0.0 supports Bolt
-	if dpkg --compare-versions "$(NEO4J_VERSION)" gt 3; then \
-		NEO4J_BOLT=1 tests/test.sh; \
-	fi
+	NEO4J_BOLT=1 tests/test.sh
 
 test_travis:
 	Rscript -e 'devtools::install()'
