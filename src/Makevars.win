@@ -32,7 +32,7 @@ else
 
 rustlib/target/$(RUST_ARCH)/release/librustlib.a: rustlib/fallback.c $(wildcard rustlib/target/$(RUST_ARCH)/release/lib_built)
 	mkdir -p rustlib/target/$(RUST_ARCH)/release
-	$(CC) -I$(R_INCLUDE_DIR) -fpic -O2 -fstack-protector-strong -L$(R_LIBS) -lR -c rustlib/fallback.c -o rustlib/target/$(RUST_ARCH)/release/fallback.o
+	$(CC) -I"$(R_INCLUDE_DIR)" -fpic -O2 -fstack-protector-strong -L"$(R_LIBS)" -lR -c rustlib/fallback.c -o rustlib/target/$(RUST_ARCH)/release/fallback.o
 	rm -f rustlib/target/$(RUST_ARCH)/release/librustlib.a
 	$(AR) rcs rustlib/target/$(RUST_ARCH)/release/librustlib.a rustlib/target/$(RUST_ARCH)/release/fallback.o
 	touch rustlib/target/$(RUST_ARCH)/release/fallback_built
