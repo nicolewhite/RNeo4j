@@ -1,5 +1,6 @@
 #include <neo4j-client.h>
+#include <stdio.h>
 
 int main() {
-    libneo4j_client_version();
+    printf("%s", libneo4j_client_version());
 }
