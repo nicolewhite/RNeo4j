@@ -39,22 +39,6 @@ If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip
 
 You may also find neo4j in your distribution's package manager.
 
-### Rust
-
-Because of the package build system, Rust is required to build RNeo4j.
-
-#### Windows or OS X
-
-See https://rustup.rs
-
-#### Linux
-
-Most distributions' package managers contain `cargo`, the rust package manager and build system.
-
-Alternatively, you can install Rust through https://rustup.rs but be sure that your PATH is set correctly.
-By default, rustup only sets the PATH in your shell. That means that if you try to build RNeo4j in a GUI application like RStudio, it may fail.
-
-
 ### Bolt dependencies
 
 These depencies are are only required if you want to use the Bolt interface.
@@ -62,6 +46,7 @@ They must be present at build time, and `libneo4j-client` must also be present a
 
 #### Windows
 
+- Rust: https://rustup.rs
 - Clang: binary releases are available at http://releases.llvm.org/download.html
 - libneo4j-client:
     - Make sure you have RTools installed (necessary for building R packages on Windows)
@@ -70,17 +55,29 @@ They must be present at build time, and `libneo4j-client` must also be present a
 
 #### OS X (with Homebrew installed)
 
+- Rust: `brew install rust` (or https://rustup.rs but see "Rust Path" section)
 - Clang: `brew install llvm`
 - libneo4j-client: `brew install cleishm/libneo4j-client`
 
 #### Linux
 
+- Rust:
+    - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install cargo`
+    - Arch Linux: `sudo pacman -S rust`
+    - Building from source: https://rustup.rs but see "Rust Path" section
 - Clang: get it from your package manager
     - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install clang`
     - Arch Linux: `sudo pacman -S clang`
+    - Other: your package manager almost certainly has `clang`. It may be called `llvm`.
 - libneo4j-client:
     - Debian based: `sudo apt-get install libneo4j-client-dev`
     - Other: See "Installing libneo4j-client from source"
+
+#### Rust Path
+
+By default, on *nix systems (such as Linux and OS X), rustup only sets the PATH in your shell.
+That means that if you try to build RNeo4j in a GUI application like RStudio, it may fail.
+To work around this issue, simply build RNeo4j in a terminal.
 
 #### Installing libneo4j-client from source
 
