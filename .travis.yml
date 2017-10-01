@@ -3,7 +3,11 @@ sudo: false
 cache:
   - cargo
   - packages
+os:
+  - linux
+  - osx
 addons:
+  # only affects Linux
   apt:
     packages:
       - oracle-java8-installer
@@ -12,11 +16,7 @@ env:
   - NEO4J_VERSION=3.2.5
   - NEO4J_VERSION=3.0.4
   - NEO4J_VERSION=2.3.6
-before_install:
-  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-  - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain 1.15.1
-  - . ~/.cargo/env
-  - . ./build-libneo4j-client.sh
+before_install: . install_deps.sh
 r_github_packages:
   - hadley/testthat
 r_packages:
