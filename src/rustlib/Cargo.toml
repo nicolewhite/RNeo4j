@@ -2,13 +2,9 @@
 name = "rustlib"
 version = "0.1.0"
 
-[features]
-default = ["neo4j-client"]
-neo4j-client = ["neo4j"]
-
 [dependencies]
 rustr = "0.1"
-neo4j = { path = "neo4j", optional = true }
+neo4j = { path = "neo4j" }
 
 [lib]
 name = "rustlib"

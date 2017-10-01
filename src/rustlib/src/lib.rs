@@ -6,13 +6,10 @@ pub mod export;
 pub use rustr::*;
 use rustr::rptr::RPtr;
 
-#[cfg(feature = "neo4j-client")]
 #[macro_use]
 extern crate neo4j;
-#[cfg(feature = "neo4j-client")]
 use neo4j::{Graph, Value, ValueRef};
 
-#[cfg(feature = "neo4j-client")]
 // #[rustr_export]
 pub fn bolt_begin_internal(uri: CString, http_url: Vec<String>, username: Vec<CString>, password: Vec<CString>) -> RResult<RPtr<Graph>> {
     // Normally we'd put mut in the function signature, but rustr doesn't like that.
@@ -29,7 +26,6 @@ pub fn bolt_begin_internal(uri: CString, http_url: Vec<String>, username: Vec<CS
     Graph::open(&uri, http_url.pop(), username.pop(), password.pop()).map(Box::new).map(RPtr::new)
 }
 
-#[cfg(feature = "neo4j-client")]
 // #[rustr_export]
 pub fn bolt_query_internal(graph: RPtr<Graph>, query: CString, params: Value, as_data_frame: bool) -> RResult<RList> {
     let mut graph = { graph };
@@ -78,14 +74,7 @@ pub fn bolt_query_internal(graph: RPtr<Graph>, query: CString, params: Value, as
     }
 }
 
-#[cfg(feature = "neo4j-client")]
 // #[rustr_export]
 pub fn bolt_supported_internal() -> bool {
     true
 }
-
-#[cfg(not(feature = "neo4j-client"))]
-mod fake_lib;
-
-#[cfg(not(feature = "neo4j-client"))]
-pub use fake_lib::*;
