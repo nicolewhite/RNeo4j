@@ -1,5 +1,4 @@
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    brew update
     brew tap caskroom/cask
     brew install caskroom/versions/java8 llvm cleishm/neo4j/neo4j-client
     export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
