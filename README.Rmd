@@ -55,7 +55,7 @@ They must be present at build time, and `libneo4j-client` must also be present a
 
 - Rust: `brew install rust` (or https://rustup.rs but see "Rust Path" section)
 - Clang: `brew install llvm`
-- libneo4j-client: `brew install cleishm/libneo4j-client`
+- libneo4j-client: `brew install cleishm/neo4j/libneo4j-client`
 
 #### Linux
 
