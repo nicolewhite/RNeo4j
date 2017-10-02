@@ -20,7 +20,7 @@ rustlib/target/release/librustlib.a: rustlib/src/*.rs $(wildcard rustlib/target/
 	touch rustlib/target/release/lib_built
 
 # -lws2_32 -luserenv -ladvapi32 is needed for linking on windows
-PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/release/ -lrustlib -lneo4j-client -lssl -lcrypto -lm
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) -L. -Lrustlib/target/release/ -lrustlib -lneo4j-client -lssl -lcrypto -lm
 
 else
 
@@ -31,6 +31,6 @@ rustlib/target/release/librustlib.a: rustlib/fallback.c $(wildcard rustlib/targe
 	$(AR) rcs rustlib/target/release/librustlib.a rustlib/target/release/fallback.o
 	touch rustlib/target/release/fallback_built
 
-PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -L. -Lrustlib/target/release/ -lrustlib
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) -L. -Lrustlib/target/release/ -lrustlib
 
 endif
