@@ -15,7 +15,7 @@ addons:
 env:
   - NEO4J_VERSION=3.2.5
   - NEO4J_VERSION=3.0.4
-before_install: . install_deps.sh
+before_install: . install-deps.sh
 r_github_packages:
   - hadley/testthat
 r_packages:

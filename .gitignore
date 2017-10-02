@@ -2,7 +2,7 @@
 .Rproj.user
 .Rhistory
 .RData
-neo4j*/
+/neo4j*
 !src/rustlib/neo4j
 _site
 *.html

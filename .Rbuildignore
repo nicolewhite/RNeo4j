@@ -8,5 +8,6 @@ CONTRIBUTING.md
 Makefile
 .travis.yml
 neokit/
-build.sh
-neo4j/
+^[^/]*\.sh$
+^neo4j.*
+target
