@@ -1,0 +1,17 @@
+[package]
+name = "rustlib"
+version = "0.1.0"
+
+[dependencies]
+rustr = "0.1"
+neo4j = { path = "neo4j" }
+
+[lib]
+name = "rustlib"
+crate-type = ["staticlib","rlib"]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"

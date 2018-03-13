@@ -38,12 +38,7 @@ getSingleNode = function(graph, query, ...) UseMethod("getSingleNode")
 
 #' @export
 getSingleNode.graph = function(graph, query, ...) {
-  stopifnot(is.character(query),
-            length(query) == 1)
-
-  params = list(...)  
-  result = cypher_endpoint(graph, query, params)
-  result = result$data
+  result = cypherToList(graph, query, ...)
   
   if(length(result) == 0) {
     return(invisible())
@@ -51,11 +46,12 @@ getSingleNode.graph = function(graph, query, ...) {
   
   result = result[[1]][[1]]
   
-  is.node = try(result$start, silent = T)
-  if(!is.null(is.node) | class(is.node) == "try-error") {
+  if(!("node" %in% class(result))) {
     stop("The entity returned is not a node. Check that your query is returning a node.")
   }
   
-  node = configure_result(result)
-  return(node)
+  return(result)
 }
+
+#' @export
+getSingleNode.boltGraph = getSingleNode.graph;

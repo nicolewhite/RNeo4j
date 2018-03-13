@@ -35,26 +35,21 @@ getPaths = function(graph, query, ...) UseMethod("getPaths")
 
 #' @export
 getPaths.graph = function(graph, query, ...) {
-  stopifnot(is.character(query),
-            length(query) == 1)
-  
-  params = list(...)  
-  result = cypher_endpoint(graph, query, params)
-  result = result$data
+  result = cypherToList(graph, query, ...)
   
   if(length(result) == 0) {
     return(invisible())
   }
-  
+
   for(i in 1:length(result)) {
-    current = result[[i]][[1]]
-    is.path = try(current$self, silent = T)
-    if(!is.null(is.path) | class(is.path) == "try-error") {
+    result[[i]] = result[[i]][[1]]
+    if(!("path" %in% class(result[[i]]))) {
       stop("At least one entity returned is not a path. Check that your query is returning paths.")
     }
-    result[[i]] = current
   }
-  
-  paths = lapply(result, function(r) configure_result(r))
-  return(paths)
+
+  return(result)
 }
+
+#' @export
+getPaths.boltGraph = getPaths.graph;

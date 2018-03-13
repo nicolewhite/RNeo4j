@@ -3,8 +3,7 @@ context("Paths")
 
 skip_on_cran()
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
-clear(neo4j, input=F)
+neo4j = startTestGraph()
 
 alice = createNode(neo4j, "Person", name = "Alice")
 bob = createNode(neo4j, "Person", name = "Bob")
@@ -125,7 +124,7 @@ test_that("getPaths returns null when not found", {
 })
 
 test_that("getPaths throws error when returning a non-path object", {
-  query = "MATCH n RETURN n"
+  query = "MATCH (n) RETURN n"
   expect_error(getPaths(neo4j, query))
 })
 

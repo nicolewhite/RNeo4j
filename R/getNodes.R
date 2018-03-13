@@ -41,20 +41,16 @@ getNodes = function(graph, query, ...) UseMethod("getNodes")
 
 #' @export
 getNodes.graph = function(graph, query, ...) {
-  stopifnot(is.character(query))
+  result = cypherToList(graph, query, ...)
   
-  params = list(...)
-  result = cypher_endpoint(graph, query, params)
-  result = result$data
-  
-  if(length(result) == 0) {
-    return(invisible())
-  }
-  
-  for(i in 1:length(result)) {
-    result[[i]] = result[[i]][[1]]
+  if(length(result) > 0) {
+    for(i in 1:length(result)) {
+      result[[i]] = result[[i]][[1]]
+    }
   }
 
-  nodes = lapply(result, function(r) configure_result(r))
-  return(nodes)
+  return(result)
 }
+
+#' @export
+getNodes.boltGraph = getNodes.graph;

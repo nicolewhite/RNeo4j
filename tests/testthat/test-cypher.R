@@ -5,8 +5,7 @@ skip_on_cran()
 
 options(digits=20)
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
-importSample(neo4j, "movies", input=F)
+neo4j = startTestGraph("movies")
 
 
 test_that("cypher works", {

@@ -51,3 +51,6 @@ createNode.graph = function(graph, .label = character(), ...) {
   
   return(node)
 }
+
+#' @export
+createNode.boltGraph = createNode.graph;

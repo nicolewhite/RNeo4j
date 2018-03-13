@@ -36,12 +36,7 @@ getSinglePath = function(graph, query, ...) UseMethod("getSinglePath")
 
 #' @export
 getSinglePath.graph = function(graph, query, ...) {
-  stopifnot(is.character(query),
-            length(query) == 1)
-  
-  params = list(...)  
-  result = cypher_endpoint(graph, query, params)
-  result = result$data
+  result = cypherToList(graph, query, ...)
   
   if(length(result) == 0) {
     return(invisible())
@@ -49,11 +44,12 @@ getSinglePath.graph = function(graph, query, ...) {
   
   result = result[[1]][[1]]
   
-  is.path = try(result$self, silent = T)
-  if(!is.null(is.path) | class(is.path) == "try-error") {
+  if(!("path" %in% class(result))) {
     stop("The entity returned is not a path. Check that your query is returning a path.")
   }
   
-  path = configure_result(result)
-  return(path)
+  return(result)
 }
+
+#' @export
+getSinglePath.boltGraph = getSinglePath.graph;

@@ -5,16 +5,18 @@
 \title{Connect to the Database}
 \usage{
 startGraph(url, username = character(), password = character(),
-  opts = list())
+  opts = list(), boltUri = character())
 }
 \arguments{
-\item{url}{A character string.}
+\item{url}{A character string. The HTTP url. Optional if boltUri is specified.}
 
 \item{username}{A character string. If authentication is enabled, your username.}
 
 \item{password}{A character string. If authentication is enabled, your password.}
 
 \item{opts}{A named list. Optional HTTP settings.}
+
+\item{boltUri}{A character string. The bolt URI. Optionally enables the Bolt interface for Cypher.}
 }
 \value{
 A graph object.
@@ -26,12 +28,22 @@ Establish a connection to Neo4j.
 \dontrun{
 graph = startGraph() # http://localhost:7474/db/data/ by default
 
-graph = startGraph("http://localhost:7474/db/data/", 
+graph = startGraph("http://localhost:7474/db/data/",
                    username = "neo4j",
                    password = "password")
 
-graph = startGraph("http://localhost:7474/db/data/", 
+graph = startGraph("http://localhost:7474/db/data/",
                    opts = list(timeout=3))
+
+graph = startGraph("http://localhost:7474/db/data/",
+                   username = "neo4j",
+                   password = "password",
+                   boltUri = "neo4j://localhost:7687/")
+
+graph = startGraph(character(), # only use the Bolt interface
+                   username = "neo4j",
+                   password = "password",
+                   boltUri = "neo4j://localhost:7687/")
 }
 
 }

@@ -3,7 +3,7 @@ context("Schema")
 
 skip_on_cran()
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
+neo4j = startTestGraph()
 
 test_that("addConstraint fails on data that violates the constraint", {
   clear(neo4j, input=F)

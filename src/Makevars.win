@@ -1,0 +1,42 @@
+ifneq "$(strip $(CARGO_HOME))" ""
+	CG=$(CARGO_HOME)
+else
+	CG=cargo
+endif
+
+ifeq "$(WIN)" "64"
+	RUST_ARCH=x86_64-pc-windows-gnu
+else
+	RUST_ARCH=i686-pc-windows-gnu
+endif
+
+.PHONY: all
+
+# to make things
+all: $(SHLIB)
+
+# cargo build --release folder
+$(SHLIB): rustlib/target/$(RUST_ARCH)/release/librustlib.a
+
+ifeq ($(shell $(CC) rustlib/testDeps.c -Werror -lneo4j-client -o /dev/null && cargo -V >/dev/null && echo worked),worked)
+
+# run cargo
+rustlib/target/$(RUST_ARCH)/release/librustlib.a: rustlib/src/*.rs $(wildcard rustlib/target/release/fallback_built)
+	cd rustlib && $(CG) build --release --target $(RUST_ARCH)
+	touch rustlib/target/release/lib_built
+
+# -lws2_32 -lshell32 -luserenv -ladvapi32 is needed for linking on windows
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) -L. -Lrustlib/target/$(RUST_ARCH)/release/ -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32 -lneo4j-client -lssl -lcrypto -lm
+
+else
+
+rustlib/target/$(RUST_ARCH)/release/librustlib.a: rustlib/fallback.c $(wildcard rustlib/target/$(RUST_ARCH)/release/lib_built)
+	mkdir -p rustlib/target/$(RUST_ARCH)/release
+	$(CC) -I"$(R_INCLUDE_DIR)" $(CFLAGS) -L"$(R_LIBRARY_DIR)" -lR -c rustlib/fallback.c -o rustlib/target/$(RUST_ARCH)/release/fallback.o
+	rm -f rustlib/target/$(RUST_ARCH)/release/librustlib.a
+	$(AR) rcs rustlib/target/$(RUST_ARCH)/release/librustlib.a rustlib/target/$(RUST_ARCH)/release/fallback.o
+	touch rustlib/target/$(RUST_ARCH)/release/fallback_built
+
+PKG_LIBS= $(LAPACK_LIBS) $(BLAS_LIBS) -L. -Lrustlib/target/$(RUST_ARCH)/release/ -lrustlib -lws2_32 -luserenv -lshell32 -ladvapi32
+
+endif

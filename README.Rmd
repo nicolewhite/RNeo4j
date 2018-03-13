@@ -37,6 +37,47 @@ If you're on OS X, you can download either the `.dmg` or the `.tar.gz`. The `.dm
 
 If you're on Linux, you have to use the `.tar.gz`. Download the `.tar.gz`, unzip, navigate to the directory and execute `./bin/neo4j start`.
 
+### Bolt dependencies
+
+These depencies are are only required if you want to use the Bolt interface.
+They must be present at build time, and `libneo4j-client` must also be present at runtime.
+
+#### Windows
+
+- Rust: https://rustup.rs
+- Clang: binary releases are available at http://releases.llvm.org/download.html
+- libneo4j-client:
+    - Make sure you have RTools installed (necessary for building R packages on Windows)
+    - Open your MinGW shell (check in start menu, `C:\RTools\mingw_64`, `C:\RTools\mingw_32`, `C:\MinGW\bin`, and `C:\MinGW\1.0\bin`)
+    - See "Installing libneo4j-from source" section
+
+#### OS X (with Homebrew installed)
+
+- Rust: `brew install rust` (or https://rustup.rs but see "Rust Path" section)
+- Clang: `brew install llvm`
+- libneo4j-client: `brew install cleishm/neo4j/libneo4j-client`
+
+#### Linux
+
+- Rust:
+    - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install cargo`
+    - Arch Linux: `sudo pacman -S rust`
+    - Building from source: https://rustup.rs but see "Rust Path" section
+- Clang: get it from your package manager
+    - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install clang`
+    - Arch Linux: `sudo pacman -S clang`
+    - Other: your package manager almost certainly has `clang`. It may be called `llvm`.
+- libneo4j-client:
+    - Debian based: `sudo apt-get install libneo4j-client-dev`
+    - Other: See "Installing libneo4j-client from source"
+
+#### Rust Path
+
+By default, on *nix systems (such as Linux and OS X), rustup only sets the PATH in your shell.
+That means that if you try to build RNeo4j in a GUI application like RStudio, it may fail.
+To work around this issue, simply build RNeo4j in a terminal.
+
+
 ### RNeo4j
 
 #### From CRAN

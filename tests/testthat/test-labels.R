@@ -3,8 +3,7 @@ context("Labels")
 
 skip_on_cran()
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
-clear(neo4j, input=F)
+neo4j = startTestGraph()
 
 mugshots = createNode(neo4j, "Bar", name="Mugshots")
 

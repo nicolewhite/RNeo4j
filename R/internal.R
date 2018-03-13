@@ -131,6 +131,10 @@ http_request = function(url, request_type, body=NULL) {
 }
 
 cypher_endpoint = function(graph, query, params) {
+  if ("boltGraph" %in% class(graph)) {
+    stop("Attempted to use cypher_endpoint on boltGraph")
+  }
+
   body = list(query = query)
   
   if(length(params) > 0) {
@@ -228,4 +232,16 @@ parse_dots = function(dots) {
   }
   
   return(params)
+}
+
+# Unlist columns that aren't variable-length.
+unlist_deep = function(df) {
+  if(all(sapply(df, class) == "list")) {
+    for(i in 1:ncol(df)) {
+      if(check_nested_depth(df[i]) == 1) {
+        df[i] = unlist(df[i])
+      }
+    }
+  }
+  return(df)
 }

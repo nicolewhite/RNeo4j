@@ -3,8 +3,7 @@ context("Transactions")
 
 skip_on_cran()
 
-neo4j = startGraph("http://localhost:7474/db/data/", "neo4j", "password")
-clear(neo4j, input=F)
+neo4j = startTestGraph()
 
 test_that("transactions work", {
   actual = data.frame(Origin = c("SFO", "AUS", "MCI"),

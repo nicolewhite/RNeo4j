@@ -1,8 +1,11 @@
 test:
 	tests/test.sh
+	NEO4J_BOLT=1 tests/test.sh
 
-test_all:
-	neokit/neorun tests/test_all.sh 2.3.3 2.2.9 2.1.8
+test_travis:
+	Rscript -e 'devtools::install()'
+	python neokit/neorun.py --start=neo4j -v $(NEO4J_VERSION) -p password
+	make test
 
 install:
 	R CMD INSTALL --no-multiarch --with-keep.source ../RNeo4j
@@ -23,9 +26,11 @@ version:
 readme:
 	/usr/local/bin/Rscript -e 'library(knitr);knit("README.Rmd", "README.md");'
 	
+# no longer needed as test_all will do this automatically
 download_neo4j:
-	neokit/neoget -i -x 3.0.4 2.3.6 2.2.10
-	neokit/neoctl unzip 3.0.4 2.3.6 2.2.10
+	python neokit/neoget.py -v 3.0.4
+	python neokit/neoget.py -v 2.3.6
+	python neokit/neoget.py -v 2.2.10
 	
 cran:
 	PATH="$PATH:/Library/TeX/texbin/pdflatex"
