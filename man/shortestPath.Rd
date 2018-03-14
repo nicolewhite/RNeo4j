@@ -76,4 +76,3 @@ nodes(p)
 \seealso{
 \code{\link{allShortestPaths}}
 }
-

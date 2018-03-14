@@ -44,4 +44,3 @@ sapply(employed_people, function(p) p$name)
 \seealso{
 \code{\link{getUniqueNode}}
 }
-

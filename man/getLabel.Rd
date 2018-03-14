@@ -31,4 +31,3 @@ getLabel(graph)
 \seealso{
 \code{\link{addLabel}}, \code{\link{dropLabel}}
 }
-

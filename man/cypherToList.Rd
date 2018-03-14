@@ -49,4 +49,3 @@ cypherToList(graph, "MATCH p = (n)-[:KNOWS]-(m)
 \seealso{
 \code{\link{cypher}}
 }
-

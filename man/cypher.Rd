@@ -58,4 +58,3 @@ cypher(graph, query, params)
 \seealso{
 \code{\link{cypherToList}}
 }
-

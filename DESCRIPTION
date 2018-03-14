@@ -22,5 +22,5 @@ URL: http://github.com/nicolewhite/RNeo4j
 BugReports: https://github.com/nicolewhite/RNeo4j/issues
 Suggests:
     testthat
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 SystemRequirements: cargo, rustc, clang, libneo4j-client-dev

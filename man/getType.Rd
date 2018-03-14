@@ -33,4 +33,3 @@ getType(graph)
 }
 
 }
-

@@ -31,4 +31,3 @@ delete(alice, bob)
 }
 
 }
-

@@ -41,4 +41,3 @@ charles
 \seealso{
 \code{\link{updateProp}}
 }
-

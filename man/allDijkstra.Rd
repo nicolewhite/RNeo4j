@@ -57,4 +57,3 @@ nodes(p[[2]])
 \seealso{
 \code{\link{dijkstra}}
 }
-

@@ -46,4 +46,3 @@ getSingleNode(graph, query, name = "Alice")
 \seealso{
 \code{\link{getNodes}}
 }
-

@@ -38,4 +38,3 @@ createRel(alice, "KNOWS", charles, props)
 }
 
 }
-

@@ -36,4 +36,3 @@ addIndex(graph, "Person", "status")
 \seealso{
 \code{\link{getIndex}}, \code{\link{dropIndex}}
 }
-

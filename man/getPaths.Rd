@@ -43,4 +43,3 @@ lapply(paths, endNode)
 \seealso{
 \code{\link{getSinglePath}}
 }
-
