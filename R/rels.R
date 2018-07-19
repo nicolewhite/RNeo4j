@@ -34,7 +34,7 @@
 rels = function(path) UseMethod("rels")
 
 #' @export
-rels.path = function(path) {
+rels.neopath = function(path) {
   urls = attr(path, "relationships")
 
   FUN <- function(x) {
