@@ -66,7 +66,7 @@ They must be present at build time, and `libneo4j-client` must also be present a
     - Arch Linux: `sudo pacman -S rust`
     - Building from source: https://rustup.rs but see "Rust Path" section
 - Clang: get it from your package manager
-    - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install clang`
+    - Debian based (e.g. Mint, Ubuntu): `sudo apt-get install clang libclang-dev`
     - Arch Linux: `sudo pacman -S clang`
     - Other: your package manager almost certainly has `clang`. It may be called `llvm`.
 - libneo4j-client:
