@@ -4,7 +4,8 @@
 \alias{dropConstraint}
 \title{Uniqueness Constraints}
 \usage{
-dropConstraint(graph, label = character(), key = character(), all = FALSE)
+dropConstraint(graph, label = character(), key = character(),
+  all = FALSE)
 }
 \arguments{
 \item{graph}{A graph object.}
