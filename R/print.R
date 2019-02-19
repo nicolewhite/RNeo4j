@@ -44,7 +44,7 @@ print.relationship = function(x, ...) {
 print.boltRelationship = print.relationship;
 
 #' @export
-print.path = function(x, ...) {
+print.neopath = function(x, ...) {
   cat("< Path > \n")
   if(suppressWarnings(any(!is.na(names(x))))) {
     invisible(lapply(names(x), function(y) {print(x[y])}))
@@ -52,4 +52,4 @@ print.path = function(x, ...) {
 }
 
 #' @export
-print.boltPath = print.path;
+print.boltPath = print.neopath;

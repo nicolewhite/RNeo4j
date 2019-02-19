@@ -179,7 +179,7 @@ impl<'a> ValueRef<'a> {
                 }
                 rlist.set_attr::<_, _, Preserve>("boltGraph", graph.intor()?);
                 if let Some(ref http_url) = graph.get()?.http_url {
-                    rlist.set_attr::<_, _, Preserve>("class", (&["boltPath", "path"] as &[_]).intor()?);
+                    rlist.set_attr::<_, _, Preserve>("class", (&["boltPath", "neopath"] as &[_]).intor()?);
                     for &(n, i) in &[("start", 0), ("end", len)] {
                         let ident = neo4j_node_identity(neo4j_path_get_node(value, i));
                         let url = format!("{}node/{}", http_url, identity_to_int(ident));

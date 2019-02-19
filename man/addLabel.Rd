@@ -33,4 +33,3 @@ bob
 \seealso{
 \code{\link{getLabel}}, \code{\link{dropLabel}}
 }
-

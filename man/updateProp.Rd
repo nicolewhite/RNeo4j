@@ -39,4 +39,3 @@ bob
 \seealso{
 \code{\link{deleteProp}}
 }
-

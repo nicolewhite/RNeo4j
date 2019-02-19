@@ -2,15 +2,6 @@ version = function() {
   return("1.7.0")
 }
 
-#' @importFrom utils assignInNamespace
-.onLoad = function(libname, pkgname) {
-  length.path = function(obj) {
-    return(length(unclass(obj)))
-  }
-  
-  assignInNamespace('length.path', length.path, 'httr')
-}
-
 configure_result = function(result) {
   if(is.character(result) | is.numeric(result)) {
     return(result)
@@ -89,7 +80,7 @@ configure_result = function(result) {
     attr(result, "end") = end
     attr(result, "nodes") = nodes
     attr(result, "relationships") = rels
-    class(result) = "path"
+    class(result) = "neopath"
   }
   
   return(result)

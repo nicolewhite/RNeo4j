@@ -41,4 +41,3 @@ nodes(path)
 \seealso{
 \code{\link{rels}}
 }
-

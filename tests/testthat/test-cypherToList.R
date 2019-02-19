@@ -53,7 +53,7 @@ test_that("paths and properties are retrieved", {
   query = "MATCH x = (p:Person)-[:ACTED_IN]->(:Movie) RETURN x, p.name LIMIT 5"
   response = cypherToList(neo4j, query)
   
-  expect_is(response[[1]]$x, "path")
+  expect_is(response[[1]]$x, "neopath")
   expect_false("entity" %in% class(response[[1]]$x))
   expect_true(is.character(response[[1]]$p.name))
   expect_equal(length(response), 5)
@@ -63,7 +63,7 @@ test_that("paths and nodes are retrieved", {
   query = "MATCH x = (p:Person)-[:ACTED_IN]->(:Movie) RETURN x, p LIMIT 5"
   response = cypherToList(neo4j, query)
 
-  expect_is(response[[1]]$x, "path")
+  expect_is(response[[1]]$x, "neopath")
   expect_false("entity" %in% class(response[[1]]$x))
   expect_true(isNode(response[[1]]$p))
   expect_equal(length(response), 5)
@@ -73,7 +73,7 @@ test_that("paths and relationships are retrieved", {
   query = "MATCH x = (:Person)-[r:ACTED_IN]->(:Movie) RETURN x, r LIMIT 5"
   response = cypherToList(neo4j, query)
 
-  expect_is(response[[1]]$x, "path")
+  expect_is(response[[1]]$x, "neopath")
   expect_false("entity" %in% class(response[[1]]$x))
   expect_true("relationship" %in% class(response[[1]]$r))
   expect_equal(length(response), 5)

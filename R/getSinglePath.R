@@ -44,7 +44,7 @@ getSinglePath.graph = function(graph, query, ...) {
   
   result = result[[1]][[1]]
   
-  if(!("path" %in% class(result))) {
+  if(!("neopath" %in% class(result))) {
     stop("The entity returned is not a path. Check that your query is returning a path.")
   }
   
@@ -52,4 +52,4 @@ getSinglePath.graph = function(graph, query, ...) {
 }
 
 #' @export
-getSinglePath.boltGraph = getSinglePath.graph;
+getSinglePath.boltGraph = getSinglePath.graph

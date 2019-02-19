@@ -4,8 +4,8 @@
 \alias{shortestPath}
 \title{Shortest Paths and Weighted Shortest Paths}
 \usage{
-shortestPath(fromNode, relType, toNode, direction = "out", max_depth = 1,
-  cost_property = character())
+shortestPath(fromNode, relType, toNode, direction = "out",
+  max_depth = 1, cost_property = character())
 }
 \arguments{
 \item{fromNode}{A node object.}
@@ -76,4 +76,3 @@ nodes(p)
 \seealso{
 \code{\link{allShortestPaths}}
 }
-

@@ -49,7 +49,7 @@ startNode.boltRelationship = function(object) {
 }
 
 #' @export
-startNode.path = function(object) {
+startNode.neopath = function(object) {
   url = attr(object, "start")
   result = http_request(url, "GET")
   node = configure_result(result)

@@ -43,4 +43,3 @@ incomingRels(charles, "WORKS_WITH")
 \seealso{
 \code{\link{outgoingRels}}
 }
-

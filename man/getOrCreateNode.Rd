@@ -49,4 +49,3 @@ length(getLabeledNodes(graph, "Person"))
 }
 
 }
-

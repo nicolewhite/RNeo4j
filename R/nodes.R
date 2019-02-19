@@ -34,7 +34,7 @@
 nodes = function(path) UseMethod("nodes")
 
 #' @export
-nodes.path = function(path) {
+nodes.neopath = function(path) {
   urls = attr(path, "nodes")
 
   FUN <- function(x) {

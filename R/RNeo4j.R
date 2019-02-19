@@ -7,5 +7,5 @@
 #' \href{https://github.com/nicolewhite/RNeo4j/issues}{create a new GitHub issue}.
 #' For support, please \href{http://stackoverflow.com/questions/tagged/r-neo4j}{create a question on StackOverflow}.
 #'
-#' @useDynLib RNeo4j
+#' @useDynLib RNeo4j, .registration = TRUE
 NULL

@@ -38,4 +38,3 @@ try(createNode(graph, "Person", name = "Alice"))
 \seealso{
 \code{\link{getConstraint}}, \code{\link{dropConstraint}}
 }
-

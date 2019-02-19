@@ -3,11 +3,11 @@
 ^.*\.pdf$
 README.Rmd
 README.md
-figure/
 CONTRIBUTING.md
 Makefile
 .travis.yml
-neokit/
 ^[^/]*\.sh$
 ^neo4j.*
+^figure$
+^neokit$
 target

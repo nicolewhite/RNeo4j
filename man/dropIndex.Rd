@@ -39,4 +39,3 @@ getIndex(graph)
 \seealso{
 \code{\link{addIndex}}, \code{\link{getIndex}}
 }
-

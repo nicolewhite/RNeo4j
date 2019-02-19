@@ -44,4 +44,3 @@ getSinglePath(graph, query, name = "Charles")
 \seealso{
 \code{\link{getPaths}}
 }
-

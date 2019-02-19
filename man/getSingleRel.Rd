@@ -46,4 +46,3 @@ getSingleRel(graph, query, start = "Bob", end = "Charles")
 \seealso{
 \code{\link{getRels}}
 }
-

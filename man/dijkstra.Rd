@@ -53,4 +53,3 @@ nodes(p)
 \seealso{
 \code{\link{allDijkstra}}
 }
-

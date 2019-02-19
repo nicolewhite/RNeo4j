@@ -13,4 +13,3 @@ For support, please \href{http://stackoverflow.com/questions/tagged/r-neo4j}{cre
 \author{
 Nicole White
 }
-

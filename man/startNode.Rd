@@ -42,4 +42,3 @@ startNode(path)
 \seealso{
 \code{\link{endNode}}
 }
-

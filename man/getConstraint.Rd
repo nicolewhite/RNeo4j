@@ -36,4 +36,3 @@ getConstraint(graph)
 \seealso{
 \code{\link{addConstraint}}, \code{\link{dropConstraint}}
 }
-

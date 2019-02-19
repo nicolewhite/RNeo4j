@@ -44,4 +44,3 @@ getRels(graph, "MATCH (:Person {name:{name}})-[r]->(:Person) RETURN r", name = "
 \seealso{
 \code{\link{getSingleRel}}
 }
-

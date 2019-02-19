@@ -49,4 +49,3 @@ sapply(older_than_22, function(p) p$name)
 \seealso{
 \code{\link{getSingleNode}}
 }
-

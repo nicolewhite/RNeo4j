@@ -35,4 +35,3 @@ bob
 \seealso{
 \code{\link{addLabel}}, \code{\link{getLabel}}
 }
-

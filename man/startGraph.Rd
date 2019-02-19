@@ -47,4 +47,3 @@ graph = startGraph(character(), # only use the Bolt interface
 }
 
 }
-

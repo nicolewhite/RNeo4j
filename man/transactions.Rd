@@ -2,9 +2,9 @@
 % Please edit documentation in R/appendCypher.R, R/commit.R, R/newTransaction.R
 \name{appendCypher}
 \alias{appendCypher}
+\alias{transactions}
 \alias{commit}
 \alias{newTransaction}
-\alias{transactions}
 \title{Transactions}
 \usage{
 appendCypher(transaction, query, ...)
@@ -65,4 +65,3 @@ cypher(graph, "MATCH (o:Airport)<-[:ORIGIN]-(f:Flight)-[:DESTINATION]->(d:Airpor
 }
 
 }
-

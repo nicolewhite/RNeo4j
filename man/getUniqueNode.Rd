@@ -36,4 +36,3 @@ getUniqueNode(graph, "Person", name = "Alice")
 \seealso{
 \code{\link{getLabeledNodes}}
 }
-
